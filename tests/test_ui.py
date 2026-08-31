@@ -29,6 +29,8 @@ class StaticDashboardTests(unittest.TestCase):
         self.assertIn("content_angle", javascript)
         self.assertIn("reader_problem", javascript)
         self.assertIn("content_grade", javascript)
+        self.assertIn("revenue_readiness", javascript)
+        self.assertIn("outcome_status", javascript)
         self.assertIn('id="pack-main"', pack_html)
         self.assertIn("data\\/drafts\\/", pack_javascript)
         self.assertIn("navigator.clipboard", pack_javascript)
@@ -40,6 +42,7 @@ class StaticDashboardTests(unittest.TestCase):
         self.assertIn("y-ai-lab.github.io/ai-value-radar", fallback_html)
         self.assertIn("navigator.clipboard", fallback_javascript)
         self.assertIn("プロンプトを全部コピー", fallback_html)
+        self.assertIn("/result コード", html)
         self.assertIn("@media (max-width: 680px)", css)
         for secret_name in ("TELEGRAM_BOT_TOKEN", "CLOUDFLARE_API_TOKEN", "TELEGRAM_CHAT_ID"):
             self.assertNotIn(secret_name, html)

@@ -41,12 +41,12 @@ jobs:
       CLOUDFLARE_FREE_ONLY_ACK: ${{ secrets.CLOUDFLARE_FREE_ONLY_ACK }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 1
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.12"
 
@@ -63,6 +63,10 @@ jobs:
       - name: Send Telegram test
         if: github.event_name == 'workflow_dispatch' && inputs.mode == 'telegram_test'
         run: python -m ai_value_radar.main --telegram-test
+
+      - name: Check generated public state for secrets
+        if: github.event_name != 'workflow_dispatch' || inputs.mode == 'scan'
+        run: python scripts/secret_scan.py
 
       - name: Commit public state
         if: github.event_name != 'workflow_dispatch' || inputs.mode == 'scan'

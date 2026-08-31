@@ -56,6 +56,43 @@ class PublishingTests(unittest.TestCase):
         )
         self.assertEqual([item.id for item in selected], [second.id])
 
+    def test_topic_gets_reader_facing_context(self) -> None:
+        item = sample_topic()
+        item.service_name = "n8n"
+        item.github_repository = "n8n-io/n8n"
+        selected = select_publishing_topics(
+            [item],
+            {"n8n_release": {"official": True, "kind": "github_releases"}},
+            limit=1,
+            min_score=35,
+            now=datetime(2026, 8, 31, 1, 0, tzinfo=timezone.utc),
+        )
+        self.assertEqual(len(selected), 1)
+        self.assertIn("定型作業", selected[0].content_angle)
+        self.assertIn("転記", selected[0].reader_problem)
+        self.assertIn("公式ドキュメント", selected[0].reader_action)
+
+    def test_topic_selection_prefers_different_services(self) -> None:
+        first = sample_topic()
+        first.service_name = "n8n"
+        second = sample_topic()
+        second.id = "topic2222222222"
+        second.service_name = "n8n"
+        second.title = "n8n publishes another AI workflow update"
+        third = sample_topic()
+        third.id = "topic3333333333"
+        third.service_name = "Flowise"
+        third.title = "Flowise publishes a new AI workflow update"
+        selected = select_publishing_topics(
+            [first, second, third],
+            {"n8n_release": {"official": True, "kind": "github_releases"}},
+            limit=2,
+            min_score=35,
+            now=datetime(2026, 8, 31, 1, 0, tzinfo=timezone.utc),
+        )
+        self.assertEqual(len(selected), 2)
+        self.assertEqual({item.service_name for item in selected}, {"n8n", "Flowise"})
+
     def test_content_queue_tracks_next_channel(self) -> None:
         item = sample_topic()
         pack = {

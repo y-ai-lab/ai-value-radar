@@ -1,6 +1,6 @@
 # AI VALUE RADAR v0.1
 
-AI / SaaSの公開情報を1日4回巡回し、Lifetime Deal、値引き、無料クレジット、Affiliate Program、Pricing変更の候補を機械的に絞り込み、上位3件だけをTelegramへ送る小さな監視システムです。70点以上を「有望」、40〜69点を「発信候補・要確認」として扱います。収益候補が0件の回も、別枠で最大2件の「発信ネタ」を選び、日本語発信用パック（6つの切り口、note本文、X投稿、Threads投稿、30秒動画案、タイトル案、CTA、ハッシュタグ、公開前チェック）とスマホ向けの直近レポートを自動保存します。
+AI / SaaSの公開情報を1日4回巡回し、Lifetime Deal、値引き、無料クレジット、Affiliate Program、Pricing変更の候補を機械的に絞り込み、上位3件だけをTelegramへ送る小さな監視システムです。70点以上を「有望」、40〜69点を「発信候補・要確認」として扱います。収益候補が0件の回も、別枠で最大2件の「発信ネタ」を選び、日本語発信用パック（6つの切り口、note本文、X投稿、Threads投稿、30秒動画案、タイトル案、CTA、ハッシュタグ、公開前チェック）とスマホ向けの直近レポートを自動保存します。さらに、候補を見つけて終わらせず、需要検証と投稿後の反応・登録・成約・売上を同じコードで追跡します。
 
 ## できること
 
@@ -38,6 +38,7 @@ Telegramの末尾には、毎回「発信用パック → 公式条件確認 →
 - 発信キュー：`data/content_queue.md`でnote → X → Threads → 動画の順に進捗管理。
 - 実利用ステータス：Telegramのコマンドで「未使用 / 試用中 / 使用済み / 公開済み」を更新。
 - 価値フィードバック：Telegramの`/good`・`/skip`で、7日間の「見る価値」を計測。
+- 収益検証ループ：`/validate`で需要の検証状態、`/result`で閲覧・クリック・登録・成約・売上を記録。
 
 自動投稿・自動公開はしません。発信用パックを確認し、実際に使った範囲だけを追記して手動で公開します。
 
@@ -49,6 +50,7 @@ GitHub Pagesの静的ダッシュボードで、スマホから次を確認で�
 - 発信用パックへのリンク
 - note → X → Threads → 動画の発信キュー
 - 7日間の価値フィードバック・重複・エラー・AI呼び出し数
+- 収益検証対象、クリック、登録、成約、記録売上
 - Telegramで使う操作コマンド
 
 公開URL：<https://y-ai-lab.github.io/ai-value-radar/>
@@ -103,9 +105,11 @@ SecretsはSettings → Secrets and variables → Actions → New repository secr
 /used CODE
 /published CODE
 /posted CODE note|x|threads|video
+/validate CODE signal|validated|rejected
+/result CODE views=100 clicks=5 signups=1 sales=0 revenue=0
 ```
 
-`/good`・`/skip`は実際に見る価値があったかを記録し、`/trial`以降は発信用パックの表現を実利用に合わせます。受信するのは設定済みのChat IDからのコマンドだけで、Telegramのメッセージ本文・ユーザー情報・Chat IDは履歴に保存しません。
+`/good`・`/skip`は実際に見る価値があったかを記録し、`/trial`以降は発信用パックの表現を実利用に合わせます。`/validate`は需要の状態だけを更新し、`/result`は省略した項目を前回値のままにして数値を更新します。売上は円で入力します。受信するのは設定済みのChat IDからのコマンドだけで、Telegramのメッセージ本文・ユーザー情報・Chat IDは履歴に保存しません。
 
 ## 監視ソース
 
@@ -126,7 +130,7 @@ RSS・公開API・単一の公式Pricingページだけを読みます。ログ�
 
 ## 保存データ
 
-- `data/opportunities.json`：公開情報から作った候補履歴
+- `data/opportunities.json`：公開情報から作った候補履歴。候補ごとの収益準備度、需要検証状態、投稿後の集計結果も保存
 - `data/last_report.json`：直近の実行レポート
 - `data/reports/`：直近120回のレポート
 - `data/run_history.json`：7日間検証用の実行履歴
@@ -163,6 +167,10 @@ python3 scripts/secret_scan.py
 - Telegramのフィードバック処理：Bot APIの既存設定内で最大20更新/回。別サービスなし。
 
 現在の設計上、追加運用費は0円です。GitHubやCloudflareの将来の料金条件が変わった場合は、AIを止めてもルールベースで継続します。
+
+## 収益化の見方
+
+「収益準備度」は、価格・条件・読者の悩み・次の行動など、検証に移しやすい情報が揃っているかの目安です。需要や売上を自動で証明する点数ではありません。発信用パックで公式条件と実利用を確認し、公開後に`/result`で実測値を入力して初めて、反応や成約を判断します。数字が取れない候補は、記事を量産せず見送り・改善の材料にします。
 
 ## 停止方法
 

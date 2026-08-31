@@ -119,8 +119,7 @@ v0.1では26件のソース定義を持ちます。取得不能と判定した�
 - Hacker Newsの公開JSON検索 4件
 - GitHubの公開API（AIリポジトリと公式リリース）10件
 - Cloudflare / Zapier / OpenAI / Google AI / AWS Machine Learning / Hugging Face / Google DeepMindの公式RSS 7件
-- Product Hunt / AppSumoの公開フィード 2件
-- n8n / Zapier / Make / Cloudflare Workers AIの公式Pricingページ 4件
+- n8n / Zapier / Cloudflare Workers AIの公式Pricingページ 3件
 - n8n / HubSpotの公式Affiliateページ 2件
 
 GitHubの候補はリポジトリ名をそのまま表示せず、可能な範囲でサービス名、何をするプロジェクトか、用途の目安、公式説明、リポジトリURLを分けて表示します。推定できない場合は「GitHub公開プロジェクト」と明示し、完成済みSaaSと断定しません。

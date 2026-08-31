@@ -209,6 +209,9 @@
       const labels = el("div", "progress-labels");
       channels.forEach((channel) => labels.appendChild(el("span", "", channelLabels[channel])));
       row.appendChild(labels);
+      const actions = el("div", "card-actions");
+      append(actions, link("投稿文を見る", packHref(item.pack_path, item.pack_url), "action-link"));
+      row.appendChild(actions);
       list.appendChild(row);
     });
   }

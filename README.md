@@ -41,6 +41,20 @@ Telegramの末尾には、毎回「発信用パック → 公式条件確認 →
 
 自動投稿・自動公開はしません。発信用パックを確認し、実際に使った範囲だけを追記して手動で公開します。
 
+## Web UI
+
+GitHub Pagesの静的ダッシュボードで、スマホから次を確認できます。
+
+- 今回の収益候補と発信ネタ
+- 発信用パックへのリンク
+- note → X → Threads → 動画の発信キュー
+- 7日間の価値フィードバック・重複・エラー・AI呼び出し数
+- Telegramで使う操作コマンド
+
+公開URL：<https://y-ai-lab.github.io/ai-value-radar/>
+
+UIは`index.html`、`assets/radar.css`、`assets/radar.js`だけで動く静的ページです。公開データの`data/last_report.json`、`data/content_queue.json`、`data/metrics_7d.json`を読むだけで、ログイン・DB・追加APIは使いません。Actionsが状態を更新すると、Pages側も自動的に更新されます。
+
 ## 自動実行
 
 GitHub ActionsのPublic Repository上で、標準の`ubuntu-latest` runnerだけを使います。スケジュールはUTCの`05:00 / 11:00 / 17:00 / 23:00`で、日本時間の`14:00 / 20:00 / 翌02:00 / 翌08:00`です。定期実行によるGitHub Actionsの追加運用費は0円です。

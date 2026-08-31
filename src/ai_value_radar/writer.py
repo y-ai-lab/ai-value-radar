@@ -134,6 +134,15 @@ def format_telegram_report(report: dict) -> str:
             f"発信ネタ：{report.get('topic_count', 0)}件"
         ),
     ]
+    source_meta = report.get("source_stats", {}).get("_meta", {})
+    if isinstance(source_meta, dict) and source_meta.get("registered"):
+        registered = int(source_meta.get("registered", 0) or 0)
+        succeeded = int(source_meta.get("succeeded", 0) or 0)
+        failed = int(source_meta.get("failed", 0) or 0)
+        if failed:
+            lines.append(f"ソース：{succeeded}/{registered}成功（{failed}件失敗・他は続行）")
+        else:
+            lines.append(f"ソース：{succeeded}/{registered}成功")
     top = report.get("top3", [])
     drafts = {
         str(value.get("id")): value

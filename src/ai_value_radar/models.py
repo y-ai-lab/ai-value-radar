@@ -17,6 +17,8 @@ STATUSES = {"new", "updated", "duplicate", "seen", "ended"}
 USAGE_STATUSES = {"not_used", "trial", "used", "published"}
 FEEDBACK_VALUES = {"valuable", "not_valuable"}
 CONTENT_KINDS = {"revenue", "publishing"}
+VALIDATION_STATUSES = {"unverified", "signal", "validated", "rejected"}
+OUTCOME_STATUSES = {"not_measured", "measuring", "signal", "converted", "no_signal"}
 
 
 @dataclass
@@ -72,6 +74,19 @@ class Opportunity:
     draft_status: str = ""
     content_kind: str = "revenue"
     content_score: int = 0
+    revenue_readiness: int = 0
+    validation_status: str = "unverified"
+    demand_evidence: str = ""
+    validation_plan: str = ""
+    validation_updated_at: Optional[str] = None
+    post_url: str = ""
+    views: int = 0
+    clicks: int = 0
+    signups: int = 0
+    sales: int = 0
+    revenue: float = 0.0
+    outcome_status: str = "not_measured"
+    outcome_updated_at: Optional[str] = None
     usage_status: str = "not_used"
     usage_status_at: Optional[str] = None
     value_feedback: str = ""
@@ -106,6 +121,22 @@ def validate_opportunity(value: dict[str, Any]) -> list[str]:
     content_score = value.get("content_score", 0)
     if not isinstance(content_score, int) or not 0 <= content_score <= 100:
         errors.append("invalid:content_score")
+    revenue_readiness = value.get("revenue_readiness", 0)
+    if not isinstance(revenue_readiness, int) or not 0 <= revenue_readiness <= 100:
+        errors.append("invalid:revenue_readiness")
+    validation_status = value.get("validation_status", "unverified")
+    if validation_status not in VALIDATION_STATUSES:
+        errors.append("invalid:validation_status")
+    outcome_status = value.get("outcome_status", "not_measured")
+    if outcome_status not in OUTCOME_STATUSES:
+        errors.append("invalid:outcome_status")
+    for key in ("views", "clicks", "signups", "sales"):
+        metric = value.get(key, 0)
+        if type(metric) is not int or metric < 0:
+            errors.append(f"invalid:{key}")
+    revenue = value.get("revenue", 0.0)
+    if isinstance(revenue, bool) or not isinstance(revenue, (int, float)) or revenue < 0:
+        errors.append("invalid:revenue")
     ai_score = value.get("ai_score")
     if ai_score is not None and (not isinstance(ai_score, int) or not 0 <= ai_score <= 100):
         errors.append("invalid:ai_score")

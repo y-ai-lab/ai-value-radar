@@ -23,6 +23,14 @@ class SourceTests(unittest.TestCase):
         self.assertEqual(items[0]["title"], "New AI pricing")
         self.assertEqual(items[0]["url"], "https://example.com/a")
 
+    def test_rss_items_inherit_service_name(self) -> None:
+        payload = """<?xml version='1.0'?><rss><channel>
+        <item><title>New automation feature</title><link>https://example.com/a</link>
+        <description>New workflow feature</description></item></channel></rss>"""
+        spec = SourceSpec("fixture", "fixture", "rss", "https://example.com/feed", "test", service_name="Example")
+        items = fetch_source(FakeClient(payload), spec)
+        self.assertEqual(items[0]["service_name"], "Example")
+
     def test_github_release_json_is_parsed(self) -> None:
         payload = json.dumps([{
             "name": "v1.0",

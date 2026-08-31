@@ -129,6 +129,31 @@ GITHUB_SEARCH_NOISE_KEYWORDS = (
     "ニュース",
     "まとめ",
     "ガイド",
+    "solver",
+    "scheduling",
+    "routing",
+    "rostering",
+    "optimization",
+    "assignment",
+)
+GITHUB_SEARCH_TOOL_KEYWORDS = (
+    "tool",
+    "platform",
+    "framework",
+    "library",
+    "assistant",
+    "chatbot",
+    "agent",
+    "automation",
+    "workflow",
+    "llm",
+    "model",
+    "inference",
+    "api",
+    "integration",
+    "developer",
+    "自動化",
+    "チャット",
 )
 PROJECT_CONTENT_ANGLES = {
     "n8n": "面倒な定型作業を一つ選び、n8nで自動化できるか試す。",
@@ -265,6 +290,11 @@ def calculate_content_score(
     text = _content_text(item)
     if not any(word in text for word in RELEVANCE_KEYWORDS):
         return 0
+    if item.source == "github_ai_repositories":
+        if not any(word in text for word in GITHUB_SEARCH_TOOL_KEYWORDS):
+            return 0
+        if any(word in text for word in GITHUB_SEARCH_NOISE_KEYWORDS):
+            return 0
     source = (source_stats or {}).get(item.source, {})
     score = 0
     if isinstance(source, dict) and source.get("official") is True:

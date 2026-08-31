@@ -2,10 +2,9 @@ from __future__ import annotations
 
 from typing import Any
 
-from .models import Opportunity
+from .models import OUTCOME_STATUSES, VALIDATION_STATUSES, Opportunity
 
 
-VALIDATION_STATUSES = {"unverified", "signal", "validated", "rejected"}
 VALIDATION_LABELS = {
     "unverified": "未検証",
     "signal": "反応あり",
@@ -13,7 +12,6 @@ VALIDATION_LABELS = {
     "rejected": "見送り",
 }
 
-OUTCOME_STATUSES = {"not_measured", "measuring", "signal", "converted", "no_signal"}
 OUTCOME_LABELS = {
     "not_measured": "未計測",
     "measuring": "計測中",

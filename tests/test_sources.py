@@ -63,9 +63,12 @@ class SourceTests(unittest.TestCase):
         self.assertIn("自動化", item["project_use"])
 
     def test_source_catalog_is_broader_than_github(self) -> None:
-        self.assertGreaterEqual(len(SOURCE_SPECS), 25)
+        self.assertGreaterEqual(len(SOURCE_SPECS), 40)
         self.assertTrue(any(spec.kind == "rss" and spec.official for spec in SOURCE_SPECS))
         self.assertTrue(any(spec.kind == "official_page" for spec in SOURCE_SPECS))
+        self.assertIn("github_vllm_releases", {spec.id for spec in SOURCE_SPECS})
+        self.assertIn("github_browseruse_releases", {spec.id for spec in SOURCE_SPECS})
+        self.assertIn("hn_ai_agents", {spec.id for spec in SOURCE_SPECS})
 
 
 if __name__ == "__main__":

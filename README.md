@@ -105,11 +105,12 @@ SecretsはSettings → Secrets and variables → Actions → New repository secr
 /used CODE
 /published CODE
 /posted CODE note|x|threads|video
+/posturl CODE https://公開した投稿のURL
 /validate CODE signal|validated|rejected
 /result CODE views=100 clicks=5 signups=1 sales=0 revenue=0
 ```
 
-`/good`・`/skip`は実際に見る価値があったかを記録し、`/trial`以降は発信用パックの表現を実利用に合わせます。`/validate`は需要の状態だけを更新し、`/result`は省略した項目を前回値のままにして数値を更新します。売上は円で入力します。受信するのは設定済みのChat IDからのコマンドだけで、Telegramのメッセージ本文・ユーザー情報・Chat IDは履歴に保存しません。
+`/good`・`/skip`は実際に見る価値があったかを記録し、`/trial`以降は発信用パックの表現を実利用に合わせます。`/posturl`で公開した投稿のURLも候補コードに紐づけられます。`/validate`は需要の状態だけを更新し、`/result`は省略した項目を前回値のままにして数値を更新します。売上は円で入力します。受信するのは設定済みのChat IDからのコマンドだけで、Telegramのメッセージ本文・ユーザー情報・Chat IDは履歴に保存しません。
 
 ## 監視ソース
 

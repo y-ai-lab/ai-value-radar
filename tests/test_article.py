@@ -44,6 +44,8 @@ class ArticleDraftTests(unittest.TestCase):
         self.assertIn("実利用レビューではありません", content)
         self.assertIn("実際に使う前の確認リスト", content)
         self.assertIn("発信用パック", content)
+        self.assertIn("6つの発信切り口", content)
+        self.assertIn("30秒動画パック", content)
         self.assertIn("X投稿案（280字以内）", content)
         self.assertIn("Threads投稿案", content)
         self.assertIn("Lifetime access $69 instead of $199", content)
@@ -56,6 +58,15 @@ class ArticleDraftTests(unittest.TestCase):
             "Lifetime Deal",
         )
         self.assertLessEqual(len(post), 280)
+
+    def test_used_status_changes_pack_language_without_claiming_results(self) -> None:
+        item = sample_opportunity()
+        item.usage_status = "used"
+        content = render_article_draft(item, "2026-08-31T00:00:00+00:00")
+        self.assertIn("実利用ステータス：使用済み", content)
+        self.assertIn("使用済みの範囲と、まだ確認できていない条件を分けて共有します", content)
+        self.assertIn("具体的な結果・制限・感想を実体験メモに追記", content)
+        self.assertIn("売上を保証するものではありません", content)
 
     def test_generate_is_stable_and_reports_unchanged(self) -> None:
         item = sample_opportunity()

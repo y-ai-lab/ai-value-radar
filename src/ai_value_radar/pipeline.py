@@ -15,10 +15,17 @@ from .latest import render_latest_report
 from .models import Opportunity, validate_opportunity
 from .normalize import make_opportunity
 from .operator import reconcile
+from .publishing import (
+    queue_summary,
+    select_publishing_topics,
+    topic_metadata,
+    upsert_content_queue,
+    write_content_queue,
+)
 from .scoring import apply_rule_scores
 from .sources import collect_candidates
 from .state import append_jsonl, load_json, write_json_atomic, write_text_atomic
-from .telegram import send_report
+from .telegram import process_telegram_updates, send_report
 from .writer import enrich_fallback, format_telegram_report
 
 
@@ -61,6 +68,13 @@ def _metrics_7d(run_history: list[dict[str, Any]], now: datetime) -> dict[str, A
         "error_count",
         "draft_count",
         "draft_error_count",
+        "topic_count",
+        "topic_pack_count",
+        "content_pack_count",
+        "feedback_valuable",
+        "feedback_not_valuable",
+        "usage_updated",
+        "posted_count",
     )
     totals = {key: sum(int(entry.get(key, 0) or 0) for entry in recent) for key in keys}
     totals.update({"runs": len(recent), "window": "7d", "calculated_at": now.isoformat()})
@@ -82,6 +96,10 @@ def run_scan(
     started = time.monotonic()
     now = now or _now(settings)
     now_iso = now.isoformat(timespec="seconds")
+    history_path = data_dir / "opportunities.json"
+    runtime_path = data_dir / "runtime_state.json"
+    run_history_path = data_dir / "run_history.json"
+    feedback = process_telegram_updates(settings, data_dir, now_iso)
     raw, source_stats, source_errors = collector(settings)
 
     normalized: list[Opportunity] = []
@@ -92,9 +110,6 @@ def run_scan(
     unique, current_duplicates = deduplicate_current(normalized)
     apply_rule_scores(unique)
 
-    history_path = data_dir / "opportunities.json"
-    runtime_path = data_dir / "runtime_state.json"
-    run_history_path = data_dir / "run_history.json"
     history = load_json(history_path, [])
     if not isinstance(history, list):
         history = []
@@ -132,7 +147,45 @@ def run_scan(
         checked_at=now_iso,
         limit=settings.max_article_drafts_per_run,
         max_bytes=settings.max_article_draft_bytes,
+        mode="revenue",
     )
+    topic_items = select_publishing_topics(
+        current,
+        source_stats=source_stats,
+        excluded_ids={item.id for item in top3},
+        limit=settings.max_publishing_topics_per_run,
+        min_score=settings.publishing_topic_min_score,
+        now=now,
+    )
+    topic_pack_limit = min(
+        settings.max_publishing_topics_per_run,
+        max(0, settings.max_total_content_packs_per_run - len(drafts)),
+    )
+    topic_packs, topic_pack_errors = generate_article_drafts(
+        topic_items,
+        data_dir=data_dir,
+        repository_url=settings.repository_url,
+        checked_at=now_iso,
+        limit=topic_pack_limit,
+        max_bytes=settings.max_article_draft_bytes,
+        mode="publishing",
+    )
+    all_packs = drafts + topic_packs
+    queue_path = data_dir / "content_queue.json"
+    queue = load_json(queue_path, [])
+    queue_errors: list[dict[str, str]] = []
+    try:
+        queue = upsert_content_queue(
+            queue,
+            [*top3, *topic_items],
+            all_packs,
+            now_iso,
+            max_items=settings.max_queue_items,
+        )
+        write_json_atomic(queue_path, queue)
+        write_content_queue(data_dir / "content_queue.md", queue, now_iso, settings.repository_url)
+    except (OSError, UnicodeError, ValueError, TypeError) as exc:
+        queue_errors.append({"stage": "content_queue", "message": type(exc).__name__})
 
     # Reconcile again after the optional AI pass so the public history contains
     # the same score and Japanese analysis that was included in the report.
@@ -157,7 +210,10 @@ def run_scan(
         "publishable_count": len(publishable),
         "top3_count": len(top3),
         "draft_count": len(drafts),
-        "draft_error_count": len(draft_errors),
+        "draft_error_count": len(draft_errors) + len(topic_pack_errors),
+        "topic_count": len(topic_items),
+        "topic_pack_count": len(topic_packs),
+        "content_pack_count": len(all_packs),
         "affiliate_count": sum(1 for item in current if item.category == "affiliate_program"),
         "source_stats": source_stats,
         "ai": {
@@ -166,13 +222,27 @@ def run_scan(
             "max_per_run": settings.max_ai_candidates_per_run,
             "errors": len(ai_errors),
         },
-        "drafts": drafts,
+        "drafts": all_packs,
+        "publishing_topics": [
+            topic_metadata(item, next((pack for pack in topic_packs if pack.get("id") == item.id), None))
+            for item in topic_items
+        ],
+        "queue": queue_summary(queue),
+        "queue_link": f"{settings.repository_url.strip().rstrip('/') or 'https://github.com/y-ai-lab/ai-value-radar'}/blob/main/data/content_queue.md",
+        "feedback": {key: value for key, value in feedback.items() if key != "errors"},
         "latest": {
             "path": "data/latest.md",
             "url": f"{settings.repository_url.strip().rstrip('/') or 'https://github.com/y-ai-lab/ai-value-radar'}/blob/main/data/latest.md",
         },
         "top3": [item.to_dict() for item in top3],
-        "errors": _bounded_errors(source_errors + ai_errors + draft_errors),
+        "errors": _bounded_errors(
+            source_errors
+            + ai_errors
+            + draft_errors
+            + topic_pack_errors
+            + queue_errors
+            + ([{"stage": "telegram_feedback", "message": "poll failed"}] if feedback.get("errors") else [])
+        ),
         "notification": {"status": "pending"},
     }
 
@@ -197,8 +267,15 @@ def run_scan(
         "top3_count": report["top3_count"],
         "draft_count": report["draft_count"],
         "draft_error_count": report["draft_error_count"],
+        "topic_count": report["topic_count"],
+        "topic_pack_count": report["topic_pack_count"],
+        "content_pack_count": report["content_pack_count"],
         "affiliate_count": report["affiliate_count"],
         "ai_calls": ai_calls,
+        "feedback_valuable": int(feedback.get("feedback_valuable", 0) or 0),
+        "feedback_not_valuable": int(feedback.get("feedback_not_valuable", 0) or 0),
+        "usage_updated": int(feedback.get("usage_updated", 0) or 0),
+        "posted_count": int(feedback.get("posted_count", 0) or 0),
         "duplicate_count": report["duplicate_count"],
         "error_count": len(report["errors"]),
         "seconds": round(time.monotonic() - started, 2),

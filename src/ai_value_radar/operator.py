@@ -17,6 +17,10 @@ def reconcile(items: list[Opportunity], history: list[dict[str, Any]], now_iso: 
         if old:
             item.discovered_at = str(old.get("discovered_at") or item.discovered_at)
             item.last_notified_at = old.get("last_notified_at")
+            item.usage_status = str(old.get("usage_status") or item.usage_status)
+            item.usage_status_at = old.get("usage_status_at")
+            item.value_feedback = str(old.get("value_feedback") or item.value_feedback)
+            item.value_feedback_at = old.get("value_feedback_at")
         if any(word in f"{item.title} {item.summary}".lower() for word in ("expired", "ended", "終了しました", "販売終了")):
             item.status = "ended"
         counts[item.status] = counts.get(item.status, 0) + 1

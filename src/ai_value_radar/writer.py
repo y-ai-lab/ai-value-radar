@@ -13,6 +13,12 @@ CATEGORY_LABELS = {
     "pricing_change": "Pricing変更",
     "other": "AI/SaaS情報",
 }
+USAGE_LABELS = {
+    "not_used": "未使用",
+    "trial": "試用中",
+    "used": "使用済み",
+    "published": "公開済み",
+}
 
 
 def _short(value: str, limit: int) -> str:
@@ -80,7 +86,8 @@ def format_telegram_report(report: dict) -> str:
             f"監視：{report.get('fetched_count', 0)}件　"
             f"新規：{report.get('new_count', 0)}件　"
             f"有望：{report.get('promising_count', 0)}件　"
-            f"発信候補：{report.get('publishable_count', 0)}件"
+            f"発信候補：{report.get('publishable_count', 0)}件　"
+            f"発信ネタ：{report.get('topic_count', 0)}件"
         ),
     ]
     top = report.get("top3", [])
@@ -89,38 +96,68 @@ def format_telegram_report(report: dict) -> str:
         for value in report.get("drafts", [])
         if isinstance(value, dict) and value.get("id")
     }
-    if not top:
-        lines.extend(["", "今回は有望な発信候補なし", "次回もAI / SaaSを巡回します。"])
-        latest = report.get("latest", {})
-        if isinstance(latest, dict) and latest.get("url"):
-            lines.append(f"詳細レポート：{latest['url']}")
-        return "\n".join(lines)
-    medals = ["🥇", "🥈", "🥉"]
-    for index, raw in enumerate(top[:3]):
-        item = Opportunity(**raw) if isinstance(raw, dict) else raw
-        enrich_fallback(item)
-        draft = drafts.get(item.id)
-        title = _short(item.ai_title or item.title, 80)
-        label = "有望" if item.final_score >= 70 else "発信候補・要確認"
-        lines.extend(
-            [
-                "",
-                f"{medals[index]} {item.final_score}点｜{label}｜{title}",
-                f"{CATEGORY_LABELS.get(item.ai_category or item.category, item.ai_category or item.category)}｜{price_line(item)}",
-                f"注目：{_short(item.why_now, 100)}",
-                f"向く人：{_short(item.best_for, 90)}",
-                f"見送り：{_short(item.skip_if, 90)}",
-                f"収益化：{_short(item.monetization, 110)}",
-                f"URL：{item.url}",
-            ]
-        )
-        if draft and draft.get("url"):
-            lines.append(f"発信用パック：{draft['url']}")
+    if top:
+        medals = ["🥇", "🥈", "🥉"]
+        for index, raw in enumerate(top[:3]):
+            item = Opportunity(**raw) if isinstance(raw, dict) else raw
+            enrich_fallback(item)
+            draft = drafts.get(item.id)
+            title = _short(item.ai_title or item.title, 80)
+            label = "有望" if item.final_score >= 70 else "発信候補・要確認"
+            usage = USAGE_LABELS.get(getattr(item, "usage_status", "not_used"), "未使用")
+            lines.extend(
+                [
+                    "",
+                    f"{medals[index]} {item.final_score}点｜{label}｜{title}",
+                    f"コード：{item.id[:8]}　実利用：{usage}",
+                    f"{CATEGORY_LABELS.get(item.ai_category or item.category, item.ai_category or item.category)}｜{price_line(item)}",
+                    f"注目：{_short(item.why_now, 100)}",
+                    f"向く人：{_short(item.best_for, 90)}",
+                    f"見送り：{_short(item.skip_if, 90)}",
+                    f"収益化：{_short(item.monetization, 110)}",
+                    f"URL：{item.url}",
+                ]
+            )
+            if draft and draft.get("url"):
+                lines.append(f"発信用パック：{draft['url']}")
+    else:
+        lines.extend(["", "収益候補：今回はなし"])
+
+    topics = report.get("publishing_topics", [])
+    if isinstance(topics, list) and topics:
+        lines.extend(["", "発信ネタ（収益候補とは別枠）"])
+        for topic in topics[:3]:
+            if not isinstance(topic, dict):
+                continue
+            title = _short(str(topic.get("title", "")), 90)
+            code = str(topic.get("code") or str(topic.get("id", ""))[:8])
+            lines.extend(
+                [
+                    "",
+                    f"📝 {topic.get('content_score', 0)}点｜{title}",
+                    f"コード：{code}　実利用：{USAGE_LABELS.get(str(topic.get('usage_status', 'not_used')), '未使用')}",
+                    f"原文：{topic.get('url', '')}",
+                ]
+            )
+            if topic.get("pack_url"):
+                lines.append(f"発信用パック：{topic['pack_url']}")
+    elif not top:
+        lines.append("発信ネタも今回はありません。次回もAI / SaaSを巡回します。")
     lines.extend([
         "",
         "次にすること：発信用パック → 公式条件確認 → 実体験を追記",
     ])
+    queue_link = report.get("queue_link")
+    if queue_link:
+        lines.append(f"発信キュー：{queue_link}")
     latest = report.get("latest", {})
     if isinstance(latest, dict) and latest.get("url"):
         lines.append(f"詳細レポート：{latest['url']}")
+    lines.extend(
+        [
+            "",
+            "Telegram操作：/good コード（価値あり） /skip コード（不要）",
+            "/trial コード /used コード /posted コード note|x|threads|video",
+        ]
+    )
     return "\n".join(lines)[:3900]

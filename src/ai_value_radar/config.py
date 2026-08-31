@@ -31,6 +31,11 @@ class Settings:
     max_notifications: int = 3
     max_article_drafts_per_run: int = 3
     max_article_draft_bytes: int = 30_000
+    max_publishing_topics_per_run: int = 2
+    publishing_topic_min_score: int = 35
+    max_total_content_packs_per_run: int = 5
+    max_queue_items: int = 100
+    max_telegram_updates_per_run: int = 20
     max_history_items: int = 1000
     max_run_history_items: int = 120
     max_report_bytes: int = 100_000
@@ -56,6 +61,19 @@ class Settings:
             ),
             max_article_draft_bytes=_int_env(
                 "RADAR_MAX_ARTICLE_DRAFT_BYTES", cls.max_article_draft_bytes, 5_000
+            ),
+            max_publishing_topics_per_run=_int_env(
+                "RADAR_MAX_PUBLISHING_TOPICS", cls.max_publishing_topics_per_run, 0
+            ),
+            publishing_topic_min_score=_int_env(
+                "RADAR_PUBLISHING_TOPIC_MIN_SCORE", cls.publishing_topic_min_score, 0
+            ),
+            max_total_content_packs_per_run=_int_env(
+                "RADAR_MAX_TOTAL_CONTENT_PACKS", cls.max_total_content_packs_per_run, 0
+            ),
+            max_queue_items=_int_env("RADAR_MAX_QUEUE_ITEMS", cls.max_queue_items, 10),
+            max_telegram_updates_per_run=_int_env(
+                "RADAR_MAX_TELEGRAM_UPDATES", cls.max_telegram_updates_per_run, 0
             ),
             max_history_items=_int_env("RADAR_MAX_HISTORY", cls.max_history_items, 100),
             max_run_history_items=_int_env("RADAR_MAX_RUN_HISTORY", cls.max_run_history_items, 7),

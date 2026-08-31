@@ -34,7 +34,8 @@ def render_latest_report(report: dict[str, Any]) -> str:
             f"監視 {report.get('fetched_count', 0)}件 / "
             f"新規 {report.get('new_count', 0)}件 / "
             f"有望 {report.get('promising_count', 0)}件 / "
-            f"発信候補 {report.get('publishable_count', 0)}件"
+            f"発信候補 {report.get('publishable_count', 0)}件 / "
+            f"発信ネタ {report.get('topic_count', 0)}件"
         ),
         "",
         "## 結論",
@@ -48,7 +49,7 @@ def render_latest_report(report: dict[str, Any]) -> str:
     }
     if not top:
         lines.extend([
-            "今回は新規または重要更新の発信候補はありませんでした。",
+            "今回は新規または重要更新の収益候補はありませんでした。",
             "同じ案件の重複通知は抑止しています。次回の巡回を待ちます。",
         ])
     else:
@@ -71,6 +72,23 @@ def render_latest_report(report: dict[str, Any]) -> str:
                 lines.append(f"発信用パック：[Markdownを開く]({draft_url})")
             lines.append("")
 
+    topics = report.get("publishing_topics", [])
+    if isinstance(topics, list) and topics:
+        lines.extend(["## 発信ネタ", ""])
+        for index, topic in enumerate(topics[:3], start=1):
+            if not isinstance(topic, dict):
+                continue
+            title = _markdown_label(str(topic.get("title", "")))
+            pack_url = str(topic.get("pack_url") or "")
+            title_link = f"[{title}]({pack_url})" if pack_url else title
+            lines.extend([
+                f"### {index}. 発信価値 {topic.get('content_score', 0)}点",
+                title_link,
+                f"コード：`{topic.get('code') or str(topic.get('id', ''))[:8]}`",
+                f"原文：[{topic.get('source', 'source')}]({topic.get('url', '')})",
+                "",
+            ])
+
     lines.extend([
         "## 次にすること",
         "",
@@ -84,7 +102,10 @@ def render_latest_report(report: dict[str, Any]) -> str:
     metrics = report.get("metrics_7d", {})
     lines.extend([
         f"- 実行回数：{metrics.get('runs', 0)}回",
-        f"- 発信用パック：{metrics.get('draft_count', 0)}件",
+        f"- 発信用パック：{metrics.get('content_pack_count', metrics.get('draft_count', 0))}件",
+        f"- 発信ネタ：{metrics.get('topic_count', 0)}件",
+        f"- 価値あり判定：{metrics.get('feedback_valuable', 0)}件",
+        f"- 今回は不要判定：{metrics.get('feedback_not_valuable', 0)}件",
         f"- Affiliate候補：{metrics.get('affiliate_count', 0)}件",
         f"- AI呼び出し：{metrics.get('ai_calls', 0)}回",
         f"- エラー：{metrics.get('error_count', 0)}件",
@@ -97,6 +118,9 @@ def render_latest_report(report: dict[str, Any]) -> str:
         lines.extend(f"- {error.get('source') or error.get('stage', 'system')}：{error.get('message', 'error')}" for error in errors[:20])
     else:
         lines.append("- なし")
+    queue_link = report.get("queue_link")
+    if queue_link:
+        lines.extend(["", f"発信キュー：[未投稿を確認]({queue_link})"])
     lines.extend([
         "",
         "このページは公開情報だけで生成されています。自動公開は行いません。",

@@ -75,12 +75,45 @@ def _disclosure(item: Opportunity) -> str:
     )
 
 
-def _x_post(title: str, summary: str, url: str, category: str) -> str:
+USAGE_LABELS = {
+    "not_used": "未使用",
+    "trial": "試用中",
+    "used": "使用済み",
+    "published": "公開済み",
+}
+
+
+def _usage_label(status: str) -> str:
+    return USAGE_LABELS.get(status, "未使用")
+
+
+def _usage_sentence(status: str) -> str:
+    if status == "published":
+        return "公開済みの記録があります。公開内容と現在の公式情報が一致するか、再確認してから再利用します。"
+    if status == "used":
+        return "実際に使用済みとして記録されています。具体的な結果・制限・感想を実体験メモに追記してから公開します。"
+    if status == "trial":
+        return "現在は試用中として記録されています。試した範囲と未確認の範囲を分けてから公開します。"
+    return "まだ実利用前の調査段階です。公式情報を確認し、自分で試してから公開判断します。"
+
+
+def _x_post(title: str, summary: str, url: str, category: str, usage_status: str = "not_used") -> str:
+    if usage_status in {"used", "published"}:
+        experience_line = "使った範囲と、まだ確認できていない条件を分けて整理します。"
+    elif usage_status == "trial":
+        experience_line = "試した範囲と、まだ確認できていない条件を分けて整理します。"
+    else:
+        experience_line = "まずは自分で試して、使えた点と微妙だった点をまとめます。"
+    source_line = (
+        "公開情報と使用済みの範囲を分けて整理します。"
+        if usage_status in {"used", "published"}
+        else "まだ公開情報で見つけた段階。価格・商用利用・日本からの利用可否は要確認です。"
+    )
     body = (
         f"【{category}】{title}\n"
         f"{_one_line(summary, 70)}\n"
-        "ただ、まだ公開情報で見つけた段階。価格・商用利用・日本からの利用可否は要確認です。\n"
-        "まずは自分で試して、使えた点と微妙だった点をまとめます。\n"
+        f"{source_line}\n"
+        f"{experience_line}\n"
         "#AIツール #SaaS"
     )
     url_line = f"\n{url}"
@@ -90,7 +123,12 @@ def _x_post(title: str, summary: str, url: str, category: str) -> str:
     return body + url_line
 
 
-def _threads_posts(title: str, summary: str, why_now: str, url: str) -> str:
+def _threads_posts(title: str, summary: str, why_now: str, url: str, usage_status: str = "not_used") -> str:
+    experience_line = (
+        "使用済みの範囲と、まだ確認できていない条件を分けて共有します。"
+        if usage_status in {"used", "published"}
+        else "実際に試した範囲と、まだ未確認の条件を分けて共有します。"
+    )
     posts = [
         f"1/3\n{title}が気になったので、公開情報を確認しました。\n"
         f"{_one_line(summary, 180)}",
@@ -98,8 +136,8 @@ def _threads_posts(title: str, summary: str, why_now: str, url: str) -> str:
         f"注目した理由は、{_one_line(why_now, 150)}\n"
         "ただし、価格や利用条件は変わる可能性があります。",
         "3/3\n"
-        "現時点では、まだ実利用前の調査段階です。\n"
-        "自分で試してから、向いている人・見送る人を正直にまとめます。\n"
+        f"{experience_line}\n"
+        "向いている人・見送る人を正直にまとめます。\n"
         f"{url}\n#AIツール #SaaS",
     ]
     return "\n\n".join(posts)
@@ -115,7 +153,46 @@ def _title_options(title: str, category: str) -> str:
     )
 
 
-def render_article_draft(item: Opportunity, checked_at: str) -> str:
+def _content_angles(
+    title: str,
+    summary: str,
+    why_now: str,
+    best_for: str,
+    risk: str,
+    monetization: str,
+) -> str:
+    return "\n".join(
+        (
+            f"1. 価格・条件：{title}の料金、無料枠、期限を整理する。\n   下書きの軸：{_one_line(summary, 220)}",
+            f"2. 初心者向け：{title}はどんな作業を減らせそうかを説明する。\n   下書きの軸：{_one_line(best_for, 220)}",
+            f"3. 比較・選び方：似たAI / SaaSと比べる前に、何を確認するかを書く。\n   下書きの軸：{_one_line(why_now, 220)}",
+            "4. 実験ログ：実際に試した手順、かかった時間、できたこと・できなかったことを記録する。\n   下書きの軸：実体験を追記するまで断定しない。",
+            f"5. 注意点：契約、商用利用、日本利用、制限などの見落としを伝える。\n   下書きの軸：{_one_line(risk, 220)}",
+            f"6. 収益化の考え方：紹介できる条件と、紹介しない条件を分ける。\n   下書きの軸：{_one_line(monetization, 220)}",
+        )
+    )
+
+
+def _video_pack(title: str, summary: str, why_now: str, risk: str, usage_status: str) -> str:
+    usage_note = _usage_sentence(usage_status)
+    return "\n".join(
+        (
+            f"- 想定尺：30秒 / 縦型",
+            f"- Hook（0〜3秒）：『{_one_line(title, 70)}。安さより先に、確認したい条件があります。』",
+            f"- 0〜3秒：{_one_line(title, 100)}を大きく表示。",
+            f"- 4〜10秒：{_one_line(summary, 180)}",
+            f"- 11〜18秒：なぜ今見るのか。{_one_line(why_now, 160)}",
+            f"- 19〜25秒：注意点。{_one_line(risk, 160)}",
+            "- 26〜30秒：『自分で試して、向いている人・見送る人をまとめます。』",
+            "- 映像：公式ページの確認、料金表、操作画面、メモを書く手元を短く切り替える。",
+            "- 音声：本人収録。未確認の情報は断定せず、画面内の出典URLも確認する。",
+            f"- 実利用ステータス：{_usage_label(usage_status)}。{usage_note}",
+            "- 投稿文：AI / SaaSの条件を調べたメモ。実際に使った結果は別途追記します。",
+        )
+    )
+
+
+def render_article_draft(item: Opportunity, checked_at: str, mode: str = "revenue") -> str:
     """Render a safe, fact-labelled Japanese article draft without an AI call.
 
     The output intentionally never claims that the author used the product. It is
@@ -136,12 +213,20 @@ def render_article_draft(item: Opportunity, checked_at: str) -> str:
     risk = _one_line(item.risk or "価格、期限、日本利用、商用利用、解約条件を公式ページで確認します。", 600)
     source_name = _one_line(item.source, 120)
     status = {"new": "新規", "updated": "更新", "seen": "既知"}.get(item.status, item.status or "要確認")
+    mode_label = "発信ネタ" if mode == "publishing" else "収益候補"
+    score_label = item.content_score if mode == "publishing" else item.final_score
+    conclusion = (
+        "これは収益案件の確定ではなく、AI / SaaSについて発信する価値があるかを確認するためのネタです。"
+        if mode == "publishing"
+        else "この案件は、AI VALUE RADARが公開情報から検出した段階です。"
+    )
 
     lines = [
         f"# {title}",
         "",
-        f"> AI VALUE RADARの公開前調査下書き｜{status}｜{category}｜レーダー {item.final_score}点",
+        f"> AI VALUE RADARの公開前調査下書き｜{status}｜{category}｜{mode_label} {score_label}点",
         f"> 自動確認日時：{checked_display}",
+        f"> 実利用ステータス：{_usage_label(item.usage_status)}",
         "> 重要：これは公開情報から作った下書きであり、筆者の実利用レビューではありません。公開前に公式情報と実体験を追記・確認してください。",
         "",
         _disclosure(item),
@@ -150,14 +235,14 @@ def render_article_draft(item: Opportunity, checked_at: str) -> str:
         "",
         summary,
         "",
-        "この案件は、AI VALUE RADARが公開情報から検出した段階です。価格や条件が魅力的に見えても、"
+        conclusion + "価格や条件が魅力的に見えても、"
         "筆者自身の試用、利用規約の確認、日本からの利用可否の確認が終わるまでは公開判断しません。",
         "",
         "## 何が起きたか",
         "",
         f"- 区分：{category}",
         f"- 検出元：{source_name}",
-        f"- 収益機会としての一次判定：{item.rule_score}点 / 70点",
+        f"- {('発信価値の一次判定' if mode == 'publishing' else '収益機会としての一次判定')}：{score_label}点 / {('100' if mode == 'publishing' else '70')}点",
         f"- 参照URL：{item.url}",
         "",
         "公開情報から抽出したメモ：",
@@ -241,16 +326,24 @@ def render_article_draft(item: Opportunity, checked_at: str) -> str:
         "",
         "この記事では、公式情報の確認結果と実際に使った感想を分けてまとめます。",
         "",
+        "### 6つの発信切り口",
+        "",
+        _content_angles(title, summary, why_now, best_for, risk, monetization),
+        "",
+        "### 30秒動画パック",
+        "",
+        _video_pack(title, summary, why_now, risk, item.usage_status),
+        "",
         "### X投稿案（280字以内）",
         "",
         "```text",
-        _x_post(title, summary, item.url, category),
+        _x_post(title, summary, item.url, category, item.usage_status),
         "```",
         "",
         "### Threads投稿案",
         "",
         "```text",
-        _threads_posts(title, summary, why_now, item.url),
+        _threads_posts(title, summary, why_now, item.url, item.usage_status),
         "```",
         "",
         "### 投稿後の誘導文・CTA案",
@@ -285,6 +378,7 @@ def generate_article_drafts(
     checked_at: str,
     limit: int = 3,
     max_bytes: int = 30_000,
+    mode: str = "revenue",
 ) -> tuple[list[dict[str, Any]], list[dict[str, str]]]:
     """Write stable per-opportunity Markdown drafts and return safe metadata."""
     draft_dir = data_dir / "drafts"
@@ -295,7 +389,8 @@ def generate_article_drafts(
         relative_path = Path("data") / "drafts" / f"{item.id}.md"
         path = draft_dir / f"{item.id}.md"
         try:
-            content = render_article_draft(item, checked_at)
+            item.content_kind = mode if mode in {"revenue", "publishing"} else "revenue"
+            content = render_article_draft(item, checked_at, mode=mode)
             byte_count = len(content.encode("utf-8"))
             if byte_count > max_bytes:
                 errors.append({"stage": "article_draft", "item_id": item.id, "message": "draft exceeds byte limit"})
@@ -316,6 +411,9 @@ def generate_article_drafts(
                     "url": f"{base_url}/blob/main/{relative_path.as_posix()}",
                     "status": status,
                     "bytes": byte_count,
+                    "kind": mode,
+                    "content_score": item.content_score,
+                    "usage_status": item.usage_status,
                 }
             )
         except (OSError, UnicodeError, ValueError) as exc:

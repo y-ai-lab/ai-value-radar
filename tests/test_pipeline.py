@@ -85,6 +85,51 @@ class PipelineTests(unittest.TestCase):
         self.assertEqual(len(notifications), 1)
         self.assertIn("🥇 70点", notifications[0])
 
+    def test_fresh_official_change_generates_publishing_topic_pack(self) -> None:
+        notifications: list[str] = []
+
+        def collector(settings: Settings):
+            raw = [
+                {
+                    "title": "n8n launches a new AI workflow feature",
+                    "url": "https://n8n.io/blog/new-ai-workflow-feature",
+                    "summary": "New AI automation workflow feature released for business users worldwide.",
+                    "source": "n8n_release",
+                    "published_at": "2026-08-31T00:00:00+00:00",
+                }
+            ]
+            stats = {"n8n_release": {"status": "ok", "items": 1, "official": True, "kind": "github_releases"}}
+            return raw, stats, []
+
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            result = run_scan(
+                Settings(
+                    max_http_requests=5,
+                    max_source_items=5,
+                    max_ai_candidates_per_run=0,
+                    max_publishing_topics_per_run=2,
+                    max_total_content_packs_per_run=5,
+                ),
+                collector=collector,
+                notifier=lambda message: notifications.append(message) or "dry_run",
+                now=datetime(2026, 8, 31, 1, 0, tzinfo=timezone.utc),
+                data_dir=root,
+            )
+
+            self.assertEqual(result["top3_count"], 0)
+            self.assertEqual(result["topic_count"], 1)
+            self.assertEqual(result["topic_pack_count"], 1)
+            self.assertEqual(result["content_pack_count"], 1)
+            self.assertIn("発信ネタ（収益候補とは別枠）", notifications[0])
+            self.assertIn("発信用パック：https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/", notifications[0])
+            self.assertEqual(result["queue"]["ready"], 1)
+            self.assertTrue((root / "content_queue.json").exists())
+            self.assertTrue((root / "content_queue.md").exists())
+            latest = (root / "latest.md").read_text(encoding="utf-8")
+            self.assertIn("## 発信ネタ", latest)
+            self.assertIn("発信キュー", latest)
+
     def test_fetch_filter_score_report_without_network(self) -> None:
         def collector(settings: Settings):
             raw = [

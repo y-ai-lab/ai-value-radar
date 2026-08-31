@@ -87,6 +87,7 @@ class Opportunity:
     revenue: float = 0.0
     outcome_status: str = "not_measured"
     outcome_updated_at: Optional[str] = None
+    post_url_updated_at: Optional[str] = None
     usage_status: str = "not_used"
     usage_status_at: Optional[str] = None
     value_feedback: str = ""

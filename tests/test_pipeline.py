@@ -44,6 +44,8 @@ class PipelineTests(unittest.TestCase):
         self.assertIn("発信候補・要確認", notifications[0])
         self.assertNotIn("%%", notifications[0])
         self.assertIn("記事下書き：https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/", notifications[0])
+        self.assertIn("次にすること：下書き → 公式条件確認 → 実体験を追記", notifications[0])
+        self.assertIn("詳細レポート：https://github.com/y-ai-lab/ai-value-radar/blob/main/data/latest.md", notifications[0])
 
     def test_clear_rule_candidate_reaches_top3_at_default_threshold(self) -> None:
         notifications: list[str] = []
@@ -121,6 +123,10 @@ class PipelineTests(unittest.TestCase):
             self.assertEqual(result["draft_count"], 1)
             self.assertEqual(result["drafts"][0]["status"], "created")
             self.assertTrue((Path(directory) / "drafts" / f"{result['top3'][0]['id']}.md").exists())
+            self.assertTrue((Path(directory) / "latest.md").exists())
+            latest = (Path(directory) / "latest.md").read_text(encoding="utf-8")
+            self.assertIn("## 次にすること", latest)
+            self.assertIn("data/drafts/", latest)
             self.assertEqual(result["notification"]["status"], "dry_run")
             stored = json.loads((Path(directory) / "opportunities.json").read_text(encoding="utf-8"))
             self.assertEqual(len(stored), 2)

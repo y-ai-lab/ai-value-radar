@@ -11,12 +11,13 @@ from .ai import apply_ai_analysis
 from .article import generate_article_drafts
 from .config import DATA_DIR, REPORT_DIR, Settings, ensure_data_dirs
 from .filtering import deduplicate_current
+from .latest import render_latest_report
 from .models import Opportunity, validate_opportunity
 from .normalize import make_opportunity
 from .operator import reconcile
 from .scoring import apply_rule_scores
 from .sources import collect_candidates
-from .state import append_jsonl, load_json, write_json_atomic
+from .state import append_jsonl, load_json, write_json_atomic, write_text_atomic
 from .telegram import send_report
 from .writer import enrich_fallback, format_telegram_report
 
@@ -166,6 +167,10 @@ def run_scan(
             "errors": len(ai_errors),
         },
         "drafts": drafts,
+        "latest": {
+            "path": "data/latest.md",
+            "url": f"{settings.repository_url.strip().rstrip('/') or 'https://github.com/y-ai-lab/ai-value-radar'}/blob/main/data/latest.md",
+        },
         "top3": [item.to_dict() for item in top3],
         "errors": _bounded_errors(source_errors + ai_errors + draft_errors),
         "notification": {"status": "pending"},
@@ -204,6 +209,12 @@ def run_scan(
     write_json_atomic(run_history_path, run_history)
     report["seconds"] = run_entry["seconds"]
     report["metrics_7d"] = _metrics_7d(run_history, now)
+    try:
+        write_text_atomic(data_dir / "latest.md", render_latest_report(report))
+    except (OSError, UnicodeError) as exc:
+        report["errors"].append({"stage": "latest_report", "message": type(exc).__name__})
+        report["errors"] = _bounded_errors(report["errors"])
+        report["draft_error_count"] = report.get("draft_error_count", 0)
     write_json_atomic(data_dir / "metrics_7d.json", report["metrics_7d"])
     write_json_atomic(data_dir / "last_report.json", report)
     report_path = report_dir / f"{now.astimezone(timezone.utc):%Y%m%dT%H%M%SZ}.json"

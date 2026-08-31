@@ -1,12 +1,11 @@
 from __future__ import annotations
 
-import os
-import tempfile
 from datetime import datetime
 from pathlib import Path
 from typing import Any, Iterable
 
 from .models import Opportunity
+from .state import write_text_atomic
 from .writer import CATEGORY_LABELS
 
 
@@ -191,23 +190,6 @@ def render_article_draft(item: Opportunity, checked_at: str) -> str:
     return "\n".join(lines)
 
 
-def _write_text_atomic(path: Path, content: str) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    descriptor, temporary = tempfile.mkstemp(prefix=f".{path.name}.", dir=path.parent)
-    try:
-        with os.fdopen(descriptor, "w", encoding="utf-8") as handle:
-            handle.write(content)
-            handle.flush()
-            os.fsync(handle.fileno())
-        os.replace(temporary, path)
-    except Exception:
-        try:
-            os.unlink(temporary)
-        except OSError:
-            pass
-        raise
-
-
 def generate_article_drafts(
     items: Iterable[Opportunity],
     data_dir: Path,
@@ -234,7 +216,7 @@ def generate_article_drafts(
             if previous == content:
                 status = "unchanged"
             else:
-                _write_text_atomic(path, content)
+                write_text_atomic(path, content)
                 status = "updated" if previous is not None else "created"
             item.draft_path = relative_path.as_posix()
             item.draft_status = status

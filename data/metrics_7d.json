@@ -1,13 +1,14 @@
 {
-  "affiliate_count": 64,
+  "affiliate_count": 82,
   "ai_calls": 0,
-  "calculated_at": "2026-08-31T10:13:16.542985+09:00",
-  "duplicate_count": 635,
-  "error_count": 12,
-  "fetched_count": 944,
-  "new_count": 225,
+  "calculated_at": "2026-08-31T10:25:19.398971+09:00",
+  "duplicate_count": 838,
+  "error_count": 15,
+  "fetched_count": 1182,
+  "new_count": 236,
   "promising_count": 0,
-  "runs": 4,
-  "top3_count": 0,
+  "publishable_count": 1,
+  "runs": 5,
+  "top3_count": 1,
   "window": "7d"
 }

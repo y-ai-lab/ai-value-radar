@@ -47,8 +47,118 @@
     "source": "github_openwebui_releases",
     "status": "ready",
     "title": "Open WebUI",
-    "updated_at": "2026-08-31T16:28:42+09:00",
+    "updated_at": "2026-08-31T16:46:18+09:00",
     "url": "https://github.com/open-webui/open-webui/releases/tag/v0.11.2",
+    "usage_status": "not_used",
+    "validation_status": "unverified",
+    "validation_updated_at": null,
+    "views": 0
+  },
+  {
+    "channels": {
+      "note": {
+        "status": "ready"
+      },
+      "threads": {
+        "status": "ready"
+      },
+      "video": {
+        "status": "ready"
+      },
+      "x": {
+        "status": "ready"
+      }
+    },
+    "clicks": 0,
+    "code": "808018cb",
+    "content_angle": "LlamaIndexが、どんな作業に役立つのかを初心者向けに整理する。",
+    "content_grade": "発信候補",
+    "content_score": 90,
+    "created_at": "2026-08-31T16:46:18+09:00",
+    "github_homepage": "",
+    "github_language": "",
+    "github_stars": null,
+    "github_topics": [],
+    "id": "808018cb5919e4d24848",
+    "kind": "publishing",
+    "monetization": "自分の作業で使える範囲を確認し、可能ならAI導入・自動化の小さな設定代行や作業効率化に転用できる可能性。",
+    "next_channel": "note",
+    "outcome_status": "not_measured",
+    "outcome_updated_at": null,
+    "pack_path": "data/drafts/808018cb5919e4d24848.md",
+    "pack_url": "https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/808018cb5919e4d24848.md",
+    "post_url": "",
+    "post_url_updated_at": null,
+    "project_summary": "自分の文書やデータをAIから扱いやすくする連携・検索基盤。",
+    "project_type": "公式GitHubリリース",
+    "project_use": "自分の文書やデータをAIに読ませる仕組みを試したい人向け。",
+    "reader_action": "公式リポジトリの概要を確認し、自分の用途に合うかを一つだけ試す。",
+    "reader_problem": "AIツールの名前は見つかるが、結局どの作業に使えるのか分からない。",
+    "revenue": 0.0,
+    "revenue_readiness": 43,
+    "sales": 0,
+    "service_name": "LlamaIndex",
+    "signups": 0,
+    "source": "github_llamaindex_releases",
+    "status": "ready",
+    "title": "LlamaIndex",
+    "updated_at": "2026-08-31T16:46:18+09:00",
+    "url": "https://github.com/run-llama/llama_index/releases/tag/v0.14.24",
+    "usage_status": "not_used",
+    "validation_status": "unverified",
+    "validation_updated_at": null,
+    "views": 0
+  },
+  {
+    "channels": {
+      "note": {
+        "status": "ready"
+      },
+      "threads": {
+        "status": "ready"
+      },
+      "video": {
+        "status": "ready"
+      },
+      "x": {
+        "status": "ready"
+      }
+    },
+    "clicks": 0,
+    "code": "558a7953",
+    "content_angle": "LangChainが、どんな作業に役立つのかを初心者向けに整理する。",
+    "content_grade": "発信候補",
+    "content_score": 90,
+    "created_at": "2026-08-31T16:46:18+09:00",
+    "github_homepage": "",
+    "github_language": "",
+    "github_stars": null,
+    "github_topics": [],
+    "id": "558a79534175d18721ad",
+    "kind": "publishing",
+    "monetization": "自分の作業で使える範囲を確認し、可能ならAI導入・自動化の小さな設定代行や作業効率化に転用できる可能性。",
+    "next_channel": "note",
+    "outcome_status": "not_measured",
+    "outcome_updated_at": null,
+    "pack_path": "data/drafts/558a79534175d18721ad.md",
+    "pack_url": "https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/558a79534175d18721ad.md",
+    "post_url": "",
+    "post_url_updated_at": null,
+    "project_summary": "LLM、データ、外部ツールを組み合わせてAIアプリを作る開発基盤。",
+    "project_type": "公式GitHubリリース",
+    "project_use": "AIアプリの連携や、外部ツールを呼ぶ処理を作りたい人向け。",
+    "reader_action": "公式リポジトリの概要を確認し、自分の用途に合うかを一つだけ試す。",
+    "reader_problem": "AIツールの名前は見つかるが、結局どの作業に使えるのか分からない。",
+    "revenue": 0.0,
+    "revenue_readiness": 43,
+    "sales": 0,
+    "service_name": "LangChain",
+    "signups": 0,
+    "source": "github_langchain_releases",
+    "status": "ready",
+    "title": "LangChain",
+    "updated_at": "2026-08-31T16:46:18+09:00",
+    "url": "https://github.com/langchain-ai/langchain/releases/tag/langchain-perplexity%3D%3D1.4.1",
     "usage_status": "not_used",
     "validation_status": "unverified",
     "validation_updated_at": null,

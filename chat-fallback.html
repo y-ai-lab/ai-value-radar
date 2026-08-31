@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b1020">
+  <meta name="description" content="AI VALUE RADARを通常チャットで続けるための、コピーして使える代替プロンプト。">
+  <title>チャット代替｜AI VALUE RADAR</title>
+  <link rel="stylesheet" href="assets/radar.css">
+  <style>
+    .fallback-shell { width: min(900px, calc(100% - 24px)); margin: 0 auto; }
+    .fallback-top { display:flex; justify-content:space-between; align-items:center; gap:12px; padding:18px 0; }
+    .fallback-back { color:var(--blue); font-size:12px; font-weight:700; text-decoration:none; }
+    .fallback-body { padding:28px 24px; border:1px solid var(--line); border-radius:18px; background:var(--panel); box-shadow:var(--shadow); }
+    .fallback-body h1 { max-width:none; margin:0 0 14px; font-size:clamp(28px,5vw,48px); }
+    .fallback-body h1 span { color:var(--blue); }
+    .fallback-body p { max-width:760px; color:#c0cce0; font-size:14px; }
+    .fallback-note { margin:20px 0; padding:14px 16px; border:1px solid rgba(255,184,107,.3); border-radius:12px; background:rgba(255,184,107,.07); color:#e7d4b8; font-size:13px; }
+    .fallback-note strong { color:var(--orange); }
+    .fallback-toolbar { display:flex; align-items:center; justify-content:space-between; gap:14px; margin:24px 0 10px; padding:13px; border:1px solid rgba(105,169,255,.3); border-radius:12px; color:var(--muted); font-size:12px; }
+    .fallback-toolbar strong,.fallback-toolbar small { display:block; }
+    .fallback-toolbar strong { color:var(--text); font-size:14px; }
+    .fallback-toolbar small { margin-top:3px; }
+    .fallback-copy { min-height:44px; padding:9px 13px; border:1px solid rgba(105,169,255,.5); border-radius:9px; background:#172848; color:#dbe6fb; font:700 11px/1.2 inherit; cursor:pointer; white-space:nowrap; }
+    .fallback-copy.is-ok { border-color:rgba(110,231,183,.7); background:#12382d; color:var(--green); }
+    .fallback-prompt { display:block; width:100%; min-height:610px; padding:16px; border:1px solid rgba(255,255,255,.1); border-radius:12px; resize:vertical; background:#080c17; color:#d7e4ff; font:12px/1.7 ui-monospace,SFMono-Regular,Menlo,monospace; }
+    .fallback-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:20px; }
+    .fallback-card { padding:15px; border:1px solid var(--line); border-radius:13px; background:rgba(255,255,255,.025); }
+    .fallback-card strong,.fallback-card span { display:block; }
+    .fallback-card strong { margin-bottom:5px; font-size:13px; }
+    .fallback-card span { color:var(--muted); font-size:12px; }
+    .fallback-limit { margin:22px 0 0; color:var(--muted); font-size:12px !important; }
+    @media (max-width:680px) {
+      .fallback-body { padding:21px 16px; }
+      .fallback-toolbar { display:block; }
+      .fallback-copy { width:100%; margin-top:11px; }
+      .fallback-grid { grid-template-columns:1fr; }
+      .fallback-prompt { min-height:680px; font-size:11px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="fallback-shell">
+    <div class="fallback-top">
+      <a class="brand" href="./"><span class="brand-mark">◈</span><span><strong>AI VALUE RADAR</strong><small>チャット代替モード</small></span></a>
+      <a class="fallback-back" href="./">← ダッシュボードへ戻る</a>
+    </div>
+    <main class="fallback-body">
+      <p class="eyebrow">WORK LIMIT FALLBACK</p>
+      <h1>Workが止まったら、<br><span>チャットで続ける。</span></h1>
+      <p>下のプロンプトを通常のChatGPTへ貼り付けると、公開レポートを読み込み、読者向けの発信ネタ・コピー用文章・短い通知文を作成します。コード入力は不要です。</p>
+      <div class="fallback-note"><strong>できること：</strong>公開データの再分析、候補の再採点、読者の悩み起点の発信ネタ化、X / Threads / note用のコピペ原稿作成。<br><strong>できないこと：</strong>GitHub Actionsの定期実行、Actions Secretsの読み取り、Telegramへの自動送信。これらは通常どおりGitHub Actionsが担当します。</div>
+      <div class="fallback-toolbar">
+        <div><strong>1回分の代替プロンプト</strong><small>ボタンを押して全部コピー → 通常チャットへ貼り付け</small></div>
+        <button id="fallback-copy" class="fallback-copy" type="button">プロンプトを全部コピー</button>
+      </div>
+      <textarea id="fallback-prompt" class="fallback-prompt" readonly>あなたは「AI VALUE RADAR」のチャット代替オペレーターです。
+通常のChatGPTで、今回1回分の「収益候補の再確認」と「読者が読みたくなる発信素材の作成」を行ってください。コードの実行やSecretの要求はしないでください。
+
+【最初に参照する公開データ】
+次の公開URLを上から順に開いてください。現在取得できないURLがあれば、そのURLだけを明示し、取得できた情報で続行してください。推測で補完しないでください。
+1. ダッシュボード：https://y-ai-lab.github.io/ai-value-radar/
+2. 直近レポート：https://raw.githubusercontent.com/y-ai-lab/ai-value-radar/main/data/latest.md
+3. 機械可読レポート：https://raw.githubusercontent.com/y-ai-lab/ai-value-radar/main/data/last_report.json
+4. 発信キュー：https://raw.githubusercontent.com/y-ai-lab/ai-value-radar/main/data/content_queue.json
+
+必要な場合だけ、レポート内の公式URLを開いて最新条件を確認してください。対象はAI / SaaSだけです。ログインが必要なページ、ペイウォール、CAPTCHA、利用規約に反する取得は使わないでください。
+
+【探す対象】
+Lifetime Deal、大幅値引き、無料クレジット / 無料枠、Affiliate Program、Pricing変更。
+
+【読者設定】
+日本語のAI初心者・副業初心者が対象です。「大きく稼ぐ」煽りではなく、「まず1万円につながる小さな一歩」「自分にも関係がある困りごと」「今日試せる具体策」を優先してください。
+記事の入口は、読者の悩み → 何が変わったか → 使うと何が楽になるか → 今日やる1手、の順にしてください。
+
+【選定ルール】
+各候補を次の観点で0〜100点に再採点してください。
+- 読者の具体的な困りごと：25点
+- 今日できる行動の明確さ：20点
+- 公式情報などの根拠：20点
+- 今見る理由（期限・変更の新しさ）：15点
+- 収益化の可能性：10点
+- 他の発信との差別化：10点
+一般的な新機能紹介だけで、読者の行動や判断につながらないものは下げてください。
+公式情報と推測を分けてください。自分で試していないことを体験談として書かないでください。Affiliate報酬は公式ページで確認できた場合だけ事実として扱い、それ以外は「未確認」と書いてください。
+
+【出力】
+最初に、次の短い「Telegram通知相当」を作ってください（Telegramへ送信はしません）。
+AI VALUE RADAR｜チャット代替
+今回の結論：
+監視・参照：○件
+収益候補：○件
+発信候補：○件
+TOP3：候補名と点数
+
+次に、TOP3を最大3件作ってください。強い候補が3件未満なら、無理に埋めず、実際に価値がある件数だけにしてください。各候補に必ず次を含めてください。
+- 何が起きたか
+- 読者のどの悩みに関係するか
+- いくら得なのか / 何が変わるのか
+- 今日やる1手
+- 向いている人 / 見送る人
+- 収益化の見立て（事実と仮説を分ける）
+- 注意点
+- 公式URLと確認日
+
+続けて、各候補について以下を「そのままコピーできる独立したコードブロック」で作成してください。
+1. X投稿：短いフック、本文、公式URL、必要ならPR / Affiliate表記。280文字程度。
+2. Threads投稿：3投稿。1投稿目は悩み、2投稿目は変化と具体策、3投稿目は注意点と行動。
+3. note記事：タイトル、導入、見出し、本文のたたき台。実体験が必要な箇所は［自分で試した結果を追記］と書く。
+4. 30秒動画：0〜3秒のフック、4〜15秒の説明、16〜25秒の具体例、26〜30秒のCTA。
+5. 公開前チェック：公式条件、価格、期限、日本からの利用可否、商用利用、PR表記、自分の実利用。
+
+最後に、次の「事実と不足情報」を付けてください。
+- 公式情報で確認できた事実
+- 推測または収益化仮説
+- 取得できなかったURL / 情報
+- 次回の監視で見る点
+
+強い発信候補がない場合は「今回は強い候補なし」と正直に書き、薄いニュースを水増ししないでください。ただし、55点以上で読者が自分ごと化できる「検証候補」があれば、【検証候補】と明記して1〜2件だけ出してください。</textarea>
+      <div class="fallback-grid">
+        <div class="fallback-card"><strong>1. コピー</strong><span>このページのボタンを押します。</span></div>
+        <div class="fallback-card"><strong>2. 貼り付け</strong><span>通常のChatGPTの新しいチャットへ貼ります。</span></div>
+        <div class="fallback-card"><strong>3. 確認</strong><span>公式URLと実体験を確認してから投稿します。</span></div>
+      </div>
+      <p class="fallback-limit">通常チャットの利用上限も別に達した場合、この代替は実行できません。その場合でも、GitHub Actionsの自動巡回はChatGPTの画面とは独立して動きます。</p>
+    </main>
+    <footer class="footer"><span>AI VALUE RADAR v0.1</span><span>追加運用費 0円 / 自動投稿なし</span></footer>
+  </div>
+  <script src="assets/chat-fallback.js?v=20260831-1" defer></script>
+</body>
+</html>

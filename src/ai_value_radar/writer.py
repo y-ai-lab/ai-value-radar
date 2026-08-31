@@ -218,7 +218,7 @@ def format_telegram_report(report: dict) -> str:
         [
             "",
             "Telegram操作：/good コード（価値あり） /skip コード（不要）",
-            "/trial コード /used コード /posted コード note|x|threads|video",
+            "/trial コード /used コード /posted コード note|x|threads|video /posturl コード URL",
             "/validate コード signal|validated|rejected",
             "/result コード views=100 clicks=5 signups=1 sales=0 revenue=0",
         ]

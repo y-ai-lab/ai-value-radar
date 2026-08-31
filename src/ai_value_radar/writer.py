@@ -3,6 +3,12 @@ from __future__ import annotations
 from datetime import datetime
 
 from .models import Opportunity
+from .validation import (
+    build_validation_plan,
+    calculate_revenue_readiness,
+    outcome_label,
+    validation_label,
+)
 
 
 CATEGORY_LABELS = {
@@ -88,8 +94,11 @@ def enrich_fallback(item: Opportunity) -> Opportunity:
             if item.github_repository
             else "公式ページで条件を確認し、自分の用途で一つだけ試して結果を記録する。"
         )
+    if not item.validation_plan:
+        item.validation_plan = build_validation_plan(item)
     if item.confidence <= 0:
         item.confidence = round(min(0.95, 0.45 + item.rule_score / 200), 2)
+    item.revenue_readiness = calculate_revenue_readiness(item)
     return item
 
 
@@ -145,6 +154,7 @@ def format_telegram_report(report: dict) -> str:
                     "",
                     f"{medals[index]} {item.final_score}点｜{label}｜{title}",
                     f"コード：{item.id[:8]}　実利用：{usage}",
+                    f"収益準備度：{item.revenue_readiness}点｜需要：{validation_label(item.validation_status)}｜結果：{outcome_label(item.outcome_status)}",
                     f"{CATEGORY_LABELS.get(item.ai_category or item.category, item.ai_category or item.category)}｜{price_line(item)}",
                     f"注目：{_short(item.why_now, 100)}",
                     f"向く人：{_short(item.best_for, 90)}",
@@ -177,6 +187,7 @@ def format_telegram_report(report: dict) -> str:
                 "",
                 f"📝 {topic.get('content_score', 0)}点｜{topic.get('content_grade', '発信候補')}｜{title}",
                 f"コード：{code}　実利用：{USAGE_LABELS.get(str(topic.get('usage_status', 'not_used')), '未使用')}",
+                f"収益準備度：{topic.get('revenue_readiness', 0)}点｜需要：{validation_label(str(topic.get('validation_status', 'unverified')))}｜結果：{outcome_label(str(topic.get('outcome_status', 'not_measured')))}",
             ])
             if topic.get("content_angle"):
                 lines.append(f"切り口：{_short(str(topic.get('content_angle')), 130)}")
@@ -208,6 +219,8 @@ def format_telegram_report(report: dict) -> str:
             "",
             "Telegram操作：/good コード（価値あり） /skip コード（不要）",
             "/trial コード /used コード /posted コード note|x|threads|video",
+            "/validate コード signal|validated|rejected",
+            "/result コード views=100 clicks=5 signups=1 sales=0 revenue=0",
         ]
     )
     return "\n".join(lines)[:3900]

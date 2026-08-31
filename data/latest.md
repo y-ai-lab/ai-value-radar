@@ -1,8 +1,8 @@
 # AI VALUE RADAR｜今回の監視結果
 
-確認日時：2026/08/31 11:53
+確認日時：2026/08/31 12:45
 
-監視 238件 / 新規 16件 / 有望 0件 / 発信候補 0件 / 発信ネタ 2件
+監視 239件 / 新規 14件 / 有望 0件 / 発信候補 0件 / 発信ネタ 2件
 
 ## 結論
 
@@ -11,14 +11,14 @@
 ## 発信ネタ
 
 ### 1. 発信価値 83点
-[usestrix/strix](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/b44082088b154b356dfd.md)
-コード：`b4408208`
-原文：[github_ai_repositories](https://github.com/usestrix/strix)
+[uni-git-projects/.github](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/0170ba733b6c02682ee2.md)
+コード：`0170ba73`
+原文：[github_ai_repositories](https://github.com/uni-git-projects/.github)
 
 ### 2. 発信価値 83点
-[threefigure-achromia682/ai-memory](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/f8ddb939ad7f87973aa1.md)
-コード：`f8ddb939`
-原文：[github_ai_repositories](https://github.com/threefigure-achromia682/ai-memory)
+[srishti-m-cmd/srishti-m-cmd](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/b42af36c597fdd628d21.md)
+コード：`b42af36c`
+原文：[github_ai_repositories](https://github.com/srishti-m-cmd/srishti-m-cmd)
 
 ## 次にすること
 
@@ -28,14 +28,14 @@
 
 ## 7日間の集計
 
-- 実行回数：9回
-- 発信用パック：2件
-- 発信ネタ：2件
+- 実行回数：10回
+- 発信用パック：4件
+- 発信ネタ：4件
 - 価値あり判定：0件
 - 今回は不要判定：0件
-- Affiliate候補：154件
+- Affiliate候補：172件
 - AI呼び出し：0回
-- エラー：27件
+- エラー：30件
 
 ## エラー・取得できなかったソース
 

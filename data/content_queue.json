@@ -14,6 +14,66 @@
         "status": "ready"
       }
     },
+    "code": "0170ba73",
+    "content_score": 83,
+    "created_at": "2026-08-31T12:45:21+09:00",
+    "id": "0170ba733b6c02682ee2",
+    "kind": "publishing",
+    "next_channel": "note",
+    "pack_path": "data/drafts/0170ba733b6c02682ee2.md",
+    "pack_url": "https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/0170ba733b6c02682ee2.md",
+    "source": "github_ai_repositories",
+    "status": "ready",
+    "title": "uni-git-projects/.github",
+    "updated_at": "2026-08-31T12:45:21+09:00",
+    "url": "https://github.com/uni-git-projects/.github",
+    "usage_status": "not_used"
+  },
+  {
+    "channels": {
+      "note": {
+        "status": "ready"
+      },
+      "threads": {
+        "status": "ready"
+      },
+      "video": {
+        "status": "ready"
+      },
+      "x": {
+        "status": "ready"
+      }
+    },
+    "code": "b42af36c",
+    "content_score": 83,
+    "created_at": "2026-08-31T12:45:21+09:00",
+    "id": "b42af36c597fdd628d21",
+    "kind": "publishing",
+    "next_channel": "note",
+    "pack_path": "data/drafts/b42af36c597fdd628d21.md",
+    "pack_url": "https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/b42af36c597fdd628d21.md",
+    "source": "github_ai_repositories",
+    "status": "ready",
+    "title": "srishti-m-cmd/srishti-m-cmd",
+    "updated_at": "2026-08-31T12:45:21+09:00",
+    "url": "https://github.com/srishti-m-cmd/srishti-m-cmd",
+    "usage_status": "not_used"
+  },
+  {
+    "channels": {
+      "note": {
+        "status": "ready"
+      },
+      "threads": {
+        "status": "ready"
+      },
+      "video": {
+        "status": "ready"
+      },
+      "x": {
+        "status": "ready"
+      }
+    },
     "code": "b4408208",
     "content_score": 83,
     "created_at": "2026-08-31T11:53:42+09:00",

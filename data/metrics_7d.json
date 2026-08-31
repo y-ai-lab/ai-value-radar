@@ -1,14 +1,16 @@
 {
-  "affiliate_count": 82,
+  "affiliate_count": 100,
   "ai_calls": 0,
-  "calculated_at": "2026-08-31T10:25:19.398971+09:00",
-  "duplicate_count": 838,
-  "error_count": 15,
-  "fetched_count": 1182,
-  "new_count": 236,
+  "calculated_at": "2026-08-31T10:51:37.501895+09:00",
+  "draft_count": 0,
+  "draft_error_count": 0,
+  "duplicate_count": 1022,
+  "error_count": 18,
+  "fetched_count": 1420,
+  "new_count": 269,
   "promising_count": 0,
   "publishable_count": 1,
-  "runs": 5,
+  "runs": 6,
   "top3_count": 1,
   "window": "7d"
 }

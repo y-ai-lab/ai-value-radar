@@ -181,14 +181,50 @@ def run_scan(
         max_bytes=settings.max_article_draft_bytes,
         mode="publishing",
     )
-    all_packs = drafts + topic_packs
     queue_path = data_dir / "content_queue.json"
     queue = load_json(queue_path, [])
+    if not isinstance(queue, list):
+        queue = []
+    generated_ids = {item.id for item in [*top3, *topic_items]}
+    current_by_id = {item.id: item for item in current}
+    refresh_items: list[Opportunity] = []
+    for entry in queue:
+        if len(refresh_items) >= 1 or not isinstance(entry, dict):
+            break
+        if str(entry.get("status", "ready")) != "ready":
+            continue
+        item_id = str(entry.get("id", ""))
+        if not item_id or item_id in generated_ids:
+            continue
+        item = current_by_id.get(item_id)
+        if item is None:
+            continue
+        # Refresh one ready pack per run so format improvements reach the
+        # existing queue without turning every scan into a bulk rewrite.
+        item.content_score = int(entry.get("content_score", item.content_score) or 0)
+        item.content_angle = str(entry.get("content_angle") or item.content_angle)
+        item.reader_problem = str(entry.get("reader_problem") or item.reader_problem)
+        item.reader_action = str(entry.get("reader_action") or item.reader_action)
+        item.content_kind = str(entry.get("kind") or "publishing")
+        refresh_items.append(item)
+    refresh_packs: list[dict[str, Any]] = []
+    refresh_errors: list[dict[str, str]] = []
+    if refresh_items:
+        refresh_packs, refresh_errors = generate_article_drafts(
+            refresh_items,
+            data_dir=data_dir,
+            repository_url=settings.repository_url,
+            checked_at=now_iso,
+            limit=1,
+            max_bytes=settings.max_article_draft_bytes,
+            mode="publishing" if refresh_items[0].content_kind == "publishing" else "revenue",
+        )
+    all_packs = drafts + topic_packs + refresh_packs
     queue_errors: list[dict[str, str]] = []
     try:
         queue = upsert_content_queue(
             queue,
-            [*top3, *topic_items],
+            [*top3, *topic_items, *refresh_items],
             all_packs,
             now_iso,
             max_items=settings.max_queue_items,
@@ -221,7 +257,7 @@ def run_scan(
         "publishable_count": len(publishable),
         "top3_count": len(top3),
         "draft_count": len(drafts),
-        "draft_error_count": len(draft_errors) + len(topic_pack_errors),
+        "draft_error_count": len(draft_errors) + len(topic_pack_errors) + len(refresh_errors),
         "topic_count": len(topic_items),
         "topic_pack_count": len(topic_packs),
         "content_pack_count": len(all_packs),
@@ -258,6 +294,7 @@ def run_scan(
             + ai_errors
             + draft_errors
             + topic_pack_errors
+            + refresh_errors
             + queue_errors
             + ([{"stage": "telegram_feedback", "message": "poll failed"}] if feedback.get("errors") else [])
         ),

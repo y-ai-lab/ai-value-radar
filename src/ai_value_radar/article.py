@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from datetime import datetime
 from pathlib import Path
+import re
 from typing import Any, Iterable
 
 from .models import Opportunity
@@ -103,6 +104,37 @@ def _usage_sentence(status: str) -> str:
     return "まだ実利用前の調査段階です。公式情報を確認し、自分で試してから公開判断します。"
 
 
+def _social_line(value: str | None, limit: int) -> str:
+    """Keep source facts while removing report-like labels from social copy."""
+    text = _one_line(value, limit)
+    text = re.sub(r"^(?:公開情報から抽出したメモ|公開情報では|公開情報から)[:：]?\s*", "", text)
+    text = text.replace("公式GitHubリリース", "新しい更新")
+    text = text.replace("AI / SaaS", "AIツール")
+    text = text.replace("主な変更：", "")
+    return text.strip()
+
+
+def _fit_x_post(body: str, url: str, max_chars: int = 280) -> str:
+    """Fit the post while keeping the source URL intact and readable."""
+    url_line = f"\n{url}"
+    available = max(1, max_chars - len(url_line))
+    if len(body) <= available:
+        return body.rstrip() + url_line
+    kept: list[str] = []
+    for line in body.splitlines():
+        candidate = "\n".join([*kept, line]).strip()
+        if len(candidate) <= available:
+            kept.append(line)
+        else:
+            break
+    result = "\n".join(kept).rstrip()
+    if not result:
+        result = body[:available].rstrip()
+    if len(result) > available:
+        result = result[: max(1, available - 1)].rstrip() + "…"
+    return result + url_line
+
+
 def _x_post(
     title: str,
     summary: str,
@@ -111,33 +143,59 @@ def _x_post(
     usage_status: str = "not_used",
     content_angle: str = "",
     reader_problem: str = "",
+    project_summary: str = "",
+    project_use: str = "",
 ) -> str:
-    if usage_status in {"used", "published"}:
-        experience_line = "使った範囲と、まだ確認できていない条件を分けて整理します。"
-    elif usage_status == "trial":
-        experience_line = "試した範囲と、まだ確認できていない条件を分けて整理します。"
+    name = _social_line(title, 58)
+    summary_line = _social_line(summary, 105)
+    project_line = _social_line(project_summary, 100)
+    use_line = _social_line(project_use, 78)
+    if use_line:
+        use_line = re.sub(r"人向け。?$", "", use_line).rstrip("。")
+    category_text = str(category).lower()
+
+    if any(word in category_text for word in ("affiliate", "アフィリエイト")):
+        body_lines = [
+            f"{name}の紹介制度が気になって、条件を見ている。",
+            summary_line,
+            "紹介料だけで判断せず、報酬条件と規約を先に確認する。",
+        ]
+    elif any(word in category_text for word in ("lifetime", "値引き", "無料", "discount", "credit")):
+        body_lines = [
+            f"{name}の条件が気になった。",
+            summary_line,
+            "安いから即決ではなく、日本から使えるか・商用利用できるか・期限を確認してから判断する。",
+        ]
+    elif any(word in category_text for word in ("pricing", "料金", "値上げ", "プラン")):
+        body_lines = [
+            f"{name}の料金変更が気になった。",
+            summary_line,
+            "こういう変更は、これから使う人だけでなく、今使っている人にも関係する。条件を確認しておく。",
+        ]
+    elif project_line:
+        body_lines = [
+            f"最近、{name}の更新が気になった。",
+            project_line,
+        ]
+        if use_line:
+            body_lines.append(f"用途としては、{use_line}人に合いそう。")
     else:
-        experience_line = "まずは自分で試して、使えた点と微妙だった点をまとめます。"
-    source_line = (
-        "公開情報と使用済みの範囲を分けて整理します。"
-        if usage_status in {"used", "published"}
-        else "まだ公開情報で見つけた段階。価格・商用利用・日本からの利用可否は要確認です。"
-    )
-    angle_line = _one_line(content_angle or summary, 110)
-    problem_line = f"読者の悩み：{_one_line(reader_problem, 100)}\n" if reader_problem else ""
-    body = (
-        f"【{category}】{title}\n"
-        f"{angle_line}\n"
-        f"{problem_line}"
-        f"{source_line}\n"
-        f"{experience_line}\n"
-        "#AIツール #SaaS"
-    )
-    url_line = f"\n{url}"
-    available = max(1, 280 - len(url_line))
-    if len(body) > available:
-        body = body[: max(1, available - 1)].rstrip() + "…"
-    return body + url_line
+        body_lines = [
+            f"最近、{name}が気になって少し調べてみた。",
+            summary_line or _social_line(content_angle, 105),
+            "便利そうに見えても、自分の作業が本当に一つ減るかは使ってみないと分からない。",
+        ]
+
+    if usage_status == "trial":
+        status_line = "いま試しているところ。良い点だけでなく、使いにくいところも見ておきたい。"
+    elif usage_status in {"used", "published"}:
+        status_line = "使った範囲と、まだ分からない点を分けて書く。"
+    else:
+        status_line = "まだ触っていないので、使い勝手や細かい制限は確認中。まず小さく試してみる。"
+    body_lines.append(status_line)
+    body_lines.append("#AIツール #AI活用")
+    body = "\n\n".join(line for line in body_lines if line)
+    return _fit_x_post(body, url)
 
 
 def _threads_posts(
@@ -421,7 +479,7 @@ def render_article_draft(item: Opportunity, checked_at: str, mode: str = "revenu
         "",
         _video_pack(title, summary, why_now, risk, item.usage_status),
         "",
-        "### X投稿案（280字以内）",
+        "### Xにそのまま投稿（280字以内）",
         "",
         "```text",
         _x_post(
@@ -432,6 +490,8 @@ def render_article_draft(item: Opportunity, checked_at: str, mode: str = "revenu
             item.usage_status,
             content_angle,
             reader_problem,
+            item.project_summary,
+            item.project_use,
         ),
         "```",
         "",

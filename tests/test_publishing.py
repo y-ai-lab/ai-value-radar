@@ -93,6 +93,29 @@ class PublishingTests(unittest.TestCase):
         self.assertEqual(len(selected), 2)
         self.assertEqual({item.service_name for item in selected}, {"n8n", "Flowise"})
 
+    def test_noisy_github_search_project_is_not_a_publishing_topic(self) -> None:
+        item = Opportunity(
+            id="noisy1234567890",
+            title="News Minimalist",
+            url="https://github.com/demo/news-minimalist",
+            source="github_ai_repositories",
+            discovered_at="2026-08-31T00:00:00+00:00",
+            last_seen_at="2026-08-31T00:00:00+00:00",
+            status="new",
+            summary="AI-powered news aggregator and satirical guide.",
+            evidence="AI-powered news aggregator and satirical guide.",
+            github_stars=20,
+            published_at="2026-08-31T00:00:00+00:00",
+        )
+        selected = select_publishing_topics(
+            [item],
+            {"github_ai_repositories": {"official": True, "kind": "github_search"}},
+            limit=1,
+            min_score=35,
+            now=datetime(2026, 8, 31, 1, 0, tzinfo=timezone.utc),
+        )
+        self.assertEqual(selected, [])
+
     def test_content_queue_tracks_next_channel(self) -> None:
         item = sample_topic()
         pack = {

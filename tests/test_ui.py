@@ -23,7 +23,7 @@ class StaticDashboardTests(unittest.TestCase):
             self.assertIn(path, javascript)
         self.assertIn("まずは「これは何か」だけ見れば大丈夫です。", html)
         self.assertIn("やることは、3つだけ。", html)
-        self.assertIn("まず発信ネタを見る", html)
+        self.assertIn("まず投稿ネタを見る", html)
         self.assertIn("今回の結果", html)
         self.assertIn("投稿ネタ", html)
         self.assertIn("やることリスト", html)

@@ -14,6 +14,74 @@
         "status": "ready"
       }
     },
+    "code": "64a0cc1c",
+    "content_score": 98,
+    "created_at": "2026-08-31T13:40:27+09:00",
+    "id": "64a0cc1cc52f678296b2",
+    "kind": "publishing",
+    "next_channel": "note",
+    "pack_path": "data/drafts/64a0cc1cc52f678296b2.md",
+    "pack_url": "https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/64a0cc1cc52f678296b2.md",
+    "project_summary": "",
+    "project_type": "",
+    "project_use": "",
+    "service_name": "",
+    "source": "aws_machine_learning_blog",
+    "status": "ready",
+    "title": "Spreading the load: How Salesforce met Multi-AZ HA with SageMaker Inference Components",
+    "updated_at": "2026-08-31T13:40:27+09:00",
+    "url": "https://aws.amazon.com/blogs/machine-learning/spreading-the-load-how-salesforce-met-multi-az-ha-with-sagemaker-inference-components",
+    "usage_status": "not_used"
+  },
+  {
+    "channels": {
+      "note": {
+        "status": "ready"
+      },
+      "threads": {
+        "status": "ready"
+      },
+      "video": {
+        "status": "ready"
+      },
+      "x": {
+        "status": "ready"
+      }
+    },
+    "code": "dd9416b7",
+    "content_score": 88,
+    "created_at": "2026-08-31T13:40:27+09:00",
+    "id": "dd9416b70f716d2bb395",
+    "kind": "publishing",
+    "next_channel": "note",
+    "pack_path": "data/drafts/dd9416b70f716d2bb395.md",
+    "pack_url": "https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/dd9416b70f716d2bb395.md",
+    "project_summary": "ローカル環境でLLMを実行・管理するためのツール。 リリース概要：## What's Changed ### Claude Desktop Developers can now easily configure Claude Desktop to seamlessly work with Ollama as a third-party gateway provider. ### Improved caching * Fixed a hang where agent clients that cancel long prefills * Prefill restore points are now trustworthy by construction: a cancelled prefill keeps every restore point it crossed, so retries resume where they stopped instead of restarting from scratch * Resumed prefills no longer record re…",
+    "project_type": "公式GitHubリリース",
+    "project_use": "AI開発や新しいAI活用を試したい人向け。",
+    "service_name": "Ollama",
+    "source": "github_ollama_releases",
+    "status": "ready",
+    "title": "Ollama",
+    "updated_at": "2026-08-31T13:40:27+09:00",
+    "url": "https://github.com/ollama/ollama/releases/tag/v0.33.0",
+    "usage_status": "not_used"
+  },
+  {
+    "channels": {
+      "note": {
+        "status": "ready"
+      },
+      "threads": {
+        "status": "ready"
+      },
+      "video": {
+        "status": "ready"
+      },
+      "x": {
+        "status": "ready"
+      }
+    },
     "code": "794e1749",
     "content_score": 83,
     "created_at": "2026-08-31T13:05:08+09:00",

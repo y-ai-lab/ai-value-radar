@@ -27,6 +27,8 @@
 | `zapier_pricing_page` | 公式ページ | Pricing変更 | 1ページの要約 |
 | `make_pricing_page` | 公式ページ | Pricing変更 | 1ページの要約 |
 | `cloudflare_workers_ai_pricing` | 公式ページ | AI利用条件変更 | 1ページの要約 |
+| `n8n_affiliate_page` | 公式ページ | Affiliate報酬・条件 | 1ページの要約 |
+| `hubspot_affiliate_page` | 公式ページ | Affiliate報酬・条件 | 1ページの要約 |
 
 公式Pricingページはサイト内リンクをたどらず、URLを1回読むだけです。Dynamic pageやbot対策で取得できない場合はエラーとして記録し、他のソースを続行します。
 

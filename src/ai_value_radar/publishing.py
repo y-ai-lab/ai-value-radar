@@ -342,6 +342,33 @@ def calculate_content_score(
     return max(0, min(100, score))
 
 
+def _passes_topic_quality_gate(item: Opportunity) -> bool:
+    """Keep the publishing lane focused on usable, explainable topics.
+
+    GitHub repository search is a discovery feed, not proof that a project is
+    a useful product. Require enough public context before it can become a
+    ready-to-publish pack. Revenue candidates use a separate lane and are not
+    affected by this gate.
+    """
+    text = _content_text(item)
+    if item.source == "github_ai_repositories":
+        if item.github_stars is None or item.github_stars < 100:
+            return False
+        if any(word in text for word in GITHUB_SEARCH_NOISE_KEYWORDS):
+            return False
+        if not item.service_name or not item.project_summary or not item.project_use:
+            return False
+        if not any(word in text for word in READER_IMPACT_KEYWORDS):
+            return False
+    if item.source.startswith("hn_") and item.category == "other":
+        return False
+    if item.category == "other" and not item.github_repository and not any(
+        word in text for word in READER_IMPACT_KEYWORDS
+    ):
+        return False
+    return True
+
+
 def select_publishing_topics(
     items: Iterable[Opportunity],
     source_stats: dict[str, Any] | None = None,
@@ -359,7 +386,7 @@ def select_publishing_topics(
         item.content_angle = item.content_angle or _content_angle(item)
         item.reader_problem = item.reader_problem or _reader_problem(item)
         item.reader_action = item.reader_action or _reader_action(item)
-        if item.content_score >= min_score:
+        if item.content_score >= min_score and _passes_topic_quality_gate(item):
             selected.append(item)
     selected.sort(key=lambda value: (value.content_score, value.confidence, value.title), reverse=True)
     limit = max(0, limit)
@@ -444,7 +471,11 @@ def upsert_content_queue(
     now_iso: str,
     max_items: int = 100,
 ) -> list[dict[str, Any]]:
-    queue = [entry for entry in existing if isinstance(entry, dict) and entry.get("id")] if isinstance(existing, list) else []
+    queue = (
+        [entry for entry in existing if isinstance(entry, dict) and entry.get("id") and _keep_queue_entry(entry)]
+        if isinstance(existing, list)
+        else []
+    )
     by_id = {str(entry["id"]): entry for entry in queue}
     pack_by_id = {str(pack.get("id")): pack for pack in packs if isinstance(pack, dict) and pack.get("id")}
     for item in items:
@@ -510,6 +541,42 @@ def upsert_content_queue(
             entry["status"] = "ready"
     queue.sort(key=lambda value: str(value.get("updated_at") or value.get("created_at") or ""), reverse=True)
     return queue[: max(10, max_items)]
+
+
+def _keep_queue_entry(entry: dict[str, Any]) -> bool:
+    """Prune unstarted low-context packs while preserving user progress."""
+    status = str(entry.get("status", "ready"))
+    progressed = (
+        status in {"in_progress", "completed"}
+        or str(entry.get("usage_status", "not_used")) != "not_used"
+        or str(entry.get("validation_status", "unverified")) != "unverified"
+        or str(entry.get("outcome_status", "not_measured")) != "not_measured"
+        or bool(str(entry.get("post_url", "")).strip())
+    )
+    if progressed or str(entry.get("kind", "revenue")) == "revenue":
+        return True
+    if str(entry.get("kind", "revenue")) != "publishing":
+        return True
+    try:
+        content_score = int(entry.get("content_score", 0) or 0)
+    except (TypeError, ValueError):
+        content_score = 0
+    if content_score < 45:
+        return False
+    if not str(entry.get("reader_problem", "")).strip() or not str(entry.get("reader_action", "")).strip():
+        return False
+    if str(entry.get("source", "")) == "github_ai_repositories":
+        try:
+            stars = int(entry.get("github_stars"))
+        except (TypeError, ValueError):
+            return False
+        text = " ".join(
+            str(entry.get(key, ""))
+            for key in ("title", "project_summary", "content_angle", "reader_problem")
+        ).lower()
+        if stars < 100 or any(word in text for word in GITHUB_SEARCH_NOISE_KEYWORDS):
+            return False
+    return True
 
 
 def mark_queue_posted(queue: list[dict[str, Any]], code: str, channel: str, now_iso: str) -> tuple[str, str]:

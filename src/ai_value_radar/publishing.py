@@ -56,7 +56,96 @@ RELEVANCE_KEYWORDS = (
     "litellm",
     "zapier",
     "cloudflare",
+    "dify",
+    "langflow",
+    "ollama",
+    "anythingllm",
+    "comfyui",
 )
+CONCRETE_CHANGE_KEYWORDS = (
+    "release",
+    "launched",
+    "launch",
+    "introducing",
+    "new feature",
+    "feature",
+    "update",
+    "pricing",
+    "price",
+    "free",
+    "credit",
+    "discount",
+    "sale",
+    "料金",
+    "値上げ",
+    "無料",
+    "割引",
+    "新機能",
+    "リリース",
+    "アップデート",
+    "追加",
+    "変更",
+)
+READER_IMPACT_KEYWORDS = (
+    "price",
+    "pricing",
+    "free",
+    "credit",
+    "discount",
+    "limit",
+    "plan",
+    "affiliate",
+    "partner",
+    "integration",
+    "api",
+    "workflow",
+    "automation",
+    "security",
+    "docker",
+    "performance",
+    "speed",
+    "support",
+    "料金",
+    "無料",
+    "制限",
+    "連携",
+    "自動化",
+    "安全",
+    "高速",
+)
+PROJECT_CONTENT_ANGLES = {
+    "n8n": "面倒な定型作業を一つ選び、n8nで自動化できるか試す。",
+    "Flowise": "Flowiseで簡単なFAQチャットを作れるか、初心者目線で試す。",
+    "Open WebUI": "自分用のAIチャット環境を作ると、何が便利になるか確認する。",
+    "LiteLLM": "複数のAIを使い分けると、料金や機能の選択をどう整理できるか確認する。",
+    "Dify": "Difyで小さなAIチャットボットを作り、仕事に使える範囲を試す。",
+    "Langflow": "LangflowでAIエージェントの流れを組み、何が自動化できるか試す。",
+    "Ollama": "自分のPCでAIを動かすと、何ができて何が難しいのか試す。",
+    "AnythingLLM": "自分の資料を読ませたAIが、FAQや検索の代わりになるか試す。",
+    "ComfyUI": "画像生成の手順を組み替えると、制作時間を減らせるか試す。",
+}
+PROJECT_READER_PROBLEMS = {
+    "n8n": "毎回同じ入力・転記・通知をしていて、時間を取られている。",
+    "Flowise": "AIチャットを作りたいが、コードを書かずに試す方法が分からない。",
+    "Open WebUI": "AIを使いたいが、自分の用途に合う環境の作り方が分からない。",
+    "LiteLLM": "ChatGPTやClaudeなどを使い分けたいが、管理方法が分からない。",
+    "Dify": "AIを仕事に組み込みたいが、最初に何を作ればよいか分からない。",
+    "Langflow": "AIエージェントの仕組みが見えにくく、試す手順が分からない。",
+    "Ollama": "自分のPCでAIを動かせるか、難しさや必要な性能が分からない。",
+    "AnythingLLM": "自分の資料をAIに読ませたいが、どのツールが合うか分からない。",
+    "ComfyUI": "画像生成を細かく調整したいが、設定が複雑で始めにくい。",
+}
+PROJECT_READER_ACTIONS = {
+    "n8n": "自分の転記・通知作業を一つ選び、公式ドキュメントを見ながら小さく試す。",
+    "Flowise": "自分のよくある質問を3つ用意し、簡単なFAQチャットを試す。",
+    "Open WebUI": "手元の環境と対応モデルを確認し、1つの質問だけで動作を試す。",
+    "LiteLLM": "使いたいAIを2つ選び、同じ入力で結果と料金の違いを比べる。",
+    "Dify": "自分の作業に関係する質問応答を1つだけ作り、動作を確認する。",
+    "Langflow": "入力・AI処理・出力の3段階だけをつないで、流れを確認する。",
+    "Ollama": "PCの性能と対応モデルを確認し、短い質問を一つだけ試す。",
+    "AnythingLLM": "公開して問題ない資料を一つだけ読み込ませ、回答を確認する。",
+    "ComfyUI": "画像生成の基本ワークフローを一つ動かし、変更点を一つだけ試す。",
+}
 
 
 def _one_line(value: str | None, limit: int = 180) -> str:
@@ -83,6 +172,69 @@ def _recent_bonus(published_at: str | None, now: datetime) -> int:
     return 0
 
 
+def _content_text(item: Opportunity) -> str:
+    return " ".join(
+        (
+            item.title,
+            item.summary,
+            item.evidence,
+            item.project_summary,
+            item.project_use,
+            item.source,
+        )
+    ).lower()
+
+
+def _content_angle(item: Opportunity) -> str:
+    name = _one_line(display_name(item), 80)
+    text = _content_text(item)
+    if item.category == "affiliate_program" or "affiliate" in text or "partner program" in text:
+        return f"{name}を紹介する前に、報酬条件・Cookie期間・規約を確認する。"
+    if item.category in {"lifetime_deal", "discount", "free_credit", "pricing_change"}:
+        return f"{name}の料金・無料条件が、自分の用途で本当に得になるかを確認する。"
+    if item.github_repository:
+        return PROJECT_CONTENT_ANGLES.get(
+            name,
+            f"{name}を使うと、どんな作業を減らせるかを初心者向けに一つだけ試す。",
+        )
+    if any(word in text for word in ("new feature", "feature", "新機能", "update", "アップデート")):
+        return f"{name}の新機能が、日々の作業をどれだけ減らせるかを実例で確認する。"
+    return f"{name}が、どんな人のどんな作業に役立つのかを具体例で確認する。"
+
+
+def _reader_problem(item: Opportunity) -> str:
+    text = _content_text(item)
+    if item.category == "affiliate_program" or "affiliate" in text or "partner program" in text:
+        return "AIツールを紹介したいが、報酬条件や広告表記の確認方法が分からない。"
+    if item.category in {"lifetime_deal", "discount", "free_credit", "pricing_change"}:
+        return "AIツールの料金や無料枠が複雑で、自分に合う選び方が分からない。"
+    if item.github_repository:
+        return PROJECT_READER_PROBLEMS.get(
+            _one_line(display_name(item), 80),
+            "AIツールの名前は見つかるが、結局どの作業に使えるのか分からない。",
+        )
+    return "AIの情報は多いのに、自分の作業で試す方法まで落とし込めない。"
+
+
+def _reader_action(item: Opportunity) -> str:
+    if item.category == "affiliate_program" or item.affiliate_rate is not None:
+        return "公式Affiliateページで報酬・Cookie・禁止事項を確認し、紹介できる条件だけメモする。"
+    if item.github_repository:
+        return PROJECT_READER_ACTIONS.get(
+            _one_line(display_name(item), 80),
+            "公式リポジトリの概要を確認し、自分の用途に合うかを一つだけ試す。",
+        )
+    return "公式ページで条件を確認し、自分の用途で一つだけ試して結果を記録する。"
+
+
+def _content_grade(score: int) -> str:
+    if score >= 65:
+        return "発信候補"
+    if score >= 45:
+        return "要検証"
+    return "参考ニュース"
+
+
 def calculate_content_score(
     item: Opportunity,
     source_stats: dict[str, Any] | None = None,
@@ -94,28 +246,38 @@ def calculate_content_score(
     prefers recent, official, concrete changes so a quiet deal cycle does not
     stop the user's publishing pipeline.
     """
-    text = f"{item.title} {item.summary} {item.source}".lower()
+    text = _content_text(item)
     if not any(word in text for word in RELEVANCE_KEYWORDS):
         return 0
     source = (source_stats or {}).get(item.source, {})
     score = 0
     if isinstance(source, dict) and source.get("official") is True:
-        score += 25
+        score += 10
     if isinstance(source, dict) and source.get("kind") in {"rss", "github_releases", "official_page"}:
-        score += 10
+        score += 5
     if item.status == "new":
-        score += 15
-    elif item.status == "updated":
         score += 12
-    if any(word in text for word in CONTENT_KEYWORDS):
-        score += 20
-    if item.summary:
-        score += 8
-    score += _recent_bonus(item.published_at, now or datetime.now(timezone.utc))
-    if item.category != "other":
+    elif item.status == "updated":
         score += 10
+    has_concrete_change = any(word in text for word in CONCRETE_CHANGE_KEYWORDS)
+    has_reader_impact = any(word in text for word in READER_IMPACT_KEYWORDS)
+    if has_concrete_change:
+        score += 18
+    if has_reader_impact:
+        score += 18
+    if item.summary:
+        score += 6
+    if item.project_summary:
+        score += 6
+    if item.project_use:
+        score += 5
+    score += min(10, _recent_bonus(item.published_at, now or datetime.now(timezone.utc)))
+    if item.category != "other":
+        score += 6
+    if item.github_repository and not has_reader_impact:
+        score -= 12
     if item.source.startswith("hn_"):
-        score -= 10
+        score -= 8
     return max(0, min(100, score))
 
 
@@ -133,10 +295,33 @@ def select_publishing_topics(
         if item.id in excluded_ids or item.status not in {"new", "updated"}:
             continue
         item.content_score = calculate_content_score(item, source_stats, now)
+        item.content_angle = item.content_angle or _content_angle(item)
+        item.reader_problem = item.reader_problem or _reader_problem(item)
+        item.reader_action = item.reader_action or _reader_action(item)
         if item.content_score >= min_score:
             selected.append(item)
     selected.sort(key=lambda value: (value.content_score, value.confidence, value.title), reverse=True)
-    return selected[: max(0, limit)]
+    limit = max(0, limit)
+    if limit <= 1:
+        return selected[:limit]
+    # Prefer different services/sources so two consecutive releases from one
+    # project do not occupy the whole publishing preview.
+    diverse: list[Opportunity] = []
+    seen_keys: set[str] = set()
+    for item in selected:
+        key = (item.service_name or item.source or display_name(item)).strip().lower()
+        if key in seen_keys:
+            continue
+        seen_keys.add(key)
+        diverse.append(item)
+        if len(diverse) >= limit:
+            return diverse
+    for item in selected:
+        if item not in diverse:
+            diverse.append(item)
+        if len(diverse) >= limit:
+            break
+    return diverse
 
 
 def topic_metadata(item: Opportunity, pack: dict[str, Any] | None = None) -> dict[str, Any]:
@@ -148,6 +333,11 @@ def topic_metadata(item: Opportunity, pack: dict[str, Any] | None = None) -> dic
         "project_type": _one_line(item.project_type, 180),
         "project_summary": _one_line(item.project_summary, 500),
         "project_use": _one_line(item.project_use, 260),
+        "content_grade": _content_grade(item.content_score),
+        "content_angle": _one_line(item.content_angle, 500),
+        "reader_problem": _one_line(item.reader_problem, 400),
+        "reader_action": _one_line(item.reader_action, 400),
+        "monetization": _one_line(item.monetization, 500),
         "url": item.url,
         "source": item.source,
         "content_score": item.content_score,
@@ -203,6 +393,11 @@ def upsert_content_queue(
                 "project_type": _one_line(item.project_type, 180),
                 "project_summary": _one_line(item.project_summary, 500),
                 "project_use": _one_line(item.project_use, 260),
+                "content_grade": _content_grade(item.content_score),
+                "content_angle": _one_line(item.content_angle, 500),
+                "reader_problem": _one_line(item.reader_problem, 400),
+                "reader_action": _one_line(item.reader_action, 400),
+                "monetization": _one_line(item.monetization, 500),
                 "url": item.url,
                 "source": item.source,
                 "kind": pack.get("kind", "revenue"),
@@ -276,6 +471,9 @@ def render_content_queue(queue: Any, checked_at: str, repository_url: str) -> st
                 f"## {index}. {title_line}",
                 f"- コード：`{entry.get('code', str(entry.get('id', ''))[:8])}`",
                 f"- 状態：{entry.get('status', 'ready')} / 次：{next_channel}",
+                f"- 判定：{entry.get('content_grade', '発信候補')}",
+                f"- 切り口：{entry.get('content_angle', '')}",
+                f"- 読者の悩み：{entry.get('reader_problem', '')}",
                 f"- note：{entry.get('channels', {}).get('note', {}).get('status', 'ready')}",
                 f"- X：{entry.get('channels', {}).get('x', {}).get('status', 'ready')}",
                 f"- Threads：{entry.get('channels', {}).get('threads', {}).get('status', 'ready')}",

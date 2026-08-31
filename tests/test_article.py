@@ -48,6 +48,8 @@ class ArticleDraftTests(unittest.TestCase):
         self.assertIn("30秒動画パック", content)
         self.assertIn("X投稿案（280字以内）", content)
         self.assertIn("Threads投稿案", content)
+        self.assertIn("読者に伝える切り口", content)
+        self.assertIn("読者が次にすること", content)
         self.assertIn("Lifetime access $69 instead of $199", content)
 
     def test_x_post_stays_within_280_characters(self) -> None:

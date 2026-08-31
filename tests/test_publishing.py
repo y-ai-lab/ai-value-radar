@@ -116,6 +116,29 @@ class PublishingTests(unittest.TestCase):
         )
         self.assertEqual(selected, [])
 
+    def test_github_search_without_ai_tool_use_is_not_a_publishing_topic(self) -> None:
+        item = Opportunity(
+            id="solver123456789",
+            title="Timefold Solver",
+            url="https://github.com/demo/timefold-solver",
+            source="github_ai_repositories",
+            discovered_at="2026-08-31T00:00:00+00:00",
+            last_seen_at="2026-08-31T00:00:00+00:00",
+            status="new",
+            summary="Open source Solver AI for scheduling and routing.",
+            evidence="Open source Solver AI for scheduling and routing.",
+            github_stars=1770,
+            published_at="2026-08-31T00:00:00+00:00",
+        )
+        selected = select_publishing_topics(
+            [item],
+            {"github_ai_repositories": {"official": True, "kind": "github_search"}},
+            limit=1,
+            min_score=35,
+            now=datetime(2026, 8, 31, 1, 0, tzinfo=timezone.utc),
+        )
+        self.assertEqual(selected, [])
+
     def test_content_queue_tracks_next_channel(self) -> None:
         item = sample_topic()
         pack = {

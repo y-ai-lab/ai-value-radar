@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -14,6 +15,13 @@ from .config import Settings
 from .models import Opportunity
 from .publishing import CHANNEL_LABELS, mark_queue_posted, queue_summary, render_content_queue
 from .state import load_json, write_json_atomic, write_text_atomic
+from .validation import (
+    VALIDATION_STATUSES,
+    calculate_revenue_readiness,
+    outcome_label,
+    update_outcome_metrics,
+    validation_label,
+)
 
 
 class TelegramError(RuntimeError):
@@ -63,7 +71,18 @@ def parse_command(text: str | None) -> tuple[str, list[str]] | None:
     if not parts or not parts[0].startswith("/"):
         return None
     command = parts[0].split("@", 1)[0].lower()
-    allowed = {"/help", "/queue", "/good", "/skip", "/trial", "/used", "/published", "/posted"}
+    allowed = {
+        "/help",
+        "/queue",
+        "/good",
+        "/skip",
+        "/trial",
+        "/used",
+        "/published",
+        "/posted",
+        "/validate",
+        "/result",
+    }
     if command not in allowed:
         return None
     return command[1:], parts[1:]
@@ -120,8 +139,76 @@ def _help_text() -> str:
         "/used コード：使用済み\n"
         "/published コード：公開済み\n"
         "/posted コード note|x|threads|video：投稿済み\n"
+        "/validate コード signal|validated|rejected：需要検証を更新\n"
+        "/result コード views=100 clicks=5 signups=1 sales=0 revenue=0：投稿結果を記録\n"
+        "省略した数値は前回値を維持。売上は円。\n"
         "/queue：発信キューを確認"
     )
+
+
+_RESULT_LIMITS = {
+    "views": 10_000_000,
+    "clicks": 10_000_000,
+    "signups": 1_000_000,
+    "sales": 1_000_000,
+    "revenue": 100_000_000,
+}
+
+
+def _parse_result_args(args: list[str]) -> tuple[str, dict[str, int | float] | None, str | None]:
+    if len(args) < 2:
+        return "", None, "形式：/result コード views=100 clicks=5 signups=1 sales=0 revenue=0"
+    code = args[0]
+    updates: dict[str, int | float] = {}
+    for token in args[1:]:
+        if "=" not in token:
+            return code, None, "数値は key=value 形式で指定してください。売上は円です。"
+        key, raw = token.split("=", 1)
+        key = key.strip().lower()
+        raw = raw.strip()
+        if key not in _RESULT_LIMITS:
+            return code, None, "指定できる項目は views / clicks / signups / sales / revenue です。"
+        if key in updates:
+            return code, None, f"{key} は1回だけ指定してください。"
+        if key == "revenue":
+            if not re.fullmatch(r"(?:0|[1-9]\d*)(?:\.\d{1,2})?", raw):
+                return code, None, "revenue は0以上の数値（小数2桁まで）で指定してください。"
+            value: int | float = round(float(raw), 2)
+        else:
+            if not re.fullmatch(r"(?:0|[1-9]\d*)", raw):
+                return code, None, f"{key} は0以上の整数で指定してください。"
+            value = int(raw)
+        if value > _RESULT_LIMITS[key]:
+            return code, None, f"{key} の上限を超えています。"
+        updates[key] = value
+    return code, updates, None
+
+
+def _result_summary(entry: dict[str, Any]) -> str:
+    revenue = float(entry.get("revenue", 0) or 0)
+    revenue_text = f"{revenue:g}円"
+    return (
+        f"閲覧 {int(entry.get('views', 0) or 0):,} / "
+        f"クリック {int(entry.get('clicks', 0) or 0):,} / "
+        f"登録 {int(entry.get('signups', 0) or 0):,} / "
+        f"成約 {int(entry.get('sales', 0) or 0):,} / 売上 {revenue_text}"
+    )
+
+
+def _refresh_draft(entry: dict[str, Any], settings: Settings, data_dir: Path, now_iso: str) -> bool:
+    draft_path = str(entry.get("draft_path") or f"data/drafts/{entry.get('id', '')}.md")
+    relative_path = Path(draft_path)
+    if relative_path.parts and relative_path.parts[0] == "data":
+        relative_path = Path(*relative_path.parts[1:])
+    local_path = data_dir / relative_path
+    try:
+        item = Opportunity(**entry)
+        item.revenue_readiness = calculate_revenue_readiness(item)
+        entry["revenue_readiness"] = item.revenue_readiness
+        write_text_atomic(local_path, render_article_draft(item, now_iso, mode=entry.get("content_kind", "revenue")))
+        return True
+    except (TypeError, OSError, UnicodeError, ValueError):
+        return False
 
 
 def _ack(text: str, result: dict[str, int]) -> None:
@@ -144,6 +231,8 @@ def process_telegram_updates(settings: Settings, data_dir: Path, now_iso: str) -
         "feedback_not_valuable": 0,
         "usage_updated": 0,
         "posted_count": 0,
+        "validation_updated": 0,
+        "outcome_updated": 0,
         "errors": 0,
         "ack_errors": 0,
     }
@@ -206,6 +295,70 @@ def process_telegram_updates(settings: Settings, data_dir: Path, now_iso: str) -
                 result,
             )
             continue
+        if command == "result":
+            code, updates, parse_error = _parse_result_args(args)
+            if parse_error:
+                _ack(parse_error, result)
+                continue
+            matches = _match_history(history, code)
+            if not matches:
+                _ack("該当するコードがありません。通知のコードを確認してください。", result)
+                continue
+            if len(matches) > 1:
+                _ack("コードを8文字より長く指定してください。", result)
+                continue
+            entry = matches[0]
+            update_outcome_metrics(entry, updates or {}, now_iso)
+            for queued in queue:
+                if str(queued.get("id", "")) == str(entry.get("id", "")):
+                    queued.update(
+                        {
+                            "views": entry.get("views", 0),
+                            "clicks": entry.get("clicks", 0),
+                            "signups": entry.get("signups", 0),
+                            "sales": entry.get("sales", 0),
+                            "revenue": entry.get("revenue", 0.0),
+                            "outcome_status": entry.get("outcome_status", "not_measured"),
+                            "outcome_updated_at": entry.get("outcome_updated_at"),
+                        }
+                    )
+                    queue_changed = True
+                    break
+            if not _refresh_draft(entry, settings, data_dir, now_iso):
+                result["errors"] += 1
+            history_changed = True
+            result["outcome_updated"] += 1
+            code = str(entry.get("id", ""))[:8]
+            _ack(f"{code}：計測結果を更新しました。{_result_summary(entry)}\n状態：{outcome_label(entry.get('outcome_status'))}", result)
+            continue
+        if command == "validate":
+            if len(args) != 2 or args[1].lower() not in VALIDATION_STATUSES:
+                _ack("形式：/validate コード signal|validated|rejected", result)
+                continue
+            matches = _match_history(history, args[0])
+            if not matches:
+                _ack("該当するコードがありません。通知のコードを確認してください。", result)
+                continue
+            if len(matches) > 1:
+                _ack("コードを8文字より長く指定してください。", result)
+                continue
+            entry = matches[0]
+            entry["validation_status"] = args[1].lower()
+            entry["validation_updated_at"] = now_iso
+            if not _refresh_draft(entry, settings, data_dir, now_iso):
+                result["errors"] += 1
+            for queued in queue:
+                if str(queued.get("id", "")) == str(entry.get("id", "")):
+                    queued["validation_status"] = entry["validation_status"]
+                    queued["validation_updated_at"] = now_iso
+                    queued["revenue_readiness"] = entry.get("revenue_readiness", 0)
+                    queue_changed = True
+                    break
+            history_changed = True
+            result["validation_updated"] += 1
+            code = str(entry.get("id", ""))[:8]
+            _ack(f"{code}：需要検証を「{validation_label(entry['validation_status'])}」に更新しました。", result)
+            continue
         if command == "posted":
             if len(args) < 2:
                 _ack("形式：/posted コード note|x|threads|video", result)
@@ -251,16 +404,7 @@ def process_telegram_updates(settings: Settings, data_dir: Path, now_iso: str) -
                     break
             result["usage_updated"] += 1
             history_changed = True
-            draft_path = str(entry.get("draft_path") or f"data/drafts/{entry.get('id', '')}.md")
-            relative_path = Path(draft_path)
-            if relative_path.parts and relative_path.parts[0] == "data":
-                relative_path = Path(*relative_path.parts[1:])
-            local_path = data_dir / relative_path
-            try:
-                item = Opportunity(**entry)
-                mode = entry.get("content_kind", "revenue")
-                write_text_atomic(local_path, render_article_draft(item, now_iso, mode=mode))
-            except (TypeError, OSError, UnicodeError, ValueError):
+            if not _refresh_draft(entry, settings, data_dir, now_iso):
                 result["errors"] += 1
             _ack(f"{code}：実利用ステータスを{labels[usage]}に更新しました。", result)
 

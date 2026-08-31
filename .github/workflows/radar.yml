@@ -1,0 +1,78 @@
+name: AI VALUE RADAR
+
+on:
+  schedule:
+    # GitHub cron is UTC. These are 14:00, 20:00, 02:00, 08:00 JST.
+    - cron: "0 5,11,17,23 * * *"
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "Run a scan or send one Telegram test message"
+        required: true
+        type: choice
+        options:
+          - scan
+          - telegram_test
+        default: scan
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ai-value-radar-scan
+  cancel-in-progress: false
+
+jobs:
+  radar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      PYTHONPATH: src
+      RADAR_TIMEZONE: Asia/Tokyo
+      RADAR_MAX_HTTP_REQUESTS: "40"
+      RADAR_MAX_SOURCE_ITEMS: "24"
+      RADAR_MAX_AI_CANDIDATES: "3"
+      RADAR_MAX_AI_CALLS_PER_DAY: "8"
+      RADAR_MAX_NOTIFICATIONS: "3"
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_FREE_ONLY_ACK: ${{ secrets.CLOUDFLARE_FREE_ONLY_ACK }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run unit tests
+        run: python -m unittest discover -s tests -v
+
+      - name: Check tracked files for secrets
+        run: python scripts/secret_scan.py
+
+      - name: Run radar scan
+        if: github.event_name != 'workflow_dispatch' || inputs.mode == 'scan'
+        run: python -m ai_value_radar.main
+
+      - name: Send Telegram test
+        if: github.event_name == 'workflow_dispatch' && inputs.mode == 'telegram_test'
+        run: python -m ai_value_radar.main --telegram-test
+
+      - name: Commit public state
+        if: github.event_name != 'workflow_dispatch' || inputs.mode == 'scan'
+        run: |
+          git config user.name "ai-value-radar[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data
+          if git diff --cached --quiet; then
+            echo "No public state changes to commit."
+          else
+            git commit -m "chore: update radar state [skip ci]"
+            git push
+          fi

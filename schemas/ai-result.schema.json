@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "score",
+    "title",
+    "category",
+    "summary",
+    "why_now",
+    "best_for",
+    "skip_if",
+    "monetization",
+    "risk",
+    "confidence"
+  ],
+  "properties": {
+    "score": {"type": "integer", "minimum": 0, "maximum": 100},
+    "title": {"type": "string", "minLength": 1},
+    "category": {
+      "type": "string",
+      "enum": ["lifetime_deal", "discount", "free_credit", "affiliate_program", "pricing_change", "other"]
+    },
+    "summary": {"type": "string", "minLength": 1},
+    "why_now": {"type": "string", "minLength": 1},
+    "best_for": {"type": "string", "minLength": 1},
+    "skip_if": {"type": "string", "minLength": 1},
+    "monetization": {"type": "string", "minLength": 1},
+    "risk": {"type": "string", "minLength": 1},
+    "confidence": {"type": "number", "minimum": 0, "maximum": 1}
+  }
+}

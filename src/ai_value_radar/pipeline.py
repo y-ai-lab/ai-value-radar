@@ -1,0 +1,192 @@
+from __future__ import annotations
+
+import json
+import time
+from datetime import datetime, timedelta, timezone
+from pathlib import Path
+from typing import Any, Callable
+from zoneinfo import ZoneInfo
+
+from .ai import apply_ai_analysis
+from .config import DATA_DIR, REPORT_DIR, Settings, ensure_data_dirs
+from .filtering import deduplicate_current
+from .models import Opportunity, validate_opportunity
+from .normalize import make_opportunity
+from .operator import reconcile
+from .scoring import apply_rule_scores
+from .sources import collect_candidates
+from .state import append_jsonl, load_json, write_json_atomic
+from .telegram import send_report
+from .writer import enrich_fallback, format_telegram_report
+
+
+def _now(settings: Settings) -> datetime:
+    try:
+        return datetime.now(ZoneInfo(settings.timezone))
+    except Exception:
+        return datetime.now(timezone.utc)
+
+
+def _bounded_errors(errors: list[dict[str, str]]) -> list[dict[str, str]]:
+    return [{str(key): str(value)[:180] for key, value in error.items()} for error in errors[:100]]
+
+
+def _trim_history(history: list[dict[str, Any]], limit: int) -> list[dict[str, Any]]:
+    return history[:limit]
+
+
+def _metrics_7d(run_history: list[dict[str, Any]], now: datetime) -> dict[str, Any]:
+    cutoff = (now - timedelta(days=7)).isoformat()
+    recent = [entry for entry in run_history if str(entry.get("run_at", "")) >= cutoff]
+    keys = (
+        "fetched_count",
+        "new_count",
+        "promising_count",
+        "top3_count",
+        "affiliate_count",
+        "ai_calls",
+        "duplicate_count",
+        "error_count",
+    )
+    totals = {key: sum(int(entry.get(key, 0) or 0) for entry in recent) for key in keys}
+    totals.update({"runs": len(recent), "window": "7d", "calculated_at": now.isoformat()})
+    return totals
+
+
+def run_scan(
+    settings: Settings | None = None,
+    collector: Callable[[Settings], tuple[list[dict[str, str | None]], dict[str, Any], list[dict[str, str]]]] = collect_candidates,
+    notifier: Callable[[str], str] = send_report,
+    now: datetime | None = None,
+    data_dir: Path | None = None,
+) -> dict[str, Any]:
+    settings = settings or Settings.from_env()
+    data_dir = data_dir or DATA_DIR
+    report_dir = data_dir / "reports"
+    data_dir.mkdir(parents=True, exist_ok=True)
+    report_dir.mkdir(parents=True, exist_ok=True)
+    started = time.monotonic()
+    now = now or _now(settings)
+    now_iso = now.isoformat(timespec="seconds")
+    raw, source_stats, source_errors = collector(settings)
+
+    normalized: list[Opportunity] = []
+    for raw_item in raw[: settings.max_source_items * len(source_stats)]:
+        item = make_opportunity(raw_item, now_iso)
+        if item:
+            normalized.append(item)
+    unique, current_duplicates = deduplicate_current(normalized)
+    apply_rule_scores(unique)
+
+    history_path = data_dir / "opportunities.json"
+    runtime_path = data_dir / "runtime_state.json"
+    run_history_path = data_dir / "run_history.json"
+    history = load_json(history_path, [])
+    if not isinstance(history, list):
+        history = []
+    runtime_state = load_json(runtime_path, {})
+    if not isinstance(runtime_state, dict):
+        runtime_state = {}
+    current, merged_history, state_counts = reconcile(unique, history, now_iso)
+    eligible = [item for item in current if item.status in {"new", "updated"} and item.status != "ended"]
+    ai_calls, ai_errors = apply_ai_analysis(eligible, settings, runtime_state)
+    for item in current:
+        enrich_fallback(item)
+    promising = [item for item in eligible if item.final_score >= settings.notify_min_score]
+    promising.sort(key=lambda item: (item.final_score, item.confidence, item.title), reverse=True)
+    top3 = promising[: settings.max_notifications]
+    for item in top3:
+        item.last_notified_at = now_iso
+        for stored in merged_history:
+            if stored.get("id") == item.id:
+                stored["last_notified_at"] = now_iso
+                stored["status"] = item.status
+                break
+
+    # Reconcile again after the optional AI pass so the public history contains
+    # the same score and Japanese analysis that was included in the report.
+    for item in current:
+        for stored in merged_history:
+            if stored.get("id") == item.id:
+                previous_notification = stored.get("last_notified_at")
+                stored.update(item.to_dict())
+                if previous_notification and not stored.get("last_notified_at"):
+                    stored["last_notified_at"] = previous_notification
+                break
+
+    report: dict[str, Any] = {
+        "run_at": now_iso,
+        "fetched_count": len(raw),
+        "normalized_count": len(normalized),
+        "unique_count": len(unique),
+        "new_count": sum(1 for item in current if item.status == "new"),
+        "updated_count": sum(1 for item in current if item.status == "updated"),
+        "duplicate_count": current_duplicates + state_counts.get("duplicate", 0),
+        "promising_count": len(promising),
+        "top3_count": len(top3),
+        "affiliate_count": sum(1 for item in current if item.category == "affiliate_program"),
+        "source_stats": source_stats,
+        "ai": {
+            "enabled": settings.cloudflare_ai_enabled,
+            "calls": ai_calls,
+            "max_per_run": settings.max_ai_candidates_per_run,
+            "errors": len(ai_errors),
+        },
+        "top3": [item.to_dict() for item in top3],
+        "errors": _bounded_errors(source_errors + ai_errors),
+        "notification": {"status": "pending"},
+    }
+
+    # Persist public state before trying Telegram. A notification outage must
+    # not erase the observation or stop future runs.
+    safe_history = []
+    for entry in _trim_history(merged_history, settings.max_history_items):
+        if validate_opportunity(entry) == []:
+            safe_history.append(entry)
+    write_json_atomic(history_path, safe_history)
+    write_json_atomic(runtime_path, runtime_state)
+    run_history = load_json(run_history_path, [])
+    if not isinstance(run_history, list):
+        run_history = []
+    run_entry = {
+        "run_at": now_iso,
+        "fetched_count": report["fetched_count"],
+        "new_count": report["new_count"],
+        "updated_count": report["updated_count"],
+        "promising_count": report["promising_count"],
+        "top3_count": report["top3_count"],
+        "affiliate_count": report["affiliate_count"],
+        "ai_calls": ai_calls,
+        "duplicate_count": report["duplicate_count"],
+        "error_count": len(report["errors"]),
+        "seconds": round(time.monotonic() - started, 2),
+        "telegram_configured": settings.telegram_enabled,
+    }
+    run_history.append(run_entry)
+    run_history = run_history[-settings.max_run_history_items :]
+    write_json_atomic(run_history_path, run_history)
+    report["seconds"] = run_entry["seconds"]
+    report["metrics_7d"] = _metrics_7d(run_history, now)
+    write_json_atomic(data_dir / "metrics_7d.json", report["metrics_7d"])
+    write_json_atomic(data_dir / "last_report.json", report)
+    report_path = report_dir / f"{now.astimezone(timezone.utc):%Y%m%dT%H%M%SZ}.json"
+    write_json_atomic(report_path, report)
+
+    for error in report["errors"]:
+        append_jsonl(data_dir / "errors.jsonl", {"run_at": now_iso, **error})
+
+    try:
+        report["notification"]["status"] = notifier(format_telegram_report(report))
+    except Exception as exc:
+        report["notification"]["status"] = "error"
+        report["notification"]["error"] = type(exc).__name__
+        append_jsonl(data_dir / "errors.jsonl", {"run_at": now_iso, "stage": "telegram", "message": type(exc).__name__})
+    write_json_atomic(data_dir / "last_report.json", report)
+    write_json_atomic(report_path, report)
+    report_files = sorted(report_dir.glob("*.json"), key=lambda path: path.name)
+    for old_report in report_files[:-120]:
+        try:
+            old_report.unlink()
+        except OSError:
+            pass
+    return report

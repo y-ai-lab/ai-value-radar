@@ -1,1 +1,21 @@
-# Seed file; replaced by the full project commit.
+# Local secrets and credentials
+.env
+.env.*
+!.env.example
+secrets.*
+credentials.*
+*.pem
+*.key
+
+# Python and editor files
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.venv/
+venv/
+.DS_Store
+
+# Local test artifacts
+coverage.xml
+.coverage

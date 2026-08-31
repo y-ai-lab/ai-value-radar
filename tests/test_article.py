@@ -4,7 +4,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from ai_value_radar.article import generate_article_drafts, render_article_draft
+from ai_value_radar.article import _x_post, generate_article_drafts, render_article_draft
 from ai_value_radar.models import Opportunity
 
 
@@ -43,7 +43,19 @@ class ArticleDraftTests(unittest.TestCase):
         self.assertIn("公開前調査下書き", content)
         self.assertIn("実利用レビューではありません", content)
         self.assertIn("実際に使う前の確認リスト", content)
+        self.assertIn("発信用パック", content)
+        self.assertIn("X投稿案（280字以内）", content)
+        self.assertIn("Threads投稿案", content)
         self.assertIn("Lifetime access $69 instead of $199", content)
+
+    def test_x_post_stays_within_280_characters(self) -> None:
+        post = _x_post(
+            "とても長いAIツールのタイトル" * 20,
+            "公開情報の長い要約" * 100,
+            "https://vendor.example/deal",
+            "Lifetime Deal",
+        )
+        self.assertLessEqual(len(post), 280)
 
     def test_generate_is_stable_and_reports_unchanged(self) -> None:
         item = sample_opportunity()

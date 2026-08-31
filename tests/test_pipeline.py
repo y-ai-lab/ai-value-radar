@@ -43,8 +43,8 @@ class PipelineTests(unittest.TestCase):
         self.assertEqual(result["top3"][0]["final_score"], 60)
         self.assertIn("発信候補・要確認", notifications[0])
         self.assertNotIn("%%", notifications[0])
-        self.assertIn("記事下書き：https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/", notifications[0])
-        self.assertIn("次にすること：下書き → 公式条件確認 → 実体験を追記", notifications[0])
+        self.assertIn("発信用パック：https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/", notifications[0])
+        self.assertIn("次にすること：発信用パック → 公式条件確認 → 実体験を追記", notifications[0])
         self.assertIn("詳細レポート：https://github.com/y-ai-lab/ai-value-radar/blob/main/data/latest.md", notifications[0])
 
     def test_clear_rule_candidate_reaches_top3_at_default_threshold(self) -> None:

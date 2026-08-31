@@ -75,6 +75,46 @@ def _disclosure(item: Opportunity) -> str:
     )
 
 
+def _x_post(title: str, summary: str, url: str, category: str) -> str:
+    body = (
+        f"【{category}】{title}\n"
+        f"{_one_line(summary, 70)}\n"
+        "ただ、まだ公開情報で見つけた段階。価格・商用利用・日本からの利用可否は要確認です。\n"
+        "まずは自分で試して、使えた点と微妙だった点をまとめます。\n"
+        "#AIツール #SaaS"
+    )
+    url_line = f"\n{url}"
+    available = max(1, 280 - len(url_line))
+    if len(body) > available:
+        body = body[: max(1, available - 1)].rstrip() + "…"
+    return body + url_line
+
+
+def _threads_posts(title: str, summary: str, why_now: str, url: str) -> str:
+    posts = [
+        f"1/3\n{title}が気になったので、公開情報を確認しました。\n"
+        f"{_one_line(summary, 180)}",
+        "2/3\n"
+        f"注目した理由は、{_one_line(why_now, 150)}\n"
+        "ただし、価格や利用条件は変わる可能性があります。",
+        "3/3\n"
+        "現時点では、まだ実利用前の調査段階です。\n"
+        "自分で試してから、向いている人・見送る人を正直にまとめます。\n"
+        f"{url}\n#AIツール #SaaS",
+    ]
+    return "\n\n".join(posts)
+
+
+def _title_options(title: str, category: str) -> str:
+    return "\n".join(
+        (
+            f"1. {title}は誰に向く？{category}の条件を確認した",
+            f"2. {title}を使う前に確認したい価格・制限・商用利用",
+            f"3. AI/SaaSの発信候補として{title}を調べてみた",
+        )
+    )
+
+
 def render_article_draft(item: Opportunity, checked_at: str) -> str:
     """Render a safe, fact-labelled Japanese article draft without an AI call.
 
@@ -183,8 +223,56 @@ def render_article_draft(item: Opportunity, checked_at: str) -> str:
         f"- [{source_name}]({item.url})",
         f"- 取得対象：{category} / {status}",
         "",
+        "## 発信用パック（公開前）",
+        "",
+        "以下はそのまま投稿せず、公式情報と実体験を反映してから使います。",
+        "",
+        "### noteタイトル案",
+        "",
+        _title_options(title, category),
+        "",
+        "### note導入文",
+        "",
+        f"最近、{title}というAI / SaaSの条件が気になりました。",
+        f"公開情報では、{summary}",
+        "",
+        "ただ、料金や機能だけを見て「おすすめ」とは言えません。日本から使えるのか、商用利用できるのか、"
+        "実際の作業がどれくらい楽になるのかは、自分で試して確認する必要があります。",
+        "",
+        "この記事では、公式情報の確認結果と実際に使った感想を分けてまとめます。",
+        "",
+        "### X投稿案（280字以内）",
+        "",
+        "```text",
+        _x_post(title, summary, item.url, category),
+        "```",
+        "",
+        "### Threads投稿案",
+        "",
+        "```text",
+        _threads_posts(title, summary, why_now, item.url),
+        "```",
+        "",
+        "### 投稿後の誘導文・CTA案",
+        "",
+        "- 実際に使ったことがある人は、良かった点・困った点を教えてください。",
+        "- 料金や利用条件に変更があれば、確認できた公式URLと一緒に追記します。",
+        "- 紹介リンクを使う場合は、規約確認後に差し替えます。",
+        "",
+        "### 推奨ハッシュタグ",
+        "",
+        "#AIツール #SaaS #AI活用 #AI副業",
+        "",
+        "### 発信前の最終チェック",
+        "",
+        "- [ ] タイトルと本文が実際に確認した内容と一致している",
+        "- [ ] 価格・仕様・期限に確認日がある",
+        "- [ ] 自分が使っていない機能を体験談として書いていない",
+        "- [ ] 誇大表現・収益保証・断定表現を削った",
+        "- [ ] 紹介リンクを使う場合、PR / アフィリエイト表記を冒頭に置いた",
+        "",
         "---",
-        "このファイルはAI VALUE RADARが自動生成した公開前下書きです。自動公開は行いません。",
+        "このファイルはAI VALUE RADARが自動生成した公開前の発信用パックです。自動投稿・自動公開は行いません。",
         "",
     ]
     return "\n".join(lines)

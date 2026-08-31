@@ -115,10 +115,10 @@ def format_telegram_report(report: dict) -> str:
             ]
         )
         if draft and draft.get("url"):
-            lines.append(f"記事下書き：{draft['url']}")
+            lines.append(f"発信用パック：{draft['url']}")
     lines.extend([
         "",
-        "次にすること：下書き → 公式条件確認 → 実体験を追記",
+        "次にすること：発信用パック → 公式条件確認 → 実体験を追記",
     ])
     latest = report.get("latest", {})
     if isinstance(latest, dict) and latest.get("url"):

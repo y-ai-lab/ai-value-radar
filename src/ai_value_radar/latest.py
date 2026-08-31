@@ -68,13 +68,13 @@ def render_latest_report(report: dict[str, Any]) -> str:
                 f"原文：[{item.source}]({item.url})",
             ])
             if draft_url:
-                lines.append(f"記事下書き：[Markdownを開く]({draft_url})")
+                lines.append(f"発信用パック：[Markdownを開く]({draft_url})")
             lines.append("")
 
     lines.extend([
         "## 次にすること",
         "",
-        "1. 記事下書きを開く",
+        "1. 発信用パックを開く（note・X・Threads案を確認）",
         "2. 公式ページで価格・期限・日本利用・商用利用を確認する",
         "3. 実際に使った結果を追記してから公開判断する",
         "",
@@ -84,7 +84,7 @@ def render_latest_report(report: dict[str, Any]) -> str:
     metrics = report.get("metrics_7d", {})
     lines.extend([
         f"- 実行回数：{metrics.get('runs', 0)}回",
-        f"- 記事下書き：{metrics.get('draft_count', 0)}件",
+        f"- 発信用パック：{metrics.get('draft_count', 0)}件",
         f"- Affiliate候補：{metrics.get('affiliate_count', 0)}件",
         f"- AI呼び出し：{metrics.get('ai_calls', 0)}回",
         f"- エラー：{metrics.get('error_count', 0)}件",

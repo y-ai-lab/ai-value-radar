@@ -26,6 +26,7 @@ from .scoring import apply_rule_scores
 from .sources import collect_candidates
 from .state import append_jsonl, load_json, write_json_atomic, write_text_atomic
 from .telegram import process_telegram_updates, send_report
+from .validation import calculate_revenue_readiness, outcome_totals
 from .writer import enrich_fallback, format_telegram_report
 
 
@@ -53,7 +54,11 @@ def _trim_history(history: list[dict[str, Any]], limit: int) -> list[dict[str, A
     return history[:limit]
 
 
-def _metrics_7d(run_history: list[dict[str, Any]], now: datetime) -> dict[str, Any]:
+def _metrics_7d(
+    run_history: list[dict[str, Any]],
+    now: datetime,
+    outcomes: dict[str, int | float] | None = None,
+) -> dict[str, Any]:
     cutoff = (now - timedelta(days=7)).isoformat()
     recent = [entry for entry in run_history if str(entry.get("run_at", "")) >= cutoff]
     keys = (
@@ -75,8 +80,12 @@ def _metrics_7d(run_history: list[dict[str, Any]], now: datetime) -> dict[str, A
         "feedback_not_valuable",
         "usage_updated",
         "posted_count",
+        "validation_updated",
+        "outcome_updated",
     )
     totals = {key: sum(int(entry.get(key, 0) or 0) for entry in recent) for key in keys}
+    if outcomes is not None:
+        totals["outcomes"] = outcomes
     totals.update({"runs": len(recent), "window": "7d", "calculated_at": now.isoformat()})
     return totals
 
@@ -127,6 +136,7 @@ def run_scan(
     ai_calls, ai_errors = apply_ai_analysis(eligible, settings, runtime_state)
     for item in current:
         enrich_fallback(item)
+        item.revenue_readiness = calculate_revenue_readiness(item)
     promising = [item for item in eligible if item.final_score >= settings.notify_min_score]
     promising.sort(key=lambda item: (item.final_score, item.confidence, item.title), reverse=True)
     publishable = [item for item in eligible if item.final_score >= settings.publish_min_score]
@@ -215,6 +225,13 @@ def run_scan(
         "topic_pack_count": len(topic_packs),
         "content_pack_count": len(all_packs),
         "affiliate_count": sum(1 for item in current if item.category == "affiliate_program"),
+        "validation": {
+            "unverified": sum(1 for item in current if item.validation_status == "unverified"),
+            "signal": sum(1 for item in current if item.validation_status == "signal"),
+            "validated": sum(1 for item in current if item.validation_status == "validated"),
+            "rejected": sum(1 for item in current if item.validation_status == "rejected"),
+        },
+        "outcomes": outcome_totals(merged_history),
         "source_stats": source_stats,
         "ai": {
             "enabled": settings.cloudflare_ai_enabled,
@@ -285,7 +302,7 @@ def run_scan(
     run_history = run_history[-settings.max_run_history_items :]
     write_json_atomic(run_history_path, run_history)
     report["seconds"] = run_entry["seconds"]
-    report["metrics_7d"] = _metrics_7d(run_history, now)
+    report["metrics_7d"] = _metrics_7d(run_history, now, report["outcomes"])
     try:
         write_text_atomic(data_dir / "latest.md", render_latest_report(report))
     except (OSError, UnicodeError) as exc:

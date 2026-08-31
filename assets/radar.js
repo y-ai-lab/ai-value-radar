@@ -57,7 +57,7 @@
   function scoreBadge(score, label = "点") {
     const wrapper = el("div", "score");
     wrapper.appendChild(el("span", "", `${number(score)}${label}`));
-    wrapper.appendChild(el("small", "", "確認優先度"));
+    wrapper.appendChild(el("small", "", "見るおすすめ度"));
     return wrapper;
   }
 
@@ -82,7 +82,7 @@
     const card = el("article", "signal-card");
     const top = el("div", "card-top");
     const main = el("div");
-    const kicker = el("p", "card-kicker", `${safeText(item.source)} / ${safeText(item.status, "要確認")}`);
+    const kicker = el("p", "card-kicker", "お金につながるかもしれない情報");
     const heading = el("h3");
     append(heading, link(safeText(item.ai_title || item.service_name || item.title), item.url, ""));
     main.append(kicker, heading);
@@ -91,10 +91,9 @@
     card.appendChild(el("p", "card-summary", compact(item.why_now || item.summary || item.evidence, 220)));
     const meta = el("div", "card-meta");
     meta.append(
-      el("span", "", `${safeText(item.category, "AI / SaaS")} · ${priceLine(item)}`),
-      el("span", "", `実利用：${usageLabel(item.usage_status)}`),
-      el("span", "", `収益準備度：${number(item.revenue_readiness || 0)}点 · 需要：${validationLabel(item.validation_status)}`),
-      el("span", "", resultLine(item)),
+      el("span", "", `いくらかかるか：${priceLine(item)}`),
+      el("span", "", `自分で使ったか：${usageLabel(item.usage_status)}`),
+      el("span", "", `反応を確認：${validationLabel(item.validation_status)}`),
       el("span", "code", `コード ${safeText(item.id, "").slice(0, 8)}`),
     );
     card.appendChild(meta);
@@ -111,7 +110,7 @@
     const card = el("article", "signal-card topic-card");
     const top = el("div", "card-top");
     const main = el("div");
-    main.appendChild(el("p", "card-kicker", `${safeText(topic.source)} / ${safeText(topic.status, "新規")}`));
+    main.appendChild(el("p", "card-kicker", "Xやnoteの話題になりそうな情報"));
     const heading = el("h3");
     append(heading, link(safeText(topic.service_name || topic.title), topic.url, ""));
     main.appendChild(heading);
@@ -119,20 +118,16 @@
     card.appendChild(top);
     const topicSummary = topic.content_angle || topic.reader_problem || topic.project_summary
       ? [
-        topic.content_angle ? `切り口：${compact(topic.content_angle, 150)}` : "",
-        topic.reader_problem ? `読者の悩み：${compact(topic.reader_problem, 130)}` : "",
+        topic.content_angle ? `話すポイント：${compact(topic.content_angle, 150)}` : "",
+        topic.reader_problem ? `困っている人：${compact(topic.reader_problem, 130)}` : "",
         topic.project_summary ? `これは何か：${compact(topic.project_summary, 150)}` : "",
       ].filter(Boolean).join("　")
       : "6つの発信切り口と30秒動画パックを生成済み。まず公式情報を確認し、使った範囲だけ追記します。";
     card.appendChild(el("p", "card-summary", topicSummary));
     const meta = el("div", "card-meta");
-    meta.append(el("span", "code", `コード ${safeText(topic.code || topic.id, "").slice(0, 8)}`));
-    meta.append(el("span", "", `実利用：${usageLabel(topic.usage_status)}`));
-    meta.append(el("span", "", `収益準備度：${number(topic.revenue_readiness || 0)}点 · 需要：${validationLabel(topic.validation_status)}`));
-    meta.append(el("span", "", resultLine(topic)));
-    if (topic.content_grade) meta.append(el("span", "", safeText(topic.content_grade)));
-    if (topic.monetization) meta.append(el("span", "", `収益化：${compact(topic.monetization, 110)}`));
-    if (topic.project_type) meta.append(el("span", "", safeText(topic.project_type)));
+    meta.append(el("span", "", `自分で使ったか：${usageLabel(topic.usage_status)}`));
+    meta.append(el("span", "", `見るおすすめ度：${number(topic.content_score || 0)}点`));
+    if (topic.monetization) meta.append(el("span", "", `お金につなげるなら：${compact(topic.monetization, 110)}`));
     card.appendChild(meta);
     const actions = el("div", "card-actions");
     append(actions, link("発信用パック", packHref(topic.pack_path, topic.pack_url), "action-link"));
@@ -203,7 +198,7 @@
       const heading = el("h3");
       append(heading, link(safeText(item.service_name || item.title), packHref(item.pack_path, item.pack_url), ""));
       row.appendChild(heading);
-      row.appendChild(el("small", "", `コード ${safeText(item.code || item.id, "").slice(0, 8)} · ${safeText(item.status, "ready")} · 次：${channelLabels[item.next_channel] || "—"}`));
+      row.appendChild(el("small", "", `次にすること：${channelLabels[item.next_channel] || "公式ページを見る"}`));
       const track = el("div", "progress-track");
       channels.forEach((channel) => {
         const step = el("span", "progress-step");

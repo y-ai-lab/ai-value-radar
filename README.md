@@ -55,6 +55,14 @@ GitHub Pagesの静的ダッシュボードで、スマホから次を確認で�
 
 UIは`index.html`、`assets/radar.css`、`assets/radar.js`だけで動く静的ページです。公開データの`data/last_report.json`、`data/content_queue.json`、`data/metrics_7d.json`を読むだけで、ログイン・DB・追加APIは使いません。Actionsが状態を更新すると、Pages側も自動的に更新されます。
 
+## Work制限時のチャット代替
+
+Workで長い作業が続けられないときは、通常のChatGPTで公開レポートを再分析し、読者向けの発信原稿を作成できます。ダッシュボード上部の「Work制限時のチャット代替」を開き、「プロンプトを全部コピー」して通常チャットへ貼り付けてください。ブラウジングが使えるチャットなら、`data/latest.md`、`data/last_report.json`、`data/content_queue.json`を公開URLから読み込みます。
+
+この代替モードでできるのは、公開データの再分析、再採点、読者の悩み起点のネタ選定、X / Threads / note / 30秒動画のコピペ原稿作成、Telegram通知相当の短いまとめです。GitHub Actionsの定期実行、Actions Secretsの読み取り、Telegramへの自動送信はできません。自動巡回とTelegram通知は、ChatGPTの画面とは独立したGitHub Actionsが担当します。
+
+通常チャットの利用上限も別に達している場合は、この代替も実行できません。その場合でも、GitHub Actionsの定期実行は継続します。詳細は[`docs/chat-fallback.md`](docs/chat-fallback.md)を確認してください。
+
 ## 自動実行
 
 GitHub ActionsのPublic Repository上で、標準の`ubuntu-latest` runnerだけを使います。スケジュールはUTCの`05:00 / 11:00 / 17:00 / 23:00`で、日本時間の`14:00 / 20:00 / 翌02:00 / 翌08:00`です。定期実行によるGitHub Actionsの追加運用費は0円です。

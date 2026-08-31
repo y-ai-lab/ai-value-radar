@@ -31,16 +31,13 @@
 | `aws_machine_learning_blog` | 公式RSS | AI実装・サービス発表 | RSS本文 |
 | `huggingface_blog` | 公式RSS | AIモデル・アプリ発表 | RSS本文 |
 | `google_deepmind_blog` | 公式RSS | AI研究・製品発表 | RSS本文 |
-| `product_hunt_feed` | 公開Atom | 新規プロダクト | フィード項目 |
-| `appsumo_feed` | 公開RSS | Deal情報 | フィード項目 |
 | `n8n_pricing_page` | 公式ページ | Pricing変更 | 1ページの要約 |
 | `zapier_pricing_page` | 公式ページ | Pricing変更 | 1ページの要約 |
-| `make_pricing_page` | 公式ページ | Pricing変更 | 1ページの要約 |
 | `cloudflare_workers_ai_pricing` | 公式ページ | AI利用条件変更 | 1ページの要約 |
 | `n8n_affiliate_page` | 公式ページ | Affiliate報酬・条件 | 1ページの要約 |
 | `hubspot_affiliate_page` | 公式ページ | Affiliate報酬・条件 | 1ページの要約 |
 
-公式Pricingページはサイト内リンクをたどらず、URLを1回読むだけです。Dynamic pageやbot対策で取得できない場合はエラーとして記録し、他のソースを続行します。
+公式Pricingページはサイト内リンクをたどらず、URLを1回読むだけです。Dynamic pageやbot対策が確認できた取得不能ページは登録せず、取得できる公開ソースへ切り替えます。
 
 ## コスト・レート制御
 

@@ -428,15 +428,26 @@ GITHUB_SERVICE_NAMES = {
     "comfyanonymous/comfyui": "ComfyUI",
 }
 GITHUB_PROJECT_SUMMARIES = {
-    "n8n": "複数のWebサービスをつなぎ、処理を自動化するワークフロー基盤。",
-    "Flowise": "LLMやAIエージェントの処理を画面上で組み立てる開発ツール。",
-    "Open WebUI": "自分で用意したLLMをブラウザから使うためのAIインターフェース。",
-    "LiteLLM": "複数のLLM APIを共通形式で扱うための開発基盤。",
-    "Dify": "AIアプリやワークフローを構築・運用するための開発プラットフォーム。",
-    "Langflow": "AIエージェントやLLMワークフローを視覚的に組み立てる開発ツール。",
-    "Ollama": "ローカル環境でLLMを実行・管理するためのツール。",
-    "AnythingLLM": "文書や社内データを使ったAIチャットを構築するためのツール。",
-    "ComfyUI": "画像生成モデルの処理手順をノードで組み立てる制作ツール。",
+    "n8n": "Gmailやスプレッドシートなどをつなぎ、繰り返し作業を自動化するツール。",
+    "Flowise": "AIチャットボットの処理を、ブロックをつなぐように組み立てるツール。",
+    "Open WebUI": "自分で用意したAIを、ChatGPTのような画面から使えるようにするツール。",
+    "LiteLLM": "ChatGPTやClaudeなど複数のAIを、同じ形式で扱いやすくする中継ツール。",
+    "Dify": "AIチャットボットや小さなAIアプリを作り、動かすための土台。",
+    "Langflow": "AIエージェントの処理を、画面上で部品をつないで組み立てるツール。",
+    "Ollama": "自分のPC上でAIモデルを動かし、管理するためのツール。",
+    "AnythingLLM": "手元の文書を読み込ませ、資料について質問できるAIを作るツール。",
+    "ComfyUI": "画像生成の手順を部品ごとにつなぎ、細かく調整する制作ツール。",
+}
+GITHUB_PROJECT_USE_HINTS = {
+    "n8n": "定型業務の自動化や、複数サービスの連携を試したい人向け。",
+    "Flowise": "社内FAQや問い合わせ対応のAIチャットを試したい人向け。",
+    "Open WebUI": "自分用・チーム用のAIチャット環境を試したい人向け。",
+    "LiteLLM": "複数のAIを使い分ける仕組みや、AIアプリの裏側を試したい人向け。",
+    "Dify": "AIチャットボットや小さなAIサービスを作って試したい人向け。",
+    "Langflow": "AIエージェントの流れを見える形で組み立てたい人向け。",
+    "Ollama": "PC上でAIを試したい人や、外部サービスにデータを送らず検証したい人向け。",
+    "AnythingLLM": "自分の資料を使ったFAQやナレッジ検索を試したい人向け。",
+    "ComfyUI": "画像生成の手順を細かく調整したい人や、制作を自動化したい人向け。",
 }
 
 
@@ -505,7 +516,7 @@ def _github_details(
         "service_name": display_name,
         "project_type": project_type,
         "project_summary": project_summary,
-        "project_use": _github_use_hint(context),
+        "project_use": GITHUB_PROJECT_USE_HINTS.get(display_name) or _github_use_hint(context),
         "github_owner": full_name.split("/", 1)[0] if "/" in full_name else "",
         "github_repository": full_name,
         "github_language": language or "",

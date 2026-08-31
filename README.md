@@ -114,7 +114,7 @@ SecretsはSettings → Secrets and variables → Actions → New repository secr
 
 ## 監視ソース
 
-v0.1では29件のソース定義を持ちます。
+v0.1では26件のソース定義を持ちます。取得不能と判定した公開ページは登録せず、毎回エラーを出し続ける構成を避けています。
 
 - Hacker Newsの公開JSON検索 4件
 - GitHubの公開API（AIリポジトリと公式リリース）10件

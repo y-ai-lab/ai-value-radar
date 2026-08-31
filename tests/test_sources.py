@@ -24,10 +24,18 @@ class SourceTests(unittest.TestCase):
         self.assertEqual(items[0]["url"], "https://example.com/a")
 
     def test_github_release_json_is_parsed(self) -> None:
-        payload = json.dumps([{"name": "v1.0", "html_url": "https://github.com/a/b/releases/tag/v1", "body": "Pricing update"}])
+        payload = json.dumps([{
+            "name": "v1.0",
+            "tag_name": "v1.0",
+            "html_url": "https://github.com/a/b/releases/tag/v1",
+            "body": "## What's changed\\n- Pricing update\\n- New AI workflow",
+        }])
         spec = SourceSpec("fixture", "fixture", "github_releases", "https://api.github.com/x", "test")
         items = fetch_source(FakeClient(payload), spec)
         self.assertEqual(items[0]["title"], "v1.0")
+        self.assertIn("公式GitHubリリース", items[0]["summary"])
+        self.assertIn("Pricing update", items[0]["summary"])
+        self.assertNotIn("リリース概要：", items[0]["project_summary"])
 
     def test_github_repository_has_readable_project_details(self) -> None:
         payload = json.dumps({"items": [{

@@ -1,6 +1,6 @@
 # AI VALUE RADAR｜発信キュー
 
-更新日時：2026-08-31T16:46:18+09:00
+更新日時：2026-08-31T17:10:25+09:00
 
 次の媒体から順番に使います：note → X → Threads → 短尺動画
 Telegramで `/posted コード 媒体` を送ると進捗を更新できます。
@@ -20,7 +20,35 @@ Telegramで `/posted コード 媒体` を送ると進捗を更新できます�
 - 短尺動画：ready
 - 原文：https://github.com/open-webui/open-webui/releases/tag/v0.11.2
 
-## 2. [LlamaIndex](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/808018cb5919e4d24848.md)
+## 2. [n8n](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/661a21d7a88389fb3c23.md)
+- コード：`661a21d7`
+- 状態：ready / 次：note
+- 判定：発信候補
+- 収益準備度：43点 / 需要：未検証 / 結果：未計測
+- 計測：閲覧 0 / クリック 0 / 登録 0 / 成約 0 / 売上 0.0円
+- 切り口：n8nが、どんな作業に役立つのかを初心者向けに整理する。
+- 読者の悩み：AIツールの名前は見つかるが、結局どの作業に使えるのか分からない。
+- note：ready
+- X：ready
+- Threads：ready
+- 短尺動画：ready
+- 原文：https://github.com/n8n-io/n8n/releases/tag/n8n%402.36.9
+
+## 3. [n8n](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/70e9cfc0299ce8dc3766.md)
+- コード：`70e9cfc0`
+- 状態：ready / 次：note
+- 判定：発信候補
+- 収益準備度：43点 / 需要：未検証 / 結果：未計測
+- 計測：閲覧 0 / クリック 0 / 登録 0 / 成約 0 / 売上 0.0円
+- 切り口：n8nが、どんな作業に役立つのかを初心者向けに整理する。
+- 読者の悩み：AIツールの名前は見つかるが、結局どの作業に使えるのか分からない。
+- note：ready
+- X：ready
+- Threads：ready
+- 短尺動画：ready
+- 原文：https://github.com/n8n-io/n8n/releases/tag/stable
+
+## 4. [LlamaIndex](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/808018cb5919e4d24848.md)
 - コード：`808018cb`
 - 状態：ready / 次：note
 - 判定：発信候補
@@ -34,7 +62,7 @@ Telegramで `/posted コード 媒体` を送ると進捗を更新できます�
 - 短尺動画：ready
 - 原文：https://github.com/run-llama/llama_index/releases/tag/v0.14.24
 
-## 3. [LangChain](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/558a79534175d18721ad.md)
+## 5. [LangChain](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/558a79534175d18721ad.md)
 - コード：`558a7953`
 - 状態：ready / 次：note
 - 判定：発信候補

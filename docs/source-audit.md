@@ -8,12 +8,17 @@
 
 ## 登録ソース
 
+v0.1の登録数は41件です。AI SaaSの収益条件だけでなく、AIエージェント、ローカルLLM、RAG、AIコーディング、ブラウザ操作、画像生成、AIアプリ開発の更新も拾います。
+
 | ID | 形式 | 目的 | 取得範囲 |
 |---|---|---|---|
 | `hn_ai_saas` | 公開JSON API | AI SaaSの新規話題 | タイトル・短い本文 |
 | `hn_lifetime_deal` | 公開JSON API | Lifetime Deal | タイトル・短い本文 |
 | `hn_affiliate_program` | 公開JSON API | Affiliate | タイトル・短い本文 |
 | `hn_pricing` | 公開JSON API | Pricing変更 | タイトル・短い本文 |
+| `hn_ai_agents` | 公開JSON API | AIエージェントの新規話題 | タイトル・短い本文 |
+| `hn_open_source_ai` | 公開JSON API | オープンソースAIの新規話題 | タイトル・短い本文 |
+| `hn_ai_automation` | 公開JSON API | AI自動化の新規話題 | タイトル・短い本文 |
 | `github_ai_repositories` | GitHub公式API | AI / SaaSリポジトリ | 公開メタデータ |
 | `github_n8n_releases` | GitHub公式API | n8n更新 | リリース本文 |
 | `github_flowise_releases` | GitHub公式API | Flowise更新 | リリース本文 |
@@ -24,6 +29,18 @@
 | `github_ollama_releases` | GitHub公式API | Ollama更新 | リリース本文 |
 | `github_anythingllm_releases` | GitHub公式API | AnythingLLM更新 | リリース本文 |
 | `github_comfyui_releases` | GitHub公式API | ComfyUI更新 | リリース本文 |
+| `github_vllm_releases` | GitHub公式API | vLLM更新 | リリース本文 |
+| `github_llamacpp_releases` | GitHub公式API | llama.cpp更新 | リリース本文 |
+| `github_continue_releases` | GitHub公式API | Continue更新 | リリース本文 |
+| `github_librechat_releases` | GitHub公式API | LibreChat更新 | リリース本文 |
+| `github_ragflow_releases` | GitHub公式API | RAGFlow更新 | リリース本文 |
+| `github_autogen_releases` | GitHub公式API | AutoGen更新 | リリース本文 |
+| `github_crewai_releases` | GitHub公式API | CrewAI更新 | リリース本文 |
+| `github_langchain_releases` | GitHub公式API | LangChain更新 | リリース本文 |
+| `github_llamaindex_releases` | GitHub公式API | LlamaIndex更新 | リリース本文 |
+| `github_browseruse_releases` | GitHub公式API | Browser Use更新 | リリース本文 |
+| `github_aider_releases` | GitHub公式API | Aider更新 | リリース本文 |
+| `github_gradio_releases` | GitHub公式API | Gradio更新 | リリース本文 |
 | `cloudflare_blog` | 公式RSS | AI / SaaS発表 | RSS本文 |
 | `zapier_blog` | 公式RSS | 自動化・Pricing話題 | RSS本文 |
 | `openai_news` | 公式RSS | OpenAIの製品・研究発表 | RSS本文 |

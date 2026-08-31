@@ -1,8 +1,8 @@
 # AI VALUE RADAR｜今回の監視結果
 
-確認日時：2026/08/31 15:44
+確認日時：2026/08/31 15:53
 
-監視 439件 / 新規 2件 / 有望 0件 / 発信候補 0件 / 発信ネタ 0件
+監視 439件 / 新規 5件 / 有望 0件 / 発信候補 0件 / 発信ネタ 0件
 
 ## 結論
 
@@ -16,12 +16,12 @@
 
 ## 7日間の集計
 
-- 実行回数：19回
+- 実行回数：20回
 - 発信用パック：14件
 - 発信ネタ：14件
 - 価値あり判定：0件
 - 今回は不要判定：0件
-- Affiliate候補：332件
+- Affiliate候補：350件
 - AI呼び出し：0回
 - 収益計測対象：0件
 - 閲覧 / クリック / 登録 / 成約：0 / 0 / 0 / 0
@@ -30,9 +30,7 @@
 
 ## エラー・取得できなかったソース
 
-- product_hunt_feed：robots.txt disallows or is unavailable
-- appsumo_feed：invalid RSS/Atom XML
-- make_pricing_page：HTTP 403
+- なし
 
 発信キュー：[未投稿を確認](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/content_queue.md)
 

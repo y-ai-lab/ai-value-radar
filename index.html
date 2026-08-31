@@ -43,25 +43,48 @@
 
       <section class="stats-grid" aria-label="今回の数字">
         <article class="stat-card accent-blue">
-          <span>監視</span>
+          <span>確認した数</span>
           <strong id="stat-fetched">—</strong>
-          <small>件を確認</small>
+          <small>件</small>
         </article>
         <article class="stat-card accent-green">
-          <span>新規</span>
+          <span>新しく見つかった数</span>
           <strong id="stat-new">—</strong>
-          <small>件を検出</small>
+          <small>件</small>
         </article>
         <article class="stat-card accent-orange">
-          <span>有望</span>
+          <span>お金につながる候補</span>
           <strong id="stat-promising">—</strong>
-          <small>件を選定</small>
+          <small>件</small>
         </article>
         <article class="stat-card accent-purple">
-          <span>発信パック</span>
+          <span>使える文章</span>
           <strong id="stat-packs">—</strong>
-          <small>件を生成</small>
+          <small>件</small>
         </article>
+      </section>
+
+      <section class="easy-guide" aria-labelledby="easy-guide-title">
+        <div class="easy-guide-intro">
+          <p class="eyebrow">はじめての人へ</p>
+          <h2 id="easy-guide-title">やることは、3つだけ。</h2>
+          <p>難しい言葉は気にしなくて大丈夫です。気になる情報を1つ選び、公式ページを見て、使えそうなら投稿します。</p>
+        </div>
+        <ol class="easy-steps">
+          <li>
+            <span class="easy-step-number">1</span>
+            <div><strong>「発信ネタ」を押す</strong><small>AIやサービスの新しい情報が出ます。</small></div>
+          </li>
+          <li>
+            <span class="easy-step-number">2</span>
+            <div><strong>気になるものを1つ選ぶ</strong><small>まずは一番上のものだけで十分です。</small></div>
+          </li>
+          <li>
+            <span class="easy-step-number">3</span>
+            <div><strong>公式ページを見て投稿する</strong><small>発信用パックの「X本文をコピー」が使えます。</small></div>
+          </li>
+        </ol>
+        <button class="easy-start" data-jump="topics" type="button">まず発信ネタを見る →</button>
       </section>
 
       <nav class="tabs" aria-label="表示切り替え">
@@ -106,7 +129,7 @@
           </div>
           <span class="count-pill" id="topic-count">0件</span>
         </div>
-        <p class="section-note">収益候補とは別枠。新機能・料金変更・AI / SaaSの変化を、6つの切り口と30秒動画パックに変換しています。</p>
+        <p class="section-note">ここには、Xやnoteの話題になりそうな情報が出ます。まずは「これは何か」だけ見れば大丈夫です。</p>
         <div id="topic-list" class="card-list"></div>
       </section>
 
@@ -119,7 +142,7 @@
           <a class="text-link" href="data/content_queue.md">Markdown →</a>
         </div>
         <div class="queue-summary" id="queue-summary"></div>
-        <p class="section-note">note → X → Threads → 短尺動画の順で、1つのネタを使い切ります。Telegramから投稿済みを記録できます。</p>
+        <p class="section-note">1つのネタを、note・X・Threads・動画に使い回せます。投稿したらTelegramで記録します。</p>
         <div id="queue-list" class="queue-list"></div>
       </section>
 
@@ -131,7 +154,7 @@
           </div>
           <span class="count-pill" id="metric-runs">0回</span>
         </div>
-        <p class="section-note">最大のKPIは「朝起きたとき、この情報を見る価値があったか」です。Telegramのコマンドで記録します。</p>
+        <p class="section-note">ここは、どの情報が本当に役立ったかを後から確認する場所です。最初は見なくても大丈夫です。</p>
         <div class="metric-list" id="metric-list"></div>
         <div class="commands-card">
           <p class="eyebrow">TELEGRAM COMMANDS</p>

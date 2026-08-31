@@ -8,6 +8,7 @@ from typing import Any, Callable
 from zoneinfo import ZoneInfo
 
 from .ai import apply_ai_analysis
+from .article import generate_article_drafts
 from .config import DATA_DIR, REPORT_DIR, Settings, ensure_data_dirs
 from .filtering import deduplicate_current
 from .models import Opportunity, validate_opportunity
@@ -57,6 +58,8 @@ def _metrics_7d(run_history: list[dict[str, Any]], now: datetime) -> dict[str, A
         "ai_calls",
         "duplicate_count",
         "error_count",
+        "draft_count",
+        "draft_error_count",
     )
     totals = {key: sum(int(entry.get(key, 0) or 0) for entry in recent) for key in keys}
     totals.update({"runs": len(recent), "window": "7d", "calculated_at": now.isoformat()})
@@ -121,6 +124,15 @@ def run_scan(
                 stored["status"] = item.status
                 break
 
+    drafts, draft_errors = generate_article_drafts(
+        top3,
+        data_dir=data_dir,
+        repository_url=settings.repository_url,
+        checked_at=now_iso,
+        limit=settings.max_article_drafts_per_run,
+        max_bytes=settings.max_article_draft_bytes,
+    )
+
     # Reconcile again after the optional AI pass so the public history contains
     # the same score and Japanese analysis that was included in the report.
     for item in current:
@@ -143,6 +155,8 @@ def run_scan(
         "promising_count": len(promising),
         "publishable_count": len(publishable),
         "top3_count": len(top3),
+        "draft_count": len(drafts),
+        "draft_error_count": len(draft_errors),
         "affiliate_count": sum(1 for item in current if item.category == "affiliate_program"),
         "source_stats": source_stats,
         "ai": {
@@ -151,8 +165,9 @@ def run_scan(
             "max_per_run": settings.max_ai_candidates_per_run,
             "errors": len(ai_errors),
         },
+        "drafts": drafts,
         "top3": [item.to_dict() for item in top3],
-        "errors": _bounded_errors(source_errors + ai_errors),
+        "errors": _bounded_errors(source_errors + ai_errors + draft_errors),
         "notification": {"status": "pending"},
     }
 
@@ -175,6 +190,8 @@ def run_scan(
         "promising_count": report["promising_count"],
         "publishable_count": report["publishable_count"],
         "top3_count": report["top3_count"],
+        "draft_count": report["draft_count"],
+        "draft_error_count": report["draft_error_count"],
         "affiliate_count": report["affiliate_count"],
         "ai_calls": ai_calls,
         "duplicate_count": report["duplicate_count"],

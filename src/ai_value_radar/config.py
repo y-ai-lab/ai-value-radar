@@ -29,12 +29,15 @@ class Settings:
     max_ai_candidates_per_run: int = 3
     max_ai_calls_per_day: int = 8
     max_notifications: int = 3
+    max_article_drafts_per_run: int = 3
+    max_article_draft_bytes: int = 30_000
     max_history_items: int = 1000
     max_run_history_items: int = 120
     max_report_bytes: int = 100_000
     notify_min_score: int = 70
     publish_min_score: int = 40
     ai_model: str = "@cf/meta/llama-3.2-3b-instruct"
+    repository_url: str = "https://github.com/y-ai-lab/ai-value-radar"
 
     @classmethod
     def from_env(cls) -> "Settings":
@@ -48,12 +51,19 @@ class Settings:
             ),
             max_ai_calls_per_day=_int_env("RADAR_MAX_AI_CALLS_PER_DAY", cls.max_ai_calls_per_day, 0),
             max_notifications=_int_env("RADAR_MAX_NOTIFICATIONS", cls.max_notifications, 0),
+            max_article_drafts_per_run=_int_env(
+                "RADAR_MAX_ARTICLE_DRAFTS", cls.max_article_drafts_per_run, 0
+            ),
+            max_article_draft_bytes=_int_env(
+                "RADAR_MAX_ARTICLE_DRAFT_BYTES", cls.max_article_draft_bytes, 5_000
+            ),
             max_history_items=_int_env("RADAR_MAX_HISTORY", cls.max_history_items, 100),
             max_run_history_items=_int_env("RADAR_MAX_RUN_HISTORY", cls.max_run_history_items, 7),
             max_report_bytes=_int_env("RADAR_MAX_REPORT_BYTES", cls.max_report_bytes, 10_000),
             notify_min_score=_int_env("RADAR_NOTIFY_MIN_SCORE", cls.notify_min_score, 0),
             publish_min_score=_int_env("RADAR_PUBLISH_MIN_SCORE", cls.publish_min_score, 0),
             ai_model=os.getenv("CLOUDFLARE_AI_MODEL", cls.ai_model),
+            repository_url=os.getenv("RADAR_REPOSITORY_URL", cls.repository_url),
         )
 
     @property

@@ -43,6 +43,7 @@ class PipelineTests(unittest.TestCase):
         self.assertEqual(result["top3"][0]["final_score"], 60)
         self.assertIn("発信候補・要確認", notifications[0])
         self.assertNotIn("%%", notifications[0])
+        self.assertIn("記事下書き：https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/", notifications[0])
 
     def test_clear_rule_candidate_reaches_top3_at_default_threshold(self) -> None:
         notifications: list[str] = []
@@ -117,6 +118,9 @@ class PipelineTests(unittest.TestCase):
             self.assertEqual(result["fetched_count"], 3)
             self.assertEqual(result["unique_count"], 2)
             self.assertEqual(result["top3_count"], 1)
+            self.assertEqual(result["draft_count"], 1)
+            self.assertEqual(result["drafts"][0]["status"], "created")
+            self.assertTrue((Path(directory) / "drafts" / f"{result['top3'][0]['id']}.md").exists())
             self.assertEqual(result["notification"]["status"], "dry_run")
             stored = json.loads((Path(directory) / "opportunities.json").read_text(encoding="utf-8"))
             self.assertEqual(len(stored), 2)
@@ -131,6 +135,7 @@ class PipelineTests(unittest.TestCase):
             )
             self.assertEqual(repeated["new_count"], 0)
             self.assertEqual(repeated["top3_count"], 0)
+            self.assertEqual(repeated["draft_count"], 0)
 
 
 if __name__ == "__main__":

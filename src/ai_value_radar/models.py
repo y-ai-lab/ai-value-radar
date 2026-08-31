@@ -52,6 +52,8 @@ class Opportunity:
     ai_category: Optional[str] = None
     updated_fields: list[str] = field(default_factory=list)
     last_notified_at: Optional[str] = None
+    draft_path: Optional[str] = None
+    draft_status: str = ""
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)

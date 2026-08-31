@@ -35,6 +35,7 @@ def main(argv: list[str] | None = None) -> int:
                 "new": report.get("new_count", 0),
                 "promising": report.get("promising_count", 0),
                 "top3": report.get("top3_count", 0),
+                "drafts": report.get("draft_count", 0),
                 "telegram": report.get("notification", {}).get("status"),
             },
             ensure_ascii=False,

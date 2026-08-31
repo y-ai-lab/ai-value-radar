@@ -84,6 +84,11 @@ def format_telegram_report(report: dict) -> str:
         ),
     ]
     top = report.get("top3", [])
+    drafts = {
+        str(value.get("id")): value
+        for value in report.get("drafts", [])
+        if isinstance(value, dict) and value.get("id")
+    }
     if not top:
         lines.extend(["", "今回は有望な発信候補なし", "次回もAI / SaaSを巡回します。"])
         return "\n".join(lines)
@@ -91,6 +96,7 @@ def format_telegram_report(report: dict) -> str:
     for index, raw in enumerate(top[:3]):
         item = Opportunity(**raw) if isinstance(raw, dict) else raw
         enrich_fallback(item)
+        draft = drafts.get(item.id)
         title = _short(item.ai_title or item.title, 80)
         label = "有望" if item.final_score >= 70 else "発信候補・要確認"
         lines.extend(
@@ -105,4 +111,6 @@ def format_telegram_report(report: dict) -> str:
                 f"URL：{item.url}",
             ]
         )
+        if draft and draft.get("url"):
+            lines.append(f"記事下書き：{draft['url']}")
     return "\n".join(lines)[:3900]

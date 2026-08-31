@@ -86,5 +86,22 @@
     "telegram_configured": true,
     "top3_count": 0,
     "updated_count": 0
+  },
+  {
+    "affiliate_count": 18,
+    "ai_calls": 0,
+    "draft_count": 0,
+    "draft_error_count": 0,
+    "duplicate_count": 199,
+    "error_count": 3,
+    "fetched_count": 238,
+    "new_count": 18,
+    "promising_count": 0,
+    "publishable_count": 0,
+    "run_at": "2026-08-31T11:02:42+09:00",
+    "seconds": 8.78,
+    "telegram_configured": true,
+    "top3_count": 0,
+    "updated_count": 0
   }
 ]

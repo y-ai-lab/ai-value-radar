@@ -33,6 +33,7 @@ Telegramの通知を見るだけです。候補に付いた「発信用パック
 /used CODE       使用済み
 /published CODE 公開済み
 /posted CODE x   Xへ投稿済み（note / threads / videoも可）
+/posturl CODE https://公開した投稿のURL
 /validate CODE signal  需要の反応あり
 /validate CODE validated  検証済み
 /result CODE views=100 clicks=5 signups=1 sales=0 revenue=0

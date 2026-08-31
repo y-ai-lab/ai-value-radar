@@ -61,6 +61,23 @@
     return wrapper;
   }
 
+  function validationLabel(status) {
+    return ({ unverified: "未検証", signal: "反応あり", validated: "検証済み", rejected: "見送り" })[status] || "未検証";
+  }
+
+  function outcomeLabel(status) {
+    return ({ not_measured: "未計測", measuring: "計測中", signal: "反応あり", converted: "成約あり", no_signal: "反応なし" })[status] || "未計測";
+  }
+
+  function resultLine(item) {
+    const views = number(item.views || 0);
+    const clicks = number(item.clicks || 0);
+    const signups = number(item.signups || 0);
+    const sales = number(item.sales || 0);
+    const revenue = number(item.revenue || 0);
+    return `結果：${outcomeLabel(item.outcome_status)} · 閲覧 ${views} · クリック ${clicks} · 登録 ${signups} · 成約 ${sales} · 売上 ${revenue}円`;
+  }
+
   function revenueCard(item, drafts) {
     const card = el("article", "signal-card");
     const top = el("div", "card-top");
@@ -76,6 +93,8 @@
     meta.append(
       el("span", "", `${safeText(item.category, "AI / SaaS")} · ${priceLine(item)}`),
       el("span", "", `実利用：${usageLabel(item.usage_status)}`),
+      el("span", "", `収益準備度：${number(item.revenue_readiness || 0)}点 · 需要：${validationLabel(item.validation_status)}`),
+      el("span", "", resultLine(item)),
       el("span", "code", `コード ${safeText(item.id, "").slice(0, 8)}`),
     );
     card.appendChild(meta);
@@ -108,6 +127,8 @@
     const meta = el("div", "card-meta");
     meta.append(el("span", "code", `コード ${safeText(topic.code || topic.id, "").slice(0, 8)}`));
     meta.append(el("span", "", `実利用：${usageLabel(topic.usage_status)}`));
+    meta.append(el("span", "", `収益準備度：${number(topic.revenue_readiness || 0)}点 · 需要：${validationLabel(topic.validation_status)}`));
+    meta.append(el("span", "", resultLine(topic)));
     if (topic.content_grade) meta.append(el("span", "", safeText(topic.content_grade)));
     if (topic.monetization) meta.append(el("span", "", `収益化：${compact(topic.monetization, 110)}`));
     if (topic.project_type) meta.append(el("span", "", safeText(topic.project_type)));
@@ -206,6 +227,7 @@
 
   function renderMetrics() {
     const metrics = state.metrics || {};
+    const outcomes = metrics.outcomes || {};
     $("#metric-runs").textContent = `${number(metrics.runs || 0)}回`;
     const entries = [
       ["発信パック", metrics.content_pack_count ?? metrics.draft_count],
@@ -213,6 +235,11 @@
       ["価値あり", metrics.feedback_valuable],
       ["今回は不要", metrics.feedback_not_valuable],
       ["Affiliate候補", metrics.affiliate_count],
+      ["計測対象", outcomes.tracked_items],
+      ["クリック", outcomes.clicks],
+      ["登録", outcomes.signups],
+      ["成約", outcomes.sales],
+      ["売上（円）", outcomes.revenue],
       ["AI呼び出し", metrics.ai_calls],
       ["重複", metrics.duplicate_count],
       ["エラー", metrics.error_count],

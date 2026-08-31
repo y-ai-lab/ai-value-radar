@@ -6,7 +6,7 @@ from typing import Any, Iterable
 
 from .models import Opportunity
 from .state import write_text_atomic
-from .writer import CATEGORY_LABELS
+from .writer import CATEGORY_LABELS, display_name
 
 
 def _one_line(value: str | None, limit: int = 700) -> str:
@@ -202,7 +202,7 @@ def render_article_draft(item: Opportunity, checked_at: str, mode: str = "revenu
         checked_display = datetime.fromisoformat(checked_at).strftime("%Y-%m-%d %H:%M %Z")
     except (TypeError, ValueError):
         checked_display = _one_line(checked_at, 40)
-    title = _one_line(item.ai_title or item.title, 180).lstrip("#").strip()
+    title = _one_line(display_name(item), 180).lstrip("#").strip()
     category = CATEGORY_LABELS.get(item.ai_category or item.category, item.ai_category or item.category)
     evidence = item.evidence or item.summary
     summary = _one_line(item.summary or evidence or "公開情報から候補として検出されました。", 800)
@@ -248,6 +248,22 @@ def render_article_draft(item: Opportunity, checked_at: str, mode: str = "revenu
         "公開情報から抽出したメモ：",
         _quote(evidence),
         "",
+    ]
+    if item.github_repository:
+        lines.extend(
+            [
+                "## GitHubプロジェクトの説明",
+                "",
+                f"- 表示名：{title}",
+                f"- リポジトリ：{item.github_repository}",
+                f"- これは何か：{_one_line(item.project_summary or item.summary or '公開プロジェクトの情報です。', 700)}",
+                f"- 用途の目安：{_one_line(item.project_use or 'GitHub上の公開プロジェクトを試したい人向け。', 300)}",
+                f"- 補足：これは完成済みのSaaSとは限らず、開発者向けの公開プロジェクトやコードの場合があります。",
+                "",
+            ]
+        )
+    lines.extend(
+        [
         "## 価格・条件（自動抽出）",
         "",
         f"- 価格：{_price_summary(item)}",
@@ -367,7 +383,8 @@ def render_article_draft(item: Opportunity, checked_at: str, mode: str = "revenu
         "---",
         "このファイルはAI VALUE RADARが自動生成した公開前の発信用パックです。自動投稿・自動公開は行いません。",
         "",
-    ]
+        ]
+    )
     return "\n".join(lines)
 
 
@@ -406,7 +423,7 @@ def generate_article_drafts(
             drafts.append(
                 {
                     "id": item.id,
-                    "title": _one_line(item.ai_title or item.title, 180),
+                    "title": _one_line(display_name(item), 180),
                     "path": relative_path.as_posix(),
                     "url": f"{base_url}/blob/main/{relative_path.as_posix()}",
                     "status": status,

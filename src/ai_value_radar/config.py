@@ -24,7 +24,7 @@ def _int_env(name: str, default: int, minimum: int = 0) -> int:
 class Settings:
     timezone: str = "Asia/Tokyo"
     request_timeout_seconds: int = 12
-    max_http_requests: int = 40
+    max_http_requests: int = 60
     max_source_items: int = 24
     max_ai_candidates_per_run: int = 3
     max_ai_calls_per_day: int = 8

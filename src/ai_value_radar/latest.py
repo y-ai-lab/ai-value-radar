@@ -4,7 +4,7 @@ from datetime import datetime
 from typing import Any
 
 from .models import Opportunity
-from .writer import CATEGORY_LABELS, _short, price_line
+from .writer import CATEGORY_LABELS, _short, display_name, price_line
 
 
 def _markdown_label(value: str) -> str:
@@ -56,7 +56,7 @@ def render_latest_report(report: dict[str, Any]) -> str:
         for index, raw in enumerate(top[:3], start=1):
             item = Opportunity(**raw) if isinstance(raw, dict) else raw
             draft = drafts.get(item.id, {})
-            title = _markdown_label(item.ai_title or item.title)
+            title = _markdown_label(display_name(item))
             draft_url = str(draft.get("url") or "")
             title_link = f"[{title}]({draft_url})" if draft_url else title
             label = "有望" if item.final_score >= 70 else "発信候補・要確認"
@@ -78,13 +78,15 @@ def render_latest_report(report: dict[str, Any]) -> str:
         for index, topic in enumerate(topics[:3], start=1):
             if not isinstance(topic, dict):
                 continue
-            title = _markdown_label(str(topic.get("title", "")))
+            title = _markdown_label(str(topic.get("service_name") or topic.get("title", "")))
             pack_url = str(topic.get("pack_url") or "")
             title_link = f"[{title}]({pack_url})" if pack_url else title
             lines.extend([
                 f"### {index}. 発信価値 {topic.get('content_score', 0)}点",
                 title_link,
                 f"コード：`{topic.get('code') or str(topic.get('id', ''))[:8]}`",
+                f"何をするものか：{_short(str(topic.get('project_summary') or ''), 220)}" if topic.get("project_summary") else "",
+                f"用途の目安：{_short(str(topic.get('project_use') or ''), 160)}" if topic.get("project_use") else "",
                 f"原文：[{topic.get('source', 'source')}]({topic.get('url', '')})",
                 "",
             ])

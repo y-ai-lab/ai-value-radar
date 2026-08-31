@@ -101,14 +101,16 @@ SecretsはSettings → Secrets and variables → Actions → New repository secr
 
 ## 監視ソース
 
-v0.1では19件のソース定義を持ちます。
+v0.1では29件のソース定義を持ちます。
 
 - Hacker Newsの公開JSON検索 4件
-- GitHubの公開API（AIリポジトリと公式リリース）5件
-- Cloudflare / Zapierの公式RSS 2件
+- GitHubの公開API（AIリポジトリと公式リリース）10件
+- Cloudflare / Zapier / OpenAI / Google AI / AWS Machine Learning / Hugging Face / Google DeepMindの公式RSS 7件
 - Product Hunt / AppSumoの公開フィード 2件
 - n8n / Zapier / Make / Cloudflare Workers AIの公式Pricingページ 4件
 - n8n / HubSpotの公式Affiliateページ 2件
+
+GitHubの候補はリポジトリ名をそのまま表示せず、可能な範囲でサービス名、何をするプロジェクトか、用途の目安、公式説明、リポジトリURLを分けて表示します。推定できない場合は「GitHub公開プロジェクト」と明示し、完成済みSaaSと断定しません。
 
 RSS・公開API・単一の公式Pricingページだけを読みます。ログイン、CAPTCHA、ペイウォール回避、サイト全体のクロール、検索結果ページのスクレイピングはしません。各ホストの`robots.txt`を確認し、明示的な拒否または取得不能時はそのソースをスキップします。各リクエストはHTTPS、固定User-Agent、タイムアウト、最大1回の再試行です。
 

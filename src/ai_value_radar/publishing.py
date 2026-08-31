@@ -6,6 +6,7 @@ from typing import Any, Iterable
 
 from .models import Opportunity
 from .state import write_text_atomic
+from .writer import display_name
 
 
 CHANNELS = ("note", "x", "threads", "video")
@@ -142,7 +143,11 @@ def topic_metadata(item: Opportunity, pack: dict[str, Any] | None = None) -> dic
     result: dict[str, Any] = {
         "id": item.id,
         "code": item.id[:8],
-        "title": _one_line(item.ai_title or item.title, 180),
+        "title": _one_line(display_name(item), 180),
+        "service_name": _one_line(item.service_name, 180),
+        "project_type": _one_line(item.project_type, 180),
+        "project_summary": _one_line(item.project_summary, 500),
+        "project_use": _one_line(item.project_use, 260),
         "url": item.url,
         "source": item.source,
         "content_score": item.content_score,
@@ -193,7 +198,11 @@ def upsert_content_queue(
             by_id[item.id] = entry
         entry.update(
             {
-                "title": _one_line(item.ai_title or item.title, 180),
+                "title": _one_line(display_name(item), 180),
+                "service_name": _one_line(item.service_name, 180),
+                "project_type": _one_line(item.project_type, 180),
+                "project_summary": _one_line(item.project_summary, 500),
+                "project_use": _one_line(item.project_use, 260),
                 "url": item.url,
                 "source": item.source,
                 "kind": pack.get("kind", "revenue"),

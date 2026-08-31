@@ -34,6 +34,7 @@ class SourceSpec:
     official: bool = False
     max_items: int = 24
     notes: str = ""
+    service_name: str = ""
 
 
 # These are purpose-built public RSS/API endpoints. The collector does not
@@ -94,6 +95,7 @@ SOURCE_SPECS: tuple[SourceSpec, ...] = (
         official=True,
         max_items=20,
         notes="Official release metadata; no source-code download.",
+        service_name="n8n",
     ),
     SourceSpec(
         "github_flowise_releases",
@@ -104,6 +106,7 @@ SOURCE_SPECS: tuple[SourceSpec, ...] = (
         official=True,
         max_items=20,
         notes="Official release metadata; no source-code download.",
+        service_name="Flowise",
     ),
     SourceSpec(
         "github_openwebui_releases",
@@ -114,6 +117,7 @@ SOURCE_SPECS: tuple[SourceSpec, ...] = (
         official=True,
         max_items=20,
         notes="Official release metadata; no source-code download.",
+        service_name="Open WebUI",
     ),
     SourceSpec(
         "github_litellm_releases",
@@ -124,6 +128,62 @@ SOURCE_SPECS: tuple[SourceSpec, ...] = (
         official=True,
         max_items=20,
         notes="Official release metadata; no source-code download.",
+        service_name="LiteLLM",
+    ),
+    SourceSpec(
+        "github_dify_releases",
+        "GitHub Releases: Dify",
+        "github_releases",
+        "https://api.github.com/repos/langgenius/dify/releases?per_page=20",
+        "official public API",
+        official=True,
+        max_items=20,
+        notes="Official release metadata; no source-code download.",
+        service_name="Dify",
+    ),
+    SourceSpec(
+        "github_langflow_releases",
+        "GitHub Releases: Langflow",
+        "github_releases",
+        "https://api.github.com/repos/langflow-ai/langflow/releases?per_page=20",
+        "official public API",
+        official=True,
+        max_items=20,
+        notes="Official release metadata; no source-code download.",
+        service_name="Langflow",
+    ),
+    SourceSpec(
+        "github_ollama_releases",
+        "GitHub Releases: Ollama",
+        "github_releases",
+        "https://api.github.com/repos/ollama/ollama/releases?per_page=20",
+        "official public API",
+        official=True,
+        max_items=20,
+        notes="Official release metadata; no source-code download.",
+        service_name="Ollama",
+    ),
+    SourceSpec(
+        "github_anythingllm_releases",
+        "GitHub Releases: AnythingLLM",
+        "github_releases",
+        "https://api.github.com/repos/Mintplex-Labs/anything-llm/releases?per_page=20",
+        "official public API",
+        official=True,
+        max_items=20,
+        notes="Official release metadata; no source-code download.",
+        service_name="AnythingLLM",
+    ),
+    SourceSpec(
+        "github_comfyui_releases",
+        "GitHub Releases: ComfyUI",
+        "github_releases",
+        "https://api.github.com/repos/comfyanonymous/ComfyUI/releases?per_page=20",
+        "official public API",
+        official=True,
+        max_items=20,
+        notes="Official release metadata; no source-code download.",
+        service_name="ComfyUI",
     ),
     SourceSpec(
         "cloudflare_blog",
@@ -144,6 +204,61 @@ SOURCE_SPECS: tuple[SourceSpec, ...] = (
         official=True,
         max_items=20,
         notes="RSS feed; no HTML crawling.",
+    ),
+    SourceSpec(
+        "openai_news",
+        "OpenAI News",
+        "rss",
+        "https://openai.com/news/rss.xml",
+        "official RSS",
+        official=True,
+        max_items=20,
+        notes="Official news feed; RSS only, no HTML crawling.",
+        service_name="OpenAI",
+    ),
+    SourceSpec(
+        "google_ai_blog",
+        "Google AI Blog",
+        "rss",
+        "https://blog.google/technology/ai/rss/",
+        "official RSS",
+        official=True,
+        max_items=20,
+        notes="Official technology feed; RSS only, no HTML crawling.",
+        service_name="Google AI",
+    ),
+    SourceSpec(
+        "aws_machine_learning_blog",
+        "AWS Machine Learning Blog",
+        "rss",
+        "https://aws.amazon.com/blogs/machine-learning/feed/",
+        "official RSS",
+        official=True,
+        max_items=20,
+        notes="Official AWS feed; RSS only, no HTML crawling.",
+        service_name="AWS Machine Learning",
+    ),
+    SourceSpec(
+        "huggingface_blog",
+        "Hugging Face Blog",
+        "rss",
+        "https://huggingface.co/blog/feed.xml",
+        "official RSS",
+        official=True,
+        max_items=20,
+        notes="Official blog feed; RSS only, no HTML crawling.",
+        service_name="Hugging Face",
+    ),
+    SourceSpec(
+        "google_deepmind_blog",
+        "Google DeepMind Blog",
+        "rss",
+        "https://deepmind.google/blog/rss.xml",
+        "official RSS",
+        official=True,
+        max_items=20,
+        notes="Official blog feed; RSS only, no HTML crawling.",
+        service_name="Google DeepMind",
     ),
     SourceSpec(
         "product_hunt_feed",
@@ -301,6 +416,87 @@ class HttpClient:
         raise SourceError(f"request failed: {type(last_error).__name__ if last_error else 'unknown'}")
 
 
+GITHUB_SERVICE_NAMES = {
+    "n8n-io/n8n": "n8n",
+    "flowiseai/flowise": "Flowise",
+    "open-webui/open-webui": "Open WebUI",
+    "berriai/litellm": "LiteLLM",
+    "langgenius/dify": "Dify",
+    "langflow-ai/langflow": "Langflow",
+    "ollama/ollama": "Ollama",
+    "mintplex-labs/anything-llm": "AnythingLLM",
+    "comfyanonymous/comfyui": "ComfyUI",
+}
+GITHUB_PROJECT_SUMMARIES = {
+    "n8n": "複数のWebサービスをつなぎ、処理を自動化するワークフロー基盤。",
+    "Flowise": "LLMやAIエージェントの処理を画面上で組み立てる開発ツール。",
+    "Open WebUI": "自分で用意したLLMをブラウザから使うためのAIインターフェース。",
+    "LiteLLM": "複数のLLM APIを共通形式で扱うための開発基盤。",
+    "Dify": "AIアプリやワークフローを構築・運用するための開発プラットフォーム。",
+    "Langflow": "AIエージェントやLLMワークフローを視覚的に組み立てる開発ツール。",
+    "Ollama": "ローカル環境でLLMを実行・管理するためのツール。",
+    "AnythingLLM": "文書や社内データを使ったAIチャットを構築するためのツール。",
+    "ComfyUI": "画像生成モデルの処理手順をノードで組み立てる制作ツール。",
+}
+
+
+def _humanize_repo_name(value: str) -> str:
+    value = re.sub(r"[-_]+", " ", value).strip()
+    return value.title() if value else "GitHubプロジェクト"
+
+
+def _github_use_hint(text: str) -> str:
+    lower = text.lower()
+    if any(word in lower for word in ("workflow", "automation", "zapier", "n8n", "flowise")):
+        return "業務自動化や複数サービスの連携を試したい人向け。"
+    if any(word in lower for word in ("chat", "chatbot", "llm", "language model", "rag")):
+        return "AIチャット、LLM、社内ナレッジ活用を試したい人向け。"
+    if any(word in lower for word in ("image", "video", "diffusion", "comfyui")):
+        return "画像・動画生成やクリエイティブ制作を試したい人向け。"
+    if any(word in lower for word in ("agent", "machine learning", "artificial intelligence", "ai")):
+        return "AI開発や新しいAI活用を試したい人向け。"
+    return "GitHub上の公開プロジェクトを試したい開発者・検証者向け。"
+
+
+def _github_details(
+    full_name: str,
+    name: str,
+    description: str,
+    language: str,
+    topics: list[str],
+    stars: Any = None,
+    homepage: str = "",
+    release: bool = False,
+    service_name: str = "",
+) -> dict[str, Any]:
+    key = full_name.strip().lower()
+    display_name = service_name or GITHUB_SERVICE_NAMES.get(key) or _humanize_repo_name(name or full_name.rsplit("/", 1)[-1])
+    project_type = "公式GitHubリリース" if release else "GitHub公開AIプロジェクト"
+    description = clean_text(description, 800)
+    base_summary = GITHUB_PROJECT_SUMMARIES.get(display_name) or f"{display_name}の公開プロジェクト。GitHub上で更新履歴と利用方法を確認できます。"
+    if release:
+        project_summary = f"{base_summary} リリース概要：{description}" if description else base_summary
+    else:
+        project_summary = description or base_summary
+    context = f"{display_name} {description} {' '.join(topics)}"
+    try:
+        star_count = int(stars) if stars is not None else None
+    except (TypeError, ValueError):
+        star_count = None
+    return {
+        "service_name": display_name,
+        "project_type": project_type,
+        "project_summary": project_summary,
+        "project_use": _github_use_hint(context),
+        "github_owner": full_name.split("/", 1)[0] if "/" in full_name else "",
+        "github_repository": full_name,
+        "github_language": language or "",
+        "github_stars": star_count,
+        "github_topics": topics[:12],
+        "github_homepage": homepage,
+    }
+
+
 def _local_name(tag: str) -> str:
     return tag.rsplit("}", 1)[-1].lower()
 
@@ -324,7 +520,7 @@ def _child_link(element: ET.Element) -> str:
     return ""
 
 
-def parse_feed(payload: str, source_id: str) -> list[dict[str, str | None]]:
+def parse_feed(payload: str, source_id: str) -> list[dict[str, Any]]:
     try:
         root = ET.fromstring(payload)
     except ET.ParseError as exc:
@@ -350,7 +546,7 @@ def parse_feed(payload: str, source_id: str) -> list[dict[str, str | None]]:
     return results
 
 
-def fetch_source(client: HttpClient, spec: SourceSpec) -> list[dict[str, str | None]]:
+def fetch_source(client: HttpClient, spec: SourceSpec) -> list[dict[str, Any]]:
     if spec.kind == "rss":
         payload, _ = client.get(spec.url, "application/rss+xml, application/atom+xml, application/xml;q=0.9, text/xml;q=0.8")
         return parse_feed(payload, spec.id)[: spec.max_items]
@@ -377,6 +573,9 @@ def fetch_source(client: HttpClient, spec: SourceSpec) -> list[dict[str, str | N
                 "published_at": None,
                 "source": spec.id,
                 "evidence": summary,
+                "service_name": spec.service_name or spec.name,
+                "project_type": "公式価格・Affiliate情報",
+                "project_summary": meta_summary or title,
             }
         ]
 
@@ -412,43 +611,65 @@ def fetch_source(client: HttpClient, spec: SourceSpec) -> list[dict[str, str | N
             url = item.get("html_url") or ""
             summary = item.get("description") or ""
             if title and url:
-                results.append(
-                    {
+                full_name = str(item.get("full_name") or title)
+                details = _github_details(
+                    full_name,
+                    str(item.get("name") or title),
+                    str(summary),
+                    str(item.get("language") or ""),
+                    [str(topic) for topic in item.get("topics", []) if topic],
+                    item.get("stargazers_count"),
+                    str(item.get("homepage") or ""),
+                )
+                results.append({
                         "title": str(title),
                         "url": str(url),
                         "summary": str(summary),
                         "published_at": str(item.get("pushed_at") or "") or None,
                         "source": spec.id,
                         "evidence": str(summary) or str(title),
-                    }
-                )
+                        **details,
+                    })
         return results[: spec.max_items]
 
     if spec.kind == "github_releases":
         results = []
+        repo_match = re.search(r"/repos/([^/]+/[^/]+)/releases", spec.url)
+        repository = repo_match.group(1) if repo_match else ""
+        repository_name = repository.rsplit("/", 1)[-1] if repository else spec.service_name
         for item in data if isinstance(data, list) else []:
             title = item.get("name") or item.get("tag_name") or ""
             url = item.get("html_url") or ""
             summary = item.get("body") or ""
             if title and url:
-                results.append(
-                    {
+                details = _github_details(
+                    repository,
+                    repository_name,
+                    str(summary),
+                    "",
+                    [],
+                    None,
+                    "",
+                    release=True,
+                    service_name=spec.service_name,
+                )
+                results.append({
                         "title": str(title),
                         "url": str(url),
                         "summary": str(summary),
                         "published_at": str(item.get("published_at") or "") or None,
                         "source": spec.id,
                         "evidence": str(summary) or str(title),
-                    }
-                )
+                        **details,
+                    })
         return results[: spec.max_items]
 
     raise SourceError(f"unsupported source kind: {spec.kind}")
 
 
-def collect_candidates(settings: Settings) -> tuple[list[dict[str, str | None]], dict[str, Any], list[dict[str, str]]]:
+def collect_candidates(settings: Settings) -> tuple[list[dict[str, Any]], dict[str, Any], list[dict[str, str]]]:
     client = HttpClient(settings)
-    raw: list[dict[str, str | None]] = []
+    raw: list[dict[str, Any]] = []
     source_stats: dict[str, Any] = {}
     errors: list[dict[str, str]] = []
     for spec in SOURCE_SPECS:

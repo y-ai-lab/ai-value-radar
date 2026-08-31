@@ -44,6 +44,16 @@ class Opportunity:
     canonical_url: str = ""
     published_at: Optional[str] = None
     summary: str = ""
+    service_name: str = ""
+    project_type: str = ""
+    project_summary: str = ""
+    project_use: str = ""
+    github_owner: str = ""
+    github_repository: str = ""
+    github_language: str = ""
+    github_stars: Optional[int] = None
+    github_topics: list[str] = field(default_factory=list)
+    github_homepage: str = ""
     why_now: str = ""
     best_for: str = ""
     skip_if: str = ""

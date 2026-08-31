@@ -19,8 +19,18 @@
 | `github_flowise_releases` | GitHub公式API | Flowise更新 | リリース本文 |
 | `github_openwebui_releases` | GitHub公式API | Open WebUI更新 | リリース本文 |
 | `github_litellm_releases` | GitHub公式API | LiteLLM更新 | リリース本文 |
+| `github_dify_releases` | GitHub公式API | Dify更新 | リリース本文 |
+| `github_langflow_releases` | GitHub公式API | Langflow更新 | リリース本文 |
+| `github_ollama_releases` | GitHub公式API | Ollama更新 | リリース本文 |
+| `github_anythingllm_releases` | GitHub公式API | AnythingLLM更新 | リリース本文 |
+| `github_comfyui_releases` | GitHub公式API | ComfyUI更新 | リリース本文 |
 | `cloudflare_blog` | 公式RSS | AI / SaaS発表 | RSS本文 |
 | `zapier_blog` | 公式RSS | 自動化・Pricing話題 | RSS本文 |
+| `openai_news` | 公式RSS | OpenAIの製品・研究発表 | RSS本文 |
+| `google_ai_blog` | 公式RSS | Google AI発表 | RSS本文 |
+| `aws_machine_learning_blog` | 公式RSS | AI実装・サービス発表 | RSS本文 |
+| `huggingface_blog` | 公式RSS | AIモデル・アプリ発表 | RSS本文 |
+| `google_deepmind_blog` | 公式RSS | AI研究・製品発表 | RSS本文 |
 | `product_hunt_feed` | 公開Atom | 新規プロダクト | フィード項目 |
 | `appsumo_feed` | 公開RSS | Deal情報 | フィード項目 |
 | `n8n_pricing_page` | 公式ページ | Pricing変更 | 1ページの要約 |
@@ -34,7 +44,7 @@
 
 ## コスト・レート制御
 
-- HTTPリクエスト上限：1実行40回
+- HTTPリクエスト上限：1実行60回
 - HTTPタイムアウト：12秒
 - 再試行：一時的な失敗に最大1回
 - 取得項目：ソースごとに最大24件程度

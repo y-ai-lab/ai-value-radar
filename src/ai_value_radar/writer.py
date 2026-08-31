@@ -21,6 +21,10 @@ USAGE_LABELS = {
 }
 
 
+def display_name(item: Opportunity) -> str:
+    return item.ai_title or item.service_name or item.title
+
+
 def _short(value: str, limit: int) -> str:
     value = " ".join((value or "").split())
     return value if len(value) <= limit else value[: limit - 1] + "…"
@@ -37,7 +41,10 @@ def enrich_fallback(item: Opportunity) -> Opportunity:
             else "今回の巡回で新規または重要な変化として検出。"
         )
     if not item.best_for:
-        item.best_for = "AI・自動化・マーケティングを試す人。"
+        if item.project_use:
+            item.best_for = item.project_use
+        else:
+            item.best_for = "AI・自動化・マーケティングを試す人。"
         if "affiliate" in text or item.category == "affiliate_program":
             item.best_for = "AI/SaaSを紹介できる発信者・運用者。"
     if not item.skip_if:
@@ -102,7 +109,7 @@ def format_telegram_report(report: dict) -> str:
             item = Opportunity(**raw) if isinstance(raw, dict) else raw
             enrich_fallback(item)
             draft = drafts.get(item.id)
-            title = _short(item.ai_title or item.title, 80)
+            title = _short(display_name(item), 80)
             label = "有望" if item.final_score >= 70 else "発信候補・要確認"
             usage = USAGE_LABELS.get(getattr(item, "usage_status", "not_used"), "未使用")
             lines.extend(
@@ -118,6 +125,13 @@ def format_telegram_report(report: dict) -> str:
                     f"URL：{item.url}",
                 ]
             )
+            if item.github_repository:
+                lines.extend(
+                    [
+                        f"概要：{_short(item.project_summary or item.summary, 120)}",
+                        f"用途：{_short(item.project_use or item.best_for, 100)}",
+                    ]
+                )
             if draft and draft.get("url"):
                 lines.append(f"発信用パック：{draft['url']}")
     else:
@@ -129,13 +143,14 @@ def format_telegram_report(report: dict) -> str:
         for topic in topics[:3]:
             if not isinstance(topic, dict):
                 continue
-            title = _short(str(topic.get("title", "")), 90)
+            title = _short(str(topic.get("service_name") or topic.get("title", "")), 90)
             code = str(topic.get("code") or str(topic.get("id", ""))[:8])
             lines.extend(
                 [
                     "",
                     f"📝 {topic.get('content_score', 0)}点｜{title}",
                     f"コード：{code}　実利用：{USAGE_LABELS.get(str(topic.get('usage_status', 'not_used')), '未使用')}",
+                    f"概要：{_short(str(topic.get('project_summary') or ''), 120)}" if topic.get("project_summary") else "",
                     f"原文：{topic.get('url', '')}",
                 ]
             )

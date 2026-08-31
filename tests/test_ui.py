@@ -22,6 +22,8 @@ class StaticDashboardTests(unittest.TestCase):
         self.assertIn("6つの切り口と30秒動画パック", html)
         self.assertIn("Telegram", html)
         self.assertIn("pack.html?file=", javascript)
+        self.assertIn("service_name", javascript)
+        self.assertIn("project_summary", javascript)
         self.assertIn('id="pack-main"', pack_html)
         self.assertIn("data\\/drafts\\/", pack_javascript)
         self.assertIn("navigator.clipboard", pack_javascript)

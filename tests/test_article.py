@@ -68,6 +68,18 @@ class ArticleDraftTests(unittest.TestCase):
         self.assertIn("具体的な結果・制限・感想を実体験メモに追記", content)
         self.assertIn("売上を保証するものではありません", content)
 
+    def test_github_project_explanation_is_included(self) -> None:
+        item = sample_opportunity()
+        item.title = "demo/ai-workflow"
+        item.service_name = "AI Workflow"
+        item.github_repository = "demo/ai-workflow"
+        item.project_summary = "AI workflows for small teams."
+        item.project_use = "業務自動化や複数サービスの連携を試したい人向け。"
+        content = render_article_draft(item, "2026-08-31T00:00:00+00:00", mode="publishing")
+        self.assertIn("## GitHubプロジェクトの説明", content)
+        self.assertIn("これは何か：AI workflows for small teams.", content)
+        self.assertIn("用途の目安：業務自動化", content)
+
     def test_generate_is_stable_and_reports_unchanged(self) -> None:
         item = sample_opportunity()
         with tempfile.TemporaryDirectory() as directory:

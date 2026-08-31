@@ -67,7 +67,7 @@
     const main = el("div");
     const kicker = el("p", "card-kicker", `${safeText(item.source)} / ${safeText(item.status, "要確認")}`);
     const heading = el("h3");
-    append(heading, link(safeText(item.ai_title || item.title), item.url, ""));
+    append(heading, link(safeText(item.ai_title || item.service_name || item.title), item.url, ""));
     main.append(kicker, heading);
     top.append(main, scoreBadge(item.final_score));
     card.appendChild(top);
@@ -93,14 +93,18 @@
     const main = el("div");
     main.appendChild(el("p", "card-kicker", `${safeText(topic.source)} / ${safeText(topic.status, "新規")}`));
     const heading = el("h3");
-    append(heading, link(safeText(topic.title), topic.url, ""));
+    append(heading, link(safeText(topic.service_name || topic.title), topic.url, ""));
     main.appendChild(heading);
     top.append(main, scoreBadge(topic.content_score));
     card.appendChild(top);
-    card.appendChild(el("p", "card-summary", "6つの発信切り口と30秒動画パックを生成済み。まず公式情報を確認し、使った範囲だけ追記します。"));
+    const topicSummary = topic.project_summary
+      ? `${compact(topic.project_summary, 170)}${topic.project_use ? ` 用途：${compact(topic.project_use, 90)}` : ""}`
+      : "6つの発信切り口と30秒動画パックを生成済み。まず公式情報を確認し、使った範囲だけ追記します。";
+    card.appendChild(el("p", "card-summary", topicSummary));
     const meta = el("div", "card-meta");
     meta.append(el("span", "code", `コード ${safeText(topic.code || topic.id, "").slice(0, 8)}`));
     meta.append(el("span", "", `実利用：${usageLabel(topic.usage_status)}`));
+    if (topic.project_type) meta.append(el("span", "", safeText(topic.project_type)));
     card.appendChild(meta);
     const actions = el("div", "card-actions");
     append(actions, link("発信用パック", packHref(topic.pack_path, topic.pack_url), "action-link"));
@@ -168,7 +172,7 @@
     visible.forEach((item) => {
       const row = el("article", "queue-row");
       const heading = el("h3");
-      append(heading, link(safeText(item.title), packHref(item.pack_path, item.pack_url), ""));
+      append(heading, link(safeText(item.service_name || item.title), packHref(item.pack_path, item.pack_url), ""));
       row.appendChild(heading);
       row.appendChild(el("small", "", `コード ${safeText(item.code || item.id, "").slice(0, 8)} · ${safeText(item.status, "ready")} · 次：${channelLabels[item.next_channel] || "—"}`));
       const track = el("div", "progress-track");

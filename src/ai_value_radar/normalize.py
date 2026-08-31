@@ -5,6 +5,7 @@ import html
 import re
 from datetime import datetime, timedelta, timezone
 from html.parser import HTMLParser
+from typing import Any
 from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 
 from .models import Opportunity
@@ -209,7 +210,7 @@ def infer_category(title: str, summary: str) -> str:
     return "other"
 
 
-def make_opportunity(raw: dict[str, str | None], now_iso: str) -> Opportunity | None:
+def make_opportunity(raw: dict[str, Any], now_iso: str) -> Opportunity | None:
     title = clean_text(raw.get("title"), 300)
     url = normalize_url(raw.get("url"))
     if not title or not url:
@@ -222,6 +223,14 @@ def make_opportunity(raw: dict[str, str | None], now_iso: str) -> Opportunity | 
     discount = extract_discount(text)
     affiliate_rate, affiliate_type, cookie_days = extract_affiliate(text)
     deadline = extract_deadline(text)
+    github_topics = raw.get("github_topics")
+    if not isinstance(github_topics, list):
+        github_topics = []
+    github_stars = raw.get("github_stars")
+    try:
+        github_stars = int(github_stars) if github_stars is not None else None
+    except (TypeError, ValueError):
+        github_stars = None
     identifier = hashlib.sha256(f"{source}|{normalize_title(title)}|{url}".encode("utf-8")).hexdigest()[:20]
     return Opportunity(
         id=identifier,
@@ -243,5 +252,15 @@ def make_opportunity(raw: dict[str, str | None], now_iso: str) -> Opportunity | 
         canonical_url=url,
         published_at=raw.get("published_at"),
         summary=summary,
+        service_name=clean_text(str(raw.get("service_name") or ""), 180),
+        project_type=clean_text(str(raw.get("project_type") or ""), 180),
+        project_summary=clean_text(str(raw.get("project_summary") or ""), 900),
+        project_use=clean_text(str(raw.get("project_use") or ""), 300),
+        github_owner=clean_text(str(raw.get("github_owner") or ""), 120),
+        github_repository=clean_text(str(raw.get("github_repository") or ""), 180),
+        github_language=clean_text(str(raw.get("github_language") or ""), 80),
+        github_stars=github_stars,
+        github_topics=[clean_text(str(topic), 40) for topic in github_topics[:12] if topic],
+        github_homepage=normalize_url(raw.get("github_homepage")) if raw.get("github_homepage") else "",
         evidence=clean_text(raw.get("evidence") or summary, 500),
     )

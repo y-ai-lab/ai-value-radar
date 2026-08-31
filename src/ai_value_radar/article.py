@@ -353,6 +353,7 @@ def render_article_draft(item: Opportunity, checked_at: str, mode: str = "revenu
         f"- 需要検証：{validation_label(item.validation_status)}",
         f"- 現在の根拠：{demand_evidence}",
         f"- 投稿後の結果：{outcome_label(item.outcome_status)}",
+        f"- 投稿先URL：{item.post_url or '未登録（公開後にTelegramの/posturlで登録）'}",
         f"- 検証プラン：{validation_plan}",
         "- 成功とみなす目安：クリック・登録・成約のいずれかを確認し、数字と日付を記録する。",
         "- 見送りとみなす目安：公式条件が確認できない、読者の悩みが曖昧、複数回試しても反応がない。",

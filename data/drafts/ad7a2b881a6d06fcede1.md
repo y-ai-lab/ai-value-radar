@@ -1,6 +1,6 @@
-# Open WebUI
+# llama.cpp
 
-> AI VALUE RADARの公開前調査下書き｜duplicate｜AI/SaaS情報｜発信ネタ 60点
+> AI VALUE RADARの公開前調査下書き｜新規｜AI/SaaS情報｜発信ネタ 90点
 > 自動確認日時：2026-09-01 06:41 UTC+09:00
 > 実利用ステータス：未使用
 > 重要：これは公開情報から作った下書きであり、筆者の実利用レビューではありません。公開前に公式情報と実体験を追記・確認してください。
@@ -9,27 +9,27 @@
 
 ## 先に結論
 
-Open WebUIの公式GitHubリリース（v0.11.2）です。主な変更：Added 🖼️ **Richer previews for terminal files.** Word documents and slide decks produced in the terminal are now previewed as the finished document rather than an approximation, and every document preview gains a page st…
+llama.cppの公式GitHubリリース（b10727）です。主な変更：metal : add concat support for quantized types (28116) Assisted-by: pi:llama.cpp/DeepSeek-V4-Flash-0731 **Website:** **Attestations:** **macOS/iOS:** [macOS Apple Silicon (arm64)](https://github.com/ggml-org/llama.cpp/re…
 
 これは収益案件の確定ではなく、AI / SaaSについて発信する価値があるかを確認するためのネタです。価格や条件が魅力的に見えても、筆者自身の試用、利用規約の確認、日本からの利用可否の確認が終わるまでは公開判断しません。
 
 ## 何が起きたか
 
 - 区分：AI/SaaS情報
-- 検出元：github_openwebui_releases
-- 発信価値の一次判定：60点 / 100点
-- 参照URL：https://github.com/open-webui/open-webui/releases/tag/v0.11.2
+- 検出元：github_llamacpp_releases
+- 発信価値の一次判定：90点 / 100点
+- 参照URL：https://github.com/ggml-org/llama.cpp/releases/tag/b10727
 
 公開情報から抽出したメモ：
-> ### Added - 🖼️ **Richer previews for terminal files.** Word documents and slide decks produced in the terminal are now previewed as the finished document rather than an approximation, and every document preview gains a page strip down the side with numbered thumbnails you can click to jump straight to a page, and the notice warning that a preview might differ from the download is gone now that it does not. [Commit](https://github.com/open-webui/open-webui/commit/061fb434328ea8365cc4961519e8adbe5
+> metal : add concat support for quantized types (#28116) Assisted-by: pi:llama.cpp/DeepSeek-V4-Flash-0731 **Website:** - **Attestations:** - **macOS/iOS:** - [macOS Apple Silicon (arm64)](https://github.com/ggml-org/llama.cpp/releases/download/b10727/llama-b10727-bin-macos-arm64.tar.gz) - macOS Apple Silicon (arm64, KleidiAI enabled) [DISABLED](https://github.com/ggml-org/llama.cpp/pull/23780) - [macOS Intel (x64)](https://github.com/ggml-org/llama.cpp/releases/download/b10727/llama-b10727-bin-ma
 
 ## GitHubプロジェクトの説明
 
-- 表示名：Open WebUI
-- リポジトリ：open-webui/open-webui
-- GitHubページ：https://github.com/open-webui/open-webui
-- これは何か：自分で用意したAIを、ChatGPTのような画面から使えるようにするツール。
-- 用途の目安：自分用・チーム用のAIチャット環境を試したい人向け。
+- 表示名：llama.cpp
+- リポジトリ：ggml-org/llama.cpp
+- GitHubページ：https://github.com/ggml-org/llama.cpp
+- これは何か：PCや比較的小さな環境でもAIモデルを動かしやすくする実装。
+- 用途の目安：PC上でローカルAIを試したい人や、外部送信なしで検証したい人向け。
 
 
 
@@ -38,7 +38,7 @@ Open WebUIの公式GitHubリリース（v0.11.2）です。主な変更：Added 
 ## 読者に伝える切り口
 
 - 読者の悩み：AIツールの名前は見つかるが、結局どの作業に使えるのか分からない。
-- この記事の切り口：Open WebUIが、どんな作業に役立つのかを初心者向けに整理する。
+- この記事の切り口：llama.cppが、どんな作業に役立つのかを初心者向けに整理する。
 - 読者が次にすること：公式リポジトリの概要を確認し、自分の用途に合うかを一つだけ試す。
 
 ## 価格・条件（自動抽出）
@@ -56,7 +56,7 @@ Open WebUIの公式GitHubリリース（v0.11.2）です。主な変更：Added 
 
 ## 向いている人
 
-自分用・チーム用のAIチャット環境を試したい人向け。
+PC上でローカルAIを試したい人や、外部送信なしで検証したい人向け。
 
 ## 見送る人・不要な人
 
@@ -78,8 +78,8 @@ Open WebUIの公式GitHubリリース（v0.11.2）です。主な変更：Added 
 - 検証プラン：1. READMEとライセンスを確認。 2. 自分の作業に使える最小例を1つ試す。 3. 読者の反応と相談・依頼の有無を記録。
 - 成功とみなす目安：クリック・登録・成約のいずれかを確認し、数字と日付を記録する。
 - 見送りとみなす目安：公式条件が確認できない、読者の悩みが曖昧、複数回試しても反応がない。
-- Telegramで需要状態を更新：`/validate 3e9f4df2 signal` または `validated`
-- Telegramで結果を記録：`/result 3e9f4df2 views=100 clicks=5 signups=1 sales=0 revenue=0`
+- Telegramで需要状態を更新：`/validate ad7a2b88 signal` または `validated`
+- Telegramで結果を記録：`/result ad7a2b88 views=100 clicks=5 signups=1 sales=0 revenue=0`
 - `revenue` は円。省略した項目は前回値を維持します。
 
 ## 実際に使う前の確認リスト
@@ -106,12 +106,12 @@ Open WebUIの公式GitHubリリース（v0.11.2）です。主な変更：Added 
 
 ## まとめ
 
-Open WebUIは、現時点では「確認する価値がある候補」です。公開する場合は、上の実体験メモと公式情報の確認結果を埋め、推測と事実を分けて記載します。
+llama.cppは、現時点では「確認する価値がある候補」です。公開する場合は、上の実体験メモと公式情報の確認結果を埋め、推測と事実を分けて記載します。
 
 ## 参照元
 
-- [github_openwebui_releases](https://github.com/open-webui/open-webui/releases/tag/v0.11.2)
-- 取得対象：AI/SaaS情報 / duplicate
+- [github_llamacpp_releases](https://github.com/ggml-org/llama.cpp/releases/tag/b10727)
+- 取得対象：AI/SaaS情報 / 新規
 
 ## 発信用パック（公開前）
 
@@ -119,16 +119,16 @@ Open WebUIは、現時点では「確認する価値がある候補」です。�
 
 ### noteタイトル案
 
-1. Open WebUIは何ができる？自分で用意したAIを、ChatGPTのような画面から使えるようにするツール
-2. Open WebUIを使う前に確認したい料金・制限・向いている人
-3. AIツールが多すぎる人へ：Open WebUIを調べてみた
+1. llama.cppは何ができる？PCや比較的小さな環境でもAIモデルを動かしやすくする実装
+2. llama.cppを使う前に確認したい料金・制限・向いている人
+3. AIツールが多すぎる人へ：llama.cppを調べてみた
 
 ### note導入文
 
-最近、Open WebUIというAI / SaaSの条件が気になりました。
-公開情報では、Open WebUIの公式GitHubリリース（v0.11.2）です。主な変更：Added 🖼️ **Richer previews for terminal files.** Word documents and slide decks produced in the terminal are now previewed as the finished document rather than an approximation, and every document preview gains a page st…
+最近、llama.cppというAI / SaaSの条件が気になりました。
+公開情報では、llama.cppの公式GitHubリリース（b10727）です。主な変更：metal : add concat support for quantized types (28116) Assisted-by: pi:llama.cpp/DeepSeek-V4-Flash-0731 **Website:** **Attestations:** **macOS/iOS:** [macOS Apple Silicon (arm64)](https://github.com/ggml-org/llama.cpp/re…
 
-この記事では、Open WebUIが、どんな作業に役立つのかを初心者向けに整理する。
+この記事では、llama.cppが、どんな作業に役立つのかを初心者向けに整理する。
 
 ただ、料金や機能だけを見て「おすすめ」とは言えません。日本から使えるのか、商用利用できるのか、実際の作業がどれくらい楽になるのかは、自分で試して確認する必要があります。
 
@@ -136,10 +136,10 @@ Open WebUIは、現時点では「確認する価値がある候補」です。�
 
 ### 6つの発信切り口
 
-1. 価格・条件：Open WebUIの料金、無料枠、期限を整理する。
-   下書きの軸：Open WebUIの公式GitHubリリース（v0.11.2）です。主な変更：Added 🖼️ **Richer previews for terminal files.** Word documents and slide decks produced in the terminal are now previewed as the finished document rather than an approximation, a…
-2. 初心者向け：Open WebUIはどんな作業を減らせそうかを説明する。
-   下書きの軸：自分用・チーム用のAIチャット環境を試したい人向け。
+1. 価格・条件：llama.cppの料金、無料枠、期限を整理する。
+   下書きの軸：llama.cppの公式GitHubリリース（b10727）です。主な変更：metal : add concat support for quantized types (28116) Assisted-by: pi:llama.cpp/DeepSeek-V4-Flash-0731 **Website:** **Attestations:** **macOS/iOS:** [macOS Apple Silicon (arm64)](h…
+2. 初心者向け：llama.cppはどんな作業を減らせそうかを説明する。
+   下書きの軸：PC上でローカルAIを試したい人や、外部送信なしで検証したい人向け。
 3. 比較・選び方：似たAI / SaaSと比べる前に、何を確認するかを書く。
    下書きの軸：公式GitHubで更新を確認。自分の作業に使える変化か、今のうちに小さく試す。
 4. 実験ログ：実際に試した手順、かかった時間、できたこと・できなかったことを記録する。
@@ -152,9 +152,9 @@ Open WebUIは、現時点では「確認する価値がある候補」です。�
 ### 30秒動画パック
 
 - 想定尺：30秒 / 縦型
-- Hook（0〜3秒）：『Open WebUI。安さより先に、確認したい条件があります。』
-- 0〜3秒：Open WebUIを大きく表示。
-- 4〜10秒：Open WebUIの公式GitHubリリース（v0.11.2）です。主な変更：Added 🖼️ **Richer previews for terminal files.** Word documents and slide decks produced in the terminal are now previewed as the finished …
+- Hook（0〜3秒）：『llama.cpp。安さより先に、確認したい条件があります。』
+- 0〜3秒：llama.cppを大きく表示。
+- 4〜10秒：llama.cppの公式GitHubリリース（b10727）です。主な変更：metal : add concat support for quantized types (28116) Assisted-by: pi:llama.cpp/DeepSeek-V4-Flash-0731 **Website:** **Attestations:** **macO…
 - 11〜18秒：なぜ今見るのか。公式GitHubで更新を確認。自分の作業に使える変化か、今のうちに小さく試す。
 - 19〜25秒：注意点。公式ページで価格、期限、日本利用、商用利用、自動更新を確認。
 - 26〜30秒：『自分で試して、向いている人・見送る人をまとめます。』
@@ -166,24 +166,24 @@ Open WebUIは、現時点では「確認する価値がある候補」です。�
 ### Xにそのまま投稿（280字以内）
 
 ```text
-最近、Open WebUIの更新が気になった。
+最近、llama.cppの更新が気になった。
 
-自分で用意したAIを、ChatGPTのような画面から使えるようにするツール。
+PCや比較的小さな環境でもAIモデルを動かしやすくする実装。
 
-自分用・チーム用のAIチャット環境を試したいなら、使い道はありそう。
+PC上でローカルAIを試したい人や、外部送信なしで検証したいなら、使い道はありそう。
 
 まだ触っていないので、使い勝手や細かい制限は確認中。まずは小さく試してみる。
 
 #AIツール #AI活用
-https://github.com/open-webui/open-webui/releases/tag/v0.11.2
+https://github.com/ggml-org/llama.cpp/releases/tag/b10727
 ```
 
 ### Threads投稿案
 
 ```text
 1/3
-Open WebUIが気になったので、公開情報を確認しました。
-Open WebUIが、どんな作業に役立つのかを初心者向けに整理する。
+llama.cppが気になったので、公開情報を確認しました。
+llama.cppが、どんな作業に役立つのかを初心者向けに整理する。
 読者の悩み：AIツールの名前は見つかるが、結局どの作業に使えるのか分からない。
 
 2/3
@@ -193,7 +193,7 @@ Open WebUIが、どんな作業に役立つのかを初心者向けに整理す�
 3/3
 実際に試した範囲と、まだ未確認の条件を分けて共有します。
 向いている人・見送る人を正直にまとめます。
-https://github.com/open-webui/open-webui/releases/tag/v0.11.2
+https://github.com/ggml-org/llama.cpp/releases/tag/b10727
 #AIツール #SaaS
 ```
 

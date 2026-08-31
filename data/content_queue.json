@@ -47,7 +47,7 @@
     "source": "github_openwebui_releases",
     "status": "ready",
     "title": "Open WebUI",
-    "updated_at": "2026-08-31T20:13:46+09:00",
+    "updated_at": "2026-09-01T06:41:21+09:00",
     "url": "https://github.com/open-webui/open-webui/releases/tag/v0.11.2",
     "usage_status": "not_used",
     "validation_status": "unverified",
@@ -102,8 +102,118 @@
     "source": "n8n_affiliate_page",
     "status": "ready",
     "title": "n8n official affiliate program",
-    "updated_at": "2026-08-31T20:13:46+09:00",
+    "updated_at": "2026-09-01T06:41:21+09:00",
     "url": "https://n8n.io/affiliates",
+    "usage_status": "not_used",
+    "validation_status": "unverified",
+    "validation_updated_at": null,
+    "views": 0
+  },
+  {
+    "channels": {
+      "note": {
+        "status": "ready"
+      },
+      "threads": {
+        "status": "ready"
+      },
+      "video": {
+        "status": "ready"
+      },
+      "x": {
+        "status": "ready"
+      }
+    },
+    "clicks": 0,
+    "code": "ae2f0cd4",
+    "content_angle": "n8nが、どんな作業に役立つのかを初心者向けに整理する。",
+    "content_grade": "発信候補",
+    "content_score": 90,
+    "created_at": "2026-09-01T06:41:21+09:00",
+    "github_homepage": "",
+    "github_language": "",
+    "github_stars": null,
+    "github_topics": [],
+    "id": "ae2f0cd42422eb6118fc",
+    "kind": "publishing",
+    "monetization": "自分の作業で使える範囲を確認し、可能ならAI導入・自動化の小さな設定代行や作業効率化に転用できる可能性。",
+    "next_channel": "note",
+    "outcome_status": "not_measured",
+    "outcome_updated_at": null,
+    "pack_path": "data/drafts/ae2f0cd42422eb6118fc.md",
+    "pack_url": "https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/ae2f0cd42422eb6118fc.md",
+    "post_url": "",
+    "post_url_updated_at": null,
+    "project_summary": "Gmailやスプレッドシートなどをつなぎ、繰り返し作業を自動化するツール。",
+    "project_type": "公式GitHubリリース",
+    "project_use": "定型業務の自動化や、複数サービスの連携を試したい人向け。",
+    "reader_action": "公式リポジトリの概要を確認し、自分の用途に合うかを一つだけ試す。",
+    "reader_problem": "AIツールの名前は見つかるが、結局どの作業に使えるのか分からない。",
+    "revenue": 0.0,
+    "revenue_readiness": 43,
+    "sales": 0,
+    "service_name": "n8n",
+    "signups": 0,
+    "source": "github_n8n_releases",
+    "status": "ready",
+    "title": "n8n",
+    "updated_at": "2026-09-01T06:41:21+09:00",
+    "url": "https://github.com/n8n-io/n8n/releases/tag/n8n%402.37.6",
+    "usage_status": "not_used",
+    "validation_status": "unverified",
+    "validation_updated_at": null,
+    "views": 0
+  },
+  {
+    "channels": {
+      "note": {
+        "status": "ready"
+      },
+      "threads": {
+        "status": "ready"
+      },
+      "video": {
+        "status": "ready"
+      },
+      "x": {
+        "status": "ready"
+      }
+    },
+    "clicks": 0,
+    "code": "ad7a2b88",
+    "content_angle": "llama.cppが、どんな作業に役立つのかを初心者向けに整理する。",
+    "content_grade": "発信候補",
+    "content_score": 90,
+    "created_at": "2026-09-01T06:41:21+09:00",
+    "github_homepage": "",
+    "github_language": "",
+    "github_stars": null,
+    "github_topics": [],
+    "id": "ad7a2b881a6d06fcede1",
+    "kind": "publishing",
+    "monetization": "自分の作業で使える範囲を確認し、可能ならAI導入・自動化の小さな設定代行や作業効率化に転用できる可能性。",
+    "next_channel": "note",
+    "outcome_status": "not_measured",
+    "outcome_updated_at": null,
+    "pack_path": "data/drafts/ad7a2b881a6d06fcede1.md",
+    "pack_url": "https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/ad7a2b881a6d06fcede1.md",
+    "post_url": "",
+    "post_url_updated_at": null,
+    "project_summary": "PCや比較的小さな環境でもAIモデルを動かしやすくする実装。",
+    "project_type": "公式GitHubリリース",
+    "project_use": "PC上でローカルAIを試したい人や、外部送信なしで検証したい人向け。",
+    "reader_action": "公式リポジトリの概要を確認し、自分の用途に合うかを一つだけ試す。",
+    "reader_problem": "AIツールの名前は見つかるが、結局どの作業に使えるのか分からない。",
+    "revenue": 0.0,
+    "revenue_readiness": 43,
+    "sales": 0,
+    "service_name": "llama.cpp",
+    "signups": 0,
+    "source": "github_llamacpp_releases",
+    "status": "ready",
+    "title": "llama.cpp",
+    "updated_at": "2026-09-01T06:41:21+09:00",
+    "url": "https://github.com/ggml-org/llama.cpp/releases/tag/b10727",
     "usage_status": "not_used",
     "validation_status": "unverified",
     "validation_updated_at": null,

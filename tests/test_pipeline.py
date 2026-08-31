@@ -11,6 +11,44 @@ from ai_value_radar.pipeline import run_scan
 
 
 class PipelineTests(unittest.TestCase):
+    def test_clear_rule_candidate_reaches_top3_at_default_threshold(self) -> None:
+        notifications: list[str] = []
+
+        def collector(settings: Settings):
+            raw = [
+                {
+                    "title": "AI automation lifetime deal 60% off",
+                    "url": "https://vendor.example/clear-rule-deal",
+                    "summary": (
+                        "Lifetime access $69 instead of $199. 60% off. "
+                        "Available worldwide. Free trial. Ends soon."
+                    ),
+                    "source": "official_vendor",
+                }
+            ]
+            return raw, {"official_vendor": {"status": "ok", "items": 1}}, []
+
+        def notifier(message: str) -> str:
+            notifications.append(message)
+            return "dry_run"
+
+        with tempfile.TemporaryDirectory() as directory:
+            result = run_scan(
+                Settings(max_http_requests=5, max_source_items=5, max_ai_candidates_per_run=0),
+                collector=collector,
+                notifier=notifier,
+                now=datetime(2026, 8, 31, 0, 0, tzinfo=timezone.utc),
+                data_dir=Path(directory),
+            )
+
+        self.assertEqual(result["promising_count"], 1)
+        self.assertEqual(result["top3_count"], 1)
+        self.assertEqual(result["top3"][0]["rule_score"], 70)
+        self.assertEqual(result["top3"][0]["final_score"], 70)
+        self.assertEqual(result["notification"]["status"], "dry_run")
+        self.assertEqual(len(notifications), 1)
+        self.assertIn("🥇 70点", notifications[0])
+
     def test_fetch_filter_score_report_without_network(self) -> None:
         def collector(settings: Settings):
             raw = [

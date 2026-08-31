@@ -49,10 +49,7 @@
   }
 
   function copyReady(value) {
-    const lines=value.replace(/\r/g,"").split("\n");
-    if(lines[0] && /^```[A-Za-z0-9_-]*\s*$/.test(lines[0].trim())) lines.shift();
-    if(lines.length && lines[lines.length-1].trim()==="```") lines.pop();
-    return lines.join("\n").trim();
+    return value.replace(/\r/g,"").trim().replace(/^```[^\n]*\n/, "").replace(/\n```\s*$/, "").trim();
   }
 
   async function copyText(value, button) {

@@ -1,6 +1,6 @@
 # AI VALUE RADAR v0.1
 
-AI / SaaSの公開情報を1日4回巡回し、Lifetime Deal、値引き、無料クレジット、Affiliate Program、Pricing変更の候補を機械的に絞り込み、上位3件だけをTelegramへ送る小さな監視システムです。
+AI / SaaSの公開情報を1日4回巡回し、Lifetime Deal、値引き、無料クレジット、Affiliate Program、Pricing変更の候補を機械的に絞り込み、上位3件だけをTelegramへ送る小さな監視システムです。70点以上を「有望」、40〜69点を「発信候補・要確認」として扱います。
 
 ## できること
 
@@ -46,7 +46,7 @@ SecretsはSettings → Secrets and variables → Actions → New repository secr
 
 ## Telegram通知
 
-通知はスマホで読める短い1メッセージです。新規または重要更新で、最終70点以上の候補から最大3件を送ります。対象がない場合は「今回は有望案件なし」と送ります。同じ内容は履歴で抑止します。
+通知はスマホで読める短い1メッセージです。新規または重要更新で、対象5カテゴリの40点以上の候補から最大3件を送ります。70点以上は「有望」、40〜69点は「発信候補・要確認」と明記します。対象がない場合は「今回は有望な発信候補なし」と送ります。同じ内容は履歴で抑止します。
 
 ## 監視ソース
 
@@ -57,6 +57,7 @@ v0.1では17件のソース定義を持ちます。
 - Cloudflare / Zapierの公式RSS 2件
 - Product Hunt / AppSumoの公開フィード 2件
 - n8n / Zapier / Make / Cloudflare Workers AIの公式Pricingページ 4件
+- n8n / HubSpotの公式Affiliateページ 2件
 
 RSS・公開API・単一の公式Pricingページだけを読みます。ログイン、CAPTCHA、ペイウォール回避、サイト全体のクロール、検索結果ページのスクレイピングはしません。各ホストの`robots.txt`を確認し、明示的な拒否または取得不能時はそのソースをスキップします。各リクエストはHTTPS、固定User-Agent、タイムアウト、最大1回の再試行です。
 

@@ -76,21 +76,27 @@ def format_telegram_report(report: dict) -> str:
         "AI VALUE RADAR",
         display_time,
         "",
-        f"監視：{report.get('fetched_count', 0)}件　新規：{report.get('new_count', 0)}件　有望：{report.get('promising_count', 0)}件",
+        (
+            f"監視：{report.get('fetched_count', 0)}件　"
+            f"新規：{report.get('new_count', 0)}件　"
+            f"有望：{report.get('promising_count', 0)}件　"
+            f"発信候補：{report.get('publishable_count', 0)}件"
+        ),
     ]
     top = report.get("top3", [])
     if not top:
-        lines.extend(["", "今回は有望案件なし", "次回もAI / SaaSを巡回します。"])
+        lines.extend(["", "今回は有望な発信候補なし", "次回もAI / SaaSを巡回します。"])
         return "\n".join(lines)
     medals = ["🥇", "🥈", "🥉"]
     for index, raw in enumerate(top[:3]):
         item = Opportunity(**raw) if isinstance(raw, dict) else raw
         enrich_fallback(item)
         title = _short(item.ai_title or item.title, 80)
+        label = "有望" if item.final_score >= 70 else "発信候補・要確認"
         lines.extend(
             [
                 "",
-                f"{medals[index]} {item.final_score}点｜{title}",
+                f"{medals[index]} {item.final_score}点｜{label}｜{title}",
                 f"{CATEGORY_LABELS.get(item.ai_category or item.category, item.ai_category or item.category)}｜{price_line(item)}",
                 f"注目：{_short(item.why_now, 100)}",
                 f"向く人：{_short(item.best_for, 90)}",

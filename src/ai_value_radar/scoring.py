@@ -68,7 +68,12 @@ def calculate_rule_score(item: Opportunity) -> int:
                 score += 10
         if item.cookie_days is not None and item.cookie_days >= 30:
             score += 5
-        if item.source.startswith("github_") or item.source in {"cloudflare_blog", "zapier_blog"}:
+        if (
+            item.source.startswith("github_")
+            or item.source in {"cloudflare_blog", "zapier_blog"}
+            or item.source.endswith("_affiliate_page")
+            or item.source.endswith("_pricing_page")
+        ):
             score += 5
 
     if any(word in text for word in UTILITY_WORDS):

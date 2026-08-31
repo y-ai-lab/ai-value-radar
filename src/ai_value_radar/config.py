@@ -33,6 +33,7 @@ class Settings:
     max_run_history_items: int = 120
     max_report_bytes: int = 100_000
     notify_min_score: int = 70
+    publish_min_score: int = 40
     ai_model: str = "@cf/meta/llama-3.2-3b-instruct"
 
     @classmethod
@@ -51,6 +52,7 @@ class Settings:
             max_run_history_items=_int_env("RADAR_MAX_RUN_HISTORY", cls.max_run_history_items, 7),
             max_report_bytes=_int_env("RADAR_MAX_REPORT_BYTES", cls.max_report_bytes, 10_000),
             notify_min_score=_int_env("RADAR_NOTIFY_MIN_SCORE", cls.notify_min_score, 0),
+            publish_min_score=_int_env("RADAR_PUBLISH_MIN_SCORE", cls.publish_min_score, 0),
             ai_model=os.getenv("CLOUDFLARE_AI_MODEL", cls.ai_model),
         )
 

@@ -158,7 +158,17 @@ def extract_affiliate(text: str) -> tuple[float | None, str | None, int | None]:
         parsed = float(match.group(1))
         if 0 <= parsed <= 100:
             rate = parsed
-    affiliate_type = "recurring" if any(word in lower for word in ("recurring", "recurr", "monthly commission")) else "one_time"
+    affiliate_type = "recurring" if any(
+        word in lower
+        for word in (
+            "recurring",
+            "recurr",
+            "monthly commission",
+            "revenue share",
+            "rev share",
+            "for 12 months",
+        )
+    ) else "one_time"
     cookie_days: int | None = None
     cookie = re.search(r"(?:cookie|クッキー)[^\d]{0,15}(\d{1,3})\s*(?:day|days|日)", lower)
     if cookie:

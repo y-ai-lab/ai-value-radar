@@ -20,6 +20,15 @@ from .telegram import send_report
 from .writer import enrich_fallback, format_telegram_report
 
 
+TARGET_CATEGORIES = {
+    "lifetime_deal",
+    "discount",
+    "free_credit",
+    "affiliate_program",
+    "pricing_change",
+}
+
+
 def _now(settings: Settings) -> datetime:
     try:
         return datetime.now(ZoneInfo(settings.timezone))
@@ -44,6 +53,7 @@ def _metrics_7d(run_history: list[dict[str, Any]], now: datetime) -> dict[str, A
         "promising_count",
         "top3_count",
         "affiliate_count",
+        "publishable_count",
         "ai_calls",
         "duplicate_count",
         "error_count",
@@ -88,13 +98,21 @@ def run_scan(
     if not isinstance(runtime_state, dict):
         runtime_state = {}
     current, merged_history, state_counts = reconcile(unique, history, now_iso)
-    eligible = [item for item in current if item.status in {"new", "updated"} and item.status != "ended"]
+    eligible = [
+        item
+        for item in current
+        if item.status in {"new", "updated"}
+        and item.status != "ended"
+        and item.category in TARGET_CATEGORIES
+    ]
     ai_calls, ai_errors = apply_ai_analysis(eligible, settings, runtime_state)
     for item in current:
         enrich_fallback(item)
     promising = [item for item in eligible if item.final_score >= settings.notify_min_score]
     promising.sort(key=lambda item: (item.final_score, item.confidence, item.title), reverse=True)
-    top3 = promising[: settings.max_notifications]
+    publishable = [item for item in eligible if item.final_score >= settings.publish_min_score]
+    publishable.sort(key=lambda item: (item.final_score, item.confidence, item.title), reverse=True)
+    top3 = publishable[: settings.max_notifications]
     for item in top3:
         item.last_notified_at = now_iso
         for stored in merged_history:
@@ -123,6 +141,7 @@ def run_scan(
         "updated_count": sum(1 for item in current if item.status == "updated"),
         "duplicate_count": current_duplicates + state_counts.get("duplicate", 0),
         "promising_count": len(promising),
+        "publishable_count": len(publishable),
         "top3_count": len(top3),
         "affiliate_count": sum(1 for item in current if item.category == "affiliate_program"),
         "source_stats": source_stats,
@@ -154,6 +173,7 @@ def run_scan(
         "new_count": report["new_count"],
         "updated_count": report["updated_count"],
         "promising_count": report["promising_count"],
+        "publishable_count": report["publishable_count"],
         "top3_count": report["top3_count"],
         "affiliate_count": report["affiliate_count"],
         "ai_calls": ai_calls,

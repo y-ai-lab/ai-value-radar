@@ -203,6 +203,26 @@ SOURCE_SPECS: tuple[SourceSpec, ...] = (
         max_items=2,
         notes="One official pricing page request; no site-wide crawl.",
     ),
+    SourceSpec(
+        "n8n_affiliate_page",
+        "n8n official affiliate program",
+        "official_page",
+        "https://n8n.io/affiliates/",
+        "official public page",
+        official=True,
+        max_items=2,
+        notes="One official affiliate page request; public program terms only.",
+    ),
+    SourceSpec(
+        "hubspot_affiliate_page",
+        "HubSpot official affiliate program",
+        "official_page",
+        "https://www.hubspot.com/partners/affiliates",
+        "official public page",
+        official=True,
+        max_items=2,
+        notes="One official affiliate page request; public program terms only.",
+    ),
 )
 
 
@@ -344,7 +364,9 @@ def fetch_source(client: HttpClient, spec: SourceSpec) -> list[dict[str, str | N
             flags=re.IGNORECASE | re.DOTALL,
         )
         title = clean_text(title_match.group(1) if title_match else spec.name, 300)
-        summary = clean_text(meta_match.group(1) if meta_match else payload, 1600)
+        meta_summary = clean_text(meta_match.group(1) if meta_match else "", 800)
+        visible_summary = clean_text(payload, 1400)
+        summary = clean_text(f"{meta_summary} {visible_summary}", 1600)
         if not summary:
             summary = title
         return [

@@ -82,11 +82,15 @@ def render_latest_report(report: dict[str, Any]) -> str:
             pack_url = str(topic.get("pack_url") or "")
             title_link = f"[{title}]({pack_url})" if pack_url else title
             lines.extend([
-                f"### {index}. 発信価値 {topic.get('content_score', 0)}点",
+                f"### {index}. {topic.get('content_grade', '発信候補')}｜発信価値 {topic.get('content_score', 0)}点",
                 title_link,
                 f"コード：`{topic.get('code') or str(topic.get('id', ''))[:8]}`",
+                f"切り口：{_short(str(topic.get('content_angle') or ''), 240)}" if topic.get("content_angle") else "",
+                f"読者の悩み：{_short(str(topic.get('reader_problem') or ''), 220)}" if topic.get("reader_problem") else "",
                 f"何をするものか：{_short(str(topic.get('project_summary') or ''), 220)}" if topic.get("project_summary") else "",
                 f"用途の目安：{_short(str(topic.get('project_use') or ''), 160)}" if topic.get("project_use") else "",
+                f"次にすること：{_short(str(topic.get('reader_action') or ''), 220)}" if topic.get("reader_action") else "",
+                f"収益化の仮説：{_short(str(topic.get('monetization') or ''), 220)}" if topic.get("monetization") else "",
                 f"原文：[{topic.get('source', 'source')}]({topic.get('url', '')})",
                 "",
             ])

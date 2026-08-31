@@ -157,6 +157,7 @@ class PublishingTests(unittest.TestCase):
         self.assertEqual(queue[0]["channels"]["note"]["status"], "posted")
         rendered = render_content_queue(queue, "2026-08-31T02:00:00+00:00", "https://github.com/y-ai-lab/ai-value-radar")
         self.assertIn("次：X", rendered)
+        self.assertIn("収益準備度", rendered)
         self.assertIn("/posted コード 媒体", rendered)
 
 

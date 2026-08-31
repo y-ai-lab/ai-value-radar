@@ -73,6 +73,18 @@ h1 span { color: var(--blue); }
 .accent-blue { color: var(--blue); } .accent-green { color: var(--green); } .accent-orange { color: var(--orange); } .accent-purple { color: var(--purple); }
 .accent-blue span, .accent-blue small, .accent-green span, .accent-green small, .accent-orange span, .accent-orange small, .accent-purple span, .accent-purple small { color: var(--muted); }
 
+.easy-guide { display: grid; grid-template-columns: 1.1fr 1.4fr auto; gap: 22px; align-items: center; margin-top: 18px; padding: 23px; border: 1px solid rgba(110,231,183,.25); border-radius: 18px; background: linear-gradient(135deg, rgba(110,231,183,.1), rgba(105,169,255,.07)); }
+.easy-guide h2 { margin-bottom: 9px; }
+.easy-guide-intro > p:last-child { max-width: 370px; margin-bottom: 0; color: #c0cce0; font-size: 13px; }
+.easy-steps { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
+.easy-steps li { display: flex; align-items: center; gap: 10px; }
+.easy-step-number { display: grid; flex: 0 0 auto; place-items: center; width: 27px; height: 27px; border-radius: 50%; background: rgba(110,231,183,.18); color: var(--green); font-size: 12px; font-weight: 800; }
+.easy-steps strong, .easy-steps small { display: block; }
+.easy-steps strong { font-size: 13px; }
+.easy-steps small { color: var(--muted); font-size: 11px; }
+.easy-start { cursor: pointer; padding: 11px 14px; border: 1px solid rgba(110,231,183,.4); border-radius: 10px; background: rgba(110,231,183,.13); color: var(--green); font-size: 12px; font-weight: 800; white-space: nowrap; }
+.easy-start:hover { background: rgba(110,231,183,.2); }
+
 .tabs { display: flex; gap: 7px; margin: 44px 0 28px; padding-bottom: 9px; border-bottom: 1px solid var(--line); overflow-x: auto; scrollbar-width: none; }
 .tabs::-webkit-scrollbar { display: none; }
 .tab { flex: 0 0 auto; padding: 9px 15px; border-radius: 999px; background: transparent; color: var(--muted); font-size: 12px; font-weight: 700; }
@@ -151,6 +163,9 @@ h3 { margin-bottom: 7px; font-size: 16px; line-height: 1.3; }
   .status-card { width: fit-content; min-width: 0; margin-top: 22px; }
   .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 9px; }
   .stat-card { padding: 14px; } .stat-card strong { font-size: 27px; }
+  .easy-guide { display: block; padding: 18px; }
+  .easy-guide-intro > p:last-child { margin-bottom: 17px; }
+  .easy-start { width: 100%; margin-top: 17px; }
   .tabs { margin-top: 30px; }
   .section-heading { align-items: center; }
   .signal-card { padding: 16px; }

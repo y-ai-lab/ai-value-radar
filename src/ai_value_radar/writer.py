@@ -40,7 +40,7 @@ def enrich_fallback(item: Opportunity) -> Opportunity:
         if item.affiliate_rate is not None:
             rate = f"{item.affiliate_rate:g}%"
             kind = " recurring" if item.affiliate_type == "recurring" else ""
-            item.monetization = f"Affiliate {rate}%{kind}の可能性。公式条件の確認が必要。"
+            item.monetization = f"Affiliate {rate}{kind}の可能性。公式条件の確認が必要。"
         elif item.category in {"lifetime_deal", "discount", "free_credit"}:
             item.monetization = "自分の作業コストを下げ、制作・発信・受託へ転用できる可能性。"
         else:

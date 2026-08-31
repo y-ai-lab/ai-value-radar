@@ -42,6 +42,7 @@ class PipelineTests(unittest.TestCase):
         self.assertEqual(result["top3_count"], 1)
         self.assertEqual(result["top3"][0]["final_score"], 60)
         self.assertIn("発信候補・要確認", notifications[0])
+        self.assertNotIn("%%", notifications[0])
 
     def test_clear_rule_candidate_reaches_top3_at_default_threshold(self) -> None:
         notifications: list[str] = []

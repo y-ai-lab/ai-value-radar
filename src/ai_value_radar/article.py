@@ -97,7 +97,15 @@ def _usage_sentence(status: str) -> str:
     return "まだ実利用前の調査段階です。公式情報を確認し、自分で試してから公開判断します。"
 
 
-def _x_post(title: str, summary: str, url: str, category: str, usage_status: str = "not_used") -> str:
+def _x_post(
+    title: str,
+    summary: str,
+    url: str,
+    category: str,
+    usage_status: str = "not_used",
+    content_angle: str = "",
+    reader_problem: str = "",
+) -> str:
     if usage_status in {"used", "published"}:
         experience_line = "使った範囲と、まだ確認できていない条件を分けて整理します。"
     elif usage_status == "trial":
@@ -109,9 +117,12 @@ def _x_post(title: str, summary: str, url: str, category: str, usage_status: str
         if usage_status in {"used", "published"}
         else "まだ公開情報で見つけた段階。価格・商用利用・日本からの利用可否は要確認です。"
     )
+    angle_line = _one_line(content_angle or summary, 110)
+    problem_line = f"読者の悩み：{_one_line(reader_problem, 100)}\n" if reader_problem else ""
     body = (
         f"【{category}】{title}\n"
-        f"{_one_line(summary, 70)}\n"
+        f"{angle_line}\n"
+        f"{problem_line}"
         f"{source_line}\n"
         f"{experience_line}\n"
         "#AIツール #SaaS"
@@ -123,15 +134,25 @@ def _x_post(title: str, summary: str, url: str, category: str, usage_status: str
     return body + url_line
 
 
-def _threads_posts(title: str, summary: str, why_now: str, url: str, usage_status: str = "not_used") -> str:
+def _threads_posts(
+    title: str,
+    summary: str,
+    why_now: str,
+    url: str,
+    usage_status: str = "not_used",
+    content_angle: str = "",
+    reader_problem: str = "",
+) -> str:
     experience_line = (
         "使用済みの範囲と、まだ確認できていない条件を分けて共有します。"
         if usage_status in {"used", "published"}
         else "実際に試した範囲と、まだ未確認の条件を分けて共有します。"
     )
+    angle_line = _one_line(content_angle or summary, 180)
+    problem_line = f"\n読者の悩み：{_one_line(reader_problem, 120)}" if reader_problem else ""
     posts = [
         f"1/3\n{title}が気になったので、公開情報を確認しました。\n"
-        f"{_one_line(summary, 180)}",
+        f"{angle_line}{problem_line}",
         "2/3\n"
         f"注目した理由は、{_one_line(why_now, 150)}\n"
         "ただし、価格や利用条件は変わる可能性があります。",
@@ -143,7 +164,16 @@ def _threads_posts(title: str, summary: str, why_now: str, url: str, usage_statu
     return "\n\n".join(posts)
 
 
-def _title_options(title: str, category: str) -> str:
+def _title_options(title: str, category: str, project_summary: str = "") -> str:
+    if project_summary:
+        what_it_is = _one_line(project_summary, 70).rstrip("。")
+        return "\n".join(
+            (
+                f"1. {title}は何ができる？{what_it_is}",
+                f"2. {title}を使う前に確認したい料金・制限・向いている人",
+                f"3. AIツールが多すぎる人へ：{title}を調べてみた",
+            )
+        )
     return "\n".join(
         (
             f"1. {title}は誰に向く？{category}の条件を確認した",
@@ -211,6 +241,9 @@ def render_article_draft(item: Opportunity, checked_at: str, mode: str = "revenu
     skip_if = _one_line(item.skip_if or "公式条件を確認できない場合。", 500)
     monetization = _one_line(item.monetization or "利用価値を確認してから判断します。", 600)
     risk = _one_line(item.risk or "価格、期限、日本利用、商用利用、解約条件を公式ページで確認します。", 600)
+    content_angle = _one_line(item.content_angle or f"{title}が、どんな作業に役立つのかを具体例で確認する。", 500)
+    reader_problem = _one_line(item.reader_problem or "AIの情報は多いのに、自分の作業で試す方法まで落とし込めない。", 400)
+    reader_action = _one_line(item.reader_action or "公式ページで条件を確認し、自分の用途で一つだけ試して結果を記録する。", 400)
     source_name = _one_line(item.source, 120)
     status = {"new": "新規", "updated": "更新", "seen": "既知"}.get(item.status, item.status or "要確認")
     mode_label = "発信ネタ" if mode == "publishing" else "収益候補"
@@ -264,6 +297,12 @@ def render_article_draft(item: Opportunity, checked_at: str, mode: str = "revenu
         )
     lines.extend(
         [
+        "## 読者に伝える切り口",
+        "",
+        f"- 読者の悩み：{reader_problem}",
+        f"- この記事の切り口：{content_angle}",
+        f"- 読者が次にすること：{reader_action}",
+        "",
         "## 価格・条件（自動抽出）",
         "",
         f"- 価格：{_price_summary(item)}",
@@ -330,12 +369,14 @@ def render_article_draft(item: Opportunity, checked_at: str, mode: str = "revenu
         "",
         "### noteタイトル案",
         "",
-        _title_options(title, category),
+        _title_options(title, category, item.project_summary),
         "",
         "### note導入文",
         "",
         f"最近、{title}というAI / SaaSの条件が気になりました。",
         f"公開情報では、{summary}",
+        "",
+        f"この記事では、{content_angle}",
         "",
         "ただ、料金や機能だけを見て「おすすめ」とは言えません。日本から使えるのか、商用利用できるのか、"
         "実際の作業がどれくらい楽になるのかは、自分で試して確認する必要があります。",
@@ -353,13 +394,29 @@ def render_article_draft(item: Opportunity, checked_at: str, mode: str = "revenu
         "### X投稿案（280字以内）",
         "",
         "```text",
-        _x_post(title, summary, item.url, category, item.usage_status),
+        _x_post(
+            title,
+            summary,
+            item.url,
+            category,
+            item.usage_status,
+            content_angle,
+            reader_problem,
+        ),
         "```",
         "",
         "### Threads投稿案",
         "",
         "```text",
-        _threads_posts(title, summary, why_now, item.url, item.usage_status),
+        _threads_posts(
+            title,
+            summary,
+            why_now,
+            item.url,
+            item.usage_status,
+            content_angle,
+            reader_problem,
+        ),
         "```",
         "",
         "### 投稿後の誘導文・CTA案",

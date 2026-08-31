@@ -99,7 +99,7 @@
     card.appendChild(meta);
     const actions = el("div", "card-actions");
     const draft = drafts.get(String(item.id));
-    append(actions, link("発信用パック", packHref(draft?.path, draft?.url), "action-link"));
+    append(actions, link("投稿文を見る", packHref(draft?.path, draft?.url), "action-link"));
     append(actions, link("公式ページ", item.url, "action-link"));
     append(actions, link("投稿先", item.post_url, "action-link"));
     card.appendChild(actions);
@@ -130,7 +130,7 @@
     if (topic.monetization) meta.append(el("span", "", `お金につなげるなら：${compact(topic.monetization, 110)}`));
     card.appendChild(meta);
     const actions = el("div", "card-actions");
-    append(actions, link("発信用パック", packHref(topic.pack_path, topic.pack_url), "action-link"));
+    append(actions, link("投稿文を見る", packHref(topic.pack_path, topic.pack_url), "action-link"));
     append(actions, link("原文", topic.url, "action-link"));
     append(actions, link("投稿先", topic.post_url, "action-link"));
     card.appendChild(actions);
@@ -192,7 +192,7 @@
     const list = $("#queue-list");
     clear(list);
     const visible = queue.filter((item) => item.status !== "completed").slice(0, 20);
-    if (!visible.length) { list.appendChild(el("div", "empty-state", "未投稿の発信用パックはありません。")); return; }
+    if (!visible.length) { list.appendChild(el("div", "empty-state", "まだ投稿していない文章はありません。")); return; }
     visible.forEach((item) => {
       const row = el("article", "queue-row");
       const heading = el("h3");
@@ -227,8 +227,8 @@
     const outcomes = metrics.outcomes || {};
     $("#metric-runs").textContent = `${number(metrics.runs || 0)}回`;
     const entries = [
-      ["発信パック", metrics.content_pack_count ?? metrics.draft_count],
-      ["発信ネタ", metrics.topic_count],
+      ["投稿文", metrics.content_pack_count ?? metrics.draft_count],
+      ["投稿ネタ", metrics.topic_count],
       ["価値あり", metrics.feedback_valuable],
       ["今回は不要", metrics.feedback_not_valuable],
       ["Affiliate候補", metrics.affiliate_count],

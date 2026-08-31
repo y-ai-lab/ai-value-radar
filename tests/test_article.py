@@ -46,7 +46,7 @@ class ArticleDraftTests(unittest.TestCase):
         self.assertIn("発信用パック", content)
         self.assertIn("6つの発信切り口", content)
         self.assertIn("30秒動画パック", content)
-        self.assertIn("X投稿案（280字以内）", content)
+        self.assertIn("Xにそのまま投稿（280字以内）", content)
         self.assertIn("Threads投稿案", content)
         self.assertIn("読者に伝える切り口", content)
         self.assertIn("読者が次にすること", content)
@@ -62,6 +62,23 @@ class ArticleDraftTests(unittest.TestCase):
             "Lifetime Deal",
         )
         self.assertLessEqual(len(post), 280)
+
+    def test_x_post_is_plain_and_natural_for_copy_paste(self) -> None:
+        post = _x_post(
+            "Open WebUI",
+            "公開情報では、自分で用意したAIをChatGPTのような画面から使えるツール。",
+            "https://github.com/open-webui/open-webui/releases/tag/v0.11.2",
+            "AI/SaaS情報",
+            project_summary="自分で用意したAIを、ChatGPTのような画面から使えるようにするツール。",
+            project_use="自分用・チーム用のAIチャット環境を試したい人向け。",
+        )
+        self.assertLessEqual(len(post), 280)
+        self.assertIn("最近、Open WebUIの更新が気になった。", post)
+        self.assertIn("https://github.com/open-webui/open-webui/releases/tag/v0.11.2", post)
+        self.assertNotIn("【", post)
+        self.assertNotIn("読者の悩み：", post)
+        self.assertNotIn("公開情報では", post)
+        self.assertNotIn("AI / SaaS", post)
 
     def test_used_status_changes_pack_language_without_claiming_results(self) -> None:
         item = sample_opportunity()

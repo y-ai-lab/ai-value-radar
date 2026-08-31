@@ -113,6 +113,23 @@ READER_IMPACT_KEYWORDS = (
     "安全",
     "高速",
 )
+GITHUB_SEARCH_NOISE_KEYWORDS = (
+    "news",
+    "satire",
+    "satirical",
+    "awesome",
+    "guide",
+    "list",
+    "collection",
+    "template",
+    "course",
+    "paper",
+    "blog",
+    "newsletter",
+    "ニュース",
+    "まとめ",
+    "ガイド",
+)
 PROJECT_CONTENT_ANGLES = {
     "n8n": "面倒な定型作業を一つ選び、n8nで自動化できるか試す。",
     "Flowise": "Flowiseで簡単なFAQチャットを作れるか、初心者目線で試す。",
@@ -179,7 +196,6 @@ def _content_text(item: Opportunity) -> str:
             item.summary,
             item.evidence,
             item.project_summary,
-            item.project_use,
             item.source,
         )
     ).lower()
@@ -193,10 +209,10 @@ def _content_angle(item: Opportunity) -> str:
     if item.category in {"lifetime_deal", "discount", "free_credit", "pricing_change"}:
         return f"{name}の料金・無料条件が、自分の用途で本当に得になるかを確認する。"
     if item.github_repository:
-        return PROJECT_CONTENT_ANGLES.get(
-            name,
-            f"{name}を使うと、どんな作業を減らせるかを初心者向けに一つだけ試す。",
-        )
+        if name in PROJECT_CONTENT_ANGLES:
+            return PROJECT_CONTENT_ANGLES[name]
+        summary = _one_line(item.project_summary or "AI向けの公開プロジェクト", 110).rstrip("。")
+        return f"{name}は{summary}。自分の作業に使えるか、具体的な一例で確認する。"
     if any(word in text for word in ("new feature", "feature", "新機能", "update", "アップデート")):
         return f"{name}の新機能が、日々の作業をどれだけ減らせるかを実例で確認する。"
     return f"{name}が、どんな人のどんな作業に役立つのかを具体例で確認する。"
@@ -252,7 +268,7 @@ def calculate_content_score(
     source = (source_stats or {}).get(item.source, {})
     score = 0
     if isinstance(source, dict) and source.get("official") is True:
-        score += 10
+        score += 2 if source.get("kind") == "github_search" else 10
     if isinstance(source, dict) and source.get("kind") in {"rss", "github_releases", "official_page"}:
         score += 5
     if item.status == "new":
@@ -278,6 +294,20 @@ def calculate_content_score(
         score -= 12
     if item.source.startswith("hn_"):
         score -= 8
+    if item.source == "github_ai_repositories":
+        # Repository search is useful for discovery, but its results are not
+        # automatically an official product announcement. Keep noisy or tiny
+        # projects out of the main publishing lane while retaining them in
+        # the collected history.
+        score -= 15
+        if item.github_stars is None or item.github_stars < 100:
+            score -= 20
+        elif item.github_stars >= 1000:
+            score += 10
+        else:
+            score += 5
+        if any(word in text for word in GITHUB_SEARCH_NOISE_KEYWORDS):
+            score -= 30
     return max(0, min(100, score))
 
 
@@ -338,6 +368,10 @@ def topic_metadata(item: Opportunity, pack: dict[str, Any] | None = None) -> dic
         "reader_problem": _one_line(item.reader_problem, 400),
         "reader_action": _one_line(item.reader_action, 400),
         "monetization": _one_line(item.monetization, 500),
+        "github_language": _one_line(item.github_language, 80),
+        "github_stars": item.github_stars,
+        "github_topics": item.github_topics[:12],
+        "github_homepage": item.github_homepage,
         "url": item.url,
         "source": item.source,
         "content_score": item.content_score,
@@ -398,6 +432,10 @@ def upsert_content_queue(
                 "reader_problem": _one_line(item.reader_problem, 400),
                 "reader_action": _one_line(item.reader_action, 400),
                 "monetization": _one_line(item.monetization, 500),
+                "github_language": _one_line(item.github_language, 80),
+                "github_stars": item.github_stars,
+                "github_topics": item.github_topics[:12],
+                "github_homepage": item.github_homepage,
                 "url": item.url,
                 "source": item.source,
                 "kind": pack.get("kind", "revenue"),

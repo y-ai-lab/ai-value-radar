@@ -16,7 +16,7 @@ class StaticDashboardTests(unittest.TestCase):
         css = (ROOT / "assets" / "radar.css").read_text(encoding="utf-8")
         self.assertIn('name="viewport"', html)
         self.assertIn('href="assets/radar.css"', html)
-        self.assertIn('src="assets/radar.js"', html)
+        self.assertIn('src="assets/radar.js?', html)
         for path in ("data/last_report.json", "data/content_queue.json", "data/metrics_7d.json"):
             self.assertIn(path, javascript)
         self.assertIn("6つの切り口と30秒動画パック", html)

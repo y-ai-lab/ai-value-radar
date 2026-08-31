@@ -160,6 +160,35 @@ class PublishingTests(unittest.TestCase):
         self.assertIn("収益準備度", rendered)
         self.assertIn("/posted コード 媒体", rendered)
 
+    def test_old_low_context_publishing_pack_is_pruned(self) -> None:
+        old_pack = {
+            "id": "old1234567890",
+            "status": "ready",
+            "kind": "publishing",
+            "content_score": 85,
+            "source": "github_ai_repositories",
+            "github_stars": None,
+            "title": "News Minimalist",
+            "reader_problem": "",
+            "reader_action": "",
+        }
+        self.assertEqual(upsert_content_queue([old_pack], [], [], "2026-08-31T02:00:00+00:00"), [])
+
+    def test_progressed_pack_is_preserved_even_if_old(self) -> None:
+        old_pack = {
+            "id": "old1234567890",
+            "status": "in_progress",
+            "kind": "publishing",
+            "content_score": 20,
+            "source": "github_ai_repositories",
+            "github_stars": None,
+            "title": "Old pack",
+            "reader_problem": "",
+            "reader_action": "",
+        }
+        queue = upsert_content_queue([old_pack], [], [], "2026-08-31T02:00:00+00:00")
+        self.assertEqual(queue[0]["id"], "old1234567890")
+
 
 if __name__ == "__main__":
     unittest.main()

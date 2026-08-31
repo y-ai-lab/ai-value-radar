@@ -1,0 +1,212 @@
+{
+  "affiliate_count": 16,
+  "ai": {
+    "calls": 0,
+    "enabled": false,
+    "errors": 0,
+    "max_per_run": 3
+  },
+  "duplicate_count": 24,
+  "errors": [
+    {
+      "message": "robots.txt disallows or is unavailable",
+      "source": "product_hunt_feed"
+    },
+    {
+      "message": "invalid RSS/Atom XML",
+      "source": "appsumo_feed"
+    },
+    {
+      "message": "HTTP 403",
+      "source": "make_pricing_page"
+    }
+  ],
+  "fetched_count": 236,
+  "metrics_7d": {
+    "affiliate_count": 16,
+    "ai_calls": 0,
+    "calculated_at": "2026-08-31T09:24:45.860507+09:00",
+    "duplicate_count": 24,
+    "error_count": 3,
+    "fetched_count": 236,
+    "new_count": 191,
+    "promising_count": 0,
+    "runs": 1,
+    "top3_count": 0,
+    "window": "7d"
+  },
+  "new_count": 191,
+  "normalized_count": 236,
+  "notification": {
+    "status": "skipped_missing_secrets"
+  },
+  "promising_count": 0,
+  "run_at": "2026-08-31T09:24:45+09:00",
+  "seconds": 6.54,
+  "source_stats": {
+    "_meta": {
+      "failed": 3,
+      "http_requests": 25,
+      "http_retries": 0,
+      "registered": 17,
+      "succeeded": 14
+    },
+    "appsumo_feed": {
+      "items": 0,
+      "kind": "rss",
+      "name": "AppSumo feed",
+      "official": false,
+      "protocol": "public RSS feed",
+      "seconds": 1.32,
+      "status": "error"
+    },
+    "cloudflare_blog": {
+      "items": 20,
+      "kind": "rss",
+      "name": "Cloudflare Blog",
+      "official": true,
+      "protocol": "official RSS",
+      "seconds": 0.17,
+      "status": "ok"
+    },
+    "cloudflare_workers_ai_pricing": {
+      "items": 1,
+      "kind": "official_page",
+      "name": "Cloudflare Workers AI official pricing",
+      "official": true,
+      "protocol": "official public page",
+      "seconds": 0.09,
+      "status": "ok"
+    },
+    "github_ai_repositories": {
+      "items": 24,
+      "kind": "github_search",
+      "name": "GitHub: AI repositories",
+      "official": true,
+      "protocol": "official public API",
+      "seconds": 0.57,
+      "status": "ok"
+    },
+    "github_flowise_releases": {
+      "items": 20,
+      "kind": "github_releases",
+      "name": "GitHub Releases: Flowise",
+      "official": true,
+      "protocol": "official public API",
+      "seconds": 0.17,
+      "status": "ok"
+    },
+    "github_litellm_releases": {
+      "items": 20,
+      "kind": "github_releases",
+      "name": "GitHub Releases: LiteLLM",
+      "official": true,
+      "protocol": "official public API",
+      "seconds": 0.21,
+      "status": "ok"
+    },
+    "github_n8n_releases": {
+      "items": 20,
+      "kind": "github_releases",
+      "name": "GitHub Releases: n8n",
+      "official": true,
+      "protocol": "official public API",
+      "seconds": 0.21,
+      "status": "ok"
+    },
+    "github_openwebui_releases": {
+      "items": 20,
+      "kind": "github_releases",
+      "name": "GitHub Releases: Open WebUI",
+      "official": true,
+      "protocol": "official public API",
+      "seconds": 0.28,
+      "status": "ok"
+    },
+    "hn_affiliate_program": {
+      "items": 20,
+      "kind": "hn_algolia",
+      "name": "Hacker News: affiliate program",
+      "official": false,
+      "protocol": "public JSON API",
+      "seconds": 0.36,
+      "status": "ok"
+    },
+    "hn_ai_saas": {
+      "items": 24,
+      "kind": "hn_algolia",
+      "name": "Hacker News: AI SaaS",
+      "official": false,
+      "protocol": "public JSON API",
+      "seconds": 0.36,
+      "status": "ok"
+    },
+    "hn_lifetime_deal": {
+      "items": 24,
+      "kind": "hn_algolia",
+      "name": "Hacker News: lifetime deal",
+      "official": false,
+      "protocol": "public JSON API",
+      "seconds": 0.36,
+      "status": "ok"
+    },
+    "hn_pricing": {
+      "items": 21,
+      "kind": "hn_algolia",
+      "name": "Hacker News: pricing",
+      "official": false,
+      "protocol": "public JSON API",
+      "seconds": 0.29,
+      "status": "ok"
+    },
+    "make_pricing_page": {
+      "items": 0,
+      "kind": "official_page",
+      "name": "Make official pricing",
+      "official": true,
+      "protocol": "official public page",
+      "seconds": 0.15,
+      "status": "error"
+    },
+    "n8n_pricing_page": {
+      "items": 1,
+      "kind": "official_page",
+      "name": "n8n official pricing",
+      "official": true,
+      "protocol": "official public page",
+      "seconds": 0.1,
+      "status": "ok"
+    },
+    "product_hunt_feed": {
+      "items": 0,
+      "kind": "rss",
+      "name": "Product Hunt feed",
+      "official": false,
+      "protocol": "public Atom feed",
+      "seconds": 0.1,
+      "status": "error"
+    },
+    "zapier_blog": {
+      "items": 20,
+      "kind": "rss",
+      "name": "Zapier Blog",
+      "official": true,
+      "protocol": "official RSS",
+      "seconds": 0.44,
+      "status": "ok"
+    },
+    "zapier_pricing_page": {
+      "items": 1,
+      "kind": "official_page",
+      "name": "Zapier official pricing",
+      "official": true,
+      "protocol": "official public page",
+      "seconds": 0.2,
+      "status": "ok"
+    }
+  },
+  "top3": [],
+  "top3_count": 0,
+  "unique_count": 212,
+  "updated_count": 0
+}

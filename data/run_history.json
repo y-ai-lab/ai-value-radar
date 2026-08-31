@@ -1,1 +1,16 @@
-[]
+[
+  {
+    "affiliate_count": 16,
+    "ai_calls": 0,
+    "duplicate_count": 24,
+    "error_count": 3,
+    "fetched_count": 236,
+    "new_count": 191,
+    "promising_count": 0,
+    "run_at": "2026-08-31T09:24:45+09:00",
+    "seconds": 6.54,
+    "telegram_configured": false,
+    "top3_count": 0,
+    "updated_count": 0
+  }
+]

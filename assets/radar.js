@@ -102,6 +102,7 @@
     const draft = drafts.get(String(item.id));
     append(actions, link("発信用パック", packHref(draft?.path, draft?.url), "action-link"));
     append(actions, link("公式ページ", item.url, "action-link"));
+    append(actions, link("投稿先", item.post_url, "action-link"));
     card.appendChild(actions);
     return card;
   }
@@ -136,6 +137,7 @@
     const actions = el("div", "card-actions");
     append(actions, link("発信用パック", packHref(topic.pack_path, topic.pack_url), "action-link"));
     append(actions, link("原文", topic.url, "action-link"));
+    append(actions, link("投稿先", topic.post_url, "action-link"));
     card.appendChild(actions);
     return card;
   }

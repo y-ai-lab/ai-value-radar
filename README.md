@@ -116,10 +116,10 @@ SecretsはSettings → Secrets and variables → Actions → New repository secr
 
 ## 監視ソース
 
-v0.1では26件のソース定義を持ちます。取得不能と判定した公開ページは登録せず、毎回エラーを出し続ける構成を避けています。
+v0.1では41件のソース定義を持ちます。取得不能と判定した公開ページは登録せず、毎回エラーを出し続ける構成を避けています。
 
-- Hacker Newsの公開JSON検索 4件
-- GitHubの公開API（AIリポジトリと公式リリース）10件
+- Hacker Newsの公開JSON検索 7件（AI SaaS、Lifetime Deal、Affiliate、Pricing、AIエージェント、オープンソースAI、AI自動化）
+- GitHubの公開API（AIリポジトリと公式リリース）22件
 - Cloudflare / Zapier / OpenAI / Google AI / AWS Machine Learning / Hugging Face / Google DeepMindの公式RSS 7件
 - n8n / Zapier / Cloudflare Workers AIの公式Pricingページ 3件
 - n8n / HubSpotの公式Affiliateページ 2件

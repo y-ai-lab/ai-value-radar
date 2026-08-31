@@ -36,6 +36,7 @@ class StaticDashboardTests(unittest.TestCase):
         self.assertIn("navigator.clipboard", pack_javascript)
         self.assertIn("copyReady", pack_javascript)
         self.assertIn("この部分をコピー", pack_javascript)
+        self.assertIn("X本文をコピー", pack_javascript)
         self.assertIn("copy-button", pack_html)
         self.assertIn("chat-fallback.html", html)
         self.assertIn('id="fallback-prompt"', fallback_html)

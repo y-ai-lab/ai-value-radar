@@ -14,6 +14,74 @@
         "status": "ready"
       }
     },
+    "code": "71c0817b",
+    "content_score": 90,
+    "created_at": "2026-08-31T13:48:13+09:00",
+    "id": "71c0817bbf3c6ca5ed4a",
+    "kind": "publishing",
+    "next_channel": "note",
+    "pack_path": "data/drafts/71c0817bbf3c6ca5ed4a.md",
+    "pack_url": "https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/71c0817bbf3c6ca5ed4a.md",
+    "project_summary": "複数のLLM APIを共通形式で扱うための開発基盤。",
+    "project_type": "公式GitHubリリース",
+    "project_use": "AIチャット、LLM、社内ナレッジ活用を試したい人向け。",
+    "service_name": "LiteLLM",
+    "source": "github_litellm_releases",
+    "status": "ready",
+    "title": "LiteLLM",
+    "updated_at": "2026-08-31T13:48:13+09:00",
+    "url": "https://github.com/BerriAI/litellm/releases/tag/v1.99.0-rc.2",
+    "usage_status": "not_used"
+  },
+  {
+    "channels": {
+      "note": {
+        "status": "ready"
+      },
+      "threads": {
+        "status": "ready"
+      },
+      "video": {
+        "status": "ready"
+      },
+      "x": {
+        "status": "ready"
+      }
+    },
+    "code": "7077dbc9",
+    "content_score": 90,
+    "created_at": "2026-08-31T13:48:13+09:00",
+    "id": "7077dbc9a17e72ab5436",
+    "kind": "publishing",
+    "next_channel": "note",
+    "pack_path": "data/drafts/7077dbc9a17e72ab5436.md",
+    "pack_url": "https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/7077dbc9a17e72ab5436.md",
+    "project_summary": "複数のLLM APIを共通形式で扱うための開発基盤。",
+    "project_type": "公式GitHubリリース",
+    "project_use": "AIチャット、LLM、社内ナレッジ活用を試したい人向け。",
+    "service_name": "LiteLLM",
+    "source": "github_litellm_releases",
+    "status": "ready",
+    "title": "LiteLLM",
+    "updated_at": "2026-08-31T13:48:13+09:00",
+    "url": "https://github.com/BerriAI/litellm/releases/tag/v1.100.0-rc.1",
+    "usage_status": "not_used"
+  },
+  {
+    "channels": {
+      "note": {
+        "status": "ready"
+      },
+      "threads": {
+        "status": "ready"
+      },
+      "video": {
+        "status": "ready"
+      },
+      "x": {
+        "status": "ready"
+      }
+    },
     "code": "64a0cc1c",
     "content_score": 98,
     "created_at": "2026-08-31T13:40:27+09:00",

@@ -6,6 +6,12 @@ from typing import Any, Iterable
 
 from .models import Opportunity
 from .state import write_text_atomic
+from .validation import (
+    build_validation_plan,
+    calculate_revenue_readiness,
+    outcome_label,
+    validation_label,
+)
 from .writer import CATEGORY_LABELS, display_name
 
 
@@ -244,6 +250,12 @@ def render_article_draft(item: Opportunity, checked_at: str, mode: str = "revenu
     content_angle = _one_line(item.content_angle or f"{title}が、どんな作業に役立つのかを具体例で確認する。", 500)
     reader_problem = _one_line(item.reader_problem or "AIの情報は多いのに、自分の作業で試す方法まで落とし込めない。", 400)
     reader_action = _one_line(item.reader_action or "公式ページで条件を確認し、自分の用途で一つだけ試して結果を記録する。", 400)
+    validation_plan = _one_line(item.validation_plan or build_validation_plan(item), 800)
+    revenue_readiness = calculate_revenue_readiness(item)
+    demand_evidence = _one_line(
+        item.demand_evidence or "未記録。公式情報は機会の根拠であり、読者需要や成約の証拠ではありません。",
+        500,
+    )
     source_name = _one_line(item.source, 120)
     status = {"new": "新規", "updated": "更新", "seen": "既知"}.get(item.status, item.status or "要確認")
     mode_label = "発信ネタ" if mode == "publishing" else "収益候補"
@@ -334,6 +346,19 @@ def render_article_draft(item: Opportunity, checked_at: str, mode: str = "revenu
         "",
         "これは売上を保証するものではありません。自分の利用体験と読者の課題が一致する場合だけ、"
         "規約に沿って紹介候補にします。",
+        "",
+        "## 収益検証（公開前に必ず行う）",
+        "",
+        f"- 収益化準備度：{revenue_readiness}点 / 100点（行動に移しやすい情報量の目安）",
+        f"- 需要検証：{validation_label(item.validation_status)}",
+        f"- 現在の根拠：{demand_evidence}",
+        f"- 投稿後の結果：{outcome_label(item.outcome_status)}",
+        f"- 検証プラン：{validation_plan}",
+        "- 成功とみなす目安：クリック・登録・成約のいずれかを確認し、数字と日付を記録する。",
+        "- 見送りとみなす目安：公式条件が確認できない、読者の悩みが曖昧、複数回試しても反応がない。",
+        f"- Telegramで需要状態を更新：`/validate {item.id[:8]} signal` または `validated`",
+        f"- Telegramで結果を記録：`/result {item.id[:8]} views=100 clicks=5 signups=1 sales=0 revenue=0`",
+        "- `revenue` は円。省略した項目は前回値を維持します。",
         "",
         "## 実際に使う前の確認リスト",
         "",
@@ -468,6 +493,7 @@ def generate_article_drafts(
         path = draft_dir / f"{item.id}.md"
         try:
             item.content_kind = mode if mode in {"revenue", "publishing"} else "revenue"
+            item.revenue_readiness = calculate_revenue_readiness(item)
             content = render_article_draft(item, checked_at, mode=mode)
             byte_count = len(content.encode("utf-8"))
             if byte_count > max_bytes:
@@ -491,6 +517,9 @@ def generate_article_drafts(
                     "bytes": byte_count,
                     "kind": mode,
                     "content_score": item.content_score,
+                    "revenue_readiness": item.revenue_readiness,
+                    "validation_status": item.validation_status,
+                    "outcome_status": item.outcome_status,
                     "usage_status": item.usage_status,
                 }
             )

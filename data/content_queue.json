@@ -1,0 +1,62 @@
+[
+  {
+    "channels": {
+      "note": {
+        "status": "ready"
+      },
+      "threads": {
+        "status": "ready"
+      },
+      "video": {
+        "status": "ready"
+      },
+      "x": {
+        "status": "ready"
+      }
+    },
+    "code": "b4408208",
+    "content_score": 83,
+    "created_at": "2026-08-31T11:53:42+09:00",
+    "id": "b44082088b154b356dfd",
+    "kind": "publishing",
+    "next_channel": "note",
+    "pack_path": "data/drafts/b44082088b154b356dfd.md",
+    "pack_url": "https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/b44082088b154b356dfd.md",
+    "source": "github_ai_repositories",
+    "status": "ready",
+    "title": "usestrix/strix",
+    "updated_at": "2026-08-31T11:53:42+09:00",
+    "url": "https://github.com/usestrix/strix",
+    "usage_status": "not_used"
+  },
+  {
+    "channels": {
+      "note": {
+        "status": "ready"
+      },
+      "threads": {
+        "status": "ready"
+      },
+      "video": {
+        "status": "ready"
+      },
+      "x": {
+        "status": "ready"
+      }
+    },
+    "code": "f8ddb939",
+    "content_score": 83,
+    "created_at": "2026-08-31T11:53:42+09:00",
+    "id": "f8ddb939ad7f87973aa1",
+    "kind": "publishing",
+    "next_channel": "note",
+    "pack_path": "data/drafts/f8ddb939ad7f87973aa1.md",
+    "pack_url": "https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/f8ddb939ad7f87973aa1.md",
+    "source": "github_ai_repositories",
+    "status": "ready",
+    "title": "threefigure-achromia682/ai-memory",
+    "updated_at": "2026-08-31T11:53:42+09:00",
+    "url": "https://github.com/threefigure-achromia682/ai-memory",
+    "usage_status": "not_used"
+  }
+]

@@ -178,7 +178,7 @@ def _x_post(
             project_line,
         ]
         if use_line:
-            body_lines.append(f"用途としては、{use_line}人に合いそう。")
+            body_lines.append(f"{use_line}なら、使い道はありそう。")
     else:
         body_lines = [
             f"最近、{name}が気になって少し調べてみた。",
@@ -191,7 +191,7 @@ def _x_post(
     elif usage_status in {"used", "published"}:
         status_line = "使った範囲と、まだ分からない点を分けて書く。"
     else:
-        status_line = "まだ触っていないので、使い勝手や細かい制限は確認中。まず小さく試してみる。"
+        status_line = "まだ触っていないので、使い勝手や細かい制限は確認中。まずは小さく試してみる。"
     body_lines.append(status_line)
     body_lines.append("#AIツール #AI活用")
     body = "\n\n".join(line for line in body_lines if line)
@@ -518,74 +518,3 @@ def render_article_draft(item: Opportunity, checked_at: str, mode: str = "revenu
         "### 推奨ハッシュタグ",
         "",
         "#AIツール #SaaS #AI活用 #AI副業",
-        "",
-        "### 発信前の最終チェック",
-        "",
-        "- [ ] タイトルと本文が実際に確認した内容と一致している",
-        "- [ ] 価格・仕様・期限に確認日がある",
-        "- [ ] 自分が使っていない機能を体験談として書いていない",
-        "- [ ] 誇大表現・収益保証・断定表現を削った",
-        "- [ ] 紹介リンクを使う場合、PR / アフィリエイト表記を冒頭に置いた",
-        "",
-        "---",
-        "このファイルはAI VALUE RADARが自動生成した公開前の発信用パックです。自動投稿・自動公開は行いません。",
-        "",
-        ]
-    )
-    return "\n".join(lines)
-
-
-def generate_article_drafts(
-    items: Iterable[Opportunity],
-    data_dir: Path,
-    repository_url: str,
-    checked_at: str,
-    limit: int = 3,
-    max_bytes: int = 30_000,
-    mode: str = "revenue",
-) -> tuple[list[dict[str, Any]], list[dict[str, str]]]:
-    """Write stable per-opportunity Markdown drafts and return safe metadata."""
-    draft_dir = data_dir / "drafts"
-    drafts: list[dict[str, Any]] = []
-    errors: list[dict[str, str]] = []
-    base_url = repository_url.strip().rstrip("/") or "https://github.com/y-ai-lab/ai-value-radar"
-    for item in list(items)[: max(0, limit)]:
-        relative_path = Path("data") / "drafts" / f"{item.id}.md"
-        path = draft_dir / f"{item.id}.md"
-        try:
-            item.content_kind = mode if mode in {"revenue", "publishing"} else "revenue"
-            item.revenue_readiness = calculate_revenue_readiness(item)
-            content = render_article_draft(item, checked_at, mode=mode)
-            byte_count = len(content.encode("utf-8"))
-            if byte_count > max_bytes:
-                errors.append({"stage": "article_draft", "item_id": item.id, "message": "draft exceeds byte limit"})
-                continue
-            previous = path.read_text(encoding="utf-8") if path.exists() else None
-            if previous == content:
-                status = "unchanged"
-            else:
-                write_text_atomic(path, content)
-                status = "updated" if previous is not None else "created"
-            item.draft_path = relative_path.as_posix()
-            item.draft_status = status
-            drafts.append(
-                {
-                    "id": item.id,
-                    "title": _one_line(display_name(item), 180),
-                    "path": relative_path.as_posix(),
-                    "url": f"{base_url}/blob/main/{relative_path.as_posix()}",
-                    "status": status,
-                    "bytes": byte_count,
-                    "kind": mode,
-                    "content_score": item.content_score,
-                    "revenue_readiness": item.revenue_readiness,
-                    "validation_status": item.validation_status,
-                    "outcome_status": item.outcome_status,
-                    "usage_status": item.usage_status,
-                }
-            )
-        except (OSError, UnicodeError, ValueError) as exc:
-            errors.append(
-                {"stage": "article_draft", "item_id": item.id, "message": type(exc).__name__}
-            )
-    return drafts, errors

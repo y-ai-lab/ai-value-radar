@@ -25,6 +25,11 @@
       return "";
     }
   };
+  const packHref = (path, fallback = "") => {
+    const value = String(path || fallback || "");
+    const match = value.match(/data\/drafts\/[A-Za-z0-9_-]+\.md/);
+    return match ? `pack.html?file=${encodeURIComponent(match[0])}` : fallback;
+  };
   const formatDate = (value) => {
     if (!value) return "—";
     const date = new Date(value);
@@ -45,8 +50,6 @@
     if (!href) return null;
     const node = el("a", className, label);
     node.href = href;
-    node.target = "_blank";
-    node.rel = "noopener noreferrer";
     return node;
   };
   const append = (parent, child) => { if (child) parent.appendChild(child); };
@@ -78,7 +81,7 @@
     card.appendChild(meta);
     const actions = el("div", "card-actions");
     const draft = drafts.get(String(item.id));
-    append(actions, link("発信用パック", draft?.url, "action-link"));
+    append(actions, link("発信用パック", packHref(draft?.path, draft?.url), "action-link"));
     append(actions, link("公式ページ", item.url, "action-link"));
     card.appendChild(actions);
     return card;
@@ -100,7 +103,7 @@
     meta.append(el("span", "", `実利用：${usageLabel(topic.usage_status)}`));
     card.appendChild(meta);
     const actions = el("div", "card-actions");
-    append(actions, link("発信用パック", topic.pack_url, "action-link"));
+    append(actions, link("発信用パック", packHref(topic.pack_path, topic.pack_url), "action-link"));
     append(actions, link("原文", topic.url, "action-link"));
     card.appendChild(actions);
     return card;
@@ -165,7 +168,7 @@
     visible.forEach((item) => {
       const row = el("article", "queue-row");
       const heading = el("h3");
-      append(heading, link(safeText(item.title), item.pack_url, ""));
+      append(heading, link(safeText(item.title), packHref(item.pack_path, item.pack_url), ""));
       row.appendChild(heading);
       row.appendChild(el("small", "", `コード ${safeText(item.code || item.id, "").slice(0, 8)} · ${safeText(item.status, "ready")} · 次：${channelLabels[item.next_channel] || "—"}`));
       const track = el("div", "progress-track");

@@ -14,6 +14,59 @@
         "status": "ready"
       }
     },
+    "clicks": 0,
+    "code": "3e9f4df2",
+    "content_angle": "Open WebUIが、どんな作業に役立つのかを初心者向けに整理する。",
+    "content_grade": "要検証",
+    "content_score": 60,
+    "created_at": "2026-08-31T15:36:43+09:00",
+    "github_homepage": "",
+    "github_language": "",
+    "github_stars": null,
+    "github_topics": [],
+    "id": "3e9f4df2adc07066251c",
+    "kind": "publishing",
+    "monetization": "自分の作業で使える範囲を確認し、可能ならAI導入・自動化の小さな設定代行や作業効率化に転用できる可能性。",
+    "next_channel": "note",
+    "outcome_status": "not_measured",
+    "outcome_updated_at": null,
+    "pack_path": "data/drafts/3e9f4df2adc07066251c.md",
+    "pack_url": "https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/3e9f4df2adc07066251c.md",
+    "project_summary": "自分で用意したAIを、ChatGPTのような画面から使えるようにするツール。",
+    "project_type": "公式GitHubリリース",
+    "project_use": "自分用・チーム用のAIチャット環境を試したい人向け。",
+    "reader_action": "公式リポジトリの概要を確認し、自分の用途に合うかを一つだけ試す。",
+    "reader_problem": "AIツールの名前は見つかるが、結局どの作業に使えるのか分からない。",
+    "revenue": 0.0,
+    "revenue_readiness": 43,
+    "sales": 0,
+    "service_name": "Open WebUI",
+    "signups": 0,
+    "source": "github_openwebui_releases",
+    "status": "ready",
+    "title": "Open WebUI",
+    "updated_at": "2026-08-31T15:36:43+09:00",
+    "url": "https://github.com/open-webui/open-webui/releases/tag/v0.11.2",
+    "usage_status": "not_used",
+    "validation_status": "unverified",
+    "validation_updated_at": null,
+    "views": 0
+  },
+  {
+    "channels": {
+      "note": {
+        "status": "ready"
+      },
+      "threads": {
+        "status": "ready"
+      },
+      "video": {
+        "status": "ready"
+      },
+      "x": {
+        "status": "ready"
+      }
+    },
     "code": "2b86ed08",
     "content_angle": "Timefold Solverが、どんな作業に役立つのかを初心者向けに整理する。",
     "content_grade": "要検証",

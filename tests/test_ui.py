@@ -13,6 +13,8 @@ class StaticDashboardTests(unittest.TestCase):
         javascript = (ROOT / "assets" / "radar.js").read_text(encoding="utf-8")
         pack_html = (ROOT / "pack.html").read_text(encoding="utf-8")
         pack_javascript = (ROOT / "assets" / "pack.js").read_text(encoding="utf-8")
+        fallback_html = (ROOT / "chat-fallback.html").read_text(encoding="utf-8")
+        fallback_javascript = (ROOT / "assets" / "chat-fallback.js").read_text(encoding="utf-8")
         css = (ROOT / "assets" / "radar.css").read_text(encoding="utf-8")
         self.assertIn('name="viewport"', html)
         self.assertIn('href="assets/radar.css"', html)
@@ -33,12 +35,19 @@ class StaticDashboardTests(unittest.TestCase):
         self.assertIn("copyReady", pack_javascript)
         self.assertIn("この部分をコピー", pack_javascript)
         self.assertIn("copy-button", pack_html)
+        self.assertIn("chat-fallback.html", html)
+        self.assertIn('id="fallback-prompt"', fallback_html)
+        self.assertIn("y-ai-lab.github.io/ai-value-radar", fallback_html)
+        self.assertIn("navigator.clipboard", fallback_javascript)
+        self.assertIn("プロンプトを全部コピー", fallback_html)
         self.assertIn("@media (max-width: 680px)", css)
         for secret_name in ("TELEGRAM_BOT_TOKEN", "CLOUDFLARE_API_TOKEN", "TELEGRAM_CHAT_ID"):
             self.assertNotIn(secret_name, html)
             self.assertNotIn(secret_name, javascript)
             self.assertNotIn(secret_name, pack_html)
             self.assertNotIn(secret_name, pack_javascript)
+            self.assertNotIn(secret_name, fallback_html)
+            self.assertNotIn(secret_name, fallback_javascript)
 
     def test_dashboard_has_no_external_runtime_dependency(self) -> None:
         html = (ROOT / "index.html").read_text(encoding="utf-8")

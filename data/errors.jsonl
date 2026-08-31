@@ -36,3 +36,6 @@
 {"message": "HTTP 403", "run_at": "2026-08-31T13:40:27+09:00", "source": "make_pricing_page"}
 {"message": "HTTP request budget reached", "run_at": "2026-08-31T13:40:27+09:00", "source": "n8n_affiliate_page"}
 {"message": "robots.txt disallows or is unavailable", "run_at": "2026-08-31T13:40:27+09:00", "source": "hubspot_affiliate_page"}
+{"message": "robots.txt disallows or is unavailable", "run_at": "2026-08-31T13:43:29+09:00", "source": "product_hunt_feed"}
+{"message": "invalid RSS/Atom XML", "run_at": "2026-08-31T13:43:29+09:00", "source": "appsumo_feed"}
+{"message": "HTTP 403", "run_at": "2026-08-31T13:43:29+09:00", "source": "make_pricing_page"}

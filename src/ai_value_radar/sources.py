@@ -458,6 +458,24 @@ def _github_use_hint(text: str) -> str:
     return "GitHub上の公開プロジェクトを試したい開発者・検証者向け。"
 
 
+def _github_release_summary(service_name: str, release_title: str, tag_name: str, body: str) -> str:
+    """Turn a raw Markdown release body into a short reader-facing summary."""
+    service = service_name or "GitHub公開プロジェクト"
+    release_label = tag_name or release_title or "新しいリリース"
+    plain = clean_text(body, 900)
+    plain = re.sub(r"#{1,6}\s*", "", plain)
+    plain = re.sub(r"\s[*-]\s+", " ", plain)
+    plain = re.sub(r"\s+", " ", plain).strip()
+    if plain:
+        # Keep the reader-facing line compact. The full public excerpt remains
+        # in evidence and can be checked from the official release URL.
+        plain = plain[:220].rstrip()
+        if len(plain) == 220:
+            plain += "…"
+        return f"{service}の公式GitHubリリース（{release_label}）です。主な変更：{plain}"
+    return f"{service}の公式GitHubリリース（{release_label}）です。詳しい変更点は公式リリースページで確認できます。"
+
+
 def _github_details(
     full_name: str,
     name: str,
@@ -475,7 +493,7 @@ def _github_details(
     description = clean_text(description, 800)
     base_summary = GITHUB_PROJECT_SUMMARIES.get(display_name) or f"{display_name}の公開プロジェクト。GitHub上で更新履歴と利用方法を確認できます。"
     if release:
-        project_summary = f"{base_summary} リリース概要：{description}" if description else base_summary
+        project_summary = base_summary
     else:
         project_summary = description or base_summary
     context = f"{display_name} {description} {' '.join(topics)}"
@@ -640,12 +658,20 @@ def fetch_source(client: HttpClient, spec: SourceSpec) -> list[dict[str, Any]]:
         for item in data if isinstance(data, list) else []:
             title = item.get("name") or item.get("tag_name") or ""
             url = item.get("html_url") or ""
-            summary = item.get("body") or ""
+            release_body = item.get("body") or ""
+            tag_name = item.get("tag_name") or ""
             if title and url:
+                service_name = spec.service_name or repository_name
+                summary = _github_release_summary(
+                    service_name,
+                    str(title),
+                    str(tag_name),
+                    str(release_body),
+                )
                 details = _github_details(
                     repository,
                     repository_name,
-                    str(summary),
+                    str(release_body),
                     "",
                     [],
                     None,
@@ -659,7 +685,7 @@ def fetch_source(client: HttpClient, spec: SourceSpec) -> list[dict[str, Any]]:
                         "summary": str(summary),
                         "published_at": str(item.get("published_at") or "") or None,
                         "source": spec.id,
-                        "evidence": str(summary) or str(title),
+                        "evidence": str(release_body) or str(summary) or str(title),
                         **details,
                     })
         return results[: spec.max_items]

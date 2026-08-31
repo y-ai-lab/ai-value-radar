@@ -6,6 +6,7 @@ from typing import Any, Iterable
 
 from .models import Opportunity
 from .state import write_text_atomic
+from .validation import outcome_label, validation_label
 from .writer import display_name
 
 
@@ -407,6 +408,16 @@ def topic_metadata(item: Opportunity, pack: dict[str, Any] | None = None) -> dic
         "content_score": item.content_score,
         "status": item.status,
         "usage_status": item.usage_status,
+        "revenue_readiness": item.revenue_readiness,
+        "validation_status": item.validation_status,
+        "validation_updated_at": item.validation_updated_at,
+        "outcome_status": item.outcome_status,
+        "outcome_updated_at": item.outcome_updated_at,
+        "views": item.views,
+        "clicks": item.clicks,
+        "signups": item.signups,
+        "sales": item.sales,
+        "revenue": item.revenue,
     }
     if pack:
         result.update({"pack_path": pack.get("path", ""), "pack_url": pack.get("url", "")})
@@ -473,6 +484,16 @@ def upsert_content_queue(
                 "pack_url": pack.get("url", ""),
                 "usage_status": item.usage_status,
                 "content_score": item.content_score,
+                "revenue_readiness": item.revenue_readiness,
+                "validation_status": item.validation_status,
+                "validation_updated_at": item.validation_updated_at,
+                "outcome_status": item.outcome_status,
+                "outcome_updated_at": item.outcome_updated_at,
+                "views": item.views,
+                "clicks": item.clicks,
+                "signups": item.signups,
+                "sales": item.sales,
+                "revenue": item.revenue,
                 "updated_at": now_iso,
             }
         )
@@ -524,6 +545,7 @@ def render_content_queue(queue: Any, checked_at: str, repository_url: str) -> st
         "",
         "次の媒体から順番に使います：note → X → Threads → 短尺動画",
         "Telegramで `/posted コード 媒体` を送ると進捗を更新できます。",
+        "投稿後は `/result コード views=100 clicks=5 signups=1 sales=0 revenue=0` で反応を記録します。",
         "",
     ]
     visible = [entry for entry in entries if entry.get("status") != "completed"][:20]
@@ -540,6 +562,8 @@ def render_content_queue(queue: Any, checked_at: str, repository_url: str) -> st
                 f"- コード：`{entry.get('code', str(entry.get('id', ''))[:8])}`",
                 f"- 状態：{entry.get('status', 'ready')} / 次：{next_channel}",
                 f"- 判定：{entry.get('content_grade', '発信候補')}",
+                f"- 収益準備度：{entry.get('revenue_readiness', 0)}点 / 需要：{validation_label(str(entry.get('validation_status', 'unverified')))} / 結果：{outcome_label(str(entry.get('outcome_status', 'not_measured')))}",
+                f"- 計測：閲覧 {entry.get('views', 0)} / クリック {entry.get('clicks', 0)} / 登録 {entry.get('signups', 0)} / 成約 {entry.get('sales', 0)} / 売上 {entry.get('revenue', 0)}円",
                 f"- 切り口：{entry.get('content_angle', '')}",
                 f"- 読者の悩み：{entry.get('reader_problem', '')}",
                 f"- note：{entry.get('channels', {}).get('note', {}).get('status', 'ready')}",

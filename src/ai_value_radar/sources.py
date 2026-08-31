@@ -194,6 +194,7 @@ SOURCE_SPECS: tuple[SourceSpec, ...] = (
         official=True,
         max_items=20,
         notes="RSS feed; no HTML crawling.",
+        service_name="Cloudflare",
     ),
     SourceSpec(
         "zapier_blog",
@@ -204,6 +205,7 @@ SOURCE_SPECS: tuple[SourceSpec, ...] = (
         official=True,
         max_items=20,
         notes="RSS feed; no HTML crawling.",
+        service_name="Zapier",
     ),
     SourceSpec(
         "openai_news",
@@ -261,24 +263,6 @@ SOURCE_SPECS: tuple[SourceSpec, ...] = (
         service_name="Google DeepMind",
     ),
     SourceSpec(
-        "product_hunt_feed",
-        "Product Hunt feed",
-        "rss",
-        "https://www.producthunt.com/feed",
-        "public Atom feed",
-        max_items=20,
-        notes="Public feed; if unavailable, the source is skipped.",
-    ),
-    SourceSpec(
-        "appsumo_feed",
-        "AppSumo feed",
-        "rss",
-        "https://appsumo.com/rss/",
-        "public RSS feed",
-        max_items=20,
-        notes="Public feed; if unavailable, the source is skipped.",
-    ),
-    SourceSpec(
         "n8n_pricing_page",
         "n8n official pricing",
         "official_page",
@@ -293,16 +277,6 @@ SOURCE_SPECS: tuple[SourceSpec, ...] = (
         "Zapier official pricing",
         "official_page",
         "https://zapier.com/pricing",
-        "official public page",
-        official=True,
-        max_items=2,
-        notes="One official pricing page request; no site-wide crawl.",
-    ),
-    SourceSpec(
-        "make_pricing_page",
-        "Make official pricing",
-        "official_page",
-        "https://www.make.com/en/pricing",
         "official public page",
         official=True,
         max_items=2,
@@ -578,7 +552,11 @@ def parse_feed(payload: str, source_id: str) -> list[dict[str, Any]]:
 def fetch_source(client: HttpClient, spec: SourceSpec) -> list[dict[str, Any]]:
     if spec.kind == "rss":
         payload, _ = client.get(spec.url, "application/rss+xml, application/atom+xml, application/xml;q=0.9, text/xml;q=0.8")
-        return parse_feed(payload, spec.id)[: spec.max_items]
+        items = parse_feed(payload, spec.id)[: spec.max_items]
+        if spec.service_name:
+            for item in items:
+                item.setdefault("service_name", spec.service_name)
+        return items
 
     if spec.kind == "official_page":
         payload, _ = client.get(spec.url, "text/html, application/xhtml+xml;q=0.9")

@@ -289,8 +289,12 @@ def render_article_draft(item: Opportunity, checked_at: str, mode: str = "revenu
                 "",
                 f"- 表示名：{title}",
                 f"- リポジトリ：{item.github_repository}",
+                f"- GitHubページ：https://github.com/{item.github_repository}",
                 f"- これは何か：{_one_line(item.project_summary or item.summary or '公開プロジェクトの情報です。', 700)}",
                 f"- 用途の目安：{_one_line(item.project_use or 'GitHub上の公開プロジェクトを試したい人向け。', 300)}",
+                f"- 使用言語：{item.github_language}" if item.github_language else "",
+                f"- Stars：{item.github_stars:,}" if isinstance(item.github_stars, int) else "",
+                f"- トピック：{', '.join(item.github_topics[:8])}" if item.github_topics else "",
                 f"- 補足：これは完成済みのSaaSとは限らず、開発者向けの公開プロジェクトやコードの場合があります。",
                 "",
             ]

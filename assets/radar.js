@@ -97,13 +97,19 @@
     main.appendChild(heading);
     top.append(main, scoreBadge(topic.content_score));
     card.appendChild(top);
-    const topicSummary = topic.project_summary
-      ? `${compact(topic.project_summary, 170)}${topic.project_use ? ` 用途：${compact(topic.project_use, 90)}` : ""}`
+    const topicSummary = topic.content_angle || topic.reader_problem || topic.project_summary
+      ? [
+        topic.content_angle ? `切り口：${compact(topic.content_angle, 150)}` : "",
+        topic.reader_problem ? `読者の悩み：${compact(topic.reader_problem, 130)}` : "",
+        topic.project_summary ? `これは何か：${compact(topic.project_summary, 150)}` : "",
+      ].filter(Boolean).join("　")
       : "6つの発信切り口と30秒動画パックを生成済み。まず公式情報を確認し、使った範囲だけ追記します。";
     card.appendChild(el("p", "card-summary", topicSummary));
     const meta = el("div", "card-meta");
     meta.append(el("span", "code", `コード ${safeText(topic.code || topic.id, "").slice(0, 8)}`));
     meta.append(el("span", "", `実利用：${usageLabel(topic.usage_status)}`));
+    if (topic.content_grade) meta.append(el("span", "", safeText(topic.content_grade)));
+    if (topic.monetization) meta.append(el("span", "", `収益化：${compact(topic.monetization, 110)}`));
     if (topic.project_type) meta.append(el("span", "", safeText(topic.project_type)));
     card.appendChild(meta);
     const actions = el("div", "card-actions");

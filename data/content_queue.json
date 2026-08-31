@@ -14,6 +14,66 @@
         "status": "ready"
       }
     },
+    "code": "794e1749",
+    "content_score": 83,
+    "created_at": "2026-08-31T13:05:08+09:00",
+    "id": "794e17498ad654df4af3",
+    "kind": "publishing",
+    "next_channel": "note",
+    "pack_path": "data/drafts/794e17498ad654df4af3.md",
+    "pack_url": "https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/794e17498ad654df4af3.md",
+    "source": "github_ai_repositories",
+    "status": "ready",
+    "title": "skimatt/ai-tech-trends-digest",
+    "updated_at": "2026-08-31T13:05:08+09:00",
+    "url": "https://github.com/skimatt/ai-tech-trends-digest",
+    "usage_status": "not_used"
+  },
+  {
+    "channels": {
+      "note": {
+        "status": "ready"
+      },
+      "threads": {
+        "status": "ready"
+      },
+      "video": {
+        "status": "ready"
+      },
+      "x": {
+        "status": "ready"
+      }
+    },
+    "code": "9bb143cf",
+    "content_score": 83,
+    "created_at": "2026-08-31T13:05:08+09:00",
+    "id": "9bb143cfe0c38c26e7cd",
+    "kind": "publishing",
+    "next_channel": "note",
+    "pack_path": "data/drafts/9bb143cfe0c38c26e7cd.md",
+    "pack_url": "https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/9bb143cfe0c38c26e7cd.md",
+    "source": "github_ai_repositories",
+    "status": "ready",
+    "title": "sadanandpai/my-chat",
+    "updated_at": "2026-08-31T13:05:08+09:00",
+    "url": "https://github.com/sadanandpai/my-chat",
+    "usage_status": "not_used"
+  },
+  {
+    "channels": {
+      "note": {
+        "status": "ready"
+      },
+      "threads": {
+        "status": "ready"
+      },
+      "video": {
+        "status": "ready"
+      },
+      "x": {
+        "status": "ready"
+      }
+    },
     "code": "0170ba73",
     "content_score": 83,
     "created_at": "2026-08-31T12:45:21+09:00",

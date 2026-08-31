@@ -1,8 +1,8 @@
 # AI VALUE RADAR｜今回の監視結果
 
-確認日時：2026/08/31 12:45
+確認日時：2026/08/31 13:05
 
-監視 239件 / 新規 14件 / 有望 0件 / 発信候補 0件 / 発信ネタ 2件
+監視 240件 / 新規 11件 / 有望 0件 / 発信候補 0件 / 発信ネタ 2件
 
 ## 結論
 
@@ -11,14 +11,14 @@
 ## 発信ネタ
 
 ### 1. 発信価値 83点
-[uni-git-projects/.github](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/0170ba733b6c02682ee2.md)
-コード：`0170ba73`
-原文：[github_ai_repositories](https://github.com/uni-git-projects/.github)
+[skimatt/ai-tech-trends-digest](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/794e17498ad654df4af3.md)
+コード：`794e1749`
+原文：[github_ai_repositories](https://github.com/skimatt/ai-tech-trends-digest)
 
 ### 2. 発信価値 83点
-[srishti-m-cmd/srishti-m-cmd](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/b42af36c597fdd628d21.md)
-コード：`b42af36c`
-原文：[github_ai_repositories](https://github.com/srishti-m-cmd/srishti-m-cmd)
+[sadanandpai/my-chat](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/9bb143cfe0c38c26e7cd.md)
+コード：`9bb143cf`
+原文：[github_ai_repositories](https://github.com/sadanandpai/my-chat)
 
 ## 次にすること
 
@@ -28,14 +28,14 @@
 
 ## 7日間の集計
 
-- 実行回数：10回
-- 発信用パック：4件
-- 発信ネタ：4件
+- 実行回数：11回
+- 発信用パック：6件
+- 発信ネタ：6件
 - 価値あり判定：0件
 - 今回は不要判定：0件
-- Affiliate候補：172件
+- Affiliate候補：190件
 - AI呼び出し：0回
-- エラー：30件
+- エラー：33件
 
 ## エラー・取得できなかったソース
 

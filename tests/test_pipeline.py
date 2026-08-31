@@ -188,6 +188,58 @@ class PipelineTests(unittest.TestCase):
             self.assertEqual(repeated["top3_count"], 0)
             self.assertEqual(repeated["draft_count"], 0)
 
+    def test_existing_ready_pack_is_refreshed_after_format_change(self) -> None:
+        def collector(settings: Settings):
+            raw = [{
+                "title": "Open WebUI update",
+                "url": "https://github.com/open-webui/open-webui/releases/tag/v1",
+                "summary": "New AI chat workflow update for self-hosted users.",
+                "source": "github_openwebui_releases",
+                "service_name": "Open WebUI",
+                "project_summary": "自分で用意したAIを、ChatGPTのような画面から使えるようにするツール。",
+                "project_use": "自分用・チーム用のAIチャット環境を試したい人向け。",
+                "github_repository": "open-webui/open-webui",
+                "github_stars": 50000,
+                "published_at": "2026-08-31T00:00:00+00:00",
+            }]
+            stats = {"github_openwebui_releases": {"status": "ok", "items": 1, "official": True, "kind": "github_releases"}}
+            return raw, stats, []
+
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            settings = Settings(
+                max_http_requests=5,
+                max_source_items=5,
+                max_ai_candidates_per_run=0,
+                max_publishing_topics_per_run=1,
+                max_total_content_packs_per_run=2,
+            )
+            first = run_scan(
+                settings,
+                collector=collector,
+                notifier=lambda message: "dry_run",
+                now=datetime(2026, 8, 31, 1, 0, tzinfo=timezone.utc),
+                data_dir=root,
+            )
+            self.assertEqual(first["topic_pack_count"], 1)
+            draft_path = root / "drafts" / f"{first['publishing_topics'][0]['id']}.md"
+            old_content = draft_path.read_text(encoding="utf-8").replace(
+                "### Xにそのまま投稿（280字以内）", "### X投稿案（280字以内）"
+            )
+            draft_path.write_text(old_content, encoding="utf-8")
+
+            second = run_scan(
+                settings,
+                collector=collector,
+                notifier=lambda message: "dry_run",
+                now=datetime(2026, 8, 31, 2, 0, tzinfo=timezone.utc),
+                data_dir=root,
+            )
+            self.assertEqual(second["topic_count"], 0)
+            self.assertEqual(second["content_pack_count"], 1)
+            self.assertEqual(second["drafts"][0]["status"], "updated")
+            self.assertIn("### Xにそのまま投稿（280字以内）", draft_path.read_text(encoding="utf-8"))
+
 
 if __name__ == "__main__":
     unittest.main()

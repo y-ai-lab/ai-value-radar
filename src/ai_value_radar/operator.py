@@ -4,6 +4,23 @@ from typing import Any
 
 from .filtering import compare_item, find_match
 from .models import Opportunity
+from .validation import OUTCOME_STATUSES, VALIDATION_STATUSES
+
+
+def _safe_non_negative_int(value: Any, default: int = 0) -> int:
+    try:
+        parsed = int(value)
+    except (TypeError, ValueError):
+        return default
+    return max(0, parsed)
+
+
+def _safe_non_negative_float(value: Any, default: float = 0.0) -> float:
+    try:
+        parsed = float(value)
+    except (TypeError, ValueError):
+        return default
+    return max(0.0, parsed)
 
 
 def reconcile(items: list[Opportunity], history: list[dict[str, Any]], now_iso: str) -> tuple[list[Opportunity], list[dict[str, Any]], dict[str, int]]:
@@ -21,6 +38,18 @@ def reconcile(items: list[Opportunity], history: list[dict[str, Any]], now_iso: 
             item.usage_status_at = old.get("usage_status_at")
             item.value_feedback = str(old.get("value_feedback") or item.value_feedback)
             item.value_feedback_at = old.get("value_feedback_at")
+            validation_status = str(old.get("validation_status") or item.validation_status)
+            item.validation_status = validation_status if validation_status in VALIDATION_STATUSES else "unverified"
+            item.demand_evidence = str(old.get("demand_evidence") or item.demand_evidence)
+            item.validation_plan = str(old.get("validation_plan") or item.validation_plan)
+            item.validation_updated_at = old.get("validation_updated_at")
+            item.post_url = str(old.get("post_url") or item.post_url)
+            for field in ("views", "clicks", "signups", "sales"):
+                setattr(item, field, _safe_non_negative_int(old.get(field), getattr(item, field)))
+            item.revenue = _safe_non_negative_float(old.get("revenue"), item.revenue)
+            outcome_status = str(old.get("outcome_status") or item.outcome_status)
+            item.outcome_status = outcome_status if outcome_status in OUTCOME_STATUSES else "not_measured"
+            item.outcome_updated_at = old.get("outcome_updated_at")
         if any(word in f"{item.title} {item.summary}".lower() for word in ("expired", "ended", "終了しました", "販売終了")):
             item.status = "ended"
         counts[item.status] = counts.get(item.status, 0) + 1

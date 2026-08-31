@@ -43,6 +43,7 @@ class StaticDashboardTests(unittest.TestCase):
         self.assertIn("navigator.clipboard", fallback_javascript)
         self.assertIn("プロンプトを全部コピー", fallback_html)
         self.assertIn("/result コード", html)
+        self.assertIn("/posturl コード", html)
         self.assertIn("@media (max-width: 680px)", css)
         for secret_name in ("TELEGRAM_BOT_TOKEN", "CLOUDFLARE_API_TOKEN", "TELEGRAM_CHAT_ID"):
             self.assertNotIn(secret_name, html)

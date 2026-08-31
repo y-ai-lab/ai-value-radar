@@ -48,9 +48,16 @@
     return result;
   }
 
+  function copyReady(value) {
+    const lines=value.replace(/\r/g,"").split("\n");
+    if(lines[0] && /^```[A-Za-z0-9_-]*\s*$/.test(lines[0].trim())) lines.shift();
+    if(lines.length && lines[lines.length-1].trim()==="```") lines.pop();
+    return lines.join("\n").trim();
+  }
+
   async function copyText(value, button) {
     try {
-      await navigator.clipboard.writeText(value.trim());
+      await navigator.clipboard.writeText(copyReady(value));
       const old=button.textContent; button.textContent="コピーしました"; button.classList.add("copy-ok");
       setTimeout(()=>{button.textContent=old; button.classList.remove("copy-ok");},1800);
     } catch (_) { button.textContent="コピー失敗"; }

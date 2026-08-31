@@ -25,6 +25,7 @@ class StaticDashboardTests(unittest.TestCase):
         self.assertIn('id="pack-main"', pack_html)
         self.assertIn("data\\/drafts\\/", pack_javascript)
         self.assertIn("navigator.clipboard", pack_javascript)
+        self.assertIn("copyReady", pack_javascript)
         self.assertIn("この部分をコピー", pack_javascript)
         self.assertIn("copy-button", pack_html)
         self.assertIn("@media (max-width: 680px)", css)

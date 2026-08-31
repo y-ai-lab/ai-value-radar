@@ -1,6 +1,6 @@
 # AI VALUE RADAR｜発信キュー
 
-更新日時：2026-08-31T17:16:02+09:00
+更新日時：2026-08-31T17:20:24+09:00
 
 次の媒体から順番に使います：note → X → Threads → 短尺動画
 Telegramで `/posted コード 媒体` を送ると進捗を更新できます。
@@ -20,7 +20,21 @@ Telegramで `/posted コード 媒体` を送ると進捗を更新できます�
 - 短尺動画：ready
 - 原文：https://github.com/open-webui/open-webui/releases/tag/v0.11.2
 
-## 2. [n8n](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/661a21d7a88389fb3c23.md)
+## 2. [Show HN: Pane – An open-source browser that turns your work into living websites](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/d4bf55366bd9ec46657b.md)
+- コード：`d4bf5536`
+- 状態：ready / 次：note
+- 判定：要検証
+- 収益準備度：53点 / 需要：未検証 / 結果：未計測
+- 計測：閲覧 0 / クリック 0 / 登録 0 / 成約 0 / 売上 0.0円
+- 切り口：Show HN: Pane – An open-source browser that turns your work into living websitesの条件が、自分の用途で本当に役立つかを確認する。
+- 読者の悩み：AIの情報は多いのに、自分の作業で試す方法まで落とし込めない。
+- note：ready
+- X：ready
+- Threads：ready
+- 短尺動画：ready
+- 原文：https://github.com/abhishek-verma/Pane
+
+## 3. [n8n](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/661a21d7a88389fb3c23.md)
 - コード：`661a21d7`
 - 状態：ready / 次：note
 - 判定：発信候補
@@ -34,7 +48,7 @@ Telegramで `/posted コード 媒体` を送ると進捗を更新できます�
 - 短尺動画：ready
 - 原文：https://github.com/n8n-io/n8n/releases/tag/n8n%402.36.9
 
-## 3. [n8n](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/70e9cfc0299ce8dc3766.md)
+## 4. [n8n](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/70e9cfc0299ce8dc3766.md)
 - コード：`70e9cfc0`
 - 状態：ready / 次：note
 - 判定：発信候補
@@ -48,7 +62,7 @@ Telegramで `/posted コード 媒体` を送ると進捗を更新できます�
 - 短尺動画：ready
 - 原文：https://github.com/n8n-io/n8n/releases/tag/stable
 
-## 4. [LlamaIndex](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/808018cb5919e4d24848.md)
+## 5. [LlamaIndex](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/808018cb5919e4d24848.md)
 - コード：`808018cb`
 - 状態：ready / 次：note
 - 判定：発信候補
@@ -62,7 +76,7 @@ Telegramで `/posted コード 媒体` を送ると進捗を更新できます�
 - 短尺動画：ready
 - 原文：https://github.com/run-llama/llama_index/releases/tag/v0.14.24
 
-## 5. [LangChain](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/558a79534175d18721ad.md)
+## 6. [LangChain](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/558a79534175d18721ad.md)
 - コード：`558a7953`
 - 状態：ready / 次：note
 - 判定：発信候補

@@ -1,13 +1,27 @@
 # AI VALUE RADAR｜今回の監視結果
 
-確認日時：2026/08/31 17:16
+確認日時：2026/08/31 17:20
 
-監視 746件 / 新規 1件 / 有望 0件 / 発信候補 0件 / 発信ネタ 0件
+監視 747件 / 新規 14件 / 有望 0件 / 発信候補 0件 / 発信ネタ 1件
 
 ## 結論
 
 今回は新規または重要更新の収益候補はありませんでした。
 同じ案件の重複通知は抑止しています。次回の巡回を待ちます。
+## 発信ネタ
+
+### 1. 要検証｜発信価値 56点
+[Show HN: Pane – An open-source browser that turns your work into living websites](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/d4bf55366bd9ec46657b.md)
+コード：`d4bf5536`
+切り口：Show HN: Pane – An open-source browser that turns your work into living websitesの条件が、自分の用途で本当に役立つかを確認する。
+読者の悩み：AIの情報は多いのに、自分の作業で試す方法まで落とし込めない。
+
+
+次にすること：公式ページで条件を確認し、自分の用途で一つだけ試して結果を記録する。
+収益化の仮説：自分の作業コストを下げ、制作・発信・受託へ転用できる可能性。
+収益準備度：53点｜需要：未検証｜結果：未計測
+原文：[hn_ai_automation](https://github.com/abhishek-verma/Pane)
+
 ## 次にすること
 
 1. 発信用パックを開く（note・X・Threads案を確認）
@@ -16,12 +30,12 @@
 
 ## 7日間の集計
 
-- 実行回数：26回
-- 発信用パック：23件
-- 発信ネタ：18件
+- 実行回数：27回
+- 発信用パック：25件
+- 発信ネタ：19件
 - 価値あり判定：0件
 - 今回は不要判定：0件
-- Affiliate候補：458件
+- Affiliate候補：476件
 - AI呼び出し：0回
 - 収益計測対象：0件
 - 閲覧 / クリック / 登録 / 成約：0 / 0 / 0 / 0

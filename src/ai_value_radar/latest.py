@@ -4,6 +4,7 @@ from datetime import datetime
 from typing import Any
 
 from .models import Opportunity
+from .validation import outcome_label, validation_label
 from .writer import CATEGORY_LABELS, _short, display_name, price_line
 
 
@@ -65,6 +66,7 @@ def render_latest_report(report: dict[str, Any]) -> str:
                 f"{title_link}",
                 f"カテゴリ：{CATEGORY_LABELS.get(item.ai_category or item.category, item.category)}",
                 f"条件：{price_line(item)}",
+                f"収益準備度：{item.revenue_readiness}点 / 100点｜需要：{validation_label(item.validation_status)}｜結果：{outcome_label(item.outcome_status)}",
                 f"注目理由：{_short(item.why_now, 240)}",
                 f"原文：[{item.source}]({item.url})",
             ])
@@ -91,6 +93,7 @@ def render_latest_report(report: dict[str, Any]) -> str:
                 f"用途の目安：{_short(str(topic.get('project_use') or ''), 160)}" if topic.get("project_use") else "",
                 f"次にすること：{_short(str(topic.get('reader_action') or ''), 220)}" if topic.get("reader_action") else "",
                 f"収益化の仮説：{_short(str(topic.get('monetization') or ''), 220)}" if topic.get("monetization") else "",
+                f"収益準備度：{topic.get('revenue_readiness', 0)}点｜需要：{validation_label(str(topic.get('validation_status', 'unverified')))}｜結果：{outcome_label(str(topic.get('outcome_status', 'not_measured')))}",
                 f"原文：[{topic.get('source', 'source')}]({topic.get('url', '')})",
                 "",
             ])
@@ -106,6 +109,7 @@ def render_latest_report(report: dict[str, Any]) -> str:
         "",
     ])
     metrics = report.get("metrics_7d", {})
+    outcomes = metrics.get("outcomes", {}) if isinstance(metrics, dict) else {}
     lines.extend([
         f"- 実行回数：{metrics.get('runs', 0)}回",
         f"- 発信用パック：{metrics.get('content_pack_count', metrics.get('draft_count', 0))}件",
@@ -114,6 +118,9 @@ def render_latest_report(report: dict[str, Any]) -> str:
         f"- 今回は不要判定：{metrics.get('feedback_not_valuable', 0)}件",
         f"- Affiliate候補：{metrics.get('affiliate_count', 0)}件",
         f"- AI呼び出し：{metrics.get('ai_calls', 0)}回",
+        f"- 収益計測対象：{outcomes.get('tracked_items', 0)}件",
+        f"- 閲覧 / クリック / 登録 / 成約：{outcomes.get('views', 0)} / {outcomes.get('clicks', 0)} / {outcomes.get('signups', 0)} / {outcomes.get('sales', 0)}",
+        f"- 記録売上：{outcomes.get('revenue', 0)}円",
         f"- エラー：{metrics.get('error_count', 0)}件",
         "",
         "## エラー・取得できなかったソース",

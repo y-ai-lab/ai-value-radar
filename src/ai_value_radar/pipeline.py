@@ -80,6 +80,7 @@ def _metrics_7d(
         "feedback_not_valuable",
         "usage_updated",
         "posted_count",
+        "post_url_updated",
         "validation_updated",
         "outcome_updated",
     )
@@ -293,6 +294,9 @@ def run_scan(
         "feedback_not_valuable": int(feedback.get("feedback_not_valuable", 0) or 0),
         "usage_updated": int(feedback.get("usage_updated", 0) or 0),
         "posted_count": int(feedback.get("posted_count", 0) or 0),
+        "post_url_updated": int(feedback.get("post_url_updated", 0) or 0),
+        "validation_updated": int(feedback.get("validation_updated", 0) or 0),
+        "outcome_updated": int(feedback.get("outcome_updated", 0) or 0),
         "duplicate_count": report["duplicate_count"],
         "error_count": len(report["errors"]),
         "seconds": round(time.monotonic() - started, 2),

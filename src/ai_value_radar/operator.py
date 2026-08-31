@@ -50,6 +50,7 @@ def reconcile(items: list[Opportunity], history: list[dict[str, Any]], now_iso: 
             outcome_status = str(old.get("outcome_status") or item.outcome_status)
             item.outcome_status = outcome_status if outcome_status in OUTCOME_STATUSES else "not_measured"
             item.outcome_updated_at = old.get("outcome_updated_at")
+            item.post_url_updated_at = old.get("post_url_updated_at")
         if any(word in f"{item.title} {item.summary}".lower() for word in ("expired", "ended", "終了しました", "販売終了")):
             item.status = "ended"
         counts[item.status] = counts.get(item.status, 0) + 1

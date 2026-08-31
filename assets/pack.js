@@ -69,7 +69,8 @@
       const box=document.createElement("section"); box.className="copy-section";
       const bar=document.createElement("div"); bar.className="copy-section-head";
       const heading=text(`h${Math.min(3,part.level)}`,part.title); bar.appendChild(heading);
-      const button=document.createElement("button"); button.type="button"; button.className="copy-button"; button.textContent="この部分をコピー";
+      const button=document.createElement("button"); button.type="button"; button.className="copy-button";
+      button.textContent=/^Xにそのまま投稿/.test(part.title) ? "X本文をコピー" : "この部分をコピー";
       button.addEventListener("click",()=>copyText(part.body.join("\n"),button)); bar.appendChild(button); box.appendChild(bar);
       box.appendChild(markdownFragment(part.body.join("\n"))); wrapper.appendChild(box);
     }

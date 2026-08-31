@@ -14,6 +14,84 @@
         "status": "ready"
       }
     },
+    "code": "2d13e4ce",
+    "content_angle": "News Minimalistが、どんな作業に役立つのかを初心者向けに整理する。",
+    "content_grade": "発信候補",
+    "content_score": 85,
+    "created_at": "2026-08-31T14:11:24+09:00",
+    "id": "2d13e4cec9fdaa0ac5cd",
+    "kind": "publishing",
+    "monetization": "自分の作業で使える範囲を確認し、可能ならAI導入・自動化の小さな設定代行や作業効率化に転用できる可能性。",
+    "next_channel": "note",
+    "pack_path": "data/drafts/2d13e4cec9fdaa0ac5cd.md",
+    "pack_url": "https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/2d13e4cec9fdaa0ac5cd.md",
+    "project_summary": "AI-powered news aggregator that ranks world news by real-world significance. Open-source, auto-updated via GitHub Actions, hosted on GitHub Pages.",
+    "project_type": "GitHub公開AIプロジェクト",
+    "project_use": "業務自動化や複数サービスの連携を試したい人向け。",
+    "reader_action": "公式リポジトリの概要を確認し、自分の用途に合うかを一つだけ試す。",
+    "reader_problem": "AIツールの名前は見つかるが、結局どの作業に使えるのか分からない。",
+    "service_name": "News Minimalist",
+    "source": "github_ai_repositories",
+    "status": "ready",
+    "title": "News Minimalist",
+    "updated_at": "2026-08-31T14:11:24+09:00",
+    "url": "https://github.com/BOSSincrypto/news-minimalist",
+    "usage_status": "not_used"
+  },
+  {
+    "channels": {
+      "note": {
+        "status": "ready"
+      },
+      "threads": {
+        "status": "ready"
+      },
+      "video": {
+        "status": "ready"
+      },
+      "x": {
+        "status": "ready"
+      }
+    },
+    "code": "29a340e9",
+    "content_angle": "Agentweekly Aiが、どんな作業に役立つのかを初心者向けに整理する。",
+    "content_grade": "発信候補",
+    "content_score": 67,
+    "created_at": "2026-08-31T14:11:24+09:00",
+    "id": "29a340e9d815ead58935",
+    "kind": "publishing",
+    "monetization": "自分の作業で使える範囲を確認し、可能ならAI導入・自動化の小さな設定代行や作業効率化に転用できる可能性。",
+    "next_channel": "note",
+    "pack_path": "data/drafts/29a340e9d815ead58935.md",
+    "pack_url": "https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/29a340e9d815ead58935.md",
+    "project_summary": "a developer- and agent-focused guide to the first and best satirical news service focused on agentic AI",
+    "project_type": "GitHub公開AIプロジェクト",
+    "project_use": "業務自動化や複数サービスの連携を試したい人向け。",
+    "reader_action": "公式リポジトリの概要を確認し、自分の用途に合うかを一つだけ試す。",
+    "reader_problem": "AIツールの名前は見つかるが、結局どの作業に使えるのか分からない。",
+    "service_name": "Agentweekly Ai",
+    "source": "github_ai_repositories",
+    "status": "ready",
+    "title": "Agentweekly Ai",
+    "updated_at": "2026-08-31T14:11:24+09:00",
+    "url": "https://github.com/flywheel-labs/agentweekly-ai",
+    "usage_status": "not_used"
+  },
+  {
+    "channels": {
+      "note": {
+        "status": "ready"
+      },
+      "threads": {
+        "status": "ready"
+      },
+      "video": {
+        "status": "ready"
+      },
+      "x": {
+        "status": "ready"
+      }
+    },
     "code": "71c0817b",
     "content_score": 90,
     "created_at": "2026-08-31T13:48:13+09:00",

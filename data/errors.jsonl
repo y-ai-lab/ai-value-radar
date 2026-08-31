@@ -42,3 +42,6 @@
 {"message": "robots.txt disallows or is unavailable", "run_at": "2026-08-31T13:48:13+09:00", "source": "product_hunt_feed"}
 {"message": "invalid RSS/Atom XML", "run_at": "2026-08-31T13:48:13+09:00", "source": "appsumo_feed"}
 {"message": "HTTP 403", "run_at": "2026-08-31T13:48:13+09:00", "source": "make_pricing_page"}
+{"message": "robots.txt disallows or is unavailable", "run_at": "2026-08-31T14:11:24+09:00", "source": "product_hunt_feed"}
+{"message": "invalid RSS/Atom XML", "run_at": "2026-08-31T14:11:24+09:00", "source": "appsumo_feed"}
+{"message": "HTTP 403", "run_at": "2026-08-31T14:11:24+09:00", "source": "make_pricing_page"}

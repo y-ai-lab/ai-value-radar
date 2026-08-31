@@ -83,7 +83,7 @@ def calculate_rule_score(item: Opportunity) -> int:
     if "free trial" in text or "無料体験" in text:
         score += 5
 
-    if item.source.startswith("hn_") or item.source in {"product_hunt_feed", "appsumo_feed"}:
+    if item.source.startswith("hn_"):
         score -= 5  # discovery source, not proof from the vendor
     if item.category in {"lifetime_deal", "discount", "affiliate_program", "pricing_change"} and item.current_price is None and item.affiliate_rate is None:
         score -= 10

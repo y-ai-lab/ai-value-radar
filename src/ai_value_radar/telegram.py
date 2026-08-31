@@ -13,6 +13,7 @@ from urllib.request import Request, urlopen
 from .article import render_article_draft
 from .config import Settings
 from .models import Opportunity
+from .normalize import normalize_url
 from .publishing import CHANNEL_LABELS, mark_queue_posted, queue_summary, render_content_queue
 from .state import load_json, write_json_atomic, write_text_atomic
 from .validation import (
@@ -80,6 +81,7 @@ def parse_command(text: str | None) -> tuple[str, list[str]] | None:
         "/used",
         "/published",
         "/posted",
+        "/posturl",
         "/validate",
         "/result",
     }
@@ -139,6 +141,7 @@ def _help_text() -> str:
         "/used コード：使用済み\n"
         "/published コード：公開済み\n"
         "/posted コード note|x|threads|video：投稿済み\n"
+        "/posturl コード https://公開した投稿のURL：投稿先を記録\n"
         "/validate コード signal|validated|rejected：需要検証を更新\n"
         "/result コード views=100 clicks=5 signups=1 sales=0 revenue=0：投稿結果を記録\n"
         "省略した数値は前回値を維持。売上は円。\n"
@@ -231,6 +234,7 @@ def process_telegram_updates(settings: Settings, data_dir: Path, now_iso: str) -
         "feedback_not_valuable": 0,
         "usage_updated": 0,
         "posted_count": 0,
+        "post_url_updated": 0,
         "validation_updated": 0,
         "outcome_updated": 0,
         "errors": 0,
@@ -330,6 +334,36 @@ def process_telegram_updates(settings: Settings, data_dir: Path, now_iso: str) -
             result["outcome_updated"] += 1
             code = str(entry.get("id", ""))[:8]
             _ack(f"{code}：計測結果を更新しました。{_result_summary(entry)}\n状態：{outcome_label(entry.get('outcome_status'))}", result)
+            continue
+        if command == "posturl":
+            if len(args) != 2:
+                _ack("形式：/posturl コード https://公開した投稿のURL", result)
+                continue
+            post_url = normalize_url(args[1])
+            if not post_url or len(post_url) > 500:
+                _ack("投稿URLはhttps://またはhttp://で始まる公開URLを指定してください。", result)
+                continue
+            matches = _match_history(history, args[0])
+            if not matches:
+                _ack("該当するコードがありません。通知のコードを確認してください。", result)
+                continue
+            if len(matches) > 1:
+                _ack("コードを8文字より長く指定してください。", result)
+                continue
+            entry = matches[0]
+            entry["post_url"] = post_url
+            entry["post_url_updated_at"] = now_iso
+            if not _refresh_draft(entry, settings, data_dir, now_iso):
+                result["errors"] += 1
+            for queued in queue:
+                if str(queued.get("id", "")) == str(entry.get("id", "")):
+                    queued["post_url"] = post_url
+                    queued["post_url_updated_at"] = now_iso
+                    queue_changed = True
+                    break
+            history_changed = True
+            result["post_url_updated"] += 1
+            _ack(f"{str(entry.get('id', ''))[:8]}：投稿先URLを記録しました。", result)
             continue
         if command == "validate":
             if len(args) != 2 or args[1].lower() not in VALIDATION_STATUSES:

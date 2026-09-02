@@ -47,7 +47,7 @@
     "source": "github_openwebui_releases",
     "status": "ready",
     "title": "Open WebUI",
-    "updated_at": "2026-09-02T18:10:43+09:00",
+    "updated_at": "2026-09-02T23:48:00+09:00",
     "url": "https://github.com/open-webui/open-webui/releases/tag/v0.11.2",
     "usage_status": "not_used",
     "validation_status": "unverified",
@@ -102,8 +102,118 @@
     "source": "n8n_affiliate_page",
     "status": "ready",
     "title": "n8n official affiliate program",
-    "updated_at": "2026-09-02T18:10:43+09:00",
+    "updated_at": "2026-09-02T23:48:00+09:00",
     "url": "https://n8n.io/affiliates",
+    "usage_status": "not_used",
+    "validation_status": "unverified",
+    "validation_updated_at": null,
+    "views": 0
+  },
+  {
+    "channels": {
+      "note": {
+        "status": "ready"
+      },
+      "threads": {
+        "status": "ready"
+      },
+      "video": {
+        "status": "ready"
+      },
+      "x": {
+        "status": "ready"
+      }
+    },
+    "clicks": 0,
+    "code": "43ecae62",
+    "content_angle": "n8n official pricingの条件が、自分の用途で本当に役立つかを確認する。",
+    "content_grade": "発信候補",
+    "content_score": 79,
+    "created_at": "2026-08-31T20:13:46+09:00",
+    "github_homepage": "",
+    "github_language": "",
+    "github_stars": null,
+    "github_topics": [],
+    "id": "43ecae62f994c1728673",
+    "kind": "publishing",
+    "monetization": "自分の作業コストを下げ、制作・発信・受託へ転用できる可能性。",
+    "next_channel": "note",
+    "outcome_status": "not_measured",
+    "outcome_updated_at": null,
+    "pack_path": "data/drafts/43ecae62f994c1728673.md",
+    "pack_url": "https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/43ecae62f994c1728673.md",
+    "post_url": "",
+    "post_url_updated_at": null,
+    "project_summary": "Discover n8n",
+    "project_type": "公式価格・Affiliate情報",
+    "project_use": "",
+    "reader_action": "公式ページで条件を確認し、自分の用途で一つだけ試して結果を記録する。",
+    "reader_problem": "AIの情報は多いのに、自分の作業で試す方法まで落とし込めない。",
+    "revenue": 0.0,
+    "revenue_readiness": 78,
+    "sales": 0,
+    "service_name": "n8n official pricing",
+    "signups": 0,
+    "source": "n8n_pricing_page",
+    "status": "ready",
+    "title": "n8n official pricing",
+    "updated_at": "2026-09-02T23:48:00+09:00",
+    "url": "https://n8n.io/pricing",
+    "usage_status": "not_used",
+    "validation_status": "unverified",
+    "validation_updated_at": null,
+    "views": 0
+  },
+  {
+    "channels": {
+      "note": {
+        "status": "ready"
+      },
+      "threads": {
+        "status": "ready"
+      },
+      "video": {
+        "status": "ready"
+      },
+      "x": {
+        "status": "ready"
+      }
+    },
+    "clicks": 0,
+    "code": "cdc65871",
+    "content_angle": "Zapierの条件が、自分の用途で本当に役立つかを確認する。",
+    "content_grade": "発信候補",
+    "content_score": 79,
+    "created_at": "2026-09-02T23:48:00+09:00",
+    "github_homepage": "",
+    "github_language": "",
+    "github_stars": null,
+    "github_topics": [],
+    "id": "cdc65871a4dad16e7d76",
+    "kind": "publishing",
+    "monetization": "収益化に直結するかは、利用価値と公式条件の確認後に判断。",
+    "next_channel": "note",
+    "outcome_status": "not_measured",
+    "outcome_updated_at": null,
+    "pack_path": "data/drafts/cdc65871a4dad16e7d76.md",
+    "pack_url": "https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/cdc65871a4dad16e7d76.md",
+    "post_url": "",
+    "post_url_updated_at": null,
+    "project_summary": "",
+    "project_type": "",
+    "project_use": "",
+    "reader_action": "公式ページで条件を確認し、自分の用途で一つだけ試して結果を記録する。",
+    "reader_problem": "AIの情報は多いのに、自分の作業で試す方法まで落とし込めない。",
+    "revenue": 0.0,
+    "revenue_readiness": 38,
+    "sales": 0,
+    "service_name": "Zapier",
+    "signups": 0,
+    "source": "zapier_blog",
+    "status": "ready",
+    "title": "Zapier",
+    "updated_at": "2026-09-02T23:48:00+09:00",
+    "url": "https://zapier.com/blog/slack-quote-message-in-reply",
     "usage_status": "not_used",
     "validation_status": "unverified",
     "validation_updated_at": null,
@@ -324,61 +434,6 @@
     "title": "Langflow",
     "updated_at": "2026-09-02T09:39:23+09:00",
     "url": "https://github.com/langflow-ai/langflow/releases/tag/v1.12.0",
-    "usage_status": "not_used",
-    "validation_status": "unverified",
-    "validation_updated_at": null,
-    "views": 0
-  },
-  {
-    "channels": {
-      "note": {
-        "status": "ready"
-      },
-      "threads": {
-        "status": "ready"
-      },
-      "video": {
-        "status": "ready"
-      },
-      "x": {
-        "status": "ready"
-      }
-    },
-    "clicks": 0,
-    "code": "43ecae62",
-    "content_angle": "n8n official pricingの条件が、自分の用途で本当に役立つかを確認する。",
-    "content_grade": "発信候補",
-    "content_score": 79,
-    "created_at": "2026-08-31T20:13:46+09:00",
-    "github_homepage": "",
-    "github_language": "",
-    "github_stars": null,
-    "github_topics": [],
-    "id": "43ecae62f994c1728673",
-    "kind": "publishing",
-    "monetization": "自分の作業コストを下げ、制作・発信・受託へ転用できる可能性。",
-    "next_channel": "note",
-    "outcome_status": "not_measured",
-    "outcome_updated_at": null,
-    "pack_path": "data/drafts/43ecae62f994c1728673.md",
-    "pack_url": "https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/43ecae62f994c1728673.md",
-    "post_url": "",
-    "post_url_updated_at": null,
-    "project_summary": "Discover n8n",
-    "project_type": "公式価格・Affiliate情報",
-    "project_use": "",
-    "reader_action": "公式ページで条件を確認し、自分の用途で一つだけ試して結果を記録する。",
-    "reader_problem": "AIの情報は多いのに、自分の作業で試す方法まで落とし込めない。",
-    "revenue": 0.0,
-    "revenue_readiness": 78,
-    "sales": 0,
-    "service_name": "n8n official pricing",
-    "signups": 0,
-    "source": "n8n_pricing_page",
-    "status": "ready",
-    "title": "n8n official pricing",
-    "updated_at": "2026-09-02T04:40:36+09:00",
-    "url": "https://n8n.io/pricing",
     "usage_status": "not_used",
     "validation_status": "unverified",
     "validation_updated_at": null,

@@ -846,5 +846,32 @@
     "updated_count": 3,
     "usage_updated": 0,
     "validation_updated": 0
+  },
+  {
+    "affiliate_count": 18,
+    "ai_calls": 0,
+    "content_pack_count": 3,
+    "draft_count": 0,
+    "draft_error_count": 0,
+    "duplicate_count": 705,
+    "error_count": 0,
+    "feedback_not_valuable": 0,
+    "feedback_valuable": 0,
+    "fetched_count": 746,
+    "new_count": 34,
+    "outcome_updated": 0,
+    "post_url_updated": 0,
+    "posted_count": 0,
+    "promising_count": 0,
+    "publishable_count": 0,
+    "run_at": "2026-09-03T04:33:09+09:00",
+    "seconds": 38.25,
+    "telegram_configured": true,
+    "top3_count": 0,
+    "topic_count": 2,
+    "topic_pack_count": 2,
+    "updated_count": 2,
+    "usage_updated": 0,
+    "validation_updated": 0
   }
 ]

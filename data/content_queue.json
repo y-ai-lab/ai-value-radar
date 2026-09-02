@@ -47,7 +47,7 @@
     "source": "github_openwebui_releases",
     "status": "ready",
     "title": "Open WebUI",
-    "updated_at": "2026-09-02T04:40:36+09:00",
+    "updated_at": "2026-09-02T09:39:23+09:00",
     "url": "https://github.com/open-webui/open-webui/releases/tag/v0.11.2",
     "usage_status": "not_used",
     "validation_status": "unverified",
@@ -102,8 +102,118 @@
     "source": "n8n_affiliate_page",
     "status": "ready",
     "title": "n8n official affiliate program",
-    "updated_at": "2026-09-02T04:40:36+09:00",
+    "updated_at": "2026-09-02T09:39:23+09:00",
     "url": "https://n8n.io/affiliates",
+    "usage_status": "not_used",
+    "validation_status": "unverified",
+    "validation_updated_at": null,
+    "views": 0
+  },
+  {
+    "channels": {
+      "note": {
+        "status": "ready"
+      },
+      "threads": {
+        "status": "ready"
+      },
+      "video": {
+        "status": "ready"
+      },
+      "x": {
+        "status": "ready"
+      }
+    },
+    "clicks": 0,
+    "code": "45a75834",
+    "content_angle": "llama.cppが、どんな作業に役立つのかを初心者向けに整理する。",
+    "content_grade": "発信候補",
+    "content_score": 90,
+    "created_at": "2026-09-02T09:39:23+09:00",
+    "github_homepage": "",
+    "github_language": "",
+    "github_stars": null,
+    "github_topics": [],
+    "id": "45a758349b6892b3da59",
+    "kind": "publishing",
+    "monetization": "自分の作業で使える範囲を確認し、可能ならAI導入・自動化の小さな設定代行や作業効率化に転用できる可能性。",
+    "next_channel": "note",
+    "outcome_status": "not_measured",
+    "outcome_updated_at": null,
+    "pack_path": "data/drafts/45a758349b6892b3da59.md",
+    "pack_url": "https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/45a758349b6892b3da59.md",
+    "post_url": "",
+    "post_url_updated_at": null,
+    "project_summary": "PCや比較的小さな環境でもAIモデルを動かしやすくする実装。",
+    "project_type": "公式GitHubリリース",
+    "project_use": "PC上でローカルAIを試したい人や、外部送信なしで検証したい人向け。",
+    "reader_action": "公式リポジトリの概要を確認し、自分の用途に合うかを一つだけ試す。",
+    "reader_problem": "AIツールの名前は見つかるが、結局どの作業に使えるのか分からない。",
+    "revenue": 0.0,
+    "revenue_readiness": 46,
+    "sales": 0,
+    "service_name": "llama.cpp",
+    "signups": 0,
+    "source": "github_llamacpp_releases",
+    "status": "ready",
+    "title": "llama.cpp",
+    "updated_at": "2026-09-02T09:39:23+09:00",
+    "url": "https://github.com/ggml-org/llama.cpp/releases/tag/b10751",
+    "usage_status": "not_used",
+    "validation_status": "unverified",
+    "validation_updated_at": null,
+    "views": 0
+  },
+  {
+    "channels": {
+      "note": {
+        "status": "ready"
+      },
+      "threads": {
+        "status": "ready"
+      },
+      "video": {
+        "status": "ready"
+      },
+      "x": {
+        "status": "ready"
+      }
+    },
+    "clicks": 0,
+    "code": "31ac64d4",
+    "content_angle": "Langflowが、どんな作業に役立つのかを初心者向けに整理する。",
+    "content_grade": "発信候補",
+    "content_score": 90,
+    "created_at": "2026-09-02T09:39:23+09:00",
+    "github_homepage": "",
+    "github_language": "",
+    "github_stars": null,
+    "github_topics": [],
+    "id": "31ac64d4271fbfedff0d",
+    "kind": "publishing",
+    "monetization": "自分の作業で使える範囲を確認し、可能ならAI導入・自動化の小さな設定代行や作業効率化に転用できる可能性。",
+    "next_channel": "note",
+    "outcome_status": "not_measured",
+    "outcome_updated_at": null,
+    "pack_path": "data/drafts/31ac64d4271fbfedff0d.md",
+    "pack_url": "https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/31ac64d4271fbfedff0d.md",
+    "post_url": "",
+    "post_url_updated_at": null,
+    "project_summary": "AIエージェントの処理を、画面上で部品をつないで組み立てるツール。",
+    "project_type": "公式GitHubリリース",
+    "project_use": "AIエージェントの流れを見える形で組み立てたい人向け。",
+    "reader_action": "公式リポジトリの概要を確認し、自分の用途に合うかを一つだけ試す。",
+    "reader_problem": "AIツールの名前は見つかるが、結局どの作業に使えるのか分からない。",
+    "revenue": 0.0,
+    "revenue_readiness": 43,
+    "sales": 0,
+    "service_name": "Langflow",
+    "signups": 0,
+    "source": "github_langflow_releases",
+    "status": "ready",
+    "title": "Langflow",
+    "updated_at": "2026-09-02T09:39:23+09:00",
+    "url": "https://github.com/langflow-ai/langflow/releases/tag/v1.12.0",
     "usage_status": "not_used",
     "validation_status": "unverified",
     "validation_updated_at": null,

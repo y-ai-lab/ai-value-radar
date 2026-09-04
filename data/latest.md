@@ -1,8 +1,8 @@
 # AI VALUE RADAR｜今回の監視結果
 
-確認日時：2026/09/04 04:29
+確認日時：2026/09/04 09:30
 
-監視 745件 / 新規 41件 / 有望 0件 / 発信候補 0件 / 発信ネタ 2件
+監視 743件 / 新規 23件 / 有望 0件 / 発信候補 0件 / 発信ネタ 2件
 
 ## 結論
 
@@ -11,28 +11,28 @@
 ## 発信ネタ
 
 ### 1. 発信候補｜発信価値 88点
-[LangChain](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/6d5b58e8c8ac9a4dddee.md)
-コード：`6d5b58e8`
-切り口：LangChainが、どんな作業に役立つのかを初心者向けに整理する。
+[LiteLLM](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/356ec931c6463d698c36.md)
+コード：`356ec931`
+切り口：LiteLLMが、どんな作業に役立つのかを初心者向けに整理する。
 読者の悩み：AIツールの名前は見つかるが、結局どの作業に使えるのか分からない。
-何をするものか：LLM、データ、外部ツールを組み合わせてAIアプリを作る開発基盤。
-用途の目安：AIアプリの連携や、外部ツールを呼ぶ処理を作りたい人向け。
+何をするものか：ChatGPTやClaudeなど複数のAIを、同じ形式で扱いやすくする中継ツール。
+用途の目安：複数のAIを使い分ける仕組みや、AIアプリの裏側を試したい人向け。
 次にすること：公式リポジトリの概要を確認し、自分の用途に合うかを一つだけ試す。
 収益化の仮説：自分の作業で使える範囲を確認し、可能ならAI導入・自動化の小さな設定代行や作業効率化に転用できる可能性。
 収益準備度：43点｜需要：未検証｜結果：未計測
-原文：[github_langchain_releases](https://github.com/langchain-ai/langchain/releases/tag/langchain-anthropic%3D%3D1.7.1)
+原文：[github_litellm_releases](https://github.com/BerriAI/litellm/releases/tag/v1.101.0-dev.2)
 
-### 2. 発信候補｜発信価値 88点
-[Ollama](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/13a47a4e5a54b324e082.md)
-コード：`13a47a4e`
-切り口：Ollamaが、どんな作業に役立つのかを初心者向けに整理する。
-読者の悩み：AIツールの名前は見つかるが、結局どの作業に使えるのか分からない。
-何をするものか：自分のPC上でAIモデルを動かし、管理するためのツール。
-用途の目安：PC上でAIを試したい人や、外部サービスにデータを送らず検証したい人向け。
-次にすること：公式リポジトリの概要を確認し、自分の用途に合うかを一つだけ試す。
-収益化の仮説：自分の作業で使える範囲を確認し、可能ならAI導入・自動化の小さな設定代行や作業効率化に転用できる可能性。
-収益準備度：43点｜需要：未検証｜結果：未計測
-原文：[github_ollama_releases](https://github.com/ollama/ollama/releases/tag/v0.33.3)
+### 2. 発信候補｜発信価値 79点
+[Cloudflare](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/76796c4f894df8c72fd7.md)
+コード：`76796c4f`
+切り口：Cloudflareの条件が、自分の用途で本当に役立つかを確認する。
+読者の悩み：AIの情報は多いのに、自分の作業で試す方法まで落とし込めない。
+
+
+次にすること：公式ページで条件を確認し、自分の用途で一つだけ試して結果を記録する。
+収益化の仮説：収益化に直結するかは、利用価値と公式条件の確認後に判断。
+収益準備度：38点｜需要：未検証｜結果：未計測
+原文：[cloudflare_blog](https://blog.cloudflare.com/vulnerability-discovery-remediation)
 
 ## 次にすること
 
@@ -42,12 +42,12 @@
 
 ## 7日間の集計
 
-- 実行回数：41回
-- 発信用パック：78件
-- 発信ネタ：47件
+- 実行回数：42回
+- 発信用パック：81件
+- 発信ネタ：49件
 - 価値あり判定：0件
 - 今回は不要判定：0件
-- Affiliate候補：732件
+- Affiliate候補：750件
 - AI呼び出し：0回
 - 収益計測対象：0件
 - 閲覧 / クリック / 登録 / 成約：0 / 0 / 0 / 0

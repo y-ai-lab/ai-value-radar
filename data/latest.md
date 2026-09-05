@@ -1,8 +1,8 @@
 # AI VALUE RADAR｜今回の監視結果
 
-確認日時：2026/09/05 04:12
+確認日時：2026/09/05 09:28
 
-監視 742件 / 新規 40件 / 有望 0件 / 発信候補 1件 / 発信ネタ 2件
+監視 744件 / 新規 20件 / 有望 0件 / 発信候補 1件 / 発信ネタ 2件
 
 ## 結論
 
@@ -17,7 +17,19 @@
 
 ## 発信ネタ
 
-### 1. 発信候補｜発信価値 79点
+### 1. 発信候補｜発信価値 88点
+[LangChain](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/a98679589e43508a090d.md)
+コード：`a9867958`
+切り口：LangChainが、どんな作業に役立つのかを初心者向けに整理する。
+読者の悩み：AIツールの名前は見つかるが、結局どの作業に使えるのか分からない。
+何をするものか：LLM、データ、外部ツールを組み合わせてAIアプリを作る開発基盤。
+用途の目安：AIアプリの連携や、外部ツールを呼ぶ処理を作りたい人向け。
+次にすること：公式リポジトリの概要を確認し、自分の用途に合うかを一つだけ試す。
+収益化の仮説：自分の作業で使える範囲を確認し、可能ならAI導入・自動化の小さな設定代行や作業効率化に転用できる可能性。
+収益準備度：43点｜需要：未検証｜結果：未計測
+原文：[github_langchain_releases](https://github.com/langchain-ai/langchain/releases/tag/langchain-core%3D%3D1.6.2)
+
+### 2. 発信候補｜発信価値 79点
 [n8n official pricing](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/43ecae62f994c1728673.md)
 コード：`43ecae62`
 切り口：n8n official pricingの条件が、自分の用途で本当に役立つかを確認する。
@@ -29,18 +41,6 @@
 収益準備度：78点｜需要：未検証｜結果：未計測
 原文：[n8n_pricing_page](https://n8n.io/pricing)
 
-### 2. 要検証｜発信価値 61点
-[AWS Machine Learning](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/2f0361b2805ff81f847e.md)
-コード：`2f0361b2`
-切り口：AWS Machine Learningの条件が、自分の用途で本当に役立つかを確認する。
-読者の悩み：AIの情報は多いのに、自分の作業で試す方法まで落とし込めない。
-
-
-次にすること：公式ページで条件を確認し、自分の用途で一つだけ試して結果を記録する。
-収益化の仮説：収益化に直結するかは、利用価値と公式条件の確認後に判断。
-収益準備度：38点｜需要：未検証｜結果：未計測
-原文：[aws_machine_learning_blog](https://aws.amazon.com/blogs/machine-learning/run-agent-driven-amazon-sagemaker-hyperpod-operations-with-instantstart)
-
 ## 次にすること
 
 1. 発信用パックを開く（note・X・Threads案を確認）
@@ -49,12 +49,12 @@
 
 ## 7日間の集計
 
-- 実行回数：45回
-- 発信用パック：92件
-- 発信ネタ：55件
+- 実行回数：46回
+- 発信用パック：96件
+- 発信ネタ：57件
 - 価値あり判定：0件
 - 今回は不要判定：0件
-- Affiliate候補：804件
+- Affiliate候補：822件
 - AI呼び出し：0回
 - 収益計測対象：0件
 - 閲覧 / クリック / 登録 / 成約：0 / 0 / 0 / 0

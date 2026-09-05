@@ -47,8 +47,63 @@
     "source": "github_openwebui_releases",
     "status": "ready",
     "title": "Open WebUI",
-    "updated_at": "2026-09-05T09:28:01+09:00",
+    "updated_at": "2026-09-05T17:42:15+09:00",
     "url": "https://github.com/open-webui/open-webui/releases/tag/v0.11.2",
+    "usage_status": "not_used",
+    "validation_status": "unverified",
+    "validation_updated_at": null,
+    "views": 0
+  },
+  {
+    "channels": {
+      "note": {
+        "status": "ready"
+      },
+      "threads": {
+        "status": "ready"
+      },
+      "video": {
+        "status": "ready"
+      },
+      "x": {
+        "status": "ready"
+      }
+    },
+    "clicks": 0,
+    "code": "948a2a6a",
+    "content_angle": "OpenAIの条件が、自分の用途で本当に役立つかを確認する。",
+    "content_grade": "発信候補",
+    "content_score": 79,
+    "created_at": "2026-09-05T17:42:15+09:00",
+    "github_homepage": "",
+    "github_language": "",
+    "github_stars": null,
+    "github_topics": [],
+    "id": "948a2a6ac0dbefe37026",
+    "kind": "publishing",
+    "monetization": "収益化に直結するかは、利用価値と公式条件の確認後に判断。",
+    "next_channel": "note",
+    "outcome_status": "not_measured",
+    "outcome_updated_at": null,
+    "pack_path": "data/drafts/948a2a6ac0dbefe37026.md",
+    "pack_url": "https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/948a2a6ac0dbefe37026.md",
+    "post_url": "",
+    "post_url_updated_at": null,
+    "project_summary": "",
+    "project_type": "",
+    "project_use": "",
+    "reader_action": "公式ページで条件を確認し、自分の用途で一つだけ試して結果を記録する。",
+    "reader_problem": "AIの情報は多いのに、自分の作業で試す方法まで落とし込めない。",
+    "revenue": 0.0,
+    "revenue_readiness": 38,
+    "sales": 0,
+    "service_name": "OpenAI",
+    "signups": 0,
+    "source": "openai_news",
+    "status": "ready",
+    "title": "OpenAI",
+    "updated_at": "2026-09-05T17:42:15+09:00",
+    "url": "https://openai.com/index/gpt-6-astra",
     "usage_status": "not_used",
     "validation_status": "unverified",
     "validation_updated_at": null,

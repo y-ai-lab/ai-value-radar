@@ -1,6 +1,6 @@
 # AI VALUE RADAR｜発信キュー
 
-更新日時：2026-09-05T22:36:21+09:00
+更新日時：2026-09-06T03:40:08+09:00
 
 次の媒体から順番に使います：note → X → Threads → 短尺動画
 Telegramで `/posted コード 媒体` を送ると進捗を更新できます。
@@ -20,49 +20,7 @@ Telegramで `/posted コード 媒体` を送ると進捗を更新できます�
 - 短尺動画：ready
 - 原文：https://github.com/open-webui/open-webui/releases/tag/v0.11.2
 
-## 2. [llama.cpp](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/3e965bbde04f1bc87342.md)
-- コード：`3e965bbd`
-- 状態：ready / 次：note
-- 判定：発信候補
-- 収益準備度：43点 / 需要：未検証 / 結果：未計測
-- 計測：閲覧 0 / クリック 0 / 登録 0 / 成約 0 / 売上 0.0円
-- 切り口：llama.cppが、どんな作業に役立つのかを初心者向けに整理する。
-- 読者の悩み：AIツールの名前は見つかるが、結局どの作業に使えるのか分からない。
-- note：ready
-- X：ready
-- Threads：ready
-- 短尺動画：ready
-- 原文：https://github.com/ggml-org/llama.cpp/releases/tag/b10818
-
-## 3. [RAGFlow](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/6525682817d533616496.md)
-- コード：`65256828`
-- 状態：ready / 次：note
-- 判定：要検証
-- 収益準備度：43点 / 需要：未検証 / 結果：未計測
-- 計測：閲覧 0 / クリック 0 / 登録 0 / 成約 0 / 売上 0.0円
-- 切り口：RAGFlowが、どんな作業に役立つのかを初心者向けに整理する。
-- 読者の悩み：AIツールの名前は見つかるが、結局どの作業に使えるのか分からない。
-- note：ready
-- X：ready
-- Threads：ready
-- 短尺動画：ready
-- 原文：https://github.com/infiniflow/ragflow/releases/tag/nightly
-
-## 4. [OpenAI](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/948a2a6ac0dbefe37026.md)
-- コード：`948a2a6a`
-- 状態：ready / 次：note
-- 判定：発信候補
-- 収益準備度：38点 / 需要：未検証 / 結果：未計測
-- 計測：閲覧 0 / クリック 0 / 登録 0 / 成約 0 / 売上 0.0円
-- 切り口：OpenAIの条件が、自分の用途で本当に役立つかを確認する。
-- 読者の悩み：AIの情報は多いのに、自分の作業で試す方法まで落とし込めない。
-- note：ready
-- X：ready
-- Threads：ready
-- 短尺動画：ready
-- 原文：https://openai.com/index/gpt-6-astra
-
-## 5. [n8n official affiliate program](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/95afc4aa2824a5152d71.md)
+## 2. [n8n official affiliate program](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/95afc4aa2824a5152d71.md)
 - コード：`95afc4aa`
 - 状態：ready / 次：note
 - 判定：参考ニュース
@@ -76,7 +34,7 @@ Telegramで `/posted コード 媒体` を送ると進捗を更新できます�
 - 短尺動画：ready
 - 原文：https://n8n.io/affiliates
 
-## 6. [n8n official pricing](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/43ecae62f994c1728673.md)
+## 3. [n8n official pricing](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/43ecae62f994c1728673.md)
 - コード：`43ecae62`
 - 状態：ready / 次：note
 - 判定：発信候補
@@ -89,6 +47,48 @@ Telegramで `/posted コード 媒体` を送ると進捗を更新できます�
 - Threads：ready
 - 短尺動画：ready
 - 原文：https://n8n.io/pricing
+
+## 4. [llama.cpp](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/3e965bbde04f1bc87342.md)
+- コード：`3e965bbd`
+- 状態：ready / 次：note
+- 判定：発信候補
+- 収益準備度：43点 / 需要：未検証 / 結果：未計測
+- 計測：閲覧 0 / クリック 0 / 登録 0 / 成約 0 / 売上 0.0円
+- 切り口：llama.cppが、どんな作業に役立つのかを初心者向けに整理する。
+- 読者の悩み：AIツールの名前は見つかるが、結局どの作業に使えるのか分からない。
+- note：ready
+- X：ready
+- Threads：ready
+- 短尺動画：ready
+- 原文：https://github.com/ggml-org/llama.cpp/releases/tag/b10818
+
+## 5. [RAGFlow](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/6525682817d533616496.md)
+- コード：`65256828`
+- 状態：ready / 次：note
+- 判定：要検証
+- 収益準備度：43点 / 需要：未検証 / 結果：未計測
+- 計測：閲覧 0 / クリック 0 / 登録 0 / 成約 0 / 売上 0.0円
+- 切り口：RAGFlowが、どんな作業に役立つのかを初心者向けに整理する。
+- 読者の悩み：AIツールの名前は見つかるが、結局どの作業に使えるのか分からない。
+- note：ready
+- X：ready
+- Threads：ready
+- 短尺動画：ready
+- 原文：https://github.com/infiniflow/ragflow/releases/tag/nightly
+
+## 6. [OpenAI](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/948a2a6ac0dbefe37026.md)
+- コード：`948a2a6a`
+- 状態：ready / 次：note
+- 判定：発信候補
+- 収益準備度：38点 / 需要：未検証 / 結果：未計測
+- 計測：閲覧 0 / クリック 0 / 登録 0 / 成約 0 / 売上 0.0円
+- 切り口：OpenAIの条件が、自分の用途で本当に役立つかを確認する。
+- 読者の悩み：AIの情報は多いのに、自分の作業で試す方法まで落とし込めない。
+- note：ready
+- X：ready
+- Threads：ready
+- 短尺動画：ready
+- 原文：https://openai.com/index/gpt-6-astra
 
 ## 7. [LangChain](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/a98679589e43508a090d.md)
 - コード：`a9867958`

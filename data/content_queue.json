@@ -47,8 +47,131 @@
     "source": "github_openwebui_releases",
     "status": "ready",
     "title": "Open WebUI",
-    "updated_at": "2026-09-06T03:40:08+09:00",
+    "updated_at": "2026-09-06T09:21:43+09:00",
     "url": "https://github.com/open-webui/open-webui/releases/tag/v0.11.2",
+    "usage_status": "not_used",
+    "validation_status": "unverified",
+    "validation_updated_at": null,
+    "views": 0
+  },
+  {
+    "channels": {
+      "note": {
+        "status": "ready"
+      },
+      "threads": {
+        "status": "ready"
+      },
+      "video": {
+        "status": "ready"
+      },
+      "x": {
+        "status": "ready"
+      }
+    },
+    "clicks": 0,
+    "code": "e6cbc485",
+    "content_angle": "Ollamaが、どんな作業に役立つのかを初心者向けに整理する。",
+    "content_grade": "発信候補",
+    "content_score": 88,
+    "created_at": "2026-09-06T09:21:43+09:00",
+    "github_homepage": "",
+    "github_language": "",
+    "github_stars": null,
+    "github_topics": [],
+    "id": "e6cbc485a4645cbb5fdc",
+    "kind": "publishing",
+    "monetization": "自分の作業で使える範囲を確認し、可能ならAI導入・自動化の小さな設定代行や作業効率化に転用できる可能性。",
+    "next_channel": "note",
+    "outcome_status": "not_measured",
+    "outcome_updated_at": null,
+    "pack_path": "data/drafts/e6cbc485a4645cbb5fdc.md",
+    "pack_url": "https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/e6cbc485a4645cbb5fdc.md",
+    "post_url": "",
+    "post_url_updated_at": null,
+    "project_summary": "自分のPC上でAIモデルを動かし、管理するためのツール。",
+    "project_type": "公式GitHubリリース",
+    "project_use": "PC上でAIを試したい人や、外部サービスにデータを送らず検証したい人向け。",
+    "reader_action": "公式リポジトリの概要を確認し、自分の用途に合うかを一つだけ試す。",
+    "reader_problem": "AIツールの名前は見つかるが、結局どの作業に使えるのか分からない。",
+    "revenue": 0.0,
+    "revenue_readiness": 43,
+    "sales": 0,
+    "service_name": "Ollama",
+    "signups": 0,
+    "source": "github_ollama_releases",
+    "status": "ready",
+    "title": "Ollama",
+    "updated_at": "2026-09-06T09:21:43+09:00",
+    "url": "https://github.com/ollama/ollama/releases/tag/v0.34.0-rc1",
+    "usage_status": "not_used",
+    "validation_status": "unverified",
+    "validation_updated_at": null,
+    "views": 0
+  },
+  {
+    "channels": {
+      "note": {
+        "status": "ready"
+      },
+      "threads": {
+        "status": "ready"
+      },
+      "video": {
+        "status": "ready"
+      },
+      "x": {
+        "status": "ready"
+      }
+    },
+    "clicks": 0,
+    "code": "c0e6cfa4",
+    "content_angle": "Simが、どんな作業に役立つのかを初心者向けに整理する。",
+    "content_grade": "要検証",
+    "content_score": 54,
+    "created_at": "2026-09-06T09:21:43+09:00",
+    "github_homepage": "https://www.sim.ai/",
+    "github_language": "TypeScript",
+    "github_stars": 29552,
+    "github_topics": [
+      "agent-workflow",
+      "agentic-workflow",
+      "agents",
+      "ai",
+      "aiagents",
+      "anthropic",
+      "artificial-intelligence",
+      "automation",
+      "chatbot",
+      "deepseek",
+      "gemini",
+      "low-code"
+    ],
+    "id": "c0e6cfa4be66e716f742",
+    "kind": "publishing",
+    "monetization": "自分の作業で使える範囲を確認し、可能ならAI導入・自動化の小さな設定代行や作業効率化に転用できる可能性。",
+    "next_channel": "note",
+    "outcome_status": "not_measured",
+    "outcome_updated_at": null,
+    "pack_path": "data/drafts/c0e6cfa4be66e716f742.md",
+    "pack_url": "https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/c0e6cfa4be66e716f742.md",
+    "post_url": "",
+    "post_url_updated_at": null,
+    "project_summary": "Sim is the collaborative workspace to build, deploy, and monitor AI agents and workflows. Used by 100,000+ builders.",
+    "project_type": "GitHub公開AIプロジェクト",
+    "project_use": "業務自動化や複数サービスの連携を試したい人向け。",
+    "reader_action": "公式リポジトリの概要を確認し、自分の用途に合うかを一つだけ試す。",
+    "reader_problem": "AIツールの名前は見つかるが、結局どの作業に使えるのか分からない。",
+    "revenue": 0.0,
+    "revenue_readiness": 43,
+    "sales": 0,
+    "service_name": "Sim",
+    "signups": 0,
+    "source": "github_ai_repositories",
+    "status": "ready",
+    "title": "Sim",
+    "updated_at": "2026-09-06T09:21:43+09:00",
+    "url": "https://github.com/simstudioai/sim",
     "usage_status": "not_used",
     "validation_status": "unverified",
     "validation_updated_at": null,

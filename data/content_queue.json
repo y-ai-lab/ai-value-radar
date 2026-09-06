@@ -15,6 +15,171 @@
       }
     },
     "clicks": 0,
+    "code": "95afc4aa",
+    "content_angle": "n8n official affiliate programを紹介する前に、報酬条件と規約を確認する。",
+    "content_grade": "参考ニュース",
+    "content_score": 0,
+    "created_at": "2026-08-31T20:13:46+09:00",
+    "github_homepage": "",
+    "github_language": "",
+    "github_stars": null,
+    "github_topics": [],
+    "id": "95afc4aa2824a5152d71",
+    "kind": "revenue",
+    "monetization": "Affiliate 30% recurringの可能性。公式条件の確認が必要。",
+    "next_channel": "note",
+    "outcome_status": "not_measured",
+    "outcome_updated_at": null,
+    "pack_path": "data/drafts/95afc4aa2824a5152d71.md",
+    "pack_url": "https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/95afc4aa2824a5152d71.md",
+    "post_url": "",
+    "post_url_updated_at": null,
+    "project_summary": "Become an n8n affiliate partner. Get 30% commission for every n8n cloud referral you bring for 12 months.",
+    "project_type": "公式価格・Affiliate情報",
+    "project_use": "",
+    "reader_action": "公式ページで条件を確認し、自分の用途で一つだけ試して結果を記録する。",
+    "reader_problem": "報酬条件や広告表記の確認方法が分からない。",
+    "revenue": 0.0,
+    "revenue_readiness": 86,
+    "sales": 0,
+    "service_name": "n8n official affiliate program",
+    "signups": 0,
+    "source": "n8n_affiliate_page",
+    "status": "ready",
+    "title": "n8n official affiliate program",
+    "updated_at": "2026-09-07T03:43:34+09:00",
+    "url": "https://n8n.io/affiliates",
+    "usage_status": "not_used",
+    "validation_status": "unverified",
+    "validation_updated_at": null,
+    "views": 0
+  },
+  {
+    "channels": {
+      "note": {
+        "status": "ready"
+      },
+      "threads": {
+        "status": "ready"
+      },
+      "video": {
+        "status": "ready"
+      },
+      "x": {
+        "status": "ready"
+      }
+    },
+    "clicks": 0,
+    "code": "bb69d9e4",
+    "content_angle": "Frontier AI faces pricing reckoning as token volume explodes 25-foldの条件が、自分の用途で本当に役立つかを確認する。",
+    "content_grade": "要検証",
+    "content_score": 62,
+    "created_at": "2026-09-07T03:43:34+09:00",
+    "github_homepage": "",
+    "github_language": "",
+    "github_stars": null,
+    "github_topics": [],
+    "id": "bb69d9e4bddc5d376eb1",
+    "kind": "publishing",
+    "monetization": "収益化に直結するかは、利用価値と公式条件の確認後に判断。",
+    "next_channel": "note",
+    "outcome_status": "not_measured",
+    "outcome_updated_at": null,
+    "pack_path": "data/drafts/bb69d9e4bddc5d376eb1.md",
+    "pack_url": "https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/bb69d9e4bddc5d376eb1.md",
+    "post_url": "",
+    "post_url_updated_at": null,
+    "project_summary": "",
+    "project_type": "",
+    "project_use": "",
+    "reader_action": "公式ページで条件を確認し、自分の用途で一つだけ試して結果を記録する。",
+    "reader_problem": "AIの情報は多いのに、自分の作業で試す方法まで落とし込めない。",
+    "revenue": 0.0,
+    "revenue_readiness": 53,
+    "sales": 0,
+    "service_name": "",
+    "signups": 0,
+    "source": "hn_pricing",
+    "status": "ready",
+    "title": "Frontier AI faces pricing reckoning as token volume explodes 25-fold",
+    "updated_at": "2026-09-07T03:43:34+09:00",
+    "url": "https://www.tomshardware.com/tech-industry/artificial-intelligence/frontier-ai-faces-pricing-reckoning-as-token-volume-explodes-25-fold-mid-tier-models-deliver-90-percent-of-flagship-capability-at-one-sixth-the-cost",
+    "usage_status": "not_used",
+    "validation_status": "unverified",
+    "validation_updated_at": null,
+    "views": 0
+  },
+  {
+    "channels": {
+      "note": {
+        "status": "ready"
+      },
+      "threads": {
+        "status": "ready"
+      },
+      "video": {
+        "status": "ready"
+      },
+      "x": {
+        "status": "ready"
+      }
+    },
+    "clicks": 0,
+    "code": "90e404be",
+    "content_angle": "OpenAIの条件が、自分の用途で本当に役立つかを確認する。",
+    "content_grade": "要検証",
+    "content_score": 61,
+    "created_at": "2026-09-07T03:43:34+09:00",
+    "github_homepage": "",
+    "github_language": "",
+    "github_stars": null,
+    "github_topics": [],
+    "id": "90e404be1e0b3632f38c",
+    "kind": "publishing",
+    "monetization": "収益化に直結するかは、利用価値と公式条件の確認後に判断。",
+    "next_channel": "note",
+    "outcome_status": "not_measured",
+    "outcome_updated_at": null,
+    "pack_path": "data/drafts/90e404be1e0b3632f38c.md",
+    "pack_url": "https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/90e404be1e0b3632f38c.md",
+    "post_url": "",
+    "post_url_updated_at": null,
+    "project_summary": "",
+    "project_type": "",
+    "project_use": "",
+    "reader_action": "公式ページで条件を確認し、自分の用途で一つだけ試して結果を記録する。",
+    "reader_problem": "AIの情報は多いのに、自分の作業で試す方法まで落とし込めない。",
+    "revenue": 0.0,
+    "revenue_readiness": 38,
+    "sales": 0,
+    "service_name": "OpenAI",
+    "signups": 0,
+    "source": "openai_news",
+    "status": "ready",
+    "title": "OpenAI",
+    "updated_at": "2026-09-07T03:43:34+09:00",
+    "url": "https://openai.com/index/research-acceleration-view-inside-openai",
+    "usage_status": "not_used",
+    "validation_status": "unverified",
+    "validation_updated_at": null,
+    "views": 0
+  },
+  {
+    "channels": {
+      "note": {
+        "status": "ready"
+      },
+      "threads": {
+        "status": "ready"
+      },
+      "video": {
+        "status": "ready"
+      },
+      "x": {
+        "status": "ready"
+      }
+    },
+    "clicks": 0,
     "code": "3e9f4df2",
     "content_angle": "Open WebUIが、どんな作業に役立つのかを初心者向けに整理する。",
     "content_grade": "要検証",
@@ -392,61 +557,6 @@
     "title": "Sim",
     "updated_at": "2026-09-06T09:21:43+09:00",
     "url": "https://github.com/simstudioai/sim",
-    "usage_status": "not_used",
-    "validation_status": "unverified",
-    "validation_updated_at": null,
-    "views": 0
-  },
-  {
-    "channels": {
-      "note": {
-        "status": "ready"
-      },
-      "threads": {
-        "status": "ready"
-      },
-      "video": {
-        "status": "ready"
-      },
-      "x": {
-        "status": "ready"
-      }
-    },
-    "clicks": 0,
-    "code": "95afc4aa",
-    "content_angle": "n8n official affiliate programを紹介する前に、報酬条件と規約を確認する。",
-    "content_grade": "参考ニュース",
-    "content_score": 0,
-    "created_at": "2026-08-31T20:13:46+09:00",
-    "github_homepage": "",
-    "github_language": "",
-    "github_stars": null,
-    "github_topics": [],
-    "id": "95afc4aa2824a5152d71",
-    "kind": "revenue",
-    "monetization": "Affiliate 30% recurringの可能性。公式条件の確認が必要。",
-    "next_channel": "note",
-    "outcome_status": "not_measured",
-    "outcome_updated_at": null,
-    "pack_path": "data/drafts/95afc4aa2824a5152d71.md",
-    "pack_url": "https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/95afc4aa2824a5152d71.md",
-    "post_url": "",
-    "post_url_updated_at": null,
-    "project_summary": "Become an n8n affiliate partner. Get 30% commission for every n8n cloud referral you bring for 12 months.",
-    "project_type": "公式価格・Affiliate情報",
-    "project_use": "",
-    "reader_action": "公式ページで条件を確認し、自分の用途で一つだけ試して結果を記録する。",
-    "reader_problem": "報酬条件や広告表記の確認方法が分からない。",
-    "revenue": 0.0,
-    "revenue_readiness": 86,
-    "sales": 0,
-    "service_name": "n8n official affiliate program",
-    "signups": 0,
-    "source": "n8n_affiliate_page",
-    "status": "ready",
-    "title": "n8n official affiliate program",
-    "updated_at": "2026-09-06T03:40:08+09:00",
-    "url": "https://n8n.io/affiliates",
     "usage_status": "not_used",
     "validation_status": "unverified",
     "validation_updated_at": null,

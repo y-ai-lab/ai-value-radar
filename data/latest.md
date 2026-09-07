@@ -1,8 +1,8 @@
 # AI VALUE RADAR｜今回の監視結果
 
-確認日時：2026/09/07 09:28
+確認日時：2026/09/07 18:49
 
-監視 747件 / 新規 34件 / 有望 0件 / 発信候補 0件 / 発信ネタ 2件
+監視 747件 / 新規 26件 / 有望 0件 / 発信候補 0件 / 発信ネタ 2件
 
 ## 結論
 
@@ -11,20 +11,20 @@
 ## 発信ネタ
 
 ### 1. 発信候補｜発信価値 90点
-[llama.cpp](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/a385dd3a95642dd81262.md)
-コード：`a385dd3a`
-切り口：llama.cppが、どんな作業に役立つのかを初心者向けに整理する。
+[n8n](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/9b6ce6ce556b6b8188f1.md)
+コード：`9b6ce6ce`
+切り口：n8nが、どんな作業に役立つのかを初心者向けに整理する。
 読者の悩み：AIツールの名前は見つかるが、結局どの作業に使えるのか分からない。
-何をするものか：PCや比較的小さな環境でもAIモデルを動かしやすくする実装。
-用途の目安：PC上でローカルAIを試したい人や、外部送信なしで検証したい人向け。
+何をするものか：Gmailやスプレッドシートなどをつなぎ、繰り返し作業を自動化するツール。
+用途の目安：定型業務の自動化や、複数サービスの連携を試したい人向け。
 次にすること：公式リポジトリの概要を確認し、自分の用途に合うかを一つだけ試す。
 収益化の仮説：自分の作業で使える範囲を確認し、可能ならAI導入・自動化の小さな設定代行や作業効率化に転用できる可能性。
 収益準備度：43点｜需要：未検証｜結果：未計測
-原文：[github_llamacpp_releases](https://github.com/ggml-org/llama.cpp/releases/tag/b10828)
+原文：[github_n8n_releases](https://github.com/n8n-io/n8n/releases/tag/n8n%402.38.4)
 
-### 2. 要検証｜発信価値 60点
-[llama.cpp](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/0871387c33cc6e6652c6.md)
-コード：`0871387c`
+### 2. 発信候補｜発信価値 90点
+[llama.cpp](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/921046f8c18e6fb3977a.md)
+コード：`921046f8`
 切り口：llama.cppが、どんな作業に役立つのかを初心者向けに整理する。
 読者の悩み：AIツールの名前は見つかるが、結局どの作業に使えるのか分からない。
 何をするものか：PCや比較的小さな環境でもAIモデルを動かしやすくする実装。
@@ -32,7 +32,7 @@
 次にすること：公式リポジトリの概要を確認し、自分の用途に合うかを一つだけ試す。
 収益化の仮説：自分の作業で使える範囲を確認し、可能ならAI導入・自動化の小さな設定代行や作業効率化に転用できる可能性。
 収益準備度：43点｜需要：未検証｜結果：未計測
-原文：[github_llamacpp_releases](https://github.com/ggml-org/llama.cpp/releases/tag/b10830)
+原文：[github_llamacpp_releases](https://github.com/ggml-org/llama.cpp/releases/tag/b10833)
 
 ## 次にすること
 
@@ -42,17 +42,17 @@
 
 ## 7日間の集計
 
-- 実行回数：53回
-- 発信用パック：119件
-- 発信ネタ：71件
+- 実行回数：28回
+- 発信用パック：97件
+- 発信ネタ：54件
 - 価値あり判定：0件
 - 今回は不要判定：0件
-- Affiliate候補：950件
+- Affiliate候補：508件
 - AI呼び出し：0回
 - 収益計測対象：0件
 - 閲覧 / クリック / 登録 / 成約：0 / 0 / 0 / 0
 - 記録売上：0.0円
-- エラー：78件
+- エラー：22件
 
 ## エラー・取得できなかったソース
 

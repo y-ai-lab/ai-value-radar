@@ -47,8 +47,118 @@
     "source": "n8n_affiliate_page",
     "status": "ready",
     "title": "n8n official affiliate program",
-    "updated_at": "2026-09-09T18:17:36+09:00",
+    "updated_at": "2026-09-09T23:53:45+09:00",
     "url": "https://n8n.io/affiliates",
+    "usage_status": "not_used",
+    "validation_status": "unverified",
+    "validation_updated_at": null,
+    "views": 0
+  },
+  {
+    "channels": {
+      "note": {
+        "status": "ready"
+      },
+      "threads": {
+        "status": "ready"
+      },
+      "video": {
+        "status": "ready"
+      },
+      "x": {
+        "status": "ready"
+      }
+    },
+    "clicks": 0,
+    "code": "a5257d5d",
+    "content_angle": "n8nが、どんな作業に役立つのかを初心者向けに整理する。",
+    "content_grade": "発信候補",
+    "content_score": 90,
+    "created_at": "2026-09-09T23:53:45+09:00",
+    "github_homepage": "",
+    "github_language": "",
+    "github_stars": null,
+    "github_topics": [],
+    "id": "a5257d5dccaa9372cc57",
+    "kind": "publishing",
+    "monetization": "自分の作業で使える範囲を確認し、可能ならAI導入・自動化の小さな設定代行や作業効率化に転用できる可能性。",
+    "next_channel": "note",
+    "outcome_status": "not_measured",
+    "outcome_updated_at": null,
+    "pack_path": "data/drafts/a5257d5dccaa9372cc57.md",
+    "pack_url": "https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/a5257d5dccaa9372cc57.md",
+    "post_url": "",
+    "post_url_updated_at": null,
+    "project_summary": "Gmailやスプレッドシートなどをつなぎ、繰り返し作業を自動化するツール。",
+    "project_type": "公式GitHubリリース",
+    "project_use": "定型業務の自動化や、複数サービスの連携を試したい人向け。",
+    "reader_action": "公式リポジトリの概要を確認し、自分の用途に合うかを一つだけ試す。",
+    "reader_problem": "AIツールの名前は見つかるが、結局どの作業に使えるのか分からない。",
+    "revenue": 0.0,
+    "revenue_readiness": 43,
+    "sales": 0,
+    "service_name": "n8n",
+    "signups": 0,
+    "source": "github_n8n_releases",
+    "status": "ready",
+    "title": "n8n",
+    "updated_at": "2026-09-09T23:53:45+09:00",
+    "url": "https://github.com/n8n-io/n8n/releases/tag/n8n%402.39.1",
+    "usage_status": "not_used",
+    "validation_status": "unverified",
+    "validation_updated_at": null,
+    "views": 0
+  },
+  {
+    "channels": {
+      "note": {
+        "status": "ready"
+      },
+      "threads": {
+        "status": "ready"
+      },
+      "video": {
+        "status": "ready"
+      },
+      "x": {
+        "status": "ready"
+      }
+    },
+    "clicks": 0,
+    "code": "5d4195dc",
+    "content_angle": "Zapierの条件が、自分の用途で本当に役立つかを確認する。",
+    "content_grade": "発信候補",
+    "content_score": 85,
+    "created_at": "2026-09-09T23:53:45+09:00",
+    "github_homepage": "",
+    "github_language": "",
+    "github_stars": null,
+    "github_topics": [],
+    "id": "5d4195dc9b54e3bab0b1",
+    "kind": "publishing",
+    "monetization": "自分の作業コストを下げ、制作・発信・受託へ転用できる可能性。",
+    "next_channel": "note",
+    "outcome_status": "not_measured",
+    "outcome_updated_at": null,
+    "pack_path": "data/drafts/5d4195dc9b54e3bab0b1.md",
+    "pack_url": "https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/5d4195dc9b54e3bab0b1.md",
+    "post_url": "",
+    "post_url_updated_at": null,
+    "project_summary": "",
+    "project_type": "",
+    "project_use": "",
+    "reader_action": "公式ページで条件を確認し、自分の用途で一つだけ試して結果を記録する。",
+    "reader_problem": "AIの情報は多いのに、自分の作業で試す方法まで落とし込めない。",
+    "revenue": 0.0,
+    "revenue_readiness": 75,
+    "sales": 0,
+    "service_name": "Zapier",
+    "signups": 0,
+    "source": "zapier_blog",
+    "status": "ready",
+    "title": "Zapier",
+    "updated_at": "2026-09-09T23:53:45+09:00",
+    "url": "https://zapier.com/blog/cpq-software-vendors",
     "usage_status": "not_used",
     "validation_status": "unverified",
     "validation_updated_at": null,

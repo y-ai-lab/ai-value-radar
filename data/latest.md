@@ -1,8 +1,8 @@
 # AI VALUE RADAR｜今回の監視結果
 
-確認日時：2026/09/10 18:16
+確認日時：2026/09/10 23:41
 
-監視 747件 / 新規 28件 / 有望 0件 / 発信候補 1件 / 発信ネタ 2件
+監視 751件 / 新規 40件 / 有望 0件 / 発信候補 1件 / 発信ネタ 2件
 
 ## 結論
 
@@ -18,28 +18,28 @@
 ## 発信ネタ
 
 ### 1. 発信候補｜発信価値 90点
-[n8n](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/29777c6e03f45c834d9d.md)
-コード：`29777c6e`
-切り口：n8nが、どんな作業に役立つのかを初心者向けに整理する。
+[Dify](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/a19a5a6782c7d403cbc5.md)
+コード：`a19a5a67`
+切り口：Difyが、どんな作業に役立つのかを初心者向けに整理する。
 読者の悩み：AIツールの名前は見つかるが、結局どの作業に使えるのか分からない。
-何をするものか：Gmailやスプレッドシートなどをつなぎ、繰り返し作業を自動化するツール。
-用途の目安：定型業務の自動化や、複数サービスの連携を試したい人向け。
+何をするものか：AIチャットボットや小さなAIアプリを作り、動かすための土台。
+用途の目安：AIチャットボットや小さなAIサービスを作って試したい人向け。
 次にすること：公式リポジトリの概要を確認し、自分の用途に合うかを一つだけ試す。
 収益化の仮説：自分の作業で使える範囲を確認し、可能ならAI導入・自動化の小さな設定代行や作業効率化に転用できる可能性。
 収益準備度：43点｜需要：未検証｜結果：未計測
-原文：[github_n8n_releases](https://github.com/n8n-io/n8n/releases/tag/n8n%402.39.2)
+原文：[github_dify_releases](https://github.com/langgenius/dify/releases/tag/1.17.1)
 
 ### 2. 発信候補｜発信価値 90点
-[llama.cpp](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/7fe5044d2706812d7c34.md)
-コード：`7fe5044d`
-切り口：llama.cppが、どんな作業に役立つのかを初心者向けに整理する。
+[RAGFlow](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/42e732acee1b54a443b4.md)
+コード：`42e732ac`
+切り口：RAGFlowが、どんな作業に役立つのかを初心者向けに整理する。
 読者の悩み：AIツールの名前は見つかるが、結局どの作業に使えるのか分からない。
-何をするものか：PCや比較的小さな環境でもAIモデルを動かしやすくする実装。
-用途の目安：PC上でローカルAIを試したい人や、外部送信なしで検証したい人向け。
+何をするものか：資料を読み込ませ、検索と生成を組み合わせたAIアプリを作る基盤。
+用途の目安：自分の資料を使った検索・FAQ・社内ナレッジ活用を試したい人向け。
 次にすること：公式リポジトリの概要を確認し、自分の用途に合うかを一つだけ試す。
 収益化の仮説：自分の作業で使える範囲を確認し、可能ならAI導入・自動化の小さな設定代行や作業効率化に転用できる可能性。
 収益準備度：43点｜需要：未検証｜結果：未計測
-原文：[github_llamacpp_releases](https://github.com/ggml-org/llama.cpp/releases/tag/b10887)
+原文：[github_ragflow_releases](https://github.com/infiniflow/ragflow/releases/tag/v0.27.2)
 
 ## 次にすること
 

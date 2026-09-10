@@ -1,6 +1,6 @@
 # AI VALUE RADAR｜発信キュー
 
-更新日時：2026-09-10T18:16:15+09:00
+更新日時：2026-09-10T23:41:51+09:00
 
 次の媒体から順番に使います：note → X → Threads → 短尺動画
 Telegramで `/posted コード 媒体` を送ると進捗を更新できます。
@@ -34,7 +34,35 @@ Telegramで `/posted コード 媒体` を送ると進捗を更新できます�
 - 短尺動画：ready
 - 原文：https://github.com/crewAIInc/crewAI/releases/tag/1.15.21
 
-## 3. [n8n](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/29777c6e03f45c834d9d.md)
+## 3. [Dify](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/a19a5a6782c7d403cbc5.md)
+- コード：`a19a5a67`
+- 状態：ready / 次：note
+- 判定：発信候補
+- 収益準備度：43点 / 需要：未検証 / 結果：未計測
+- 計測：閲覧 0 / クリック 0 / 登録 0 / 成約 0 / 売上 0.0円
+- 切り口：Difyが、どんな作業に役立つのかを初心者向けに整理する。
+- 読者の悩み：AIツールの名前は見つかるが、結局どの作業に使えるのか分からない。
+- note：ready
+- X：ready
+- Threads：ready
+- 短尺動画：ready
+- 原文：https://github.com/langgenius/dify/releases/tag/1.17.1
+
+## 4. [RAGFlow](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/42e732acee1b54a443b4.md)
+- コード：`42e732ac`
+- 状態：ready / 次：note
+- 判定：発信候補
+- 収益準備度：43点 / 需要：未検証 / 結果：未計測
+- 計測：閲覧 0 / クリック 0 / 登録 0 / 成約 0 / 売上 0.0円
+- 切り口：RAGFlowが、どんな作業に役立つのかを初心者向けに整理する。
+- 読者の悩み：AIツールの名前は見つかるが、結局どの作業に使えるのか分からない。
+- note：ready
+- X：ready
+- Threads：ready
+- 短尺動画：ready
+- 原文：https://github.com/infiniflow/ragflow/releases/tag/v0.27.2
+
+## 5. [n8n](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/29777c6e03f45c834d9d.md)
 - コード：`29777c6e`
 - 状態：ready / 次：note
 - 判定：発信候補
@@ -48,7 +76,7 @@ Telegramで `/posted コード 媒体` を送ると進捗を更新できます�
 - 短尺動画：ready
 - 原文：https://github.com/n8n-io/n8n/releases/tag/n8n%402.39.2
 
-## 4. [llama.cpp](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/7fe5044d2706812d7c34.md)
+## 6. [llama.cpp](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/7fe5044d2706812d7c34.md)
 - コード：`7fe5044d`
 - 状態：ready / 次：note
 - 判定：発信候補
@@ -62,7 +90,7 @@ Telegramで `/posted コード 媒体` を送ると進捗を更新できます�
 - 短尺動画：ready
 - 原文：https://github.com/ggml-org/llama.cpp/releases/tag/b10887
 
-## 5. [ComfyUI](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/c85dd2ece27b7e51ccd1.md)
+## 7. [ComfyUI](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/c85dd2ece27b7e51ccd1.md)
 - コード：`c85dd2ec`
 - 状態：ready / 次：note
 - 判定：発信候補
@@ -76,7 +104,7 @@ Telegramで `/posted コード 媒体` を送ると進捗を更新できます�
 - 短尺動画：ready
 - 原文：https://github.com/Comfy-Org/ComfyUI/releases/tag/v0.35.0
 
-## 6. [llama.cpp](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/6466b171b3706448426b.md)
+## 8. [llama.cpp](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/6466b171b3706448426b.md)
 - コード：`6466b171`
 - 状態：ready / 次：note
 - 判定：発信候補
@@ -90,7 +118,7 @@ Telegramで `/posted コード 媒体` を送ると進捗を更新できます�
 - 短尺動画：ready
 - 原文：https://github.com/ggml-org/llama.cpp/releases/tag/b10883
 
-## 7. [Ollama](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/41ee66a602f6ba5d4514.md)
+## 9. [Ollama](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/41ee66a602f6ba5d4514.md)
 - コード：`41ee66a6`
 - 状態：ready / 次：note
 - 判定：発信候補
@@ -104,7 +132,7 @@ Telegramで `/posted コード 媒体` を送ると進捗を更新できます�
 - 短尺動画：ready
 - 原文：https://github.com/ollama/ollama/releases/tag/v0.34.0-rc4
 
-## 8. [n8n](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/a5257d5dccaa9372cc57.md)
+## 10. [n8n](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/a5257d5dccaa9372cc57.md)
 - コード：`a5257d5d`
 - 状態：ready / 次：note
 - 判定：発信候補
@@ -118,7 +146,7 @@ Telegramで `/posted コード 媒体` を送ると進捗を更新できます�
 - 短尺動画：ready
 - 原文：https://github.com/n8n-io/n8n/releases/tag/n8n%402.39.1
 
-## 9. [Zapier](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/5d4195dc9b54e3bab0b1.md)
+## 11. [Zapier](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/5d4195dc9b54e3bab0b1.md)
 - コード：`5d4195dc`
 - 状態：ready / 次：note
 - 判定：発信候補
@@ -132,7 +160,7 @@ Telegramで `/posted コード 媒体` を送ると進捗を更新できます�
 - 短尺動画：ready
 - 原文：https://zapier.com/blog/cpq-software-vendors
 
-## 10. [LiteLLM](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/db029af26faaba6507ed.md)
+## 12. [LiteLLM](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/db029af26faaba6507ed.md)
 - コード：`db029af2`
 - 状態：ready / 次：note
 - 判定：発信候補
@@ -146,7 +174,7 @@ Telegramで `/posted コード 媒体` を送ると進捗を更新できます�
 - 短尺動画：ready
 - 原文：https://github.com/BerriAI/litellm/releases/tag/v1.102.0-dev.1
 
-## 11. [llama.cpp](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/35b77ccf50ed29292377.md)
+## 13. [llama.cpp](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/35b77ccf50ed29292377.md)
 - コード：`35b77ccf`
 - 状態：ready / 次：note
 - 判定：要検証
@@ -160,7 +188,7 @@ Telegramで `/posted コード 媒体` を送ると進捗を更新できます�
 - 短尺動画：ready
 - 原文：https://github.com/ggml-org/llama.cpp/releases/tag/b10872
 
-## 12. [Show HN: Relay – an update after three years on anonymous team check-ins](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/7ed21d6c8a8ad19a9287.md)
+## 14. [Show HN: Relay – an update after three years on anonymous team check-ins](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/7ed21d6c8a8ad19a9287.md)
 - コード：`7ed21d6c`
 - 状態：ready / 次：note
 - 判定：要検証
@@ -174,7 +202,7 @@ Telegramで `/posted コード 媒体` を送ると進捗を更新できます�
 - 短尺動画：ready
 - 原文：https://www.openrelay.app/
 
-## 13. [n8n official pricing](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/43ecae62f994c1728673.md)
+## 15. [n8n official pricing](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/43ecae62f994c1728673.md)
 - コード：`43ecae62`
 - 状態：ready / 次：note
 - 判定：発信候補
@@ -188,7 +216,7 @@ Telegramで `/posted コード 媒体` を送ると進捗を更新できます�
 - 短尺動画：ready
 - 原文：https://n8n.io/pricing
 
-## 14. [Ollama](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/8ab13cd37d076a2cd523.md)
+## 16. [Ollama](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/8ab13cd37d076a2cd523.md)
 - コード：`8ab13cd3`
 - 状態：ready / 次：note
 - 判定：発信候補
@@ -202,7 +230,7 @@ Telegramで `/posted コード 媒体` を送ると進捗を更新できます�
 - 短尺動画：ready
 - 原文：https://github.com/ollama/ollama/releases/tag/v0.34.0-rc3
 
-## 15. [Zapier](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/6bb719f9b6f8c50f8789.md)
+## 17. [Zapier](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/6bb719f9b6f8c50f8789.md)
 - コード：`6bb719f9`
 - 状態：ready / 次：note
 - 判定：発信候補
@@ -216,7 +244,7 @@ Telegramで `/posted コード 媒体` を送ると進捗を更新できます�
 - 短尺動画：ready
 - 原文：https://zapier.com/blog/jasper-vs-copy-ai
 
-## 16. [llama.cpp](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/6ac2ed90067f764c65e5.md)
+## 18. [llama.cpp](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/6ac2ed90067f764c65e5.md)
 - コード：`6ac2ed90`
 - 状態：ready / 次：note
 - 判定：発信候補
@@ -230,7 +258,7 @@ Telegramで `/posted コード 媒体` を送ると進捗を更新できます�
 - 短尺動画：ready
 - 原文：https://github.com/ggml-org/llama.cpp/releases/tag/b10857
 
-## 17. [LangChain](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/a587d1b18de715e9586e.md)
+## 19. [LangChain](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/a587d1b18de715e9586e.md)
 - コード：`a587d1b1`
 - 状態：ready / 次：note
 - 判定：発信候補
@@ -244,7 +272,7 @@ Telegramで `/posted コード 媒体` を送ると進捗を更新できます�
 - 短尺動画：ready
 - 原文：https://github.com/langchain-ai/langchain/releases/tag/langchain-openai%3D%3D1.6.1
 
-## 18. [n8n](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/3fbd76256dc3cddbc466.md)
+## 20. [n8n](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/3fbd76256dc3cddbc466.md)
 - コード：`3fbd7625`
 - 状態：ready / 次：note
 - 判定：発信候補
@@ -257,33 +285,5 @@ Telegramで `/posted コード 媒体` を送ると進捗を更新できます�
 - Threads：ready
 - 短尺動画：ready
 - 原文：https://github.com/n8n-io/n8n/releases/tag/n8n%402.39.0
-
-## 19. [llama.cpp](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/efa1a155e7132beb956d.md)
-- コード：`efa1a155`
-- 状態：ready / 次：note
-- 判定：発信候補
-- 収益準備度：43点 / 需要：未検証 / 結果：未計測
-- 計測：閲覧 0 / クリック 0 / 登録 0 / 成約 0 / 売上 0.0円
-- 切り口：llama.cppが、どんな作業に役立つのかを初心者向けに整理する。
-- 読者の悩み：AIツールの名前は見つかるが、結局どの作業に使えるのか分からない。
-- note：ready
-- X：ready
-- Threads：ready
-- 短尺動画：ready
-- 原文：https://github.com/ggml-org/llama.cpp/releases/tag/b10853
-
-## 20. [llama.cpp](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/1049f5380d39bd98ecf3.md)
-- コード：`1049f538`
-- 状態：ready / 次：note
-- 判定：要検証
-- 収益準備度：43点 / 需要：未検証 / 結果：未計測
-- 計測：閲覧 0 / クリック 0 / 登録 0 / 成約 0 / 売上 0.0円
-- 切り口：llama.cppが、どんな作業に役立つのかを初心者向けに整理する。
-- 読者の悩み：AIツールの名前は見つかるが、結局どの作業に使えるのか分からない。
-- note：ready
-- X：ready
-- Threads：ready
-- 短尺動画：ready
-- 原文：https://github.com/ggml-org/llama.cpp/releases/tag/b10852
 
 [リポジトリ](https://github.com/y-ai-lab/ai-value-radar)

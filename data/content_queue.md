@@ -1,6 +1,6 @@
 # AI VALUE RADAR｜発信キュー
 
-更新日時：2026-09-11T23:40:28+09:00
+更新日時：2026-09-12T04:21:15+09:00
 
 次の媒体から順番に使います：note → X → Threads → 短尺動画
 Telegramで `/posted コード 媒体` を送ると進捗を更新できます。
@@ -34,63 +34,7 @@ Telegramで `/posted コード 媒体` を送ると進捗を更新できます�
 - 短尺動画：ready
 - 原文：https://blog.cloudflare.com/casb-policies
 
-## 3. [Show HN: Usero MCP, give your coding agent your user feedback](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/0c602788f04c44b5cf5b.md)
-- コード：`0c602788`
-- 状態：ready / 次：note
-- 判定：要検証
-- 収益準備度：78点 / 需要：未検証 / 結果：未計測
-- 計測：閲覧 0 / クリック 0 / 登録 0 / 成約 0 / 売上 0.0円
-- 切り口：Show HN: Usero MCP, give your coding agent your user feedbackの条件が、自分の用途で本当に役立つかを確認する。
-- 読者の悩み：AIの情報は多いのに、自分の作業で試す方法まで落とし込めない。
-- note：ready
-- X：ready
-- Threads：ready
-- 短尺動画：ready
-- 原文：https://usero.io/docs/mcp
-
-## 4. [CrewAI](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/cecaf4e4912f6e1e8f49.md)
-- コード：`cecaf4e4`
-- 状態：ready / 次：note
-- 判定：発信候補
-- 収益準備度：43点 / 需要：未検証 / 結果：未計測
-- 計測：閲覧 0 / クリック 0 / 登録 0 / 成約 0 / 売上 0.0円
-- 切り口：CrewAIが、どんな作業に役立つのかを初心者向けに整理する。
-- 読者の悩み：AIツールの名前は見つかるが、結局どの作業に使えるのか分からない。
-- note：ready
-- X：ready
-- Threads：ready
-- 短尺動画：ready
-- 原文：https://github.com/crewAIInc/crewAI/releases/tag/1.15.21
-
-## 5. [n8n](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/a86cd3594df8af897902.md)
-- コード：`a86cd359`
-- 状態：ready / 次：note
-- 判定：発信候補
-- 収益準備度：43点 / 需要：未検証 / 結果：未計測
-- 計測：閲覧 0 / クリック 0 / 登録 0 / 成約 0 / 売上 0.0円
-- 切り口：n8nが、どんな作業に役立つのかを初心者向けに整理する。
-- 読者の悩み：AIツールの名前は見つかるが、結局どの作業に使えるのか分からない。
-- note：ready
-- X：ready
-- Threads：ready
-- 短尺動画：ready
-- 原文：https://github.com/n8n-io/n8n/releases/tag/n8n%402.39.3
-
-## 6. [llama.cpp](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/c4aa7b85821e46b165e0.md)
-- コード：`c4aa7b85`
-- 状態：ready / 次：note
-- 判定：発信候補
-- 収益準備度：43点 / 需要：未検証 / 結果：未計測
-- 計測：閲覧 0 / クリック 0 / 登録 0 / 成約 0 / 売上 0.0円
-- 切り口：llama.cppが、どんな作業に役立つのかを初心者向けに整理する。
-- 読者の悩み：AIツールの名前は見つかるが、結局どの作業に使えるのか分からない。
-- note：ready
-- X：ready
-- Threads：ready
-- 短尺動画：ready
-- 原文：https://github.com/ggml-org/llama.cpp/releases/tag/b10903
-
-## 7. [n8n official pricing](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/43ecae62f994c1728673.md)
+## 3. [n8n official pricing](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/43ecae62f994c1728673.md)
 - コード：`43ecae62`
 - 状態：ready / 次：note
 - 判定：発信候補
@@ -104,7 +48,77 @@ Telegramで `/posted コード 媒体` を送ると進捗を更新できます�
 - 短尺動画：ready
 - 原文：https://n8n.io/pricing
 
-## 8. [OpenAI](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/78d8b460723dec5107b3.md)
+## 4. [AWS Machine Learning](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/3e69ecfa48251d39cc12.md)
+- コード：`3e69ecfa`
+- 状態：ready / 次：note
+- 判定：発信候補
+- 収益準備度：38点 / 需要：未検証 / 結果：未計測
+- 計測：閲覧 0 / クリック 0 / 登録 0 / 成約 0 / 売上 0.0円
+- 切り口：AWS Machine Learningの条件が、自分の用途で本当に役立つかを確認する。
+- 読者の悩み：AIの情報は多いのに、自分の作業で試す方法まで落とし込めない。
+- note：ready
+- X：ready
+- Threads：ready
+- 短尺動画：ready
+- 原文：https://aws.amazon.com/blogs/machine-learning/beyond-the-price-per-token-choosing-the-right-openai-model-on-amazon-bedrock-for-your-workload
+
+## 5. [Show HN: Usero MCP, give your coding agent your user feedback](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/0c602788f04c44b5cf5b.md)
+- コード：`0c602788`
+- 状態：ready / 次：note
+- 判定：要検証
+- 収益準備度：78点 / 需要：未検証 / 結果：未計測
+- 計測：閲覧 0 / クリック 0 / 登録 0 / 成約 0 / 売上 0.0円
+- 切り口：Show HN: Usero MCP, give your coding agent your user feedbackの条件が、自分の用途で本当に役立つかを確認する。
+- 読者の悩み：AIの情報は多いのに、自分の作業で試す方法まで落とし込めない。
+- note：ready
+- X：ready
+- Threads：ready
+- 短尺動画：ready
+- 原文：https://usero.io/docs/mcp
+
+## 6. [CrewAI](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/cecaf4e4912f6e1e8f49.md)
+- コード：`cecaf4e4`
+- 状態：ready / 次：note
+- 判定：発信候補
+- 収益準備度：43点 / 需要：未検証 / 結果：未計測
+- 計測：閲覧 0 / クリック 0 / 登録 0 / 成約 0 / 売上 0.0円
+- 切り口：CrewAIが、どんな作業に役立つのかを初心者向けに整理する。
+- 読者の悩み：AIツールの名前は見つかるが、結局どの作業に使えるのか分からない。
+- note：ready
+- X：ready
+- Threads：ready
+- 短尺動画：ready
+- 原文：https://github.com/crewAIInc/crewAI/releases/tag/1.15.21
+
+## 7. [n8n](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/a86cd3594df8af897902.md)
+- コード：`a86cd359`
+- 状態：ready / 次：note
+- 判定：発信候補
+- 収益準備度：43点 / 需要：未検証 / 結果：未計測
+- 計測：閲覧 0 / クリック 0 / 登録 0 / 成約 0 / 売上 0.0円
+- 切り口：n8nが、どんな作業に役立つのかを初心者向けに整理する。
+- 読者の悩み：AIツールの名前は見つかるが、結局どの作業に使えるのか分からない。
+- note：ready
+- X：ready
+- Threads：ready
+- 短尺動画：ready
+- 原文：https://github.com/n8n-io/n8n/releases/tag/n8n%402.39.3
+
+## 8. [llama.cpp](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/c4aa7b85821e46b165e0.md)
+- コード：`c4aa7b85`
+- 状態：ready / 次：note
+- 判定：発信候補
+- 収益準備度：43点 / 需要：未検証 / 結果：未計測
+- 計測：閲覧 0 / クリック 0 / 登録 0 / 成約 0 / 売上 0.0円
+- 切り口：llama.cppが、どんな作業に役立つのかを初心者向けに整理する。
+- 読者の悩み：AIツールの名前は見つかるが、結局どの作業に使えるのか分からない。
+- note：ready
+- X：ready
+- Threads：ready
+- 短尺動画：ready
+- 原文：https://github.com/ggml-org/llama.cpp/releases/tag/b10903
+
+## 9. [OpenAI](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/78d8b460723dec5107b3.md)
 - コード：`78d8b460`
 - 状態：ready / 次：note
 - 判定：発信候補
@@ -118,7 +132,7 @@ Telegramで `/posted コード 媒体` を送ると進捗を更新できます�
 - 短尺動画：ready
 - 原文：https://openai.com/index/introducing-the-agents-api
 
-## 9. [llama.cpp](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/e2788c43e42e560f9a8b.md)
+## 10. [llama.cpp](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/e2788c43e42e560f9a8b.md)
 - コード：`e2788c43`
 - 状態：ready / 次：note
 - 判定：発信候補
@@ -132,7 +146,7 @@ Telegramで `/posted コード 媒体` を送ると進捗を更新できます�
 - 短尺動画：ready
 - 原文：https://github.com/ggml-org/llama.cpp/releases/tag/b10896
 
-## 10. [LiteLLM](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/a8f35bc2b4dc6ebd62e1.md)
+## 11. [LiteLLM](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/a8f35bc2b4dc6ebd62e1.md)
 - コード：`a8f35bc2`
 - 状態：ready / 次：note
 - 判定：発信候補
@@ -146,7 +160,7 @@ Telegramで `/posted コード 媒体` を送ると進捗を更新できます�
 - 短尺動画：ready
 - 原文：https://github.com/BerriAI/litellm/releases/tag/v1.100.1
 
-## 11. [Dify](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/a19a5a6782c7d403cbc5.md)
+## 12. [Dify](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/a19a5a6782c7d403cbc5.md)
 - コード：`a19a5a67`
 - 状態：ready / 次：note
 - 判定：発信候補
@@ -160,7 +174,7 @@ Telegramで `/posted コード 媒体` を送ると進捗を更新できます�
 - 短尺動画：ready
 - 原文：https://github.com/langgenius/dify/releases/tag/1.17.1
 
-## 12. [RAGFlow](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/42e732acee1b54a443b4.md)
+## 13. [RAGFlow](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/42e732acee1b54a443b4.md)
 - コード：`42e732ac`
 - 状態：ready / 次：note
 - 判定：発信候補
@@ -174,7 +188,7 @@ Telegramで `/posted コード 媒体` を送ると進捗を更新できます�
 - 短尺動画：ready
 - 原文：https://github.com/infiniflow/ragflow/releases/tag/v0.27.2
 
-## 13. [n8n](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/29777c6e03f45c834d9d.md)
+## 14. [n8n](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/29777c6e03f45c834d9d.md)
 - コード：`29777c6e`
 - 状態：ready / 次：note
 - 判定：発信候補
@@ -188,7 +202,7 @@ Telegramで `/posted コード 媒体` を送ると進捗を更新できます�
 - 短尺動画：ready
 - 原文：https://github.com/n8n-io/n8n/releases/tag/n8n%402.39.2
 
-## 14. [llama.cpp](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/7fe5044d2706812d7c34.md)
+## 15. [llama.cpp](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/7fe5044d2706812d7c34.md)
 - コード：`7fe5044d`
 - 状態：ready / 次：note
 - 判定：発信候補
@@ -202,7 +216,7 @@ Telegramで `/posted コード 媒体` を送ると進捗を更新できます�
 - 短尺動画：ready
 - 原文：https://github.com/ggml-org/llama.cpp/releases/tag/b10887
 
-## 15. [ComfyUI](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/c85dd2ece27b7e51ccd1.md)
+## 16. [ComfyUI](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/c85dd2ece27b7e51ccd1.md)
 - コード：`c85dd2ec`
 - 状態：ready / 次：note
 - 判定：発信候補
@@ -216,7 +230,7 @@ Telegramで `/posted コード 媒体` を送ると進捗を更新できます�
 - 短尺動画：ready
 - 原文：https://github.com/Comfy-Org/ComfyUI/releases/tag/v0.35.0
 
-## 16. [llama.cpp](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/6466b171b3706448426b.md)
+## 17. [llama.cpp](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/6466b171b3706448426b.md)
 - コード：`6466b171`
 - 状態：ready / 次：note
 - 判定：発信候補
@@ -230,7 +244,7 @@ Telegramで `/posted コード 媒体` を送ると進捗を更新できます�
 - 短尺動画：ready
 - 原文：https://github.com/ggml-org/llama.cpp/releases/tag/b10883
 
-## 17. [Ollama](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/41ee66a602f6ba5d4514.md)
+## 18. [Ollama](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/41ee66a602f6ba5d4514.md)
 - コード：`41ee66a6`
 - 状態：ready / 次：note
 - 判定：発信候補
@@ -244,7 +258,7 @@ Telegramで `/posted コード 媒体` を送ると進捗を更新できます�
 - 短尺動画：ready
 - 原文：https://github.com/ollama/ollama/releases/tag/v0.34.0-rc4
 
-## 18. [n8n](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/a5257d5dccaa9372cc57.md)
+## 19. [n8n](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/a5257d5dccaa9372cc57.md)
 - コード：`a5257d5d`
 - 状態：ready / 次：note
 - 判定：発信候補
@@ -258,7 +272,7 @@ Telegramで `/posted コード 媒体` を送ると進捗を更新できます�
 - 短尺動画：ready
 - 原文：https://github.com/n8n-io/n8n/releases/tag/n8n%402.39.1
 
-## 19. [Zapier](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/5d4195dc9b54e3bab0b1.md)
+## 20. [Zapier](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/5d4195dc9b54e3bab0b1.md)
 - コード：`5d4195dc`
 - 状態：ready / 次：note
 - 判定：発信候補
@@ -271,19 +285,5 @@ Telegramで `/posted コード 媒体` を送ると進捗を更新できます�
 - Threads：ready
 - 短尺動画：ready
 - 原文：https://zapier.com/blog/cpq-software-vendors
-
-## 20. [LiteLLM](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/db029af26faaba6507ed.md)
-- コード：`db029af2`
-- 状態：ready / 次：note
-- 判定：発信候補
-- 収益準備度：43点 / 需要：未検証 / 結果：未計測
-- 計測：閲覧 0 / クリック 0 / 登録 0 / 成約 0 / 売上 0.0円
-- 切り口：LiteLLMが、どんな作業に役立つのかを初心者向けに整理する。
-- 読者の悩み：AIツールの名前は見つかるが、結局どの作業に使えるのか分からない。
-- note：ready
-- X：ready
-- Threads：ready
-- 短尺動画：ready
-- 原文：https://github.com/BerriAI/litellm/releases/tag/v1.102.0-dev.1
 
 [リポジトリ](https://github.com/y-ai-lab/ai-value-radar)

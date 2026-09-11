@@ -1,38 +1,45 @@
 # AI VALUE RADAR｜今回の監視結果
 
-確認日時：2026/09/11 23:40
+確認日時：2026/09/12 04:21
 
-監視 750件 / 新規 39件 / 有望 0件 / 発信候補 0件 / 発信ネタ 2件
+監視 750件 / 新規 31件 / 有望 0件 / 発信候補 1件 / 発信ネタ 2件
 
 ## 結論
 
-今回は新規または重要更新の収益候補はありませんでした。
-同じ案件の重複通知は抑止しています。次回の巡回を待ちます。
+### 1. 45点｜発信候補・要確認
+[n8n official affiliate program](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/95afc4aa2824a5152d71.md)
+カテゴリ：Affiliate
+条件：報酬 30% recurring
+収益準備度：86点 / 100点｜需要：未検証｜結果：未計測
+注目理由：今回の巡回で新規または重要な変化として検出。
+原文：[n8n_affiliate_page](https://n8n.io/affiliates)
+発信用パック：[Markdownを開く](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/95afc4aa2824a5152d71.md)
+
 ## 発信ネタ
 
 ### 1. 発信候補｜発信価値 79点
-[Cloudflare](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/a35b880e04389dfac1de.md)
-コード：`a35b880e`
-切り口：Cloudflareの条件が、自分の用途で本当に役立つかを確認する。
+[n8n official pricing](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/43ecae62f994c1728673.md)
+コード：`43ecae62`
+切り口：n8n official pricingの条件が、自分の用途で本当に役立つかを確認する。
+読者の悩み：AIの情報は多いのに、自分の作業で試す方法まで落とし込めない。
+何をするものか：Discover n8n
+
+次にすること：公式ページで条件を確認し、自分の用途で一つだけ試して結果を記録する。
+収益化の仮説：自分の作業コストを下げ、制作・発信・受託へ転用できる可能性。
+収益準備度：78点｜需要：未検証｜結果：未計測
+原文：[n8n_pricing_page](https://n8n.io/pricing)
+
+### 2. 発信候補｜発信価値 79点
+[AWS Machine Learning](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/3e69ecfa48251d39cc12.md)
+コード：`3e69ecfa`
+切り口：AWS Machine Learningの条件が、自分の用途で本当に役立つかを確認する。
 読者の悩み：AIの情報は多いのに、自分の作業で試す方法まで落とし込めない。
 
 
 次にすること：公式ページで条件を確認し、自分の用途で一つだけ試して結果を記録する。
 収益化の仮説：収益化に直結するかは、利用価値と公式条件の確認後に判断。
 収益準備度：38点｜需要：未検証｜結果：未計測
-原文：[cloudflare_blog](https://blog.cloudflare.com/casb-policies)
-
-### 2. 要検証｜発信価値 62点
-[Show HN: Usero MCP, give your coding agent your user feedback](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/0c602788f04c44b5cf5b.md)
-コード：`0c602788`
-切り口：Show HN: Usero MCP, give your coding agent your user feedbackの条件が、自分の用途で本当に役立つかを確認する。
-読者の悩み：AIの情報は多いのに、自分の作業で試す方法まで落とし込めない。
-
-
-次にすること：公式ページで条件を確認し、自分の用途で一つだけ試して結果を記録する。
-収益化の仮説：自分の作業コストを下げ、制作・発信・受託へ転用できる可能性。
-収益準備度：78点｜需要：未検証｜結果：未計測
-原文：[hn_pricing](https://usero.io/docs/mcp)
+原文：[aws_machine_learning_blog](https://aws.amazon.com/blogs/machine-learning/beyond-the-price-per-token-choosing-the-right-openai-model-on-amazon-bedrock-for-your-workload)
 
 ## 次にすること
 

@@ -47,8 +47,118 @@
     "source": "n8n_affiliate_page",
     "status": "ready",
     "title": "n8n official affiliate program",
-    "updated_at": "2026-09-11T18:15:13+09:00",
+    "updated_at": "2026-09-11T23:40:28+09:00",
     "url": "https://n8n.io/affiliates",
+    "usage_status": "not_used",
+    "validation_status": "unverified",
+    "validation_updated_at": null,
+    "views": 0
+  },
+  {
+    "channels": {
+      "note": {
+        "status": "ready"
+      },
+      "threads": {
+        "status": "ready"
+      },
+      "video": {
+        "status": "ready"
+      },
+      "x": {
+        "status": "ready"
+      }
+    },
+    "clicks": 0,
+    "code": "a35b880e",
+    "content_angle": "Cloudflareの条件が、自分の用途で本当に役立つかを確認する。",
+    "content_grade": "発信候補",
+    "content_score": 79,
+    "created_at": "2026-09-11T23:40:28+09:00",
+    "github_homepage": "",
+    "github_language": "",
+    "github_stars": null,
+    "github_topics": [],
+    "id": "a35b880e04389dfac1de",
+    "kind": "publishing",
+    "monetization": "収益化に直結するかは、利用価値と公式条件の確認後に判断。",
+    "next_channel": "note",
+    "outcome_status": "not_measured",
+    "outcome_updated_at": null,
+    "pack_path": "data/drafts/a35b880e04389dfac1de.md",
+    "pack_url": "https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/a35b880e04389dfac1de.md",
+    "post_url": "",
+    "post_url_updated_at": null,
+    "project_summary": "",
+    "project_type": "",
+    "project_use": "",
+    "reader_action": "公式ページで条件を確認し、自分の用途で一つだけ試して結果を記録する。",
+    "reader_problem": "AIの情報は多いのに、自分の作業で試す方法まで落とし込めない。",
+    "revenue": 0.0,
+    "revenue_readiness": 38,
+    "sales": 0,
+    "service_name": "Cloudflare",
+    "signups": 0,
+    "source": "cloudflare_blog",
+    "status": "ready",
+    "title": "Cloudflare",
+    "updated_at": "2026-09-11T23:40:28+09:00",
+    "url": "https://blog.cloudflare.com/casb-policies",
+    "usage_status": "not_used",
+    "validation_status": "unverified",
+    "validation_updated_at": null,
+    "views": 0
+  },
+  {
+    "channels": {
+      "note": {
+        "status": "ready"
+      },
+      "threads": {
+        "status": "ready"
+      },
+      "video": {
+        "status": "ready"
+      },
+      "x": {
+        "status": "ready"
+      }
+    },
+    "clicks": 0,
+    "code": "0c602788",
+    "content_angle": "Show HN: Usero MCP, give your coding agent your user feedbackの条件が、自分の用途で本当に役立つかを確認する。",
+    "content_grade": "要検証",
+    "content_score": 62,
+    "created_at": "2026-09-11T23:40:28+09:00",
+    "github_homepage": "",
+    "github_language": "",
+    "github_stars": null,
+    "github_topics": [],
+    "id": "0c602788f04c44b5cf5b",
+    "kind": "publishing",
+    "monetization": "自分の作業コストを下げ、制作・発信・受託へ転用できる可能性。",
+    "next_channel": "note",
+    "outcome_status": "not_measured",
+    "outcome_updated_at": null,
+    "pack_path": "data/drafts/0c602788f04c44b5cf5b.md",
+    "pack_url": "https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/0c602788f04c44b5cf5b.md",
+    "post_url": "",
+    "post_url_updated_at": null,
+    "project_summary": "",
+    "project_type": "",
+    "project_use": "",
+    "reader_action": "公式ページで条件を確認し、自分の用途で一つだけ試して結果を記録する。",
+    "reader_problem": "AIの情報は多いのに、自分の作業で試す方法まで落とし込めない。",
+    "revenue": 0.0,
+    "revenue_readiness": 78,
+    "sales": 0,
+    "service_name": "",
+    "signups": 0,
+    "source": "hn_pricing",
+    "status": "ready",
+    "title": "Show HN: Usero MCP, give your coding agent your user feedback",
+    "updated_at": "2026-09-11T23:40:28+09:00",
+    "url": "https://usero.io/docs/mcp",
     "usage_status": "not_used",
     "validation_status": "unverified",
     "validation_updated_at": null,

@@ -15,6 +15,14 @@
       "direction": "down",
       "interval": "MINUTE_5",
       "sent_at_ms": 1789312882823
+    },
+    "30000063:MINUTE_5:1789314900000:down": {
+      "candle_time_ms": 1789314900000,
+      "contract_id": "30000063",
+      "contract_name": "PUMPUSDC",
+      "direction": "down",
+      "interval": "MINUTE_5",
+      "sent_at_ms": 1789315324536
     }
   },
   "processed_candles": {}

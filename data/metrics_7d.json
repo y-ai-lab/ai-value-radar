@@ -1,7 +1,7 @@
 {
   "affiliate_count": 504,
   "ai_calls": 0,
-  "calculated_at": "2026-09-13T09:29:43.918111+09:00",
+  "calculated_at": "2026-09-13T18:51:45.837401+09:00",
   "content_pack_count": 95,
   "draft_count": 12,
   "draft_error_count": 0,
@@ -9,8 +9,8 @@
   "error_count": 32,
   "feedback_not_valuable": 0,
   "feedback_valuable": 0,
-  "fetched_count": 20306,
-  "new_count": 848,
+  "fetched_count": 20310,
+  "new_count": 853,
   "outcome_updated": 0,
   "outcomes": {
     "clicks": 0,

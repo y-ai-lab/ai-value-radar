@@ -1,8 +1,8 @@
 # AI VALUE RADAR｜今回の監視結果
 
-確認日時：2026/09/13 09:29
+確認日時：2026/09/13 18:51
 
-監視 751件 / 新規 25件 / 有望 0件 / 発信候補 0件 / 発信ネタ 2件
+監視 750件 / 新規 24件 / 有望 0件 / 発信候補 0件 / 発信ネタ 2件
 
 ## 結論
 
@@ -11,8 +11,8 @@
 ## 発信ネタ
 
 ### 1. 発信候補｜発信価値 90点
-[llama.cpp](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/78ae69dd2ede7525ecd9.md)
-コード：`78ae69dd`
+[llama.cpp](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/86e09c9297f6cbf3b2ca.md)
+コード：`86e09c92`
 切り口：llama.cppが、どんな作業に役立つのかを初心者向けに整理する。
 読者の悩み：AIツールの名前は見つかるが、結局どの作業に使えるのか分からない。
 何をするものか：PCや比較的小さな環境でもAIモデルを動かしやすくする実装。
@@ -20,19 +20,19 @@
 次にすること：公式リポジトリの概要を確認し、自分の用途に合うかを一つだけ試す。
 収益化の仮説：自分の作業で使える範囲を確認し、可能ならAI導入・自動化の小さな設定代行や作業効率化に転用できる可能性。
 収益準備度：43点｜需要：未検証｜結果：未計測
-原文：[github_llamacpp_releases](https://github.com/ggml-org/llama.cpp/releases/tag/b10933)
+原文：[github_llamacpp_releases](https://github.com/ggml-org/llama.cpp/releases/tag/b10936)
 
-### 2. 要検証｜発信価値 60点
-[llama.cpp](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/1d9c3d96bc494a7e3c14.md)
-コード：`1d9c3d96`
-切り口：llama.cppが、どんな作業に役立つのかを初心者向けに整理する。
+### 2. 発信候補｜発信価値 88点
+[LiteLLM](https://github.com/y-ai-lab/ai-value-radar/blob/main/data/drafts/5dd7adff74c5da8dacf1.md)
+コード：`5dd7adff`
+切り口：LiteLLMが、どんな作業に役立つのかを初心者向けに整理する。
 読者の悩み：AIツールの名前は見つかるが、結局どの作業に使えるのか分からない。
-何をするものか：PCや比較的小さな環境でもAIモデルを動かしやすくする実装。
-用途の目安：PC上でローカルAIを試したい人や、外部送信なしで検証したい人向け。
+何をするものか：ChatGPTやClaudeなど複数のAIを、同じ形式で扱いやすくする中継ツール。
+用途の目安：複数のAIを使い分ける仕組みや、AIアプリの裏側を試したい人向け。
 次にすること：公式リポジトリの概要を確認し、自分の用途に合うかを一つだけ試す。
 収益化の仮説：自分の作業で使える範囲を確認し、可能ならAI導入・自動化の小さな設定代行や作業効率化に転用できる可能性。
 収益準備度：43点｜需要：未検証｜結果：未計測
-原文：[github_llamacpp_releases](https://github.com/ggml-org/llama.cpp/releases/tag/b10934)
+原文：[github_litellm_releases](https://github.com/BerriAI/litellm/releases/tag/v1.102.0-rc.1)
 
 ## 次にすること
 

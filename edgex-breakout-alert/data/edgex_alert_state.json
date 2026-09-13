@@ -48,6 +48,30 @@
       "interval": "MINUTE_5",
       "sent_at_ms": 1789312882823
     },
+    "30000053:MINUTE_5:1789318800000:up": {
+      "candle_time_ms": 1789318800000,
+      "contract_id": "30000053",
+      "contract_name": "DOGEUSDC",
+      "direction": "up",
+      "interval": "MINUTE_5",
+      "sent_at_ms": 1789319232100
+    },
+    "30000054:MINUTE_5:1789318800000:up": {
+      "candle_time_ms": 1789318800000,
+      "contract_id": "30000054",
+      "contract_name": "SUIUSDC",
+      "direction": "up",
+      "interval": "MINUTE_5",
+      "sent_at_ms": 1789319232696
+    },
+    "30000058:MINUTE_5:1789318800000:up": {
+      "candle_time_ms": 1789318800000,
+      "contract_id": "30000058",
+      "contract_name": "ENAUSDC",
+      "direction": "up",
+      "interval": "MINUTE_5",
+      "sent_at_ms": 1789319233410
+    },
     "30000063:MINUTE_5:1789314900000:down": {
       "candle_time_ms": 1789314900000,
       "contract_id": "30000063",

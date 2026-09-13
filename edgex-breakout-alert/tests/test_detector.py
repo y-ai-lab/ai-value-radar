@@ -1,6 +1,6 @@
 import unittest
 
-from app import BreakoutDetector, Candle, Contract, JsonStateStore, Settings
+from app import BreakoutDetector, Candle, Contract, JsonStateStore, Settings, format_signal
 
 
 def make_settings(**overrides):
@@ -111,6 +111,39 @@ class BreakoutDetectorTests(unittest.TestCase):
         candidate = candle(6, 102, 90, 93, 200, open_price=101)
         signal = detector.detect(self.contract, "MINUTE_5", falling + [candidate], candidate)
         self.assertIsNotNone(signal)
+
+    def test_trade_plan_calculates_reference_levels_and_size(self):
+        detector = BreakoutDetector(
+            make_settings(
+                risk_budget_usd=1.0,
+                max_position_notional_usd=1000.0,
+                stop_buffer_pct=0.3,
+            )
+        )
+        history = [
+            candle(1, 100, 90, 98, 100),
+            candle(2, 101, 91, 99, 100),
+            candle(3, 102, 92, 100, 100),
+        ]
+        candidate = candle(4, 105, 99, 103, 200, open_price=100)
+        signal = detector.detect(self.contract, "MINUTE_5", history + [candidate], candidate)
+
+        self.assertIsNotNone(signal)
+        assert signal is not None
+        plan = signal.trade_plan
+        self.assertAlmostEqual(plan.entry_price, 102.0)
+        self.assertAlmostEqual(plan.stop_loss, 101.694)
+        self.assertAlmostEqual(plan.take_profit_1, 102.306)
+        self.assertAlmostEqual(plan.take_profit_2, 102.612)
+        self.assertAlmostEqual(plan.recommended_quantity, 1.0 / 0.306)
+        self.assertAlmostEqual(plan.recommended_notional_usd, 102.0 / 0.306)
+        self.assertAlmostEqual(plan.estimated_loss_usd, 1.0)
+
+        message = format_signal(signal, "UTC")
+        self.assertIn("Entry:", message)
+        self.assertIn("損切り:", message)
+        self.assertIn("利確1:", message)
+        self.assertIn("推奨枚数:", message)
 
     def test_not_enough_history_is_ignored(self):
         history = [candle(1, 100, 90, 98, 100), candle(2, 101, 91, 99, 100)]

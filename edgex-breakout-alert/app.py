@@ -166,6 +166,11 @@ class Settings:
     telegram_token: str | None
     telegram_chat_id: str | None
     dry_run: bool
+    trend_filter_enabled: bool = False
+    trend_fast_period: int = 20
+    trend_slow_period: int = 50
+    require_directional_body: bool = False
+    close_location_threshold: float = 0.0
 
     @classmethod
     def from_env(cls, *, dry_run_override: bool | None = None) -> "Settings":
@@ -182,11 +187,32 @@ class Settings:
         if breakout_lookback < 2 or volume_lookback < 2:
             raise ValueError("Lookback values must be at least 2")
 
+        trend_filter_enabled = _env_bool("EDGE_X_TREND_FILTER", False)
+        trend_fast_period = max(2, _env_int("EDGE_X_TREND_FAST_PERIOD", 20))
+        trend_slow_period = max(
+            trend_fast_period + 1,
+            _env_int("EDGE_X_TREND_SLOW_PERIOD", 50),
+        )
+        close_location_threshold = min(
+            1.0,
+            max(0.0, _env_float("EDGE_X_CLOSE_LOCATION_THRESHOLD", 0.0)),
+        )
+
         history_size = _env_int(
             "EDGE_X_HISTORY_SIZE",
-            max(breakout_lookback, volume_lookback) + 30,
+            max(
+                breakout_lookback,
+                volume_lookback,
+                trend_slow_period if trend_filter_enabled else 0,
+            )
+            + 30,
         )
-        if history_size < max(breakout_lookback, volume_lookback) + 2:
+        required_history = max(
+            breakout_lookback,
+            volume_lookback,
+            trend_slow_period if trend_filter_enabled else 0,
+        ) + 2
+        if history_size < required_history:
             raise ValueError("EDGE_X_HISTORY_SIZE is too small for the configured lookbacks")
 
         dry_run = _env_bool("DRY_RUN", False) if dry_run_override is None else dry_run_override
@@ -229,6 +255,11 @@ class Settings:
             telegram_token=token,
             telegram_chat_id=chat_id,
             dry_run=dry_run,
+            trend_filter_enabled=trend_filter_enabled,
+            trend_fast_period=trend_fast_period,
+            trend_slow_period=trend_slow_period,
+            require_directional_body=_env_bool("EDGE_X_REQUIRE_DIRECTIONAL_BODY", False),
+            close_location_threshold=close_location_threshold,
         )
 
 
@@ -622,6 +653,16 @@ def format_signal(signal: Signal, timezone_name: str) -> str:
     )
 
 
+def _ema(values: list[float], period: int) -> float | None:
+    if not values or period < 1:
+        return None
+    alpha = 2 / (period + 1)
+    result = values[0]
+    for value in values[1:]:
+        result = (alpha * value) + ((1 - alpha) * result)
+    return result
+
+
 class BreakoutDetector:
     def __init__(self, settings: Settings) -> None:
         self.settings = settings
@@ -639,6 +680,8 @@ class BreakoutDetector:
             return None
         previous = ordered[:candidate_index]
         required = max(self.settings.breakout_lookback, self.settings.volume_lookback)
+        if self.settings.trend_filter_enabled:
+            required = max(required, self.settings.trend_slow_period)
         if len(previous) < required:
             return None
 
@@ -655,7 +698,36 @@ class BreakoutDetector:
 
         up_pct = (candidate.close / upper - 1) * 100 if upper else 0
         down_pct = (1 - candidate.close / lower) * 100 if lower else 0
+
+        close_location = None
+        if self.settings.close_location_threshold > 0:
+            candle_range = candidate.high - candidate.low
+            if candle_range <= 0:
+                return None
+            close_location = (candidate.close - candidate.low) / candle_range
+
+        trend_fast = trend_slow = None
+        if self.settings.trend_filter_enabled:
+            closes = [c.close for c in previous]
+            trend_fast = _ema(closes, self.settings.trend_fast_period)
+            trend_slow = _ema(closes, self.settings.trend_slow_period)
+            if trend_fast is None or trend_slow is None:
+                return None
+
         if up_pct >= self.settings.min_breakout_pct:
+            if self.settings.require_directional_body and candidate.close <= candidate.open:
+                return None
+            if (
+                close_location is not None
+                and close_location < self.settings.close_location_threshold
+            ):
+                return None
+            if (
+                trend_fast is not None
+                and trend_slow is not None
+                and (trend_fast <= trend_slow or candidate.close <= trend_fast)
+            ):
+                return None
             return Signal(
                 contract=contract,
                 interval=interval,
@@ -668,6 +740,19 @@ class BreakoutDetector:
                 volume_lookback=self.settings.volume_lookback,
             )
         if down_pct >= self.settings.min_breakout_pct:
+            if self.settings.require_directional_body and candidate.close >= candidate.open:
+                return None
+            if (
+                close_location is not None
+                and close_location > 1 - self.settings.close_location_threshold
+            ):
+                return None
+            if (
+                trend_fast is not None
+                and trend_slow is not None
+                and (trend_fast >= trend_slow or candidate.close >= trend_fast)
+            ):
+                return None
             return Signal(
                 contract=contract,
                 interval=interval,

@@ -7,6 +7,14 @@
       "direction": "down",
       "interval": "MINUTE_5",
       "sent_at_ms": 1789309606401
+    },
+    "30000052:MINUTE_5:1789312500000:down": {
+      "candle_time_ms": 1789312500000,
+      "contract_id": "30000052",
+      "contract_name": "ZECUSDC",
+      "direction": "down",
+      "interval": "MINUTE_5",
+      "sent_at_ms": 1789312882823
     }
   },
   "processed_candles": {}

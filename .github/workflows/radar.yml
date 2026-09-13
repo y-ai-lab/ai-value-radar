@@ -5,7 +5,7 @@ name: EdgeX breakout scan (standalone scheduler)
 on:
   schedule:
     # A proven six-hour schedule starts a long-running scanner session.
-    # The scanner itself checks the latest confirmed 5-minute candle every four minutes.
+    # The scanner itself checks the latest confirmed 15-minute candle every four minutes.
     - cron: "0 5,11,17,23 * * *"
   workflow_dispatch:
 
@@ -26,7 +26,18 @@ jobs:
       DRY_RUN: "false"
       STATE_BACKEND: json
       STATE_FILE: edgex-breakout-alert/data/edgex_alert_state.json
-      EDGE_X_INTERVALS: MINUTE_5
+      EDGE_X_INTERVALS: MINUTE_15
+      EDGE_X_BREAKOUT_LOOKBACK: "20"
+      EDGE_X_VOLUME_LOOKBACK: "20"
+      EDGE_X_VOLUME_MULTIPLIER: "1.8"
+      EDGE_X_MIN_BREAKOUT_PCT: "0.2"
+      EDGE_X_ALERT_COOLDOWN_MINUTES: "60"
+      EDGE_X_HISTORY_SIZE: "85"
+      EDGE_X_TREND_FILTER: "true"
+      EDGE_X_TREND_FAST_PERIOD: "20"
+      EDGE_X_TREND_SLOW_PERIOD: "50"
+      EDGE_X_REQUIRE_DIRECTIONAL_BODY: "true"
+      EDGE_X_CLOSE_LOCATION_THRESHOLD: "0.65"
       EDGE_X_INCLUDE_HIDDEN: "true"
       TIMEZONE: Asia/Tokyo
 

@@ -4,8 +4,9 @@ name: EdgeX breakout scan (standalone scheduler)
 # schedule slot, but it now runs only the independent EdgeX alert scanner.
 on:
   schedule:
-    # Run every five minutes off the top of the hour to reduce scheduler load.
-    - cron: "2,7,12,17,22,27,32,37,42,47,52,57 * * * *"
+    # A proven six-hour schedule starts a long-running scanner session.
+    # The scanner itself checks the latest confirmed 5-minute candle every four minutes.
+    - cron: "0 5,11,17,23 * * *"
   workflow_dispatch:
 
 permissions:
@@ -18,7 +19,7 @@ concurrency:
 jobs:
   scan:
     runs-on: ubuntu-latest
-    timeout-minutes: 3
+    timeout-minutes: 350
     env:
       TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
       TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
@@ -48,20 +49,37 @@ jobs:
         working-directory: edgex-breakout-alert
         run: python -m unittest discover -s tests -v
 
-      - name: Scan all tradable EdgeX contracts
-        working-directory: edgex-breakout-alert
-        run: python app.py --once --once-timeout 90 --log-level INFO
-
-      - name: Commit notification deduplication state
-        if: ${{ success() }}
+      - name: Scan all tradable EdgeX contracts every four minutes
+        shell: bash
         run: |
-          if [ -z "$(git status --porcelain -- edgex-breakout-alert/data/edgex_alert_state.json)" ]; then
-            echo "No state change"
-            exit 0
-          fi
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add edgex-breakout-alert/data/edgex_alert_state.json
-          git commit -m "chore: update EdgeX alert state"
-          git pull --rebase origin main
-          git push
+          set -euo pipefail
+          end_epoch=$(( $(date +%s) + 21000 ))
+
+          while [ "$(date +%s)" -lt "$end_epoch" ]; do
+            echo "Starting EdgeX scan at $(date -u '+%Y-%m-%dT%H:%M:%SZ')"
+            python edgex-breakout-alert/app.py --once --once-timeout 90 --log-level INFO
+
+            if [ -n "$(git status --porcelain -- edgex-breakout-alert/data/edgex_alert_state.json)" ]; then
+              git config user.name "github-actions[bot]"
+              git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+              git add edgex-breakout-alert/data/edgex_alert_state.json
+              git commit -m "chore: update EdgeX alert state"
+              git pull --rebase origin main
+              git push
+            fi
+
+            remaining=$(( end_epoch - $(date +%s) ))
+            if [ "$remaining" -le 0 ]; then
+              break
+            fi
+            sleep_seconds=240
+            if [ "$remaining" -lt "$sleep_seconds" ]; then
+              sleep_seconds="$remaining"
+            fi
+            echo "Next EdgeX scan in ${sleep_seconds}s"
+            sleep "$sleep_seconds"
+          done
+
+      - name: Session summary
+        if: ${{ always() }}
+        run: echo "EdgeX scanner session ended at $(date -u '+%Y-%m-%dT%H:%M:%SZ')"

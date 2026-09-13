@@ -24,6 +24,14 @@
       "interval": "MINUTE_5",
       "sent_at_ms": 1789315815092
     },
+    "30000014:MINUTE_5:1789319400000:up": {
+      "candle_time_ms": 1789319400000,
+      "contract_id": "30000014",
+      "contract_name": "MSTRUSDC",
+      "direction": "up",
+      "interval": "MINUTE_5",
+      "sent_at_ms": 1789319724079
+    },
     "30000020:MINUTE_5:1789315500000:up": {
       "candle_time_ms": 1789315500000,
       "contract_id": "30000020",

@@ -24,6 +24,14 @@
       "interval": "MINUTE_5",
       "sent_at_ms": 1789320703795
     },
+    "30000008:MINUTE_15:1789336800000:up": {
+      "candle_time_ms": 1789336800000,
+      "contract_id": "30000008",
+      "contract_name": "CLUSDC",
+      "direction": "up",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789337912610
+    },
     "30000014:MINUTE_5:1789315500000:up": {
       "candle_time_ms": 1789315500000,
       "contract_id": "30000014",
@@ -55,6 +63,14 @@
       "direction": "down",
       "interval": "MINUTE_5",
       "sent_at_ms": 1789309606401
+    },
+    "30000052:MINUTE_15:1789336800000:down": {
+      "candle_time_ms": 1789336800000,
+      "contract_id": "30000052",
+      "contract_name": "ZECUSDC",
+      "direction": "down",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789337913376
     },
     "30000052:MINUTE_5:1789312500000:down": {
       "candle_time_ms": 1789312500000,
@@ -88,6 +104,14 @@
       "interval": "MINUTE_5",
       "sent_at_ms": 1789324125152
     },
+    "30000058:MINUTE_15:1789336800000:down": {
+      "candle_time_ms": 1789336800000,
+      "contract_id": "30000058",
+      "contract_name": "ENAUSDC",
+      "direction": "down",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789337914084
+    },
     "30000058:MINUTE_5:1789318800000:up": {
       "candle_time_ms": 1789318800000,
       "contract_id": "30000058",
@@ -95,6 +119,14 @@
       "direction": "up",
       "interval": "MINUTE_5",
       "sent_at_ms": 1789319233410
+    },
+    "30000063:MINUTE_15:1789336800000:down": {
+      "candle_time_ms": 1789336800000,
+      "contract_id": "30000063",
+      "contract_name": "PUMPUSDC",
+      "direction": "down",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789337914722
     },
     "30000063:MINUTE_5:1789314900000:down": {
       "candle_time_ms": 1789314900000,

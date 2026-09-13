@@ -81,6 +81,37 @@ class BreakoutDetectorTests(unittest.TestCase):
         signal = self.detector.detect(self.contract, "MINUTE_5", history + [candidate], candidate)
         self.assertIsNone(signal)
 
+    def test_directional_body_filter_rejects_red_up_breakout(self):
+        detector = BreakoutDetector(make_settings(require_directional_body=True))
+        history = [candle(1, 100, 90, 98, 100), candle(2, 101, 91, 99, 100), candle(3, 102, 92, 100, 100)]
+        candidate = candle(4, 105, 99, 103, 200, open_price=104)
+        signal = detector.detect(self.contract, "MINUTE_5", history + [candidate], candidate)
+        self.assertIsNone(signal)
+
+    def test_trend_filter_requires_aligned_ema(self):
+        detector = BreakoutDetector(
+            make_settings(
+                trend_filter_enabled=True,
+                trend_fast_period=3,
+                trend_slow_period=5,
+            )
+        )
+        rising = [
+            candle(index, 100 + index, 90 + index, 95 + index, 100)
+            for index in range(1, 6)
+        ]
+        candidate = candle(6, 110, 99, 108, 200, open_price=105)
+        signal = detector.detect(self.contract, "MINUTE_5", rising + [candidate], candidate)
+        self.assertIsNotNone(signal)
+
+        falling = [
+            candle(index, 110 - index, 100 - index, 105 - index, 100)
+            for index in range(1, 6)
+        ]
+        candidate = candle(6, 102, 90, 93, 200, open_price=101)
+        signal = detector.detect(self.contract, "MINUTE_5", falling + [candidate], candidate)
+        self.assertIsNotNone(signal)
+
     def test_not_enough_history_is_ignored(self):
         history = [candle(1, 100, 90, 98, 100), candle(2, 101, 91, 99, 100)]
         candidate = candle(3, 105, 99, 103, 200, open_price=100)

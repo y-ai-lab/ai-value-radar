@@ -25,7 +25,7 @@ jobs:
       TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
       DRY_RUN: "false"
       STATE_BACKEND: json
-      STATE_FILE: data/edgex_alert_state.json
+      STATE_FILE: edgex-breakout-alert/data/edgex_alert_state.json
       EDGE_X_INTERVALS: MINUTE_5
       EDGE_X_INCLUDE_HIDDEN: "true"
       TIMEZONE: Asia/Tokyo

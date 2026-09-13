@@ -171,6 +171,11 @@ class Settings:
     trend_slow_period: int = 50
     require_directional_body: bool = False
     close_location_threshold: float = 0.0
+    risk_budget_usd: float = 0.15
+    max_position_notional_usd: float = 10.0
+    stop_buffer_pct: float = 0.3
+    take_profit_1_r: float = 1.0
+    take_profit_2_r: float = 2.0
 
     @classmethod
     def from_env(cls, *, dry_run_override: bool | None = None) -> "Settings":
@@ -197,6 +202,17 @@ class Settings:
             1.0,
             max(0.0, _env_float("EDGE_X_CLOSE_LOCATION_THRESHOLD", 0.0)),
         )
+        risk_budget_usd = max(0.0, _env_float("EDGE_X_RISK_BUDGET_USD", 0.15))
+        max_position_notional_usd = max(
+            0.0, _env_float("EDGE_X_MAX_POSITION_NOTIONAL_USD", 10.0)
+        )
+        stop_buffer_pct = max(0.0, _env_float("EDGE_X_STOP_BUFFER_PCT", 0.3))
+        take_profit_1_r = max(0.1, _env_float("EDGE_X_TAKE_PROFIT_1_R", 1.0))
+        take_profit_2_r = max(0.1, _env_float("EDGE_X_TAKE_PROFIT_2_R", 2.0))
+        if stop_buffer_pct <= 0:
+            raise ValueError("EDGE_X_STOP_BUFFER_PCT must be greater than 0")
+        if take_profit_2_r <= take_profit_1_r:
+            raise ValueError("EDGE_X_TAKE_PROFIT_2_R must exceed EDGE_X_TAKE_PROFIT_1_R")
 
         history_size = _env_int(
             "EDGE_X_HISTORY_SIZE",
@@ -260,6 +276,11 @@ class Settings:
             trend_slow_period=trend_slow_period,
             require_directional_body=_env_bool("EDGE_X_REQUIRE_DIRECTIONAL_BODY", False),
             close_location_threshold=close_location_threshold,
+            risk_budget_usd=risk_budget_usd,
+            max_position_notional_usd=max_position_notional_usd,
+            stop_buffer_pct=stop_buffer_pct,
+            take_profit_1_r=take_profit_1_r,
+            take_profit_2_r=take_profit_2_r,
         )
 
 
@@ -332,6 +353,24 @@ class Candle:
 
 
 @dataclass(frozen=True)
+class TradePlan:
+    entry_price: float
+    stop_loss: float
+    take_profit_1: float
+    take_profit_2: float
+    risk_per_unit: float
+    reward_risk_ratio: float
+    take_profit_1_r: float
+    take_profit_2_r: float
+    risk_budget_usd: float
+    max_position_notional_usd: float
+    recommended_quantity: float | None
+    recommended_notional_usd: float | None
+    estimated_loss_usd: float | None
+    entry_note: str
+
+
+@dataclass(frozen=True)
 class Signal:
     contract: Contract
     interval: str
@@ -342,6 +381,7 @@ class Signal:
     volume_average: float
     volume_ratio: float
     volume_lookback: int
+    trade_plan: TradePlan
 
     @property
     def key(self) -> str:
@@ -635,6 +675,15 @@ def format_signal(signal: Signal, timezone_name: str) -> str:
     timestamp = datetime.fromtimestamp(signal.candle.time_ms / 1000, tz=timezone.utc).astimezone(tz)
     direction_label = "上抜け" if signal.direction == "up" else "下抜け"
     sign = "+" if signal.breakout_pct >= 0 else ""
+    plan = signal.trade_plan
+    quantity_text = _format_number(plan.recommended_quantity)
+    notional_text = _format_usd(plan.recommended_notional_usd)
+    loss_text = _format_usd(plan.estimated_loss_usd)
+    max_notional_text = (
+        _format_usd(plan.max_position_notional_usd)
+        if plan.max_position_notional_usd > 0
+        else "上限なし"
+    )
     return "\n".join(
         [
             "🚨 EdgeX 出来高ブレイクアウト",
@@ -647,6 +696,15 @@ def format_signal(signal: Signal, timezone_name: str) -> str:
             f"突破幅: {sign}{signal.breakout_pct:.2f}%",
             f"出来高: {_format_usd(signal.candle.value)}",
             f"平均比: {signal.volume_ratio:.2f}倍（過去{signal.volume_lookback}本平均）",
+            "--- 取引計画（参考・自動発注なし） ---",
+            f"Entry: {_format_number(plan.entry_price)} {signal.contract.quote_coin}（{plan.entry_note}）",
+            f"損切り: {_format_number(plan.stop_loss)} {signal.contract.quote_coin}",
+            f"利確1: {_format_number(plan.take_profit_1)} {signal.contract.quote_coin}（{plan.take_profit_1_r:.1f}R）",
+            f"利確2: {_format_number(plan.take_profit_2)} {signal.contract.quote_coin}（{plan.take_profit_2_r:.1f}R）",
+            f"推奨枚数: {quantity_text}",
+            f"参考建玉: {notional_text} / 損失見込: {loss_text}",
+            f"計算基準: 損失上限 {_format_usd(plan.risk_budget_usd)} / 建玉上限 {max_notional_text}",
+            f"リスク単位: {_format_number(plan.risk_per_unit)} {signal.contract.quote_coin} / R:R {plan.reward_risk_ratio:.1f}",
             "通知のみ（自動発注なし）",
             "https://pro.edgex.exchange/",
         ]
@@ -661,6 +719,75 @@ def _ema(values: list[float], period: int) -> float | None:
     for value in values[1:]:
         result = (alpha * value) + ((1 - alpha) * result)
     return result
+
+
+def _build_trade_plan(
+    direction: str,
+    breakout_level: float,
+    settings: Settings,
+) -> TradePlan | None:
+    """Build a notification-only reference plan; never creates an order."""
+    if breakout_level <= 0 or settings.stop_buffer_pct <= 0:
+        return None
+
+    buffer_ratio = settings.stop_buffer_pct / 100
+    if direction == "up":
+        entry_price = breakout_level
+        stop_loss = entry_price * (1 - buffer_ratio)
+        risk_per_unit = entry_price - stop_loss
+        take_profit_1 = entry_price + risk_per_unit * settings.take_profit_1_r
+        take_profit_2 = entry_price + risk_per_unit * settings.take_profit_2_r
+        entry_note = "突破基準への戻り待ち（指値の参考）"
+    elif direction == "down":
+        entry_price = breakout_level
+        stop_loss = entry_price * (1 + buffer_ratio)
+        risk_per_unit = stop_loss - entry_price
+        take_profit_1 = entry_price - risk_per_unit * settings.take_profit_1_r
+        take_profit_2 = entry_price - risk_per_unit * settings.take_profit_2_r
+        entry_note = "突破基準への戻り待ち（指値の参考）"
+    else:
+        return None
+
+    if risk_per_unit <= 0 or take_profit_2 <= 0:
+        return None
+
+    recommended_quantity: float | None = None
+    if settings.risk_budget_usd > 0:
+        recommended_quantity = settings.risk_budget_usd / risk_per_unit
+        if settings.max_position_notional_usd > 0:
+            recommended_quantity = min(
+                recommended_quantity,
+                settings.max_position_notional_usd / entry_price,
+            )
+        if recommended_quantity <= 0:
+            recommended_quantity = None
+
+    recommended_notional_usd = (
+        recommended_quantity * entry_price
+        if recommended_quantity is not None
+        else None
+    )
+    estimated_loss_usd = (
+        recommended_quantity * risk_per_unit
+        if recommended_quantity is not None
+        else None
+    )
+    return TradePlan(
+        entry_price=entry_price,
+        stop_loss=stop_loss,
+        take_profit_1=take_profit_1,
+        take_profit_2=take_profit_2,
+        risk_per_unit=risk_per_unit,
+        reward_risk_ratio=settings.take_profit_2_r,
+        take_profit_1_r=settings.take_profit_1_r,
+        take_profit_2_r=settings.take_profit_2_r,
+        risk_budget_usd=settings.risk_budget_usd,
+        max_position_notional_usd=settings.max_position_notional_usd,
+        recommended_quantity=recommended_quantity,
+        recommended_notional_usd=recommended_notional_usd,
+        estimated_loss_usd=estimated_loss_usd,
+        entry_note=entry_note,
+    )
 
 
 class BreakoutDetector:
@@ -728,6 +855,9 @@ class BreakoutDetector:
                 and (trend_fast <= trend_slow or candidate.close <= trend_fast)
             ):
                 return None
+            trade_plan = _build_trade_plan("up", upper, self.settings)
+            if trade_plan is None:
+                return None
             return Signal(
                 contract=contract,
                 interval=interval,
@@ -738,6 +868,7 @@ class BreakoutDetector:
                 volume_average=average_value,
                 volume_ratio=volume_ratio,
                 volume_lookback=self.settings.volume_lookback,
+                trade_plan=trade_plan,
             )
         if down_pct >= self.settings.min_breakout_pct:
             if self.settings.require_directional_body and candidate.close >= candidate.open:
@@ -753,6 +884,9 @@ class BreakoutDetector:
                 and (trend_fast >= trend_slow or candidate.close >= trend_fast)
             ):
                 return None
+            trade_plan = _build_trade_plan("down", lower, self.settings)
+            if trade_plan is None:
+                return None
             return Signal(
                 contract=contract,
                 interval=interval,
@@ -763,6 +897,7 @@ class BreakoutDetector:
                 volume_average=average_value,
                 volume_ratio=volume_ratio,
                 volume_lookback=self.settings.volume_lookback,
+                trade_plan=trade_plan,
             )
         return None
 

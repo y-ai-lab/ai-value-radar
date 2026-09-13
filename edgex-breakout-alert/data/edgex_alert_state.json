@@ -96,6 +96,14 @@
       "interval": "MINUTE_5",
       "sent_at_ms": 1789315324536
     },
+    "30000092:MINUTE_5:1789320600000:up": {
+      "candle_time_ms": 1789320600000,
+      "contract_id": "30000092",
+      "contract_name": "ALLOUSDC",
+      "direction": "up",
+      "interval": "MINUTE_5",
+      "sent_at_ms": 1789320950019
+    },
     "30000167:MINUTE_5:1789320000000:up": {
       "candle_time_ms": 1789320000000,
       "contract_id": "30000167",

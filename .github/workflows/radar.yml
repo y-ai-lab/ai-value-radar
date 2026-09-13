@@ -1,92 +1,69 @@
-name: AI VALUE RADAR
+name: EdgeX breakout scan (standalone scheduler)
 
+# The former AI VALUE RADAR workflow is retained as an established GitHub
+# schedule slot, but it now runs only the independent EdgeX alert scanner.
 on:
   schedule:
-    # GitHub cron is UTC. These are 14:00, 20:00, 02:00, 08:00 JST.
-    - cron: "0 5,11,17,23 * * *"
+    # Three 15-minute schedules staggered by five minutes (UTC), for a 5-minute cadence.
+    - cron: "0,15,30,45 * * * *"
+    - cron: "5,20,35,50 * * * *"
+    - cron: "10,25,40,55 * * * *"
   workflow_dispatch:
-    inputs:
-      mode:
-        description: "Run a scan or send one Telegram test message"
-        required: true
-        type: choice
-        options:
-          - scan
-          - telegram_test
-        default: scan
 
 permissions:
   contents: write
 
 concurrency:
-  group: ai-value-radar-scan
+  group: edgex-breakout-scan-standalone
   cancel-in-progress: false
 
 jobs:
-  radar:
+  scan:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 3
     env:
-      PYTHONPATH: src
-      RADAR_TIMEZONE: Asia/Tokyo
-      RADAR_MAX_HTTP_REQUESTS: "60"
-      RADAR_MAX_SOURCE_ITEMS: "24"
-      RADAR_MAX_AI_CANDIDATES: "3"
-      RADAR_MAX_AI_CALLS_PER_DAY: "8"
-      RADAR_MAX_NOTIFICATIONS: "3"
-      RADAR_MAX_ARTICLE_DRAFTS: "3"
-      RADAR_MAX_ARTICLE_DRAFT_BYTES: "30000"
-      RADAR_MAX_PUBLISHING_TOPICS: "2"
-      RADAR_PUBLISHING_TOPIC_MIN_SCORE: "35"
-      RADAR_MAX_TOTAL_CONTENT_PACKS: "5"
-      RADAR_MAX_QUEUE_ITEMS: "100"
-      RADAR_MAX_TELEGRAM_UPDATES: "20"
-      RADAR_NOTIFY_MIN_SCORE: "70"
-      RADAR_PUBLISH_MIN_SCORE: "40"
-      RADAR_REPOSITORY_URL: https://github.com/y-ai-lab/ai-value-radar
       TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
       TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-      CLOUDFLARE_FREE_ONLY_ACK: ${{ secrets.CLOUDFLARE_FREE_ONLY_ACK }}
+      DRY_RUN: "false"
+      STATE_BACKEND: json
+      STATE_FILE: data/edgex_alert_state.json
+      EDGE_X_INTERVALS: MINUTE_5
+      EDGE_X_INCLUDE_HIDDEN: "true"
+      TIMEZONE: Asia/Tokyo
+
     steps:
-      - name: Checkout
-        uses: actions/checkout@v5
+      - name: Check out repository
+        uses: actions/checkout@v4
         with:
-          fetch-depth: 1
+          fetch-depth: 0
 
       - name: Set up Python
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@v5
         with:
           python-version: "3.12"
 
-      - name: Run unit tests
+      - name: Install dependencies
+        working-directory: edgex-breakout-alert
+        run: python -m pip install -r requirements.txt
+
+      - name: Run EdgeX tests
+        working-directory: edgex-breakout-alert
         run: python -m unittest discover -s tests -v
 
-      - name: Check tracked files for secrets
-        run: python scripts/secret_scan.py
+      - name: Scan all tradable EdgeX contracts
+        working-directory: edgex-breakout-alert
+        run: python app.py --once --once-timeout 90 --log-level INFO
 
-      - name: Run radar scan
-        if: github.event_name != 'workflow_dispatch' || inputs.mode == 'scan'
-        run: python -m ai_value_radar.main
-
-      - name: Send Telegram test
-        if: github.event_name == 'workflow_dispatch' && inputs.mode == 'telegram_test'
-        run: python -m ai_value_radar.main --telegram-test
-
-      - name: Check generated public state for secrets
-        if: github.event_name != 'workflow_dispatch' || inputs.mode == 'scan'
-        run: python scripts/secret_scan.py
-
-      - name: Commit public state
-        if: github.event_name != 'workflow_dispatch' || inputs.mode == 'scan'
+      - name: Commit notification deduplication state
+        if: ${{ success() }}
         run: |
-          git config user.name "ai-value-radar[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data
-          if git diff --cached --quiet; then
-            echo "No public state changes to commit."
-          else
-            git commit -m "chore: update radar state [skip ci]"
-            git push
+          if [ -z "$(git status --porcelain -- edgex-breakout-alert/data/edgex_alert_state.json)" ]; then
+            echo "No state change"
+            exit 0
           fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add edgex-breakout-alert/data/edgex_alert_state.json
+          git commit -m "chore: update EdgeX alert state"
+          git pull --rebase origin main
+          git push

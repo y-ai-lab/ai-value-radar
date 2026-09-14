@@ -80,6 +80,14 @@
       "interval": "MINUTE_5",
       "sent_at_ms": 1789319724079
     },
+    "30000020:MINUTE_15:1789375500000:down": {
+      "candle_time_ms": 1789375500000,
+      "contract_id": "30000020",
+      "contract_name": "NVDAUSDC",
+      "direction": "down",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789376438626
+    },
     "30000020:MINUTE_5:1789315500000:up": {
       "candle_time_ms": 1789315500000,
       "contract_id": "30000020",

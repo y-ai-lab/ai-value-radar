@@ -112,6 +112,14 @@
       "interval": "MINUTE_15",
       "sent_at_ms": 1789376438626
     },
+    "30000020:MINUTE_15:1789392600000:down": {
+      "candle_time_ms": 1789392600000,
+      "contract_id": "30000020",
+      "contract_name": "NVDAUSDC",
+      "direction": "down",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789393533589
+    },
     "30000020:MINUTE_5:1789315500000:up": {
       "candle_time_ms": 1789315500000,
       "contract_id": "30000020",
@@ -328,6 +336,14 @@
       "interval": "MINUTE_15",
       "sent_at_ms": 1789373019229
     },
+    "30000119:MINUTE_15:1789392600000:down": {
+      "candle_time_ms": 1789392600000,
+      "contract_id": "30000119",
+      "contract_name": "SNXXUSDC",
+      "direction": "down",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789393534330
+    },
     "30000136:MINUTE_15:1789341300000:up": {
       "candle_time_ms": 1789341300000,
       "contract_id": "30000136",
@@ -367,6 +383,14 @@
       "direction": "down",
       "interval": "MINUTE_15",
       "sent_at_ms": 1789392799157
+    },
+    "30000157:MINUTE_15:1789392600000:down": {
+      "candle_time_ms": 1789392600000,
+      "contract_id": "30000157",
+      "contract_name": "DELLUSDC",
+      "direction": "down",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789393534936
     },
     "30000164:MINUTE_15:1789344000000:down": {
       "candle_time_ms": 1789344000000,

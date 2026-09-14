@@ -112,6 +112,22 @@
       "interval": "MINUTE_15",
       "sent_at_ms": 1789345898189
     },
+    "30000023:MINUTE_15:1789372800000:down": {
+      "candle_time_ms": 1789372800000,
+      "contract_id": "30000023",
+      "contract_name": "TSLAUSDC",
+      "direction": "down",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789373752655
+    },
+    "30000035:MINUTE_15:1789372800000:down": {
+      "candle_time_ms": 1789372800000,
+      "contract_id": "30000035",
+      "contract_name": "MUUSDC",
+      "direction": "down",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789373753387
+    },
     "30000052:MINUTE_15:1789336800000:down": {
       "candle_time_ms": 1789336800000,
       "contract_id": "30000052",

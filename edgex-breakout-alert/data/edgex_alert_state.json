@@ -128,6 +128,14 @@
       "interval": "MINUTE_15",
       "sent_at_ms": 1789345897716
     },
+    "30000022:MINUTE_15:1789383600000:up": {
+      "candle_time_ms": 1789383600000,
+      "contract_id": "30000022",
+      "contract_name": "GOOGLUSDC",
+      "direction": "up",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789384503075
+    },
     "30000022:MINUTE_5:1789309200000:down": {
       "candle_time_ms": 1789309200000,
       "contract_id": "30000022",
@@ -151,6 +159,14 @@
       "direction": "down",
       "interval": "MINUTE_15",
       "sent_at_ms": 1789373752655
+    },
+    "30000031:MINUTE_15:1789383600000:down": {
+      "candle_time_ms": 1789383600000,
+      "contract_id": "30000031",
+      "contract_name": "CRWVUSDC",
+      "direction": "down",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789384503579
     },
     "30000035:MINUTE_15:1789372800000:down": {
       "candle_time_ms": 1789372800000,

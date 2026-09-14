@@ -40,6 +40,14 @@
       "interval": "MINUTE_15",
       "sent_at_ms": 1789362014466
     },
+    "30000004:MINUTE_15:1789401600000:down": {
+      "candle_time_ms": 1789401600000,
+      "contract_id": "30000004",
+      "contract_name": "EDGEUSDC",
+      "direction": "down",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789402576978
+    },
     "30000004:MINUTE_5:1789320300000:up": {
       "candle_time_ms": 1789320300000,
       "contract_id": "30000004",

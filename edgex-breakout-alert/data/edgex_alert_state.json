@@ -224,6 +224,14 @@
       "interval": "MINUTE_15",
       "sent_at_ms": 1789344920817
     },
+    "30000151:MINUTE_15:1789349400000:down": {
+      "candle_time_ms": 1789349400000,
+      "contract_id": "30000151",
+      "contract_name": "ZHONGJIUSDC",
+      "direction": "down",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789350529469
+    },
     "30000164:MINUTE_15:1789344000000:down": {
       "candle_time_ms": 1789344000000,
       "contract_id": "30000164",

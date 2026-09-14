@@ -248,6 +248,14 @@
       "interval": "MINUTE_15",
       "sent_at_ms": 1789344920238
     },
+    "30000110:MINUTE_15:1789371900000:up": {
+      "candle_time_ms": 1789371900000,
+      "contract_id": "30000110",
+      "contract_name": "ZAMAUSDC",
+      "direction": "up",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789373019229
+    },
     "30000136:MINUTE_15:1789341300000:up": {
       "candle_time_ms": 1789341300000,
       "contract_id": "30000136",

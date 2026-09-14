@@ -376,6 +376,14 @@
       "interval": "MINUTE_15",
       "sent_at_ms": 1789370329960
     },
+    "30000070:MINUTE_15:1789411500000:up": {
+      "candle_time_ms": 1789411500000,
+      "contract_id": "30000070",
+      "contract_name": "TAOUSDC",
+      "direction": "up",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789412600402
+    },
     "30000092:MINUTE_5:1789320600000:up": {
       "candle_time_ms": 1789320600000,
       "contract_id": "30000092",

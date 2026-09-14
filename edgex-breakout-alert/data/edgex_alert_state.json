@@ -48,6 +48,22 @@
       "interval": "MINUTE_5",
       "sent_at_ms": 1789320703795
     },
+    "30000005:MINUTE_15:1789377300000:down": {
+      "candle_time_ms": 1789377300000,
+      "contract_id": "30000005",
+      "contract_name": "XAUUSDC",
+      "direction": "down",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789378392311
+    },
+    "30000007:MINUTE_15:1789377300000:down": {
+      "candle_time_ms": 1789377300000,
+      "contract_id": "30000007",
+      "contract_name": "COPPERUSDC",
+      "direction": "down",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789378393017
+    },
     "30000008:MINUTE_15:1789336800000:up": {
       "candle_time_ms": 1789336800000,
       "contract_id": "30000008",

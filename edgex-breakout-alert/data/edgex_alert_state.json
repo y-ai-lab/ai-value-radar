@@ -80,6 +80,14 @@
       "interval": "MINUTE_15",
       "sent_at_ms": 1789337912610
     },
+    "30000008:MINUTE_15:1789410600000:down": {
+      "candle_time_ms": 1789410600000,
+      "contract_id": "30000008",
+      "contract_name": "CLUSDC",
+      "direction": "down",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789411621175
+    },
     "30000014:MINUTE_15:1789344900000:down": {
       "candle_time_ms": 1789344900000,
       "contract_id": "30000014",
@@ -311,6 +319,14 @@
       "direction": "down",
       "interval": "MINUTE_15",
       "sent_at_ms": 1789337914084
+    },
+    "30000058:MINUTE_15:1789410600000:up": {
+      "candle_time_ms": 1789410600000,
+      "contract_id": "30000058",
+      "contract_name": "ENAUSDC",
+      "direction": "up",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789411621814
     },
     "30000058:MINUTE_5:1789318800000:up": {
       "candle_time_ms": 1789318800000,

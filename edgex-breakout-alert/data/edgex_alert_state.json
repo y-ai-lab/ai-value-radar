@@ -160,6 +160,14 @@
       "interval": "MINUTE_5",
       "sent_at_ms": 1789320950019
     },
+    "30000099:MINUTE_15:1789344000000:down": {
+      "candle_time_ms": 1789344000000,
+      "contract_id": "30000099",
+      "contract_name": "APLDUSDC",
+      "direction": "down",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789344920238
+    },
     "30000136:MINUTE_15:1789341300000:up": {
       "candle_time_ms": 1789341300000,
       "contract_id": "30000136",
@@ -167,6 +175,22 @@
       "direction": "up",
       "interval": "MINUTE_15",
       "sent_at_ms": 1789342236180
+    },
+    "30000149:MINUTE_15:1789344000000:down": {
+      "candle_time_ms": 1789344000000,
+      "contract_id": "30000149",
+      "contract_name": "KODEX200USDC",
+      "direction": "down",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789344920817
+    },
+    "30000164:MINUTE_15:1789344000000:down": {
+      "candle_time_ms": 1789344000000,
+      "contract_id": "30000164",
+      "contract_name": "IONQUSDC",
+      "direction": "down",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789344921313
     },
     "30000167:MINUTE_5:1789320000000:up": {
       "candle_time_ms": 1789320000000,

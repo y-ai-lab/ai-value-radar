@@ -367,6 +367,14 @@
       "direction": "up",
       "interval": "MINUTE_5",
       "sent_at_ms": 1789320458034
+    },
+    "30000173:MINUTE_15:1789390800000:down": {
+      "candle_time_ms": 1789390800000,
+      "contract_id": "30000173",
+      "contract_name": "牛来USDC",
+      "direction": "down",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789391821092
     }
   },
   "processed_candles": {}

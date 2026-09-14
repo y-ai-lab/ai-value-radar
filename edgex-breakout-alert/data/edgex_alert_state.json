@@ -216,6 +216,14 @@
       "interval": "MINUTE_15",
       "sent_at_ms": 1789342236180
     },
+    "30000136:MINUTE_15:1789350300000:up": {
+      "candle_time_ms": 1789350300000,
+      "contract_id": "30000136",
+      "contract_name": "UNITREEUSDC",
+      "direction": "up",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789351263813
+    },
     "30000149:MINUTE_15:1789344000000:down": {
       "candle_time_ms": 1789344000000,
       "contract_id": "30000149",

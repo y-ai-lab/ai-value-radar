@@ -208,6 +208,14 @@
       "interval": "MINUTE_15",
       "sent_at_ms": 1789392798345
     },
+    "30000048:MINUTE_15:1789404300000:up": {
+      "candle_time_ms": 1789404300000,
+      "contract_id": "30000048",
+      "contract_name": "TRXUSDC",
+      "direction": "up",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789405271933
+    },
     "30000052:MINUTE_15:1789336800000:down": {
       "candle_time_ms": 1789336800000,
       "contract_id": "30000052",

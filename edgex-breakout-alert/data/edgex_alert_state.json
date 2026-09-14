@@ -1,5 +1,13 @@
 {
   "alerts": {
+    "30000002:MINUTE_15:1789416000000:up": {
+      "candle_time_ms": 1789416000000,
+      "contract_id": "30000002",
+      "contract_name": "ETHUSDC",
+      "direction": "up",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789416991569
+    },
     "30000002:MINUTE_5:1789315500000:up": {
       "candle_time_ms": 1789315500000,
       "contract_id": "30000002",

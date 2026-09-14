@@ -416,6 +416,14 @@
       "interval": "MINUTE_15",
       "sent_at_ms": 1789412600402
     },
+    "30000083:MINUTE_15:1789421400000:down": {
+      "candle_time_ms": 1789421400000,
+      "contract_id": "30000083",
+      "contract_name": "BTWUSDC",
+      "direction": "down",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789422366878
+    },
     "30000092:MINUTE_5:1789320600000:up": {
       "candle_time_ms": 1789320600000,
       "contract_id": "30000092",

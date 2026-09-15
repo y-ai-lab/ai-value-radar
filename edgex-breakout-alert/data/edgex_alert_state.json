@@ -80,6 +80,14 @@
       "interval": "MINUTE_15",
       "sent_at_ms": 1789402576978
     },
+    "30000004:MINUTE_15:1789478100000:up": {
+      "candle_time_ms": 1789478100000,
+      "contract_id": "30000004",
+      "contract_name": "EDGEUSDC",
+      "direction": "up",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789479155715
+    },
     "30000004:MINUTE_5:1789320300000:up": {
       "candle_time_ms": 1789320300000,
       "contract_id": "30000004",
@@ -463,6 +471,14 @@
       "direction": "down",
       "interval": "MINUTE_15",
       "sent_at_ms": 1789422366878
+    },
+    "30000087:MINUTE_15:1789478100000:up": {
+      "candle_time_ms": 1789478100000,
+      "contract_id": "30000087",
+      "contract_name": "SKHYUSDC",
+      "direction": "up",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789479156452
     },
     "30000092:MINUTE_5:1789320600000:up": {
       "candle_time_ms": 1789320600000,

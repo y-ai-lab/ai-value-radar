@@ -8,6 +8,14 @@
       "interval": "MINUTE_15",
       "sent_at_ms": 1789416991569
     },
+    "30000002:MINUTE_15:1789441200000:down": {
+      "candle_time_ms": 1789441200000,
+      "contract_id": "30000002",
+      "contract_name": "ETHUSDC",
+      "direction": "down",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789442139592
+    },
     "30000002:MINUTE_5:1789315500000:up": {
       "candle_time_ms": 1789315500000,
       "contract_id": "30000002",
@@ -31,6 +39,14 @@
       "direction": "up",
       "interval": "MINUTE_15",
       "sent_at_ms": 1789417969242
+    },
+    "30000003:MINUTE_15:1789441200000:down": {
+      "candle_time_ms": 1789441200000,
+      "contract_id": "30000003",
+      "contract_name": "SOLUSDC",
+      "direction": "down",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789442140124
     },
     "30000003:MINUTE_5:1789315500000:up": {
       "candle_time_ms": 1789315500000,
@@ -231,6 +247,14 @@
       "direction": "down",
       "interval": "MINUTE_15",
       "sent_at_ms": 1789392798345
+    },
+    "30000041:MINUTE_15:1789441200000:down": {
+      "candle_time_ms": 1789441200000,
+      "contract_id": "30000041",
+      "contract_name": "HYPEUSDC",
+      "direction": "down",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789442140749
     },
     "30000048:MINUTE_15:1789404300000:up": {
       "candle_time_ms": 1789404300000,

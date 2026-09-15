@@ -544,6 +544,14 @@
       "interval": "MINUTE_15",
       "sent_at_ms": 1789344920238
     },
+    "30000108:MINUTE_15:1789479900000:down": {
+      "candle_time_ms": 1789479900000,
+      "contract_id": "30000108",
+      "contract_name": "SHAZUSDC",
+      "direction": "down",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789480880306
+    },
     "30000110:MINUTE_15:1789371900000:up": {
       "candle_time_ms": 1789371900000,
       "contract_id": "30000110",

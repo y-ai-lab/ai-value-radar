@@ -440,6 +440,14 @@
       "interval": "MINUTE_15",
       "sent_at_ms": 1789412600402
     },
+    "30000071:MINUTE_15:1789443900000:down": {
+      "candle_time_ms": 1789443900000,
+      "contract_id": "30000071",
+      "contract_name": "ICPUSDC",
+      "direction": "down",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789444830753
+    },
     "30000083:MINUTE_15:1789421400000:down": {
       "candle_time_ms": 1789421400000,
       "contract_id": "30000083",

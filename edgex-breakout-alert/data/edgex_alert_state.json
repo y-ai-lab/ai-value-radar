@@ -496,6 +496,14 @@
       "interval": "MINUTE_15",
       "sent_at_ms": 1789393534330
     },
+    "30000134:MINUTE_15:1789473600000:down": {
+      "candle_time_ms": 1789473600000,
+      "contract_id": "30000134",
+      "contract_name": "RDDTUSDC",
+      "direction": "down",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789474526422
+    },
     "30000136:MINUTE_15:1789341300000:up": {
       "candle_time_ms": 1789341300000,
       "contract_id": "30000136",

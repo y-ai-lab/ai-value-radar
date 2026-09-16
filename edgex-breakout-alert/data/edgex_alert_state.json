@@ -136,6 +136,14 @@
       "interval": "MINUTE_15",
       "sent_at_ms": 1789378392311
     },
+    "30000005:MINUTE_15:1789527600000:up": {
+      "candle_time_ms": 1789527600000,
+      "contract_id": "30000005",
+      "contract_name": "XAUUSDC",
+      "direction": "up",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789528505782
+    },
     "30000007:MINUTE_15:1789377300000:down": {
       "candle_time_ms": 1789377300000,
       "contract_id": "30000007",
@@ -647,6 +655,14 @@
       "direction": "up",
       "interval": "MINUTE_15",
       "sent_at_ms": 1789480134778
+    },
+    "30000079:MINUTE_15:1789527600000:up": {
+      "candle_time_ms": 1789527600000,
+      "contract_id": "30000079",
+      "contract_name": "SAMSUNGUSDC",
+      "direction": "up",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789528506454
     },
     "30000083:MINUTE_15:1789421400000:down": {
       "candle_time_ms": 1789421400000,

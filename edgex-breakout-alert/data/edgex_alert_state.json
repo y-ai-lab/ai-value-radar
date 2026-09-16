@@ -352,6 +352,14 @@
       "interval": "MINUTE_15",
       "sent_at_ms": 1789497970087
     },
+    "30000043:MINUTE_15:1789523100000:down": {
+      "candle_time_ms": 1789523100000,
+      "contract_id": "30000043",
+      "contract_name": "TRUMPUSDC",
+      "direction": "down",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789524106394
+    },
     "30000048:MINUTE_15:1789404300000:up": {
       "candle_time_ms": 1789404300000,
       "contract_id": "30000048",
@@ -567,6 +575,14 @@
       "direction": "down",
       "interval": "MINUTE_15",
       "sent_at_ms": 1789483564940
+    },
+    "30000063:MINUTE_15:1789523100000:down": {
+      "candle_time_ms": 1789523100000,
+      "contract_id": "30000063",
+      "contract_name": "PUMPUSDC",
+      "direction": "down",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789524106926
     },
     "30000063:MINUTE_5:1789314900000:down": {
       "candle_time_ms": 1789314900000,

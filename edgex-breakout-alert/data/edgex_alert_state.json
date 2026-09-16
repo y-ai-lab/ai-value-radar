@@ -304,6 +304,14 @@
       "interval": "MINUTE_15",
       "sent_at_ms": 1789373752655
     },
+    "30000023:MINUTE_15:1789567200000:up": {
+      "candle_time_ms": 1789567200000,
+      "contract_id": "30000023",
+      "contract_name": "TSLAUSDC",
+      "direction": "up",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789568332102
+    },
     "30000026:MINUTE_15:1789479000000:down": {
       "candle_time_ms": 1789479000000,
       "contract_id": "30000026",
@@ -311,6 +319,14 @@
       "direction": "down",
       "interval": "MINUTE_15",
       "sent_at_ms": 1789480133033
+    },
+    "30000026:MINUTE_15:1789567200000:down": {
+      "candle_time_ms": 1789567200000,
+      "contract_id": "30000026",
+      "contract_name": "CRCLUSDC",
+      "direction": "down",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789568332642
     },
     "30000027:MINUTE_15:1789479000000:down": {
       "candle_time_ms": 1789479000000,

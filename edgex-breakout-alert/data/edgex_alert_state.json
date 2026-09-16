@@ -760,6 +760,14 @@
       "interval": "MINUTE_15",
       "sent_at_ms": 1789483565476
     },
+    "30000068:MINUTE_15:1789600500000:up": {
+      "candle_time_ms": 1789600500000,
+      "contract_id": "30000068",
+      "contract_name": "ASTERUSDC",
+      "direction": "up",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789601575841
+    },
     "30000070:MINUTE_15:1789411500000:up": {
       "candle_time_ms": 1789411500000,
       "contract_id": "30000070",

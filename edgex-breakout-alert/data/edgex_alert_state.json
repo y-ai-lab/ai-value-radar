@@ -656,6 +656,14 @@
       "interval": "MINUTE_5",
       "sent_at_ms": 1789320950019
     },
+    "30000094:MINUTE_15:1789522200000:up": {
+      "candle_time_ms": 1789522200000,
+      "contract_id": "30000094",
+      "contract_name": "MINIMAXUSDC",
+      "direction": "up",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789523128573
+    },
     "30000099:MINUTE_15:1789344000000:down": {
       "candle_time_ms": 1789344000000,
       "contract_id": "30000099",
@@ -727,6 +735,14 @@
       "direction": "up",
       "interval": "MINUTE_15",
       "sent_at_ms": 1789436041629
+    },
+    "30000136:MINUTE_15:1789522200000:down": {
+      "candle_time_ms": 1789522200000,
+      "contract_id": "30000136",
+      "contract_name": "UNITREEUSDC",
+      "direction": "down",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789523129178
     },
     "30000149:MINUTE_15:1789344000000:down": {
       "candle_time_ms": 1789344000000,

@@ -344,6 +344,14 @@
       "interval": "MINUTE_15",
       "sent_at_ms": 1789565402235
     },
+    "30000021:MINUTE_15:1789650000000:up": {
+      "candle_time_ms": 1789650000000,
+      "contract_id": "30000021",
+      "contract_name": "AMDUSDC",
+      "direction": "up",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789651009173
+    },
     "30000022:MINUTE_15:1789344900000:down": {
       "candle_time_ms": 1789344900000,
       "contract_id": "30000022",

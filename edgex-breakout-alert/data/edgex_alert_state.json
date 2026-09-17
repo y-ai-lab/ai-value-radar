@@ -744,6 +744,14 @@
       "interval": "MINUTE_15",
       "sent_at_ms": 1789524106926
     },
+    "30000063:MINUTE_15:1789612200000:up": {
+      "candle_time_ms": 1789612200000,
+      "contract_id": "30000063",
+      "contract_name": "PUMPUSDC",
+      "direction": "up",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789613277333
+    },
     "30000063:MINUTE_5:1789314900000:down": {
       "candle_time_ms": 1789314900000,
       "contract_id": "30000063",
@@ -975,6 +983,14 @@
       "direction": "down",
       "interval": "MINUTE_15",
       "sent_at_ms": 1789523129178
+    },
+    "30000136:MINUTE_15:1789612200000:up": {
+      "candle_time_ms": 1789612200000,
+      "contract_id": "30000136",
+      "contract_name": "UNITREEUSDC",
+      "direction": "up",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789613277982
     },
     "30000149:MINUTE_15:1789344000000:down": {
       "candle_time_ms": 1789344000000,

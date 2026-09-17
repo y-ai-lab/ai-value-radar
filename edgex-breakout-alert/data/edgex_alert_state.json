@@ -888,6 +888,14 @@
       "interval": "MINUTE_15",
       "sent_at_ms": 1789655400804
     },
+    "30000058:MINUTE_15:1789661700000:up": {
+      "candle_time_ms": 1789661700000,
+      "contract_id": "30000058",
+      "contract_name": "ENAUSDC",
+      "direction": "up",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789662784370
+    },
     "30000058:MINUTE_5:1789318800000:up": {
       "candle_time_ms": 1789318800000,
       "contract_id": "30000058",

@@ -272,6 +272,14 @@
       "interval": "MINUTE_15",
       "sent_at_ms": 1789585206122
     },
+    "30000014:MINUTE_15:1789653600000:up": {
+      "candle_time_ms": 1789653600000,
+      "contract_id": "30000014",
+      "contract_name": "MSTRUSDC",
+      "direction": "up",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789654667732
+    },
     "30000014:MINUTE_5:1789315500000:up": {
       "candle_time_ms": 1789315500000,
       "contract_id": "30000014",
@@ -712,6 +720,14 @@
       "interval": "MINUTE_15",
       "sent_at_ms": 1789566379780
     },
+    "30000052:MINUTE_15:1789653600000:up": {
+      "candle_time_ms": 1789653600000,
+      "contract_id": "30000052",
+      "contract_name": "ZECUSDC",
+      "direction": "up",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789654668455
+    },
     "30000052:MINUTE_5:1789312500000:down": {
       "candle_time_ms": 1789312500000,
       "contract_id": "30000052",
@@ -735,6 +751,14 @@
       "direction": "down",
       "interval": "MINUTE_15",
       "sent_at_ms": 1789580808944
+    },
+    "30000053:MINUTE_15:1789653600000:up": {
+      "candle_time_ms": 1789653600000,
+      "contract_id": "30000053",
+      "contract_name": "DOGEUSDC",
+      "direction": "up",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789654669166
     },
     "30000053:MINUTE_5:1789318800000:up": {
       "candle_time_ms": 1789318800000,

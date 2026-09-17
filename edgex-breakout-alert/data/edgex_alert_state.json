@@ -416,6 +416,14 @@
       "interval": "MINUTE_15",
       "sent_at_ms": 1789629418470
     },
+    "30000023:MINUTE_15:1789650900000:up": {
+      "candle_time_ms": 1789650900000,
+      "contract_id": "30000023",
+      "contract_name": "TSLAUSDC",
+      "direction": "up",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789651983151
+    },
     "30000026:MINUTE_15:1789479000000:down": {
       "candle_time_ms": 1789479000000,
       "contract_id": "30000026",

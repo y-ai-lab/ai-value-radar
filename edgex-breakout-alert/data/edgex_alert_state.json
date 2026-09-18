@@ -904,6 +904,14 @@
       "interval": "MINUTE_15",
       "sent_at_ms": 1789407226393
     },
+    "30000056:MINUTE_15:1789724700000:up": {
+      "candle_time_ms": 1789724700000,
+      "contract_id": "30000056",
+      "contract_name": "UNIUSDC",
+      "direction": "up",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789725775665
+    },
     "30000057:MINUTE_15:1789497000000:down": {
       "candle_time_ms": 1789497000000,
       "contract_id": "30000057",

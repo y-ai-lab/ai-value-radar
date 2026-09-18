@@ -592,6 +592,14 @@
       "interval": "MINUTE_15",
       "sent_at_ms": 1789739187996
     },
+    "30000034:MINUTE_15:1789760700000:up": {
+      "candle_time_ms": 1789760700000,
+      "contract_id": "30000034",
+      "contract_name": "SNDKUSDC",
+      "direction": "up",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789761646559
+    },
     "30000035:MINUTE_15:1789372800000:down": {
       "candle_time_ms": 1789372800000,
       "contract_id": "30000035",
@@ -1375,6 +1383,14 @@
       "direction": "up",
       "interval": "MINUTE_15",
       "sent_at_ms": 1789759940271
+    },
+    "30000090:MINUTE_15:1789760700000:down": {
+      "candle_time_ms": 1789760700000,
+      "contract_id": "30000090",
+      "contract_name": "SOXSUSDC",
+      "direction": "down",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789761647267
     },
     "30000092:MINUTE_5:1789320600000:up": {
       "candle_time_ms": 1789320600000,

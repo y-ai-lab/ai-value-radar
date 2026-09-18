@@ -816,6 +816,14 @@
       "interval": "MINUTE_15",
       "sent_at_ms": 1789483564419
     },
+    "30000054:MINUTE_15:1789692300000:up": {
+      "candle_time_ms": 1789692300000,
+      "contract_id": "30000054",
+      "contract_name": "SUIUSDC",
+      "direction": "up",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789693322207
+    },
     "30000054:MINUTE_5:1789318800000:up": {
       "candle_time_ms": 1789318800000,
       "contract_id": "30000054",
@@ -1047,6 +1055,14 @@
       "direction": "up",
       "interval": "MINUTE_15",
       "sent_at_ms": 1789630396307
+    },
+    "30000069:MINUTE_15:1789692300000:up": {
+      "candle_time_ms": 1789692300000,
+      "contract_id": "30000069",
+      "contract_name": "FILUSDC",
+      "direction": "up",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789693322781
     },
     "30000070:MINUTE_15:1789411500000:up": {
       "candle_time_ms": 1789411500000,

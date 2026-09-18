@@ -1224,6 +1224,14 @@
       "interval": "MINUTE_15",
       "sent_at_ms": 1789687954130
     },
+    "30000066:MINUTE_15:1789745400000:up": {
+      "candle_time_ms": 1789745400000,
+      "contract_id": "30000066",
+      "contract_name": "XMRUSDC",
+      "direction": "up",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789746301810
+    },
     "30000068:MINUTE_15:1789482600000:down": {
       "candle_time_ms": 1789482600000,
       "contract_id": "30000068",

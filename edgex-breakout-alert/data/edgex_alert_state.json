@@ -24,6 +24,14 @@
       "interval": "MINUTE_15",
       "sent_at_ms": 1789701378491
     },
+    "30000001:MINUTE_15:1789738200000:up": {
+      "candle_time_ms": 1789738200000,
+      "contract_id": "30000001",
+      "contract_name": "BTCUSDC",
+      "direction": "up",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789739184370
+    },
     "30000002:MINUTE_15:1789416000000:up": {
       "candle_time_ms": 1789416000000,
       "contract_id": "30000002",
@@ -63,6 +71,14 @@
       "direction": "up",
       "interval": "MINUTE_15",
       "sent_at_ms": 1789648328096
+    },
+    "30000002:MINUTE_15:1789738200000:up": {
+      "candle_time_ms": 1789738200000,
+      "contract_id": "30000002",
+      "contract_name": "ETHUSDC",
+      "direction": "up",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789739185037
     },
     "30000002:MINUTE_5:1789315500000:up": {
       "candle_time_ms": 1789315500000,
@@ -135,6 +151,14 @@
       "direction": "up",
       "interval": "MINUTE_15",
       "sent_at_ms": 1789701379044
+    },
+    "30000003:MINUTE_15:1789738200000:up": {
+      "candle_time_ms": 1789738200000,
+      "contract_id": "30000003",
+      "contract_name": "SOLUSDC",
+      "direction": "up",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789739185588
     },
     "30000003:MINUTE_5:1789315500000:up": {
       "candle_time_ms": 1789315500000,
@@ -312,6 +336,14 @@
       "interval": "MINUTE_15",
       "sent_at_ms": 1789698686992
     },
+    "30000014:MINUTE_15:1789738200000:up": {
+      "candle_time_ms": 1789738200000,
+      "contract_id": "30000014",
+      "contract_name": "MSTRUSDC",
+      "direction": "up",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789739186259
+    },
     "30000014:MINUTE_5:1789315500000:up": {
       "candle_time_ms": 1789315500000,
       "contract_id": "30000014",
@@ -472,6 +504,14 @@
       "interval": "MINUTE_15",
       "sent_at_ms": 1789651983151
     },
+    "30000025:MINUTE_15:1789738200000:up": {
+      "candle_time_ms": 1789738200000,
+      "contract_id": "30000025",
+      "contract_name": "COINUSDC",
+      "direction": "up",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789739186870
+    },
     "30000026:MINUTE_15:1789479000000:down": {
       "candle_time_ms": 1789479000000,
       "contract_id": "30000026",
@@ -487,6 +527,14 @@
       "direction": "down",
       "interval": "MINUTE_15",
       "sent_at_ms": 1789568332642
+    },
+    "30000026:MINUTE_15:1789738200000:up": {
+      "candle_time_ms": 1789738200000,
+      "contract_id": "30000026",
+      "contract_name": "CRCLUSDC",
+      "direction": "up",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789739187438
     },
     "30000027:MINUTE_15:1789479000000:down": {
       "candle_time_ms": 1789479000000,
@@ -536,6 +584,14 @@
       "interval": "MINUTE_15",
       "sent_at_ms": 1789652716285
     },
+    "30000034:MINUTE_15:1789738200000:up": {
+      "candle_time_ms": 1789738200000,
+      "contract_id": "30000034",
+      "contract_name": "SNDKUSDC",
+      "direction": "up",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789739187996
+    },
     "30000035:MINUTE_15:1789372800000:down": {
       "candle_time_ms": 1789372800000,
       "contract_id": "30000035",
@@ -560,6 +616,14 @@
       "interval": "MINUTE_15",
       "sent_at_ms": 1789652716928
     },
+    "30000036:MINUTE_15:1789738200000:down": {
+      "candle_time_ms": 1789738200000,
+      "contract_id": "30000036",
+      "contract_name": "RKLBUSDC",
+      "direction": "down",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789739188592
+    },
     "30000037:MINUTE_15:1789651800000:up": {
       "candle_time_ms": 1789651800000,
       "contract_id": "30000037",
@@ -567,6 +631,14 @@
       "direction": "up",
       "interval": "MINUTE_15",
       "sent_at_ms": 1789652717559
+    },
+    "30000037:MINUTE_15:1789738200000:down": {
+      "candle_time_ms": 1789738200000,
+      "contract_id": "30000037",
+      "contract_name": "ORCLUSDC",
+      "direction": "down",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789739189160
     },
     "30000040:MINUTE_15:1789651800000:up": {
       "candle_time_ms": 1789651800000,
@@ -704,6 +776,14 @@
       "interval": "MINUTE_15",
       "sent_at_ms": 1789698687636
     },
+    "30000050:MINUTE_15:1789738200000:up": {
+      "candle_time_ms": 1789738200000,
+      "contract_id": "30000050",
+      "contract_name": "BNBUSDC",
+      "direction": "up",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789739189833
+    },
     "30000051:MINUTE_15:1789409700000:up": {
       "candle_time_ms": 1789409700000,
       "contract_id": "30000051",
@@ -743,6 +823,14 @@
       "direction": "up",
       "interval": "MINUTE_15",
       "sent_at_ms": 1789648330049
+    },
+    "30000051:MINUTE_15:1789738200000:up": {
+      "candle_time_ms": 1789738200000,
+      "contract_id": "30000051",
+      "contract_name": "XRPUSDC",
+      "direction": "up",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789739190414
     },
     "30000052:MINUTE_15:1789336800000:down": {
       "candle_time_ms": 1789336800000,
@@ -896,6 +984,14 @@
       "interval": "MINUTE_15",
       "sent_at_ms": 1789693322207
     },
+    "30000054:MINUTE_15:1789738200000:up": {
+      "candle_time_ms": 1789738200000,
+      "contract_id": "30000054",
+      "contract_name": "SUIUSDC",
+      "direction": "up",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789739191083
+    },
     "30000054:MINUTE_5:1789318800000:up": {
       "candle_time_ms": 1789318800000,
       "contract_id": "30000054",
@@ -1015,6 +1111,14 @@
       "direction": "up",
       "interval": "MINUTE_5",
       "sent_at_ms": 1789319233410
+    },
+    "30000062:MINUTE_15:1789738200000:up": {
+      "candle_time_ms": 1789738200000,
+      "contract_id": "30000062",
+      "contract_name": "ONDOUSDC",
+      "direction": "up",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789739191745
     },
     "30000063:MINUTE_15:1789336800000:down": {
       "candle_time_ms": 1789336800000,
@@ -1152,6 +1256,14 @@
       "interval": "MINUTE_15",
       "sent_at_ms": 1789693322781
     },
+    "30000069:MINUTE_15:1789738200000:up": {
+      "candle_time_ms": 1789738200000,
+      "contract_id": "30000069",
+      "contract_name": "FILUSDC",
+      "direction": "up",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789739192328
+    },
     "30000070:MINUTE_15:1789411500000:up": {
       "candle_time_ms": 1789411500000,
       "contract_id": "30000070",
@@ -1207,6 +1319,14 @@
       "direction": "up",
       "interval": "MINUTE_15",
       "sent_at_ms": 1789480134778
+    },
+    "30000078:MINUTE_15:1789738200000:up": {
+      "candle_time_ms": 1789738200000,
+      "contract_id": "30000078",
+      "contract_name": "CBRSUSDC",
+      "direction": "up",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789739192895
     },
     "30000079:MINUTE_15:1789527600000:up": {
       "candle_time_ms": 1789527600000,
@@ -1320,6 +1440,14 @@
       "interval": "MINUTE_15",
       "sent_at_ms": 1789652719584
     },
+    "30000119:MINUTE_15:1789738200000:up": {
+      "candle_time_ms": 1789738200000,
+      "contract_id": "30000119",
+      "contract_name": "SNXXUSDC",
+      "direction": "up",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789739193556
+    },
     "30000134:MINUTE_15:1789473600000:down": {
       "candle_time_ms": 1789473600000,
       "contract_id": "30000134",
@@ -1376,6 +1504,14 @@
       "interval": "MINUTE_15",
       "sent_at_ms": 1789688931035
     },
+    "30000139:MINUTE_15:1789738200000:up": {
+      "candle_time_ms": 1789738200000,
+      "contract_id": "30000139",
+      "contract_name": "AAOIUSDC",
+      "direction": "up",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789739194167
+    },
     "30000149:MINUTE_15:1789344000000:down": {
       "candle_time_ms": 1789344000000,
       "contract_id": "30000149",
@@ -1383,6 +1519,14 @@
       "direction": "down",
       "interval": "MINUTE_15",
       "sent_at_ms": 1789344920817
+    },
+    "30000150:MINUTE_15:1789738200000:up": {
+      "candle_time_ms": 1789738200000,
+      "contract_id": "30000150",
+      "contract_name": "WDCUSDC",
+      "direction": "up",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789739194760
     },
     "30000151:MINUTE_15:1789349400000:down": {
       "candle_time_ms": 1789349400000,

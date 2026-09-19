@@ -352,6 +352,14 @@
       "interval": "MINUTE_15",
       "sent_at_ms": 1789739186259
     },
+    "30000014:MINUTE_15:1789805700000:up": {
+      "candle_time_ms": 1789805700000,
+      "contract_id": "30000014",
+      "contract_name": "MSTRUSDC",
+      "direction": "up",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789806827234
+    },
     "30000014:MINUTE_5:1789315500000:up": {
       "candle_time_ms": 1789315500000,
       "contract_id": "30000014",
@@ -1167,6 +1175,14 @@
       "direction": "up",
       "interval": "MINUTE_15",
       "sent_at_ms": 1789787839231
+    },
+    "30000058:MINUTE_15:1789805700000:up": {
+      "candle_time_ms": 1789805700000,
+      "contract_id": "30000058",
+      "contract_name": "ENAUSDC",
+      "direction": "up",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789806828030
     },
     "30000058:MINUTE_5:1789318800000:up": {
       "candle_time_ms": 1789318800000,

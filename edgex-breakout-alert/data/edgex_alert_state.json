@@ -1576,6 +1576,14 @@
       "interval": "MINUTE_15",
       "sent_at_ms": 1789474526422
     },
+    "30000135:MINUTE_15:1789801200000:up": {
+      "candle_time_ms": 1789801200000,
+      "contract_id": "30000135",
+      "contract_name": "HEIUSDC",
+      "direction": "up",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789802199709
+    },
     "30000136:MINUTE_15:1789341300000:up": {
       "candle_time_ms": 1789341300000,
       "contract_id": "30000136",

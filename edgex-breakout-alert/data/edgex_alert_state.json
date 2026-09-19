@@ -744,6 +744,14 @@
       "interval": "MINUTE_15",
       "sent_at_ms": 1789773401467
     },
+    "30000042:MINUTE_15:1789813800000:up": {
+      "candle_time_ms": 1789813800000,
+      "contract_id": "30000042",
+      "contract_name": "LITUSDC",
+      "direction": "up",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789814857169
+    },
     "30000043:MINUTE_15:1789497000000:down": {
       "candle_time_ms": 1789497000000,
       "contract_id": "30000043",

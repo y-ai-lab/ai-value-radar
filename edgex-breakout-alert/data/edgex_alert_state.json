@@ -1016,6 +1016,14 @@
       "interval": "MINUTE_15",
       "sent_at_ms": 1789739191083
     },
+    "30000054:MINUTE_15:1789776900000:up": {
+      "candle_time_ms": 1789776900000,
+      "contract_id": "30000054",
+      "contract_name": "SUIUSDC",
+      "direction": "up",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789778039466
+    },
     "30000054:MINUTE_5:1789318800000:up": {
       "candle_time_ms": 1789318800000,
       "contract_id": "30000054",

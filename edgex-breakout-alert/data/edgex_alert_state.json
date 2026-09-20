@@ -1144,6 +1144,14 @@
       "interval": "MINUTE_15",
       "sent_at_ms": 1789407226393
     },
+    "30000055:MINUTE_15:1789867800000:down": {
+      "candle_time_ms": 1789867800000,
+      "contract_id": "30000055",
+      "contract_name": "LINKUSDC",
+      "direction": "down",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789868795641
+    },
     "30000056:MINUTE_15:1789724700000:up": {
       "candle_time_ms": 1789724700000,
       "contract_id": "30000056",

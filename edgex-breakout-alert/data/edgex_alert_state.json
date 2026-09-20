@@ -1088,6 +1088,14 @@
       "interval": "MINUTE_15",
       "sent_at_ms": 1789838294674
     },
+    "30000052:MINUTE_15:1789934400000:up": {
+      "candle_time_ms": 1789934400000,
+      "contract_id": "30000052",
+      "contract_name": "ZECUSDC",
+      "direction": "up",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789935528554
+    },
     "30000052:MINUTE_5:1789312500000:down": {
       "candle_time_ms": 1789312500000,
       "contract_id": "30000052",
@@ -1511,6 +1519,14 @@
       "direction": "up",
       "interval": "MINUTE_15",
       "sent_at_ms": 1789920911826
+    },
+    "30000063:MINUTE_15:1789934400000:up": {
+      "candle_time_ms": 1789934400000,
+      "contract_id": "30000063",
+      "contract_name": "PUMPUSDC",
+      "direction": "up",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789935529163
     },
     "30000063:MINUTE_5:1789314900000:down": {
       "candle_time_ms": 1789314900000,

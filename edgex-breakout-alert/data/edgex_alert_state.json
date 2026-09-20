@@ -1976,6 +1976,14 @@
       "interval": "MINUTE_15",
       "sent_at_ms": 1789344921313
     },
+    "30000167:MINUTE_15:1789911900000:down": {
+      "candle_time_ms": 1789911900000,
+      "contract_id": "30000167",
+      "contract_name": "PONSUSDC",
+      "direction": "down",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789912801979
+    },
     "30000167:MINUTE_5:1789320000000:up": {
       "candle_time_ms": 1789320000000,
       "contract_id": "30000167",

@@ -1808,6 +1808,14 @@
       "interval": "MINUTE_15",
       "sent_at_ms": 1789739193556
     },
+    "30000131:MINUTE_15:1789901100000:up": {
+      "candle_time_ms": 1789901100000,
+      "contract_id": "30000131",
+      "contract_name": "UAIUSDC",
+      "direction": "up",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789902080329
+    },
     "30000134:MINUTE_15:1789473600000:down": {
       "candle_time_ms": 1789473600000,
       "contract_id": "30000134",

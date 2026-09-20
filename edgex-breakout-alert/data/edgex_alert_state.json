@@ -1664,6 +1664,14 @@
       "interval": "MINUTE_15",
       "sent_at_ms": 1789444830753
     },
+    "30000074:MINUTE_15:1789940700000:up": {
+      "candle_time_ms": 1789940700000,
+      "contract_id": "30000074",
+      "contract_name": "PENDLEUSDC",
+      "direction": "up",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789941665172
+    },
     "30000076:MINUTE_15:1789479000000:down": {
       "candle_time_ms": 1789479000000,
       "contract_id": "30000076",

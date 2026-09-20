@@ -1744,6 +1744,14 @@
       "interval": "MINUTE_15",
       "sent_at_ms": 1789872451758
     },
+    "30000100:MINUTE_15:1789918200000:up": {
+      "candle_time_ms": 1789918200000,
+      "contract_id": "30000100",
+      "contract_name": "NEARUSDC",
+      "direction": "up",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789919202721
+    },
     "30000108:MINUTE_15:1789479900000:down": {
       "candle_time_ms": 1789479900000,
       "contract_id": "30000108",

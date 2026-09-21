@@ -672,6 +672,14 @@
       "interval": "MINUTE_15",
       "sent_at_ms": 1789652715664
     },
+    "30000032:MINUTE_15:1790000100000:up": {
+      "candle_time_ms": 1790000100000,
+      "contract_id": "30000032",
+      "contract_name": "INTCUSDC",
+      "direction": "up",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1790001142646
+    },
     "30000033:MINUTE_15:1789952400000:up": {
       "candle_time_ms": 1789952400000,
       "contract_id": "30000033",

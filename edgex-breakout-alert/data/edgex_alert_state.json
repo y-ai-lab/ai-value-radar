@@ -912,6 +912,14 @@
       "interval": "MINUTE_15",
       "sent_at_ms": 1789590837339
     },
+    "30000046:MINUTE_15:1790004600000:up": {
+      "candle_time_ms": 1790004600000,
+      "contract_id": "30000046",
+      "contract_name": "1000PEPEUSDC",
+      "direction": "up",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1790005536400
+    },
     "30000048:MINUTE_15:1789404300000:up": {
       "candle_time_ms": 1789404300000,
       "contract_id": "30000048",

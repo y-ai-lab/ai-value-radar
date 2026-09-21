@@ -1840,6 +1840,14 @@
       "interval": "MINUTE_15",
       "sent_at_ms": 1789900373918
     },
+    "30000098:MINUTE_15:1789966800000:down": {
+      "candle_time_ms": 1789966800000,
+      "contract_id": "30000098",
+      "contract_name": "1000AKEUSDC",
+      "direction": "down",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789967796810
+    },
     "30000099:MINUTE_15:1789344000000:down": {
       "candle_time_ms": 1789344000000,
       "contract_id": "30000099",
@@ -2039,6 +2047,14 @@
       "direction": "down",
       "interval": "MINUTE_15",
       "sent_at_ms": 1789952443131
+    },
+    "30000136:MINUTE_15:1789966800000:down": {
+      "candle_time_ms": 1789966800000,
+      "contract_id": "30000136",
+      "contract_name": "UNITREEUSDC",
+      "direction": "down",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1789967797412
     },
     "30000139:MINUTE_15:1789738200000:up": {
       "candle_time_ms": 1789738200000,

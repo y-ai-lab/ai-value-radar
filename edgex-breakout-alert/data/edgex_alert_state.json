@@ -2592,6 +2592,14 @@
       "interval": "MINUTE_15",
       "sent_at_ms": 1789344921313
     },
+    "30000164:MINUTE_15:1790107200000:up": {
+      "candle_time_ms": 1790107200000,
+      "contract_id": "30000164",
+      "contract_name": "IONQUSDC",
+      "direction": "up",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1790108114982
+    },
     "30000167:MINUTE_15:1789911900000:down": {
       "candle_time_ms": 1789911900000,
       "contract_id": "30000167",

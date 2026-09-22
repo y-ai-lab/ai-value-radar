@@ -944,6 +944,14 @@
       "interval": "MINUTE_15",
       "sent_at_ms": 1789590837339
     },
+    "30000043:MINUTE_15:1790037000000:up": {
+      "candle_time_ms": 1790037000000,
+      "contract_id": "30000043",
+      "contract_name": "TRUMPUSDC",
+      "direction": "up",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1790038016799
+    },
     "30000046:MINUTE_15:1790004600000:up": {
       "candle_time_ms": 1790004600000,
       "contract_id": "30000046",
@@ -1736,6 +1744,14 @@
       "interval": "MINUTE_15",
       "sent_at_ms": 1790013814839
     },
+    "30000063:MINUTE_15:1790037000000:up": {
+      "candle_time_ms": 1790037000000,
+      "contract_id": "30000063",
+      "contract_name": "PUMPUSDC",
+      "direction": "up",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1790038017336
+    },
     "30000063:MINUTE_5:1789314900000:down": {
       "candle_time_ms": 1789314900000,
       "contract_id": "30000063",
@@ -2279,6 +2295,14 @@
       "direction": "down",
       "interval": "MINUTE_15",
       "sent_at_ms": 1789967797412
+    },
+    "30000136:MINUTE_15:1790037000000:up": {
+      "candle_time_ms": 1790037000000,
+      "contract_id": "30000136",
+      "contract_name": "UNITREEUSDC",
+      "direction": "up",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1790038017959
     },
     "30000139:MINUTE_15:1789738200000:up": {
       "candle_time_ms": 1789738200000,

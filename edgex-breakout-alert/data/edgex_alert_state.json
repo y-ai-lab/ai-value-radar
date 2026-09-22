@@ -376,6 +376,14 @@
       "interval": "MINUTE_15",
       "sent_at_ms": 1789586184837
     },
+    "30000013:MINUTE_15:1790082900000:down": {
+      "candle_time_ms": 1790082900000,
+      "contract_id": "30000013",
+      "contract_name": "AMZNUSDC",
+      "direction": "down",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1790083962814
+    },
     "30000014:MINUTE_15:1789344900000:down": {
       "candle_time_ms": 1789344900000,
       "contract_id": "30000014",

@@ -1736,6 +1736,14 @@
       "interval": "MINUTE_15",
       "sent_at_ms": 1790022829608
     },
+    "30000060:MINUTE_15:1790103600000:up": {
+      "candle_time_ms": 1790103600000,
+      "contract_id": "30000060",
+      "contract_name": "BCHUSDC",
+      "direction": "up",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1790104701126
+    },
     "30000062:MINUTE_15:1789738200000:up": {
       "candle_time_ms": 1789738200000,
       "contract_id": "30000062",

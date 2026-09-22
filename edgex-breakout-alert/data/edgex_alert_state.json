@@ -1504,6 +1504,14 @@
       "interval": "MINUTE_15",
       "sent_at_ms": 1789497972161
     },
+    "30000057:MINUTE_15:1790072100000:down": {
+      "candle_time_ms": 1790072100000,
+      "contract_id": "30000057",
+      "contract_name": "LTCUSDC",
+      "direction": "down",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1790073217289
+    },
     "30000058:MINUTE_15:1789336800000:down": {
       "candle_time_ms": 1789336800000,
       "contract_id": "30000058",

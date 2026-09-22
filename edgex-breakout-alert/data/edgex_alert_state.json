@@ -800,6 +800,14 @@
       "interval": "MINUTE_15",
       "sent_at_ms": 1789739189160
     },
+    "30000039:MINUTE_15:1790035200000:up": {
+      "candle_time_ms": 1790035200000,
+      "contract_id": "30000039",
+      "contract_name": "SKHYNIXUSDC",
+      "direction": "up",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1790036308234
+    },
     "30000040:MINUTE_15:1789651800000:up": {
       "candle_time_ms": 1789651800000,
       "contract_id": "30000040",
@@ -807,6 +815,14 @@
       "direction": "up",
       "interval": "MINUTE_15",
       "sent_at_ms": 1789652718211
+    },
+    "30000040:MINUTE_15:1790035200000:up": {
+      "candle_time_ms": 1790035200000,
+      "contract_id": "30000040",
+      "contract_name": "DRAMUSDC",
+      "direction": "up",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1790036308699
     },
     "30000041:MINUTE_15:1789441200000:down": {
       "candle_time_ms": 1789441200000,
@@ -1847,6 +1863,14 @@
       "direction": "up",
       "interval": "MINUTE_15",
       "sent_at_ms": 1789816566566
+    },
+    "30000070:MINUTE_15:1790035200000:up": {
+      "candle_time_ms": 1790035200000,
+      "contract_id": "30000070",
+      "contract_name": "TAOUSDC",
+      "direction": "up",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1790036309234
     },
     "30000071:MINUTE_15:1789443900000:down": {
       "candle_time_ms": 1789443900000,

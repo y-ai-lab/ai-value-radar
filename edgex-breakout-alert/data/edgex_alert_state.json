@@ -2663,6 +2663,14 @@
       "direction": "down",
       "interval": "MINUTE_15",
       "sent_at_ms": 1789391821092
+    },
+    "30000178:MINUTE_15:1790119800000:up": {
+      "candle_time_ms": 1790119800000,
+      "contract_id": "30000178",
+      "contract_name": "CYPHUSDC",
+      "direction": "up",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1790120837391
     }
   },
   "processed_candles": {}

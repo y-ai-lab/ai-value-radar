@@ -1,11 +1,6 @@
 name: EdgeX breakout scan (AI VALUE RADAR)
 
 on:
-  schedule:
-    # Three 15-minute schedules staggered by five minutes (UTC), for a 5-minute cadence.
-    - cron: "0,15,30,45 * * * *"
-    - cron: "5,20,35,50 * * * *"
-    - cron: "10,25,40,55 * * * *"
   workflow_dispatch:
 
 permissions:

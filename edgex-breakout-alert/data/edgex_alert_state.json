@@ -1952,6 +1952,14 @@
       "interval": "MINUTE_5",
       "sent_at_ms": 1789323147505
     },
+    "30000065:MINUTE_15:1790129700000:up": {
+      "candle_time_ms": 1790129700000,
+      "contract_id": "30000065",
+      "contract_name": "ARBUSDC",
+      "direction": "up",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1790130602209
+    },
     "30000066:MINUTE_15:1789369200000:down": {
       "candle_time_ms": 1789369200000,
       "contract_id": "30000066",

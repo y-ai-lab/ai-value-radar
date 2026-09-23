@@ -3,10 +3,6 @@ name: EdgeX breakout scan (standalone scheduler)
 # The former AI VALUE RADAR workflow is retained as an established GitHub
 # schedule slot, but it now runs only the independent EdgeX alert scanner.
 on:
-  schedule:
-    # A proven six-hour schedule starts a long-running scanner session.
-    # The scanner itself checks the latest confirmed 15-minute candle every four minutes.
-    - cron: "0 5,11,17,23 * * *"
   workflow_dispatch:
 
 permissions:

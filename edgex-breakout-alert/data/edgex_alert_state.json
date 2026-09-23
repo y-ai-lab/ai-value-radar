@@ -2280,6 +2280,14 @@
       "interval": "MINUTE_15",
       "sent_at_ms": 1789609620689
     },
+    "30000094:MINUTE_15:1790127000000:down": {
+      "candle_time_ms": 1790127000000,
+      "contract_id": "30000094",
+      "contract_name": "MINIMAXUSDC",
+      "direction": "down",
+      "interval": "MINUTE_15",
+      "sent_at_ms": 1790127909698
+    },
     "30000098:MINUTE_15:1789899300000:up": {
       "candle_time_ms": 1789899300000,
       "contract_id": "30000098",
